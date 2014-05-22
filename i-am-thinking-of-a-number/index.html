@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<!--Notice: This game is released under the GNU General Public License v3. Link to license: http://www.gnu.org/licenses/gpl-3.0.html-->
+
+<html>
+
+<head>
+
+<title>Thinking of a Number</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<meta name="description" content="The mind boggling number guessing game.">
+
+<style>
+
+html, body, #first {
+margin: 0 auto;
+padding: 0;
+height:100%;
+width:1000px;
+}
+
+#first {
+display:table;
+}
+
+#wrap {
+display: table-cell;
+margin:0;
+padding:0;
+text-align:center;
+vertical-align:middle;
+font-family:"Helvetica";
+}
+
+h1 {
+margin:0;
+font-size:50pt;
+display:block;
+font-weight:700;
+margin-bottom:57px;
+}
+
+#copyright {
+font-size:10pt;
+}
+
+button.big {
+font-size:18pt;
+}
+
+a {
+text-decoration:none;
+cursor:pointer;
+}
+
+a.license {
+}
+
+span.correct {
+color:green;
+font-size:30pt;
+font-weight:700;
+}
+
+#ten {
+font-size:12pt;
+}
+
+#oneandone {
+font-size:64pt;
+}
+
+span.block {
+display:block;
+margin-bottom:57px;
+}
+
+</style>
+
+<script>
+
+var maxnumber,
+	number,
+	hint,
+	att,
+	da,
+	plural,
+	lte;
+
+function help() {
+document.getElementById("main").innerHTML="<p>Try to guess what my number is. Each time you play, I choose a different number.</p><p>This game works on the following browsers:</p><p>Internet Explorer 8+<br>Firefox<br>Chrome<br>Safari 3+<br>Opera 8.50+</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+}
+
+function about() {
+document.getElementById("main").innerHTML="<p>A remake of the infamous PowerPoint game, <em>I am Thinking of a Number</em> strives to frustrate your own sanity through a boggling jumble of microscopic numbers. Of course, you can enable hints and lower the difficulty if you like, but that would ruin the fun, right? Now get guessing!</p><p><strong>Release Date:</strong> August 14, 2013<br><strong>Latest Update:</strong> May 21, 2014<br><strong>Software used:</strong> Notepad++</p><p><strong>License:</strong> This game is released under the GNU General Public License v3. To read its terms, <a href='http://www.gnu.org/licenses/gpl-3.0.html' class='license' target='_blank'>click here</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+}
+
+function between() {
+document.getElementById("main").innerHTML="I am thinking of a number between...<br><br><button type='button' onclick='begin4()'>1 and 1</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='maxnumber=10;generate(),begin()'>1 and 10</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='maxnumber=100;generate(),begin()'>1 and 100</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='maxnumber=1000;generate(),begin()'>1 and 1,000</button><br><br><button onclick='pick()'>Let me pick.</button>";
+}
+
+function pick() {
+document.getElementById("main").innerHTML="Ok then. I will think of a number between 1 and <input id='custom' style='width:50px;' onkeypress='return enterkey(event)'></input>.&nbsp;&nbsp;&nbsp;<button onclick='customgame()'>Enter</button>";
+}
+
+function enterkey(e) {
+if (e.keyCode == 13) {customgame();}
+}
+
+function customgame() {
+	try {
+		var z=document.getElementById("custom").value;
+		z=z.replace(/\,/g, "");
+		if(z=="") throw "There's nothing in the box.";
+		if(isNaN(z)) throw "Um, that's not a number.";
+		if(z <= 0) throw "Yeah, not gonna work.";
+		if (z >=50000) {var r=confirm("Warning: Numbers this high may cause the program to crash! You sure you want to proceed?");
+		if (r==true) {maxnumber=z;generate(),begin();} }
+		if (z==1) {begin4();}
+		else {maxnumber=z;generate(),begin();}
+	}
+		catch (err) {alert("Error: " + err);}
+}
+
+function imdone() {
+document.getElementById("main").innerHTML="<h1>I am Thinking of a Number.</h1><span class='block'><button class='big' type='button' onclick='between()'>Begin</button><br><br><button type='button' onclick='help()'>Help</button>&nbsp;&nbsp;<button type='button' onclick='about()'>About</button></span><span id='copyright'>Version 2.3.3 &nbsp;&#126;&nbsp; &copy;2010-2014 Timothy Hsu</span>";
+}
+
+function generate() {
+number = Math.floor((Math.random()*maxnumber)+1);
+hint = 0;
+da = 0;
+plural = "guess";
+}
+
+function begin() {
+var x="";
+for (var att=1;att<=maxnumber;att++) {
+x=x + "<a onclick='guess(" + att + ")'>" + att + "</a> ";}
+document.getElementById("main").innerHTML="<span style='font-size:28pt;font-weight:700;'>Now guess my number.</span><br><br><div id='ten'>" + x + "&nbsp;&nbsp;<a onclick='hints()'>Hints</a> &nbsp;<a onclick='giveup()'>Give up</a></div>";
+if (maxnumber>=2&&maxnumber<=100) {document.getElementById("ten").style.fontSize="18pt";}
+if (maxnumber>=101&&maxnumber<=500) {document.getElementById("ten").style.fontSize="16pt";}
+}
+
+function guess(att) {
+if(number == att) {
+da++;
+document.getElementById("main").innerHTML="<span class='correct'>Correct!</span><br><p id='hintsused'></p><p id='tries'>It took you " + da + " " + plural + " to choose the correct number.</p><br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='between()'>New maximum</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";did();}
+if(number !== att) {
+plural = "guesses";
+da++;
+document.getElementById("main").innerHTML="Nope!<br><p id='greaterorless'></p><button type='button' onclick='begin()'>Try again</button>";
+if(lte==1){isit(att);}}
+}
+
+function isit(att) {
+if(number>att) {
+document.getElementById("greaterorless").innerHTML="It&#39;s greater than that.<br><br>";}
+if(number<att) {
+document.getElementById("greaterorless").innerHTML="It&#39;s less than that.<br><br>";}
+}
+
+function hints() {
+document.getElementById("main").innerHTML="<strong>Hints</strong><br><br>Even or odd? <span id='hintoe'><button type='button' onclick='hint1()'>Reveal</button></span><br>More than " + Math.round(maxnumber/2) + "? <span id='hint500'><button type='button' onclick='hint2()'>Reveal</button></span><br><br><button type='button' onclick='hint3()'>Enable less than or greater than</button></span><br><br><button type='button' onclick='begin()'>Go back</button>";
+}
+
+function hint1() {
+hint = 1;
+var s;
+if(number%2 == 0) {s = "Even";}
+else {s = "Odd";}
+document.getElementById("hintoe").innerHTML="<em>" + s + "</em>";
+}
+
+function hint2() {
+hint = 1;
+var s;
+if(number>Math.round(maxnumber/2)) {s = "Yes";}
+else {s = "No";}
+document.getElementById("hint500").innerHTML="<em>" + s + "</em>";
+}
+
+function hint3() {
+hint = 1;
+lte = 1;
+alert("Enabled.");
+}
+
+function did() {
+document.getElementById("hintsused").innerHTML="No hints? Wait, how did you...nevermind.";
+if(hint==1) {
+document.getElementById("hintsused").innerHTML="But you used hints. Next time, try not to use hints.";}
+}
+
+function giveup() {
+var r=confirm("Are you sure you want to give up?");
+if (r==true) {document.getElementById("main").innerHTML="The number was " +number+ ".<br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='between()'>New maximum</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";}
+}
+
+function begin4() {
+document.getElementById("main").innerHTML="<span style='font-size:28pt;font-weight:700;'>Now guess my number.</span><br><br><div id='oneandone'><a onclick='guess1c()'>1</a></div> ";
+}
+
+function guess1c() {
+var r=confirm("Are you 100% sure this is the number you want to guess?\n\nThink really, REALLY carefully before making this decision.");
+if (r==true) {document.getElementById("main").innerHTML="<span class='correct'>Correct!</span><br><p>But in life, you should never take the easy way out of things.</p><br><br><button type='button' onclick='imdone()'>Main Menu</button>";}
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="first">
+<div id="wrap">
+
+<!--[if lte IE 7]>
+<span style="font-weight:700;font-size:14pt;">Your browser is unsupported. Time for an upgrade. Try a newer <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer</a>, <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, or <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.<br></span>
+<![endif]-->
+
+<noscript><span style="display:block;font-weight:700;font-size:14pt;">Javascript is disabled. Please enable it in order to play the game.</span><br></noscript>
+
+<div id="main">
+<h1>I am Thinking of a Number.</h1>
+<span class="block"><button class="big" type="button" onclick="between()">Begin</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span><span id="copyright">Version 2.3.3 &nbsp;&#126;&nbsp; &copy;2010-2014 Timothy Hsu</span></div>
+
+</div></div>
+
+</body>
+</html>

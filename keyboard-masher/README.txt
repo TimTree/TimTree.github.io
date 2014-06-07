@@ -1,0 +1,66 @@
+Thanks for playing Keyboard Masher!
+
+If you downloaded this game, you'll need to extract the ZIP file so the game can run properly. In Windows, simply click on Extract All. In OS X, the ZIP file should automatically be extracted upon opening the file.
+
+After that, to play the game, all you have to do is open Keyboard Masher.html. All the other files are assets that this file calls for while playing. Don't move around any of the files, or else the game won't work the way it should.
+
+Enjoy!
+
+COMPATIBLE BROWSERS (+ means "or higher"):
+Internet Explorer 9+
+Firefox 3.5+
+Chrome 4+
+Safari 4+
+Opera 10.50+
+Javascript must be enabled.
+
+COPYRIGHT NOTICE
+This game is copyright (c) 2013-2014 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+
+CONTACT INFO: To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
+
+http://slideshowgames.blogspot.com/2014/04/keyboard-masher-more-info.html
+
+
+
+--------------------------------------
+
+VERSION HISTORY
+
+Version 4.0 (released 6/7/14)
+--------------------------
+This major update is derived from Button Masher v4.0.
+
+- Completely rewritten source code. This improves the game's efficiency.
+- New custom mode. Play Keyboard Masher for as much time as you want!
+- New game mode: Arrow. Type the arrow on the screen as fast as you can!
+- New game mode: Alphabet. How quickly can you type it?
+- Lowers Typing Typhon requirement from 400,000 to 200,000 presses.
+- Adds achievement stars, which appear on the footer for completing in game milestones
+- Changes the game's license to GPLv3
+
+Minor changes
+- The timer now aligns perfectly to the center.
+- Formatting improvements for Firefox and Internet Explorer
+- Moves Download and More Games info to the About page
+- Beat the creator scores have been updated.
+
+Version 3.0 (released 4/23/14)
+-----------------------------
+- Adds two achievements (just like Button Masher): Beat the Creator and The Typing Typhon
+- Fixes a glitch that prevented the background changing colors in 30 seconds mode.
+- Fixes a glitch that caused the keyboard press counter to not function.
+- You no longer have to click on the browser window to start a game in Internet Explorer.
+
+  And now, for the big one...
+
+- Pressing and holding a keyboard key will no longer rack up multiple points to your score.
+
+Version 2.1 (released 8/11/13)
+------------------------------
+- Keyboard Masher is no longer hidden. It is now a separate game.
+- Adds times pressed to Stats menu
+
+Version 2.0 (released 6/25/13)
+------------------------------
+Initial release that was a secret game mode for Button Masher.

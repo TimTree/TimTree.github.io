@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Button Masher</title>
@@ -6,7 +6,7 @@
 <meta name="description" content="Click the button with your mouse as fast as you can!">
 <meta name="author" content="Timothy Hsu">
 
-<meta charset=utf-8">
+<meta charset="utf-8">
 
 <link rel="shortcut icon" type="image/x-icon" href="masher.ico" />
 
@@ -209,7 +209,7 @@ margin:15px;
 
 #done {
 font-size:28pt;
-color:#5458BD;;
+color:#5458BD;
 font-weight:700;
 margin:15px;
 }
@@ -369,7 +369,7 @@ document.body.style.backgroundColor = "#91825B";
 document.getElementById("title").style.fontSize="50pt";
 document.getElementById("author").innerHTML=author;
 document.getElementById("copyright").style.display="block";
-document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><span id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='onemin()'>1 Minute</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='lightning()'>Lightning</button></li><li><button type='button' class='mod' onclick='endure()'>Endurance</button></li><li><button type='button' class='mod' onclick='move()'>Movement</button></li><li><button type='button' class='mod' onclick='oscillate()'>Oscillation</button></li></ul><ul id='achieve'><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='clickergod()'><strong>The Clicker God</strong></a></li></ul></span>";
+document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='onemin()'>1 Minute</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='lightning()'>Lightning</button></li><li><button type='button' class='mod' onclick='endure()'>Endurance</button></li><li><button type='button' class='mod' onclick='move()'>Movement</button></li><li><button type='button' class='mod' onclick='oscillate()'>Oscillation</button></li></ul><ul id='achieve'><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='clickergod()'><strong>The Clicker God</strong></a></li></ul></div>";
 }
 
 function help() {
@@ -386,7 +386,7 @@ if (r==true) {score.tenSec=0;localStorage.removeItem("bmasherScore");score.thirt
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><span class='nocenter'><p>Button Masher - my first Javascript game.</p><p>It&#39;s a really simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. And finally, this is my first game to keep save data, in the form of stats. Button Masher is HTML5 ready.</p><p><strong>Release Date:</strong> April 19, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 7, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></span><h4>The Masher Series</h4><span class='nocenter'><p>Button Masher is the first game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol start='2'><li><a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a></li></ol><p>(More games coming soon!)</p></span><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><span id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip' target='_blank'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button>";
+document.getElementById("main").innerHTML="<h4>About</h4><span class='nocenter'><p>Button Masher - my first Javascript game.</p><p>It&#39;s a really simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. And finally, this is my first game to keep save data, in the form of stats. Button Masher is HTML5 ready.</p><p><strong>Release Date:</strong> April 19, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 8, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></span><h4>The Masher Series</h4><span class='nocenter'><p>Button Masher is the first game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol start='2'><li><a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a></li></ol><p>(More games coming soon!)</p></span><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
 }
 
 function beatcreator()
@@ -475,7 +475,7 @@ document.getElementById("main").innerHTML="<p id='beatme'></p><p id='scorebreak'
 
 function plusone() { 
 var int;
-setTimeout(function(){document.getElementById("masher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='newgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul>";
+setTimeout(function(){document.getElementById("masher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='newgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
 timer=0;document.getElementById("thetime").innerHTML=timer;
 clearInterval(int),analysis(),addup();
 },time*1000);
@@ -579,7 +579,7 @@ document.body.style.backgroundColor = "#91825B";
 document.getElementById("title").style.fontSize="50pt";
 document.getElementById("author").innerHTML=author;
 document.getElementById("copyright").style.display="block";
-document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><span id='select'><ul><li><input id='custom' style='font-size:16pt; width:100px;' onkeypress='return runScript(event)'></input></li><li><button onclick='customgame()'>Enter</button></li></ul><p id='customerror'></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button>";
+document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><div id='select'><ul><li><input id='custom' style='font-size:16pt; width:100px;' onkeypress='return runScript(event)'></input></li><li><button onclick='customgame()'>Enter</button></li></ul><p id='customerror'></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></div>";
 }
 
 function runScript(e) {
@@ -620,7 +620,7 @@ return (key != 13);
 }
 
 function endure() {
-document.getElementById("main").innerHTML="<p class='margin'>Endurance - Select Difficulty</p><span id='select'><ul><li><button type='button' class='mod' onclick='endurance()' onmouseover='edescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='endurancehard()' onmouseover='edescriptionhard()'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></span>";
+document.getElementById("main").innerHTML="<p class='margin'>Endurance - Select Difficulty</p><div id='select'><ul><li><button type='button' class='mod' onclick='endurance()' onmouseover='edescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='endurancehard()' onmouseover='edescriptionhard()'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></div>";
 }
 
 function edescriptionnormal() {
@@ -672,7 +672,7 @@ document.score.scoring.value++;
 
 function done() {
 document.body.style.backgroundColor = "#000";
-document.getElementById("masher").innerHTML="<p id='done'>Done.</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='endurancegame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul>";
+document.getElementById("masher").innerHTML="<p id='done'>Done.</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='endurancegame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
 
 var a, b, c, d, e, f, g, h;
 if (time == 250) {a=20, b=50, c=100; d=150, e=200, f=300, g=500, h=1000;}
@@ -730,7 +730,7 @@ if(x==interval*6)
 }
 
 function move() {
-document.getElementById("main").innerHTML="<p class='margin'>Movement - Select Difficulty</p><span id='select'><ul><li><button type='button' class='mod' onclick='movement()' onmouseover='mdescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='movementhard()' onmouseover='mdescriptionhard()'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></span>";
+document.getElementById("main").innerHTML="<p class='margin'>Movement - Select Difficulty</p><div id='select'><ul><li><button type='button' class='mod' onclick='movement()' onmouseover='mdescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='movementhard()' onmouseover='mdescriptionhard()'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></div>";
 }
 
 function mdescriptionnormal() {
@@ -778,7 +778,7 @@ document.getElementById("movementmasher").innerHTML="<button type='button' id='m
 function plusone5() {
 var int;
 document.body.style.backgroundColor = "#4294CF";
-setTimeout(function(){document.getElementById("movementmasher").style.height="100%";document.getElementById("movementmasher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='movementgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul>";
+setTimeout(function(){document.getElementById("movementmasher").style.height="100%";document.getElementById("movementmasher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='movementgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
 timer=0;document.getElementById("thetime").innerHTML=timer;
 clearInterval(int),moveAnalysis(),addup();
 },30000);
@@ -903,7 +903,7 @@ highscore = score.movementHard;}
 }
 
 function lightning() {
-document.getElementById("main").innerHTML="<p class='margin'>Lightning - Select Type</p><span id='select'><ul><li><button type='button' class='mod' onclick='lightningnormal()' onmouseover='ldescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='lightninghundred()' onmouseover='ldescriptionhundred()'>x100</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><span id='select'><ul>Custom (# of clicks): <li><input id='custom' style='font-size:16pt; width:100px;' onkeypress='return lrunScript(event)'></input></li><li><button onclick='customgamelightning()'>Enter</button></li></ul><p id='customerror'></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></span>";
+document.getElementById("main").innerHTML="<p class='margin'>Lightning - Select Type</p><div id='select'><ul><li><button type='button' class='mod' onclick='lightningnormal()' onmouseover='ldescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='lightninghundred()' onmouseover='ldescriptionhundred()'>x100</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><ul>Custom (# of clicks): <li><input id='custom' style='font-size:16pt; width:100px;' onkeypress='return lrunScript(event)'></input></li><li><button onclick='customgamelightning()'>Enter</button></li></ul><p id='customerror'></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></div>";
 }
 
 function ldescriptionnormal() {
@@ -966,7 +966,7 @@ document.getElementById("thetime").innerHTML=realclicks;
 if (realclicks == 0) {
 clearInterval(intime);
 document.body.style.backgroundColor = "#66693A";
-document.getElementById("masher").innerHTML="<p id='done'>Done.</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='lightninggame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul>";
+document.getElementById("masher").innerHTML="<p id='done'>Done.</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='lightninggame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
 
 var a, b, c, d, e, f;
 
@@ -1039,7 +1039,7 @@ if (e.keyCode == 13) {customgamelightning();}
 }
 
 function oscillate() {
-document.getElementById("main").innerHTML="<p class='margin'>Oscillation - Select Difficulty</p><span id='select'><ul><li><button type='button' class='mod' onclick='oscillation()' onmouseover='odescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='oscillationhard()' onmouseover='odescriptionhard()'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></span>";
+document.getElementById("main").innerHTML="<p class='margin'>Oscillation - Select Difficulty</p><div id='select'><ul><li><button type='button' class='mod' onclick='oscillation()' onmouseover='odescriptionnormal()'>Normal</button></li><li><button type='button' class='mod' onclick='oscillationhard()' onmouseover='odescriptionhard()'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button></div>";
 }
 
 function odescriptionnormal() {
@@ -1088,7 +1088,7 @@ document.score.scoring.value++;
 var int;
 document.body.style.backgroundColor = "#4294CF";
 setTimeout(function(){document.getElementById("oscill").style.height="100%";
-document.getElementById("oscill").innerHTML="<span style='display:block;text-align:center;'><p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='oscillationgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></span>";
+document.getElementById("oscill").innerHTML="<div style='display:block;text-align:center;'><p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='oscillationgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div></div>";
 timer=0;document.getElementById("thetime").innerHTML=timer;
 clearInterval(int),oscAnalysis(),addup();
 },30000);
@@ -1165,7 +1165,7 @@ document.body.style.backgroundColor = "#91825B";
 document.getElementById("title").style.fontSize="50pt";
 document.getElementById("author").innerHTML=author;
 document.getElementById("copyright").style.display="block";
-document.getElementById("main").innerHTML="<span id='select'><p><button type='button' class='big' onclick='begin()'>Play Game</button></p><ul><li><button type='button' onclick='help()'>Help</button></li><li><button type='button' onclick='records()'>Stats</button></li><li><button type='button' onclick='about()'>About</button></li></ul></span>";
+document.getElementById("main").innerHTML="<div id='select'><p><button type='button' class='big' onclick='begin()'>Play Game</button></p><ul><li><button type='button' onclick='help()'>Help</button></li><li><button type='button' onclick='records()'>Stats</button></li><li><button type='button' onclick='about()'>About</button></li></ul></div>";
 }
 
 </script>
@@ -1195,12 +1195,12 @@ alert("Internet Explorer 10 or newer is required for this game mode.");
 
 <div id="main">
 
-<span id="select"><p><button type="button" class="big" onclick="begin()">Play Game</button></p>
-<ul><li><button type="button" onclick="help()">Help</button></li><li><button type="button" onclick="records()">Stats</button></li><li><button type="button" onclick="about()">About</button></li></ul></span>
+<div id="select"><p><button type="button" class="big" onclick="begin()">Play Game</button></p>
+<ul><li><button type="button" onclick="help()">Help</button></li><li><button type="button" onclick="records()">Stats</button></li><li><button type="button" onclick="about()">About</button></li></ul></div>
 
 </div>
 
-<div id="copyright"><p>Version 4.0 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.0.1 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

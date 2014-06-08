@@ -27,6 +27,10 @@ http://slideshowgames.blogspot.com/2013/08/button-masher-more-info_11.html
 
 VERSION HISTORY
 
+Version 4.0.1 (released 6/8/14)
+-------------------------------
+- Fixes issues detected from the HTML5 validator
+
 Version 4.0 (released 6/7/14)
 --------------------------
 Welcome to Button Masher version 4, the game's biggest update yet.
@@ -36,7 +40,6 @@ Welcome to Button Masher version 4, the game's biggest update yet.
 - New game mode: Lightning
 - New game mode: Oscillation (IE10+/Firefox 5+ required for this mode)
 - New hard versions of Endurance and Movement
-- Moves Download and More Games info to the About page
 - Adds achievement stars, which appear on the footer for completing in game milestones
 - Changes the game's license to GPLv3
 

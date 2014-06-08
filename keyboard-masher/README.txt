@@ -27,6 +27,10 @@ http://slideshowgames.blogspot.com/2014/04/keyboard-masher-more-info.html
 
 VERSION HISTORY
 
+Version 4.0.1 (released 6/8/14)
+-------------------------------
+- Fixes issues detected from the HTML5 validator
+
 Version 4.0 (released 6/7/14)
 --------------------------
 This major update is derived from Button Masher v4.0.

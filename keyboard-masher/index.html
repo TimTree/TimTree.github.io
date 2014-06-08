@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 <title>Keyboard Masher</title>
@@ -6,7 +6,7 @@
 <meta name="description" content="Mash the keyboard as fast as you can!">
 <meta name="author" content="Timothy Hsu">
 
-<meta charset=utf-8" >
+<meta charset="utf-8" >
 
 <link rel="shortcut icon" type="image/x-icon" href="kmasher.ico" />
 
@@ -190,7 +190,7 @@ font-family: Helvetica;
 
 #done {
 font-size:28pt;
-color:#5458BD;;
+color:#5458BD;
 font-weight:700;
 margin:15px;
 }
@@ -259,7 +259,7 @@ document.body.style.backgroundColor = "#295C66";
 document.getElementById("title").style.fontSize="50pt";
 document.getElementById("author").innerHTML=author;
 document.getElementById("copyright").style.display="block";
-document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><span id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='arrow()'>Arrow</button></li><li><button type='button' class='mod' onclick='alphabet()'>Alphabet</button></li></ul><ul id='achieve'><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='typingtyphon()'><strong>The Typing Typhon</strong></a></li></ul></span>";
+document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='arrow()'>Arrow</button></li><li><button type='button' class='mod' onclick='alphabet()'>Alphabet</button></li></ul><ul id='achieve'><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='typingtyphon()'><strong>The Typing Typhon</strong></a></li></ul></div>";
 }
 
 function help() {
@@ -276,7 +276,7 @@ if (r==true) {score.tenSec=0;localStorage.removeItem("kmasherScore");score.thirt
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><span class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Release Date:</strong> June 25, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 7, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></span><h4>The Masher Series</h4><span class='nocenter'><p>Keyboard Masher is the second game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol><li><a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a></li></ol><p>(More games coming soon!)</p></span><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><span id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip' target='_blank'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Release Date:</strong> June 25, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 8, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></div><h4>The Masher Series</h4><div class='nocenter'><p>Keyboard Masher is the second game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol><li><a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a></li></ol><p>(More games coming soon!)</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
 }
 
 function beatcreator() {
@@ -337,7 +337,7 @@ document.body.style.backgroundColor = "#295C66";
 document.getElementById("title").style.fontSize="21pt";
 document.getElementById("author").innerHTML=message;
 document.getElementById("copyright").style.display="none";
-document.getElementById("main").innerHTML="<p id='beatme'></p><p id='scorebreak'><b>Score</b></p><form name='score'><!-- Cheater, you have been caught. ;) --><input name='scoring' type='text' value='0' id='score' readonly></form><div id='masher'><p>Type on your keyboard to begin!</p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + timer + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p></span>";
+document.getElementById("main").innerHTML="<p id='beatme'></p><p id='scorebreak'><b>Score</b></p><form name='score'><!-- Cheater, you have been caught. ;) --><input name='scoring' type='text' value='0' id='score' readonly></form><div id='masher'><p>Type on your keyboard to begin!</p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + timer + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 }
 
 
@@ -346,7 +346,7 @@ var int;
 document.onkeydown = function(event) {plusone2(event); bgchange();}
 document.onkeyup = keyup;
 setTimeout(function(event){document.onkeydown = none;},time*1000);
-setTimeout(function(){document.getElementById("masher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='newgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul>";
+setTimeout(function(){document.getElementById("masher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='newgame()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
 timer=0;document.getElementById("thetime").innerHTML=timer;
 clearInterval(int),analysis(),addup();
 },time*1000);
@@ -456,7 +456,7 @@ document.body.style.backgroundColor = "#295C66";
 document.getElementById("title").style.fontSize="50pt";
 document.getElementById("author").innerHTML=author;
 document.getElementById("copyright").style.display="block";
-document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><span id='select'><ul><li><input id='custom' style='font-size:16pt; width:100px;' onkeypress='return runScript(event)'></input></li><li><button onclick='customgame()'>Enter</button></li></ul></span><p id='customerror'></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button>";
+document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><div id='select'><ul><li><input id='custom' style='font-size:16pt; width:100px;' onkeypress='return runScript(event)'></input></li><li><button onclick='customgame()'>Enter</button></li></ul></div><p id='customerror'></p><button type='button' style='font-size:10pt;' onclick='begin()'>Go back</button>";
 }
 
 function runScript(e) {
@@ -513,7 +513,7 @@ document.body.style.backgroundColor = "#295C66";
 document.getElementById("title").style.fontSize="21pt";
 document.getElementById("author").innerHTML=message;
 document.getElementById("copyright").style.display="none";
-document.getElementById("main").innerHTML="<p id='beatme'></p><p id='scorebreak'><b>Score</b></p><form name='score'><!-- Cheater, you have been caught. ;) --><input name='scoring' type='text' value='0' id='score' readonly></form><div id='masher'><p id='typekey'><strong>Type the up key to begin.</strong></p><div id='arrow'>&#8593;</div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + timer + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p></span>";
+document.getElementById("main").innerHTML="<p id='beatme'></p><p id='scorebreak'><b>Score</b></p><form name='score'><!-- Cheater, you have been caught. ;) --><input name='scoring' type='text' value='0' id='score' readonly></form><div id='masher'><p id='typekey'><strong>Type the up key to begin.</strong></p><div id='arrow'>&#8593;</div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + timer + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 }
 
 function plusone3() { 
@@ -527,7 +527,7 @@ if (e.keyCode == arrowToPress && keyspressed.length==1) {e.preventDefault(),plus
 
 document.onkeyup = keyup;
 setTimeout(function(event){document.onkeydown = none;},30000);
-setTimeout(function(){document.getElementById("masher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='arrow()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul>";
+setTimeout(function(){document.getElementById("masher").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='arrow()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
 timer=0;document.getElementById("thetime").innerHTML=timer;
 clearInterval(int),arrowAnalysis(),addup();
 },30000);
@@ -604,12 +604,11 @@ document.onkeydown = function(e) {
 if (e.keyCode == arrowToPress) {plusone5();}
 }
 
-document.onkeyup = keyup;
 document.body.style.backgroundColor = "#295C66";
 document.getElementById("title").style.fontSize="21pt";
 document.getElementById("author").innerHTML=message;
 document.getElementById("copyright").style.display="none";
-document.getElementById("main").innerHTML="<p id='beatme'></p><p id='scorebreak'><b>Score</b></p><form name='score'><!-- Cheater, you have been caught. ;) --><input name='scoring' type='text' value='0.000' id='score' readonly></form><div id='masher'><p id='typekey'><strong>Type the letter A (lowercase) to begin.</strong></p><div id='arrow'>" + String.fromCharCode(arrowToPress) + "</div></div><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + " seconds</span></p></span>";
+document.getElementById("main").innerHTML="<p id='beatme'></p><p id='scorebreak'><b>Score</b></p><form name='score'><!-- Cheater, you have been caught. ;) --><input name='scoring' type='text' value='0.000' id='score' readonly></form><div id='masher'><p id='typekey'><strong>Type the letter A (lowercase) to begin.</strong></p><div id='arrow'>" + String.fromCharCode(arrowToPress) + "</div></div><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + " seconds</span></p>";
 }
 
 var intime;
@@ -643,8 +642,9 @@ document.getElementById("arrow").innerHTML=String.fromCharCode(arrowToPress);
 
 if (arrowToPress == 91) {
 clearInterval(intime);
+document.onkeydown = none;
 document.body.style.backgroundColor = "#253A41";
-document.getElementById("masher").innerHTML="<p id='done'>Done.</p><p id='record'></p><p id='analysis'></p><span id='select'><p><button type='button' class='big' onclick='alphabet()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul>";
+document.getElementById("masher").innerHTML="<p id='done'>Done.</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick='alphabet()'>Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
 
 var a, b, c, d, e, f;
 
@@ -682,7 +682,7 @@ document.body.style.backgroundColor = "#295C66";
 document.getElementById("title").style.fontSize="50pt";
 document.getElementById("author").innerHTML=author;
 document.getElementById("copyright").style.display="block";
-document.getElementById("main").innerHTML="<span id='select'><p><button type='button' class='big' onclick='begin()'>Play Game</button></p><ul><li><button type='button' onclick='help()'>Help</button></li><li><button type='button' onclick='records()'>Stats</button></li><li><button type='button' onclick='about()'>About</button></li></ul></span>";
+document.getElementById("main").innerHTML="<div id='select'><p><button type='button' class='big' onclick='begin()'>Play Game</button></p><ul><li><button type='button' onclick='help()'>Help</button></li><li><button type='button' onclick='records()'>Stats</button></li><li><button type='button' onclick='about()'>About</button></li></ul></div>";
 }
 
 </script>
@@ -704,12 +704,12 @@ document.getElementById("main").innerHTML="<span id='select'><p><button type='bu
 
 <div id="main">
 
-<span id="select"><p><button type="button" class="big" onclick="begin()">Play Game</button></p>
-<ul><li><button type="button" onclick="help()">Help</button></li><li><button type="button" onclick="records()">Stats</button></li><li><button type="button" onclick="about()">About</button></li></ul></span>
+<div id="select"><p><button type="button" class="big" onclick="begin()">Play Game</button></p>
+<ul><li><button type="button" onclick="help()">Help</button></li><li><button type="button" onclick="records()">Stats</button></li><li><button type="button" onclick="about()">About</button></li></ul></div>
 
 </div>
 
-<div id="copyright"><p>Version 4.0 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.0.1 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

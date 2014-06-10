@@ -93,7 +93,7 @@ font-size:16pt;
 margin-bottom:36px;
 }
 
-*{
+*:not(input){
 -webkit-touch-callout: none;
 -webkit-user-select: none;
 -moz-user-select: none;
@@ -276,7 +276,7 @@ if (r==true) {score.tenSec=0;localStorage.removeItem("kmasherScore");score.thirt
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Release Date:</strong> June 25, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 8, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></div><h4>The Masher Series</h4><div class='nocenter'><p>Keyboard Masher is the second game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol><li><a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a></li></ol><p>(More games coming soon!)</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Release Date:</strong> June 25, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 10, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></div><h4>The Masher Series</h4><div class='nocenter'><p>Keyboard Masher is the second game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol><li><a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a></li></ol><p>(More games coming soon!)</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
 }
 
 function beatcreator() {
@@ -709,7 +709,7 @@ document.getElementById("main").innerHTML="<div id='select'><p><button type='but
 
 </div>
 
-<div id="copyright"><p>Version 4.0.1 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.0.2 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

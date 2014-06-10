@@ -126,7 +126,7 @@ display:block;
 text-align:left;
 }
 
-*{
+*:not(input){
 -webkit-touch-callout: none;
 -webkit-user-select: none;
 -moz-user-select: none;
@@ -386,11 +386,10 @@ if (r==true) {score.tenSec=0;localStorage.removeItem("bmasherScore");score.thirt
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first Javascript game.</p><p>It&#39;s a really simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. And finally, this is my first game to keep save data, in the form of stats. Button Masher is HTML5 ready.</p><p><strong>Release Date:</strong> April 19, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 8, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></div><h4>The Masher Series</h4><div class='nocenter'><p>Button Masher is the first game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol start='2'><li><a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a></li></ol><p>(More games coming soon!)</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first Javascript game.</p><p>It&#39;s a really simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. And finally, this is my first game to keep save data, in the form of stats. Button Masher is HTML5 ready.</p><p><strong>Release Date:</strong> April 19, 2013<br><strong>Software Used:</strong> Notepad++<br><strong>Latest Update:</strong> June 10, 2014<br><strong>Software License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p></div><h4>The Masher Series</h4><div class='nocenter'><p>Button Masher is the first game of the Masher Series, a collection of minigames. Check out the other games in the Masher Series.</p><ol start='2'><li><a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a></li></ol><p>(More games coming soon!)</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
 }
 
-function beatcreator()
-{
+function beatcreator() {
 document.getElementById("main").innerHTML="<h4>Beat the Creator</h4><p>Below is a comparison of the game creator&#39;s high scores as of this writing to your high scores. See if you best each and every score!</p><table style='margin:auto;'><tr><th>Game Mode</th><th>Creator&#39;s Score</th><th>Your Score</th><td class='check'></td></tr><tr><td>10 Seconds</td><td>" + beat.tenSec + "</td><td>" + score.tenSec + "</td><td class='check' id='beatmeten'></td></tr><tr><td>30 Seconds</td><td>" + beat.thirtySec + "</td><td>" + score.thirtySec + "</td><td class='check' id='beatmethirty'></td></tr><tr><td>1 Minute</td><td>" + beat.oneMin + "</td><td>" + score.oneMin + "</td><td class='check' id='beatmeonemin'></td></tr><tr><td>Lightning</td><td>" + beat.lightning + " s</td><td>" + score.lightning + " s</td><td class='check' id='beatmelightning'></td></tr><tr><td>Lightning (x100)</td><td>" + beat.lightningHundred + " s</td><td>" + score.lightningHundred + " s</td><td class='check' id='beatmelightninghundred'></td></tr><tr><td>Endurance</td><td>" + beat.endurance + "</td><td>" + score.endurance + "</td><td class='check' id='beatmeendurance'></td></tr><tr><td>Endurance (Hard)</td><td>" + beat.enduranceHard + "</td><td>" + score.enduranceHard + "</td><td class='check' id='beatmeendurancehard'></td></tr><tr><td>Movement</td><td>" + beat.movement + "</td><td>" + score.movement + "</td><td class='check' id='beatmemovement'></td></tr><tr><td>Movement (Hard)</td><td>" + beat.movementHard + "</td><td>" + score.movementHard + "</td><td class='check' id='beatmemovementhard'></td></tr><tr><td>Oscillation</td><td>" + beat.oscillation + "</td><td>" + score.oscillation + "</td><td class='check' id='beatmeoscillation'></td></tr><tr><td>Oscillation (Hard)</td><td>" + beat.oscillationHard + "</td><td>" + score.oscillationHard + "</td><td class='check' id='beatmeoscillationhard'></td></tr></table><p><button type='button' onclick='begin()'>Go back</button></p>";
 if (score.tenSec > beat.tenSec)
 {document.getElementById("beatmeten").innerHTML="&#10004;";}
@@ -1200,7 +1199,7 @@ alert("Internet Explorer 10 or newer is required for this game mode.");
 
 </div>
 
-<div id="copyright"><p>Version 4.0.1 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.0.2 &nbsp;&#126;&nbsp; &copy;2013-2014 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

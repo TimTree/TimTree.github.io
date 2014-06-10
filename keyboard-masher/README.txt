@@ -27,6 +27,10 @@ http://slideshowgames.blogspot.com/2014/04/keyboard-masher-more-info.html
 
 VERSION HISTORY
 
+Version 4.0.2 (released 6/10/14)
+-------------------------------
+- Fixes a bug that prevented Safari users from entering custom values
+
 Version 4.0.1 (released 6/8/14)
 -------------------------------
 - Fixes issues detected from the HTML5 validator

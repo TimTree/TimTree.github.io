@@ -12,6 +12,7 @@
 		<meta name="format-detection" content="telephone=no">
 		<meta name="apple-mobile-web-app-title" content="My Number">
 		<link rel="apple-touch-icon" href="1kicon.png">
+		<meta name="apple-mobile-web-app-capable" content="yes">
 		
 		<style>
 		
@@ -193,6 +194,7 @@
 
 		function guessprocess() {
 			a=document.getElementById("guesser").value;
+			a=a.replace(/\,/g, "");
 			var att = Number(a);
 			if(att=="") {alert("It's blank!");}
 			else if(isNaN(att)) {alert("Um, that's not a number.");}

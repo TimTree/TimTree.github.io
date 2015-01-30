@@ -43,12 +43,12 @@
 		}
 
 		h1 {
-		margin:0;
+		margin:0 0 48px 0;
 		font-size:48pt;
-		margin-bottom:48px;
 		}
 		
 		h2 {
+		margin:0 0 20px 0;
 		font-size:24pt;
 		}
 
@@ -120,7 +120,7 @@
 		}
 
 		function about() {
-			document.getElementById("main").innerHTML="<p>A remake of the infamous PowerPoint game, <em>I am Thinking of a Number</em> strives to frustrate your own sanity through a boggling jumble of microscopic numbers. Of course, you can enable hints and lower the difficulty if you like, but that would ruin the fun, right? Now get guessing!</p><p><strong>Release Date:</strong> August 14, 2013<br><strong>Latest Update:</strong> January 26, 2015<br><strong>Software used:</strong> Notepad++</p><p><strong>License:</strong> This game is released under the GNU General Public License v3. To read its terms, <a href='http://www.gnu.org/licenses/gpl-3.0.html' class='license' target='_blank'>click here</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+			document.getElementById("main").innerHTML="<p>A remake of the infamous PowerPoint game, <em>I am Thinking of a Number</em> strives to frustrate your own sanity through a boggling jumble of microscopic numbers. Of course, you can enable hints and lower the difficulty if you like, but that would ruin the fun, right? Now get guessing!</p><p><strong>Release Date:</strong> August 14, 2013<br><strong>Latest Update:</strong> January 29, 2015<br><strong>Software used:</strong> Notepad++</p><p><strong>License:</strong> This game is released under the GNU General Public License v3. To read its terms, <a href='http://www.gnu.org/licenses/gpl-3.0.html' class='license' target='_blank'>click here</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 		}
 
 		function between() {
@@ -136,16 +136,12 @@
 		}
 
 		function pick() {
-			document.getElementById("main").innerHTML="Ok then. I will think of a number between 1 and <input id='custom' style='width:50px;' onkeypress='return enterkey(event)'></input>.&nbsp;&nbsp;&nbsp;<button onclick='customgame()'>Enter</button>";
-		}
-
-		function enterkey(e) {
-			if (e.keyCode == 13) {customgame();}
+			document.getElementById("main").innerHTML="<form name='customnumber' onsubmit='return customgame()'>Ok then. I will think of a number between 1 and <input type='text' name='custom' style='width:50px;'></input>. <input type='submit' value='Enter'></form>";
 		}
 
 		function customgame() {
 			try {
-				var z=document.getElementById("custom").value;
+				var z=document.customnumber.custom.value;
 				z=z.replace(/\,/g, "");
 				if(z=="") throw "There's nothing in the box.";
 				if(isNaN(z)) throw "Um, that's not a number.";
@@ -160,6 +156,7 @@
 			catch (err) {
 				alert("Error: " + err);
 			}
+			return false;
 		}
 
 		function imdone() {
@@ -182,22 +179,19 @@
 				if (maxnumber>=101&&maxnumber<=500) {document.getElementById("ten").style.fontSize="16pt";}
 			}
 			else if(numselection == 1) {
-			document.getElementById("main").innerHTML="<h2>Now guess my number between 1 and " + maxnumber + ".</h2><div id='ten'><input style='width:75px; font-size:16pt;' id ='guesser' onkeypress='return enterkey2(event)'></input>&nbsp;&nbsp;&nbsp;<button onclick='guessprocess()'>Enter</button><br><br><a onclick='hints()'>Hints</a>&nbsp;&nbsp;&nbsp;<a onclick='giveup()'>Give up</a></div>";
+			document.getElementById("main").innerHTML="<h2>Now guess my number between 1 and " + maxnumber + ".</h2><div id='ten'><form name='inputnumber' onsubmit='return guessprocess()'><input type='text' style='width:75px; font-size:16pt;' name ='guesser'>&nbsp;&nbsp;&nbsp;<input type='submit' value='Enter'></form><br><a onclick='hints()'>Hints</a>&nbsp;&nbsp;&nbsp;<a onclick='giveup()'>Give up</a></div>";
 			}
 			document.getElementById("numselection").innerHTML="";
 		}
 
-		function enterkey2(e) {
-			if (e.keyCode == 13) {guessprocess();}
-		}
-
 		function guessprocess() {
-			a=document.getElementById("guesser").value;
+			a=document.inputnumber.guesser.value;
 			a=a.replace(/\,/g, "");
 			var att = Number(a);
 			if(att=="") {alert("It's blank!");}
 			else if(isNaN(att)) {alert("Um, that's not a number.");}
 			else {guess(att);}
+			return false;
 		}
 
 		function guess(att) {
@@ -275,7 +269,7 @@
 			<noscript><h3>Javascript is disabled. Please enable it in order to play the game.</h3></noscript>
 				<div id="main">
 					<h1>I am Thinking of a Number.</h1>
-					<span class="block"><button class="big" type="button" onclick="between()">Begin</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span><span id="copyright">Version 2.5.2 &nbsp;&#126;&nbsp; &copy;2010-2015 Timothy Hsu</span>
+					<span class="block"><button class="big" type="button" onclick="between()">Begin</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span><span id="copyright">Version 2.5.3 &nbsp;&#126;&nbsp; &copy;2010-2015 Timothy Hsu</span>
 				</div>
 				<div id="numselection"></div>
 			</div>

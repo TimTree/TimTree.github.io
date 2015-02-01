@@ -145,13 +145,15 @@
 			var y=document.customnumber.mincustom.value;
             var z=document.customnumber.maxcustom.value;
             if(z=="" || isNaN(z) || z%1!==0 || y=="" || isNaN(y) || y%1!==0) {alert("Both values must be integers.");}
-			else if (y>z) {alert("You might want to swap those numbers.");}
-			else if (z-y>=50000 && numselection==0) {
-				var s=confirm("Whoa there, you could freeze the game with that high of a range! I highly suggest you use an input field.\nYou sure you want to use a number set?");
-				if (s==true) {minnumber=y;maxnumber=z;generate(),begin();}}
-			else if (y==z) {minnumber=y;maxnumber=z;begin4();}
-			else {minnumber=Number(y);maxnumber=Number(z);generate(),begin();}
-            return false;
+			else {minnumber=Number(y);maxnumber=Number(z);
+				if (minnumber>maxnumber) {alert("You might want to swap those numbers.");}
+				else if (maxnumber-minnumber>=50000 && numselection==0) {
+					var s=confirm("Whoa there, you could freeze the game with that high of a range! I highly suggest you use an input field.\nYou sure you want to use a number set?");
+					if (s==true) {generate(),begin();}}
+				else if (minnumber==maxnumber) {begin4();}
+				else {generate(),begin();}
+			}
+			return false;
 		}
 
 		function imdone() {

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 
-<!--Notice: This game is released under the GNU General Public License v3. Link to license: http://www.gnu.org/licenses/gpl-3.0.html-->
+<!--This game is released under the GNU General Public License v3. Link to license: http://www.gnu.org/licenses/gpl-3.0.html-->
 
 <html>
 	<head>
 		<title>Thinking of a Number</title>
 		<meta charset="UTF-8">
-		<meta name="description" content="The mind boggling number guessing game.">
+		<meta name="description" content="The sophisticated number guesser">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 		<link rel="shortcut icon" type="image/x-icon" href="1k.ico" />
 		<meta name="format-detection" content="telephone=no">
@@ -21,7 +21,7 @@
 		}
 		
 		body {
-		margin: 0 auto;
+		margin:0 auto;
 		height:100%;
 		width:90%;
 		max-width:1000px;
@@ -35,10 +35,10 @@
 		}
 
 		#wrap {
-		display: table-cell;
+		display:table-cell;
 		text-align:center;
 		vertical-align:middle;
-		font-family:"helvetica", sans-serif;
+		font-family:"helvetica neue", helvetica, arial, sans-serif;
 		line-height:1.3;
 		}
 
@@ -48,7 +48,7 @@
 		}
 		
 		h2 {
-		margin:0 0 20px 0;
+        margin:0 0 20px 0;
 		font-size:24pt;
 		}
 
@@ -65,7 +65,7 @@
 		cursor:pointer;
 		}
 
-		a.license {
+		#license {
 		}
 
 		.correct {
@@ -106,25 +106,27 @@
 
 		<script>
 		
-		var maxnumber,
-			number,
+		var minnumber = 1,
+			maxnumber,
+			iwanttocheat,
 			hint,
 			att,
 			da,
 			plural,
 			lte,
+			theguessed = [];
 			numselection = 0;
 
 		function help() {
-			document.getElementById("main").innerHTML="<p>Try to guess what my number is. Each time you play, I choose a different number</p><p>This game works on the following browsers:</p><p>Internet Explorer 8+<br>Firefox<br>Chrome<br>Safari 3+<br>Opera 9+</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+			document.getElementById("main").innerHTML="<p>Try to guess what my number is. Each time you play, I choose a different number</p><p>This game works on the following browsers:</p><p>Internet Explorer 8+<br>Firefox<br>Chrome<br>Safari (Mac &#38; iOS)<br>Opera 9+</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 		}
 
 		function about() {
-			document.getElementById("main").innerHTML="<p>A remake of the infamous PowerPoint game, <em>I am Thinking of a Number</em> strives to frustrate your own sanity through a boggling jumble of microscopic numbers. Of course, you can enable hints and lower the difficulty if you like, but that would ruin the fun, right? Now get guessing!</p><p><strong>Release Date:</strong> August 14, 2013<br><strong>Latest Update:</strong> January 30, 2015<br><strong>Software used:</strong> Notepad++</p><p><strong>License:</strong> This game is released under the GNU General Public License v3. To read its terms, <a href='http://www.gnu.org/licenses/gpl-3.0.html' class='license' target='_blank'>click here</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+			document.getElementById("main").innerHTML="<p><em>I am Thinking of a Number</em> originates from an infamous PowerPoint game that made users guess a number between 1 and 1000. Now, with HTML5, hints, and increased flexibility, it has evolved into a sophisticated number guesser.</p><p><strong>Release Date:</strong> August 14, 2013<br><strong>Updated:</strong> February 1, 2015<br><strong>Software used:</strong> Notepad++</p><p><strong>License:</strong> GNU General Public License v3. To read its terms, <a href='http://www.gnu.org/licenses/gpl-3.0.html' id='license' target='_blank'>click here</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 		}
 
 		function between() {
-			document.getElementById("main").innerHTML="I am thinking of a number between...<div id='titleselect'><ul><li><button type='button' onclick='begin4()'>1 and 1</button></li><li><button type='button' onclick='maxnumber=10;generate(),begin()'>1 and 10</button></li><li><button type='button' onclick='maxnumber=100;generate(),begin()'>1 and 100</button></li><li><button type='button' onclick='maxnumber=1000;generate(),begin()'>1 and 1,000</button></li></ul></div><button onclick='pick()'>Let me pick.</button>";
+			document.getElementById("main").innerHTML="I am thinking of a number between...<div id='titleselect'><ul><li><button type='button' onclick='maxnumber=10;generate(),begin()'>1 and 10</button></li><li><button type='button' onclick='maxnumber=100;generate(),begin()'>1 and 100</button></li><li><button type='button' onclick='maxnumber=1000;generate(),begin()'>1 and 1,000</button></li></ul></div><button onclick='pick()'>Let me pick.</button>";
 			document.getElementById("numselection").innerHTML="<br><span style='font-size:10pt;'><form><input type='radio' name='numformat' id='numset' onchange=numchange()>Number Set&nbsp;&nbsp;<input type='radio' name='numformat' id='inputfield' onchange=numchange()>Input Field</form></span>";
 			if (numselection==0) {document.getElementById('numset').checked=true;}
 			if (numselection==1) {document.getElementById("inputfield").checked=true;}
@@ -136,27 +138,20 @@
 		}
 
 		function pick() {
-			document.getElementById("main").innerHTML="<form name='customnumber' onsubmit='return customgame()'>Ok then. I will think of a number between 1 and <input type='text' name='custom' style='width:50px;'></input>. <input type='submit' value='Enter'></form>";
+			document.getElementById("main").innerHTML="<form name='customnumber' onsubmit='return customgame()'>Ok then. I'll think of a number between <input name='mincustom' style='width:60px;' type='number' value=1> and <input name='maxcustom' style='width:60px;' type='number'>. <input type='submit' value='Enter'>";
 		}
 
 		function customgame() {
-			try {
-				var z=document.customnumber.custom.value;
-				z=z.replace(/\,/g, "");
-				if(z=="") throw "There's nothing in the box.";
-				if(isNaN(z)) throw "Um, that's not a number.";
-				if(z <= 0) throw "Yeah, not gonna work.";
-				if(z%1!==0) throw "Let's not use decimals, ok?";
-				else if (z >=50000 && numselection==0) {
-				var s=confirm("Warning: Numbers this high may cause the program to crash! You sure you want to proceed?");
-				if (s==true) {maxnumber=z;generate(),begin();}}
-				else if (z==1) {begin4();}
-				else {maxnumber=z;generate(),begin();}
-			}
-			catch (err) {
-				alert("Error: " + err);
-			}
-			return false;
+			var y=document.customnumber.mincustom.value;
+            var z=document.customnumber.maxcustom.value;
+            if(z=="" || isNaN(z) || z%1!==0 || y=="" || isNaN(y) || y%1!==0) {alert("Both values must be integers.");}
+			else if (y>z) {alert("You might want to swap those numbers.");}
+			else if (z-y>=50000 && numselection==0) {
+				var s=confirm("Whoa there, you could freeze the game with that high of a range! I highly suggest you use an input field.\nYou sure you want to use a number set?");
+				if (s==true) {minnumber=y;maxnumber=z;generate(),begin();}}
+			else if (y==z) {minnumber=y;maxnumber=z;begin4();}
+			else {minnumber=Number(y);maxnumber=Number(z);generate(),begin();}
+            return false;
 		}
 
 		function imdone() {
@@ -164,64 +159,71 @@
 		}
 
 		function generate() {
-			number = Math.floor((Math.random()*maxnumber)+1);
+			iwanttocheat = Math.floor((Math.random()*(maxnumber-minnumber+1)))+minnumber;
 			hint = 0;
 			da = 0;
-			lte = 0;
+            lte = 0;
 			plural = "guess";
 		}
 
 		function begin() {
 			if (numselection == 0) {
 				var x="";
-				for (var att=1;att<=maxnumber;att++) {x=x + "<a onclick='guess(" + att + ")'>" + att + "</a> ";}
+				for (var att=minnumber;att<=maxnumber;att++) {x=x + "<a id = '" + att + "' onclick='guess(" + att + ")'>" + att + "</a> ";}
 				document.getElementById("main").innerHTML="<h2>Now guess my number.</h2><div id='ten'>" + x + "&nbsp;&nbsp;<a onclick='hints()'>Hints</a> &nbsp;<a onclick='giveup()'>Give up</a></div>";
-				if (maxnumber>=2&&maxnumber<=100) {document.getElementById("ten").style.fontSize="18pt";}
-				if (maxnumber>=101&&maxnumber<=500) {document.getElementById("ten").style.fontSize="16pt";}
+				if (maxnumber-minnumber<=99) {document.getElementById("ten").style.fontSize="18pt";}
+				if (maxnumber-minnumber>=100&&maxnumber-minnumber<=499) {document.getElementById("ten").style.fontSize="16pt";}
+				if (theguessed[0]) {
+				for (var g=0;g<theguessed.length;g++) {document.getElementById(theguessed[g]).style.color="blue";}
+				}
 			}
 			else if(numselection == 1) {
-			document.getElementById("main").innerHTML="<h2>Now guess my number between 1 and " + maxnumber + ".</h2><div id='ten'><form name='inputnumber' onsubmit='return guessprocess()'><input type='text' style='width:75px; font-size:16pt;' name ='guesser'>&nbsp;&nbsp;&nbsp;<input type='submit' value='Enter'></form><br><a onclick='hints()'>Hints</a>&nbsp;&nbsp;&nbsp;<a onclick='giveup()'>Give up</a></div>";
+			document.getElementById("main").innerHTML="<h2>Now guess my number between " + minnumber + " and " + maxnumber + ".</h2><div id='ten'><form name='inputnumber' onsubmit='return guessprocess()'><input style='width:90px; font-size:16pt;' name='guesser' type='number'>&nbsp;&nbsp;&nbsp;<input type='submit' value='Enter'></form><br><a onclick='hints()'>Hints</a>&nbsp;&nbsp;&nbsp;<a onclick='giveup()'>Give up</a><br><br><span id='guessed'></span></div>";
+            document.inputnumber.guesser.focus();
+			if (da >=1) {document.getElementById("guessed").innerHTML="Guessed: " + theguessed.join(', ');}
 			}
 			document.getElementById("numselection").innerHTML="";
 		}
 
 		function guessprocess() {
-			a=document.inputnumber.guesser.value;
-			a=a.replace(/\,/g, "");
-			var att = Number(a);
-			if(att=="") {alert("It's blank!");}
-			else if(isNaN(att)) {alert("Um, that's not a number.");}
-			else {guess(att);}
-			return false;
+			var a=document.inputnumber.guesser.value;
+			if (a=="" || isNaN(a) || a%1!==0) {alert("Please type an integer.");
+			document.inputnumber.guesser.focus();}
+			else {var att = Number(a); guess(att);}
+            return false;
 		}
 
 		function guess(att) {
-			if(number == att) {
+			if(iwanttocheat == att) {
 				da++;
-				document.getElementById("main").innerHTML="<span class='correct'>Correct!</span><br><p id='hintsused'></p><p id='tries'>It took you " + da + " " + plural + " to choose the correct number.</p><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='between()'>New set</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";
-				did();
+				document.getElementById("main").innerHTML="<span class='correct'>Correct!</span><br><p id='hintsused'></p><p id='tries'>It took you " + da + " " + plural + " to choose the correct number.</p><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='between()'>New set</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main menu</button>";
+                theguessed=[];
+				if (hint==0) {document.getElementById("hintsused").innerHTML="And you didn't use hints. Well done!";}
+				if (hint==1) {document.getElementById("hintsused").innerHTML="Next time, try not to use hints.";}
 			}
-			if(number !== att) {
+			if(iwanttocheat !== att) {
 				plural = "guesses";
 				da++;
-				document.getElementById("main").innerHTML="Nope!<br><p id='greaterorless'></p><button type='button' onclick='begin()'>Try again</button>";
+				document.getElementById("main").innerHTML="Nope, not " + att + "!<br><p id='greaterorless'></p><button type='button' onclick='begin()'>Try again</button>";
 				if(lte==1){isit(att);}
-			}
-		}
+				theguessed.splice (0, 0, att);
+            }
+        }
 
 		function isit(att) {
-			if(number>att) {document.getElementById("greaterorless").innerHTML="It&#39;s greater than that.<br><br>";}
-			if(number<att) {document.getElementById("greaterorless").innerHTML="It&#39;s less than that.<br><br>";}
+			if(iwanttocheat>att) {document.getElementById("greaterorless").innerHTML="It's greater than that.<br><br>";}
+			if(iwanttocheat<att) {document.getElementById("greaterorless").innerHTML="It's less than that.<br><br>";}
 		}
 
 		function hints() {
-			document.getElementById("main").innerHTML="<h4>Hints</h4>Even or odd? <span id='hintoe'><button type='button' onclick='hint1()'>Reveal</button></span><br>More than " + Math.round(maxnumber/2) + "? <span id='hint500'><button type='button' onclick='hint2()'>Reveal</button></span><br><br><button type='button' onclick='hint3()'>Enable less than or greater than</button><br><br><button type='button' onclick='begin()'>Go back</button>";
+			document.getElementById("main").innerHTML="<h4>Hints</h4>Even or odd? <span id='hintoe'><button type='button' onclick='hint1()'>Reveal</button></span><br>More than " + Math.round(((minnumber-1) + maxnumber)/2) + "? <span id='hint500'><button type='button' onclick='hint2()'>Reveal</button></span><br><br><span id='hintlte'><button type='button' onclick='hint3()'>Enable less than or greater than</button></span><br><br><button type='button' onclick='begin()'>Go back</button>";
+			if (lte == 1) {document.getElementById("hintlte").innerHTML="<em>Less than or greater than enabled</em>";}
 		}
 
 		function hint1() {
 			hint = 1;
 			var s;
-			if(number%2 == 0) {s = "Even";}
+			if(iwanttocheat%2 == 0) {s = "Even";}
 			else {s = "Odd";}
 			document.getElementById("hintoe").innerHTML="<em>" + s + "</em>";
 		}
@@ -229,7 +231,7 @@
 		function hint2() {
 			hint = 1;
 			var s;
-			if(number>Math.round(maxnumber/2)) {s = "Yes";}
+			if(iwanttocheat>Math.round(((minnumber-1) + maxnumber)/2)) {s = "Yes";}
 			else {s = "No";}
 			document.getElementById("hint500").innerHTML="<em>" + s + "</em>";
 		}
@@ -237,27 +239,23 @@
 		function hint3() {
 			hint = 1;
 			lte = 1;
-			alert("Enabled.");
-		}
-
-		function did() {
-			if (hint==0) {document.getElementById("hintsused").innerHTML="No hints? Wait, how did you...nevermind.";}
-			if(hint==1) {document.getElementById("hintsused").innerHTML="But you used hints. Next time, try not to use hints.";}
+			document.getElementById("hintlte").innerHTML="<em>Less than or greater than enabled</em>";
 		}
 
 		function giveup() {
 			var r=confirm("Are you sure you want to give up?");
-			if (r==true) {document.getElementById("main").innerHTML="The number was " +number+ ".<br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='between()'>New set</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";}
+			if (r==true) {document.getElementById("main").innerHTML="The number was " +iwanttocheat+ ".<br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='between()'>New set</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";
+			theguessed=[];}
 		}
 
 		function begin4() {
-			document.getElementById("main").innerHTML="<h2>Now guess my number.</h2><div id='oneandone'><a onclick='guess1c()'>1</a></div> ";
+			document.getElementById("main").innerHTML="<h2>Now guess my number.</h2><div id='oneandone'><a onclick='guess1c()'> " + minnumber + "</a></div> ";
 			document.getElementById("numselection").innerHTML="";
 		}
 
 		function guess1c() {
 		var r=confirm("Are you 100% sure this is the number you want to guess?\n\nThink really, REALLY carefully before making this decision.");
-		if (r==true) {document.getElementById("main").innerHTML="<span class='correct'>Correct!</span><br><p>But you know, in life, you should never take the easy way out of things.</p><br><button type='button' onclick='between()'>New set</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";}
+		if (r==true) {document.getElementById("main").innerHTML="<span class='correct'>Correct!</span><br><p>But in life, you should never take the easy way out of things.</p><br><button type='button' onclick='between()'>New set</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main menu</button>";}
 		}
 		
 		</script>
@@ -270,7 +268,7 @@
 			<noscript><h3>Javascript is disabled. Please enable it in order to play the game.</h3></noscript>
 				<div id="main">
 					<h1>I am Thinking of a Number.</h1>
-					<span class="block"><button class="big" type="button" onclick="between()">Begin</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span><span id="copyright">Version 2.5.4 &nbsp;&#126;&nbsp; &copy;2010-2015 Timothy Hsu</span>
+					<span class="block"><button class="big" type="button" onclick="between()">Begin</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span><span id="copyright">Version 2.6&nbsp;&#126;&nbsp; &copy;2010-2015 Timothy Hsu</span>
 				</div>
 				<div id="numselection"></div>
 			</div>

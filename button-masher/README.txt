@@ -6,18 +6,21 @@ After that, to play the game, all you have to do is open Button Masher.html. All
 
 Enjoy!
 
-COMPATIBLE BROWSERS (+ means "or higher"):
-Internet Explorer 10+
-Firefox 5+
+COMPATIBLE BROWSERS
+Internet Explorer 10+*
+Firefox 16+
 Chrome 4+
 Safari 4+
 Opera 12.10+
 Javascript must be enabled.
 
-COPYRIGHT NOTICE
-This game is copyright (c) 2013-2014 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+*For save related reasons, the downloaded version does not work with Internet Explorer.
 
-CONTACT INFO: To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
+COPYRIGHT NOTICE
+This game is copyright (c) 2013-2015 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+
+CONTACT INFO
+To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
 
 http://slideshowgames.blogspot.com/2013/08/button-masher-more-info_11.html
 
@@ -26,6 +29,21 @@ http://slideshowgames.blogspot.com/2013/08/button-masher-more-info_11.html
 --------------------------------------
 
 VERSION HISTORY
+
+Version 4.1 (released 3/3/15)
+-------------------------------
+- Adds a restart button to each mode
+- New settings panel
+- Adds navigation arrows. No more refreshing required.
+- The game can now resize down to a width of 600 pixels.
+- Clicker God requirement reduced from 100,000 to 10,000 clicks
+- Oscillation mode is now easier on normal difficulty.
+- Adds incremental achievement stars
+
+Minor changes
+- Formatting fixes for Firefox and Safari
+- Achievement stars automatically appear without having to refresh
+- Optimizes title font for Linux
 
 Version 4.0.2 (released 6/10/14)
 -------------------------------

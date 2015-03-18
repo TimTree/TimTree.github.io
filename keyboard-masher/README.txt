@@ -1,4 +1,4 @@
-Thanks for playing Keyboard Masher!
+﻿Thanks for playing Keyboard Masher!
 
 If you downloaded this game, you'll need to extract the ZIP file so the game can run properly. In Windows, simply click on Extract All. In OS X, the ZIP file should automatically be extracted upon opening the file.
 
@@ -6,18 +6,21 @@ After that, to play the game, all you have to do is open Keyboard Masher.html. A
 
 Enjoy!
 
-COMPATIBLE BROWSERS (+ means "or higher"):
-Internet Explorer 9+
-Firefox 3.5+
+COMPATIBLE BROWSERS
+Internet Explorer 10+*
+Firefox 16+
 Chrome 4+
 Safari 4+
 Opera 10.50+
 Javascript must be enabled.
 
-COPYRIGHT NOTICE
-This game is copyright (c) 2013-2014 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+*For save related reasons, the downloaded version does not work with Internet Explorer.
 
-CONTACT INFO: To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
+COPYRIGHT NOTICE
+This game is copyright (c) 2013-2015 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+
+CONTACT INFO
+To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
 
 http://slideshowgames.blogspot.com/2014/04/keyboard-masher-more-info.html
 
@@ -26,6 +29,22 @@ http://slideshowgames.blogspot.com/2014/04/keyboard-masher-more-info.html
 --------------------------------------
 
 VERSION HISTORY
+
+Version 4.1 (released 3/17/15)
+------------------------------
+- New game modes: Arrow (360) and Alphabet (Backwards)
+- Adds a restart button to each mode
+- New settings panel
+- Adds navigation arrows. No more refreshing required.
+- The game can now resize down to a width of 600 pixels.
+- Typing Typhon achievement reduced from 200,000 to 25,000 presses
+- Adds incremental achievement stars
+
+Minor changes
+- Formatting fixes for Firefox and Safari
+- Achievement stars automatically appear without having to refresh
+- Optimizes title font for linux
+- Alphabet mode now shows letters in lowercase to reduce confusion
 
 Version 4.0.2 (released 6/10/14)
 -------------------------------

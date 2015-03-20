@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>Mouse Swipe Prototype</title>
+
+<meta charset="utf-8">
+
+<style>
+
+html {
+height:100%;
+}
+
+body {
+margin:0 auto;
+height:100%;
+width:90%;
+max-width:800px;
+}
+
+#first {
+margin:auto;
+height:100%;
+display:table;
+width:100%;
+}
+
+#wrap {
+display:table-cell;
+text-align:center;
+vertical-align:middle;
+font-family:verdana,"Bitstream Vera Sans";
+}
+
+button {
+background-color:#eee;
+border-radius:5px;
+-webkit-border-radius:5px;
+border:1px solid #aaa;
+color:#444;
+font-family:verdana,"Bitstream Vera Sans";
+font-size:12pt;
+padding:3px 8px;
+margin:0;
+}
+
+button:hover {
+background-color:#dedede;
+}
+
+button:active {
+background-color:#bcbcbc;
+}
+
+button.big {
+font-size:20pt;
+padding:4px 10px;    
+}
+
+#copyright {
+font-size:10pt;
+margin-top:2em;
+}
+
+#scorebreak {
+margin-bottom:6px;
+font-weight:700;
+}
+
+#score {
+border:none;
+font-size:22pt;
+text-align:center;
+}
+
+button::-moz-focus-inner {
+padding: 0 !important;
+border: 0 none !important;
+}
+
+#capsule {
+height:300px;   
+}
+
+#leftinner {
+position:relative;
+width:50%;
+height:100%;
+float:left;
+border-right-style:solid;
+border-width:1px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+    
+#rightinner {
+position:relative;
+width:50%;
+height:100%;
+float:right;
+border-left-style:solid;
+border-width:1px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+#leftouter {
+position:absolute;
+left:0;
+top:0;
+width:50%;
+height:100%;
+}
+
+#rightouter {
+position:absolute;
+right:0;
+top:0;
+width:50%;
+height:100%;
+}
+
+a {
+cursor:pointer;    
+}
+
+#restart {
+position:relative;
+z-index:1;
+}
+
+#timeisup {
+font-size:28pt;
+color:#BD8B20;
+font-weight:700;
+margin:15px;
+}
+    
+#record {
+font-weight:700;
+color:#395ED3;
+font-size:16pt;
+margin-bottom:36px;   
+}
+
+*:focus  {  
+outline: none;  
+}
+    
+h2 {
+margin-top:0;
+margin-bottom:1.5em;   
+}
+
+</style>
+
+<script>
+
+var score = {
+tenSec: 0,
+swiped: 0
+};
+
+if (localStorage.getItem("mswipeScore")) {
+score.tenSec = localStorage.getItem("mswipeScore");}
+if (localStorage.getItem("timesSwipedScore")) {
+score.swiped = localStorage.getItem("timesSwipedScore");}
+
+function tensec() {
+highscore=score.tenSec;
+timer=10;
+document.getElementById("main").innerHTML="<p id='scorebreak'><span id='back'><a id='back' onclick='imdone();'>&#8592; </a></span><b>Score</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0' id='score' readonly></form><p id='commentary'>Swipe across the line to begin.</p><div id='capsule'><div id='leftinner' onmouseover='setupleft()'></div><div id='rightinner' onmouseover='setupright()'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+timer+"</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>"+highscore+"</span></p>";
+document.getElementById("copyright").style.display="none";
+}
+
+function setupleft() {
+document.getElementById("capsule").innerHTML="<div id='leftinner'></div><div id='rightinner' onmouseover='initialize();plusoneright()'></div>";
+}
+
+function setupright() {
+document.getElementById("capsule").innerHTML="<div id='leftinner' onmouseover='initialize();plusoneleft()'></div><div id='rightinner'></div>";
+}
+
+var int, restart;
+function initialize() {
+document.getElementById("commentary").innerHTML="SWIPE!";
+document.getElementById("restart").innerHTML="<a onclick='redo();tensec();' title='Restart'> &#8617;</a>";
+restart=setTimeout(function(){
+document.getElementById("commentary").innerHTML="";
+document.getElementById("capsule").innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p><button type='button' class='big' onclick='tensec()'>Play Again</button></p><p><button type='button' onclick='imdone()'>Main Menu</button></p>";
+timer=0;document.getElementById("thetime").innerHTML=timer;
+document.getElementById("restart").innerHTML="";
+clearInterval(int);
+if (Number(document.score.scoring.value)>highscore) {
+document.getElementById("record").innerHTML="New Record!";highscore = document.score.scoring.value;
+score.tenSec=document.score.scoring.value;localStorage.setItem("mswipeScore", document.score.scoring.value);
+}
+addup();
+},10000);
+document.getElementById("back").innerHTML="";
+int=setInterval(function(){updatetime()},100);
+}
+    
+function updatetime() {
+timer = (timer*1 - 0.1).toFixed(1);
+document.getElementById("thetime").innerHTML=timer;
+}
+    
+function plusoneleft() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='leftinner'></div><div id='rightinner'></div><div id='leftouter'></div><div id='rightouter' onmouseover='plusoneright()'></div>";
+}
+
+function plusoneright() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='leftinner'></div><div id='rightinner'></div><div id='leftouter' onmouseover='plusoneleft()'></div><div id='rightouter'></div>";
+}
+
+function plusone2left() {
+document.score.scoring.value++; 
+}
+
+function redo() {
+clearTimeout(restart);
+clearInterval(int);
+addup();
+}
+
+function imdone() {
+document.getElementById("main").innerHTML="<h2>Mouse Swipe Prototype (10 Seconds)</h2><p><button type='button' class='big' onclick='tensec()'>Play Game</button></p><p><button type='button' onclick='help()'>Help</button>&nbsp;&nbsp;<button type='button' onclick='records()'>Stats</button>";
+document.getElementById("copyright").style.display="block";
+}
+
+function records() {
+document.getElementById("main").innerHTML="<strong>Stats</strong><p>10 Seconds: "+score.tenSec+"</p><p>Times swiped: "+score.swiped+"</p><p><button type='button' style='font-size:10pt;' onclick='reset()'>Reset</button></p><p><button type='button' onclick='imdone()'>Go back</button>";
+}
+
+function reset() {
+var r=confirm("Are you sure you want to reset all your scores and stats?");
+if (r==true) {score.tenSec=0;localStorage.removeItem("mswipeScore");score.swiped = 0;localStorage.removeItem("timesSwipedScore");records();}
+}
+
+function addup() {
+score.swiped = score.swiped*1+Math.abs(document.score.scoring.value)*1;localStorage.setItem("timesSwipedScore", score.swiped);
+}
+
+function help() {
+document.getElementById("main").innerHTML="<strong>Help</strong><p><strong>Welcome to Mouse Swipe</strong>, the third game in the Masher Series. In this game, your goal is to swipe your cursor across the vertical line as many times as you can.</p><p>Since this is a demo, only 10 second mode is included. The full game will feature additional game modes that I still need to think of. Fortunately, <strong>any save data from this prototype will be transferred to the full game once it's released.</strong></p><p>If you have any thoughts on this prototype or ideas for game modes related to mouse swiping, click on <strong>Send Feedback</strong> below to post a comment. I'd greatly appreciate it.</p><p><button type='button' onclick='imdone()'>Go back</button>"; 
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="first">
+<div id="wrap">
+
+<div id="main">
+<h2>Mouse Swipe Prototype (10 Seconds)</h2>
+<p><button type="button" class='big' onclick="tensec()">Play Game</button></p>
+<p><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="records()">Stats</button></p>
+</div>
+
+<div id="copyright">Demo &copy;2015 Timothy Hsu ~ <a href="http://slideshowgames.blogspot.com/2015/03/mouse-swipe-prototype.html" target="_blank">Send feedback</a></div>
+</div></div>
+
+</body>
+</html>

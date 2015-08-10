@@ -1,0 +1,1219 @@
+﻿<!DOCTYPE html>
+
+<!--Notice: This game is released under the GNU General Public License v3. Link to license: http://www.gnu.org/licenses/gpl-3.0.html-->
+
+<html>
+
+<head>
+
+<title>1 to 1,000 Game</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<meta charset="UTF-8">
+
+<style>
+
+span.block {
+display:block;
+}
+
+#first {
+width:1000px;
+margin:0 auto;
+}
+
+#wrap {
+position:absolute;
+width:1000px;
+height:99%;
+display:table;
+font-family:"Helvetica";
+margin:0 auto;
+}
+
+#content {
+vertical-align:middle;
+text-align:center;
+display:table-cell;
+}
+
+#title {
+text-align:center;
+font-size:50pt;
+display:block;
+font-weight:700;
+}
+
+#copyright {
+font-size:10pt;
+text-align:center;
+}
+
+button.big {
+font-size:18pt;
+}
+
+a {
+text-decoration:none;
+cursor:pointer;
+}
+
+a.license {
+}
+
+span.correct {
+color:green;
+font-size:30pt;
+font-weight:700;
+}
+
+</style>
+
+<script>
+
+function help()
+{
+x=document.getElementById("main");
+x.innerHTML="<span class='center'><br class='break'>Try to guess what my number is. Each time you play, I choose a different number.<br><br>This game works on the following browsers:<br class='break'>Internet Explorer 9+<br>Firefox 3+<br>Chrome 4+<br>Safari 4+<br>Opera 10.50+<br><br>A screen resolution of at least 1152x800 is recommended.<br><br><button type='button' onclick='imdone()'>Go back</button></span>";
+}
+
+function about()
+{
+x=document.getElementById("main");
+x.innerHTML="The infamous PowerPoint number guessing game has been converted into Javascript. In this new version, the correct number is now randomly chosen by the computer. The game also loads noticeably faster, has a reduced file size, features hints, and no longer relies on proprietary software; just a modern web browser. Now get guessing!<br><br><strong>Release Date:</strong> August 14, 2013<br><strong>Software used:</strong> Notepad<br><br><strong>License:</strong> This game is released under the GNU General Public License v3. To read its terms, <a href='http://www.gnu.org/licenses/gpl-3.0.html' class='license' target='_blank'>click here</a>.<br><br><button type='button' onclick='imdone()'>Go back</button>";
+}
+
+function imdone()
+{
+x=document.getElementById("main");
+x.innerHTML="<span id='title'><strong>I am Thinking of a Number Between 1 and 1,000.</strong></span><br>Now generates random numbers!<br><br><br><span class='center'><button class='big' type='button' onclick='begin(),generate()'>Play Game</button><br><br><button type='button' onclick='help()'>Help</button>&nbsp;&nbsp;<button type='button' onclick='about()'>About</button></span><br><br><br><span id='copyright'>Version 2.0 &nbsp;&#126;&nbsp; &copy;2010-2013 Timothy Hsu</span>";
+}
+
+var number;
+var hint;
+var att;
+var da;
+var plural;
+function generate()
+{
+number = Math.floor((Math.random()*1000)+1);
+hint = 0;
+da = 0;
+plural = "guess";
+}
+
+function begin()
+{
+x=document.getElementById("main");
+x.innerHTML="<span style='font-size:28pt;font-weight:700;'>Now guess my number.</span><br><br><a onclick='guess1()'>1</a> <a onclick='guess2()'>2</a> <a onclick='guess3()'>3</a> <a onclick='guess4()'>4</a> <a onclick='guess5()'>5</a> <a onclick='guess6()'>6</a> <a onclick='guess7()'>7</a> <a onclick='guess8()'>8</a> <a onclick='guess9()'>9</a> <a onclick='guess10()'>10</a> <a onclick='guess11()'>11</a> <a onclick='guess12()'>12</a> <a onclick='guess13()'>13</a> <a onclick='guess14()'>14</a> <a onclick='guess15()'>15</a> <a onclick='guess16()'>16</a> <a onclick='guess17()'>17</a> <a onclick='guess18()'>18</a> <a onclick='guess19()'>19</a> <a onclick='guess20()'>20</a> <a onclick='guess21()'>21</a> <a onclick='guess22()'>22</a> <a onclick='guess23()'>23</a> <a onclick='guess24()'>24</a> <a onclick='guess25()'>25</a> <a onclick='guess26()'>26</a> <a onclick='guess27()'>27</a> <a onclick='guess28()'>28</a> <a onclick='guess29()'>29</a> <a onclick='guess30()'>30</a> <a onclick='guess31()'>31</a> <a onclick='guess32()'>32</a> <a onclick='guess33()'>33</a> <a onclick='guess34()'>34</a> <a onclick='guess35()'>35</a> <a onclick='guess36()'>36</a> <a onclick='guess37()'>37</a> <a onclick='guess38()'>38</a> <a onclick='guess39()'>39</a> <a onclick='guess40()'>40</a> <a onclick='guess41()'>41</a> <a onclick='guess42()'>42</a> <a onclick='guess43()'>43</a> <a onclick='guess44()'>44</a> <a onclick='guess45()'>45</a> <a onclick='guess46()'>46</a> <a onclick='guess47()'>47</a> <a onclick='guess48()'>48</a> <a onclick='guess49()'>49</a> <a onclick='guess50()'>50</a> <a onclick='guess51()'>51</a> <a onclick='guess52()'>52</a> <a onclick='guess53()'>53</a> <a onclick='guess54()'>54</a> <a onclick='guess55()'>55</a> <a onclick='guess56()'>56</a> <a onclick='guess57()'>57</a> <a onclick='guess58()'>58</a> <a onclick='guess59()'>59</a> <a onclick='guess60()'>60</a> <a onclick='guess61()'>61</a> <a onclick='guess62()'>62</a> <a onclick='guess63()'>63</a> <a onclick='guess64()'>64</a> <a onclick='guess65()'>65</a> <a onclick='guess66()'>66</a> <a onclick='guess67()'>67</a> <a onclick='guess68()'>68</a> <a onclick='guess69()'>69</a> <a onclick='guess70()'>70</a> <a onclick='guess71()'>71</a> <a onclick='guess72()'>72</a> <a onclick='guess73()'>73</a> <a onclick='guess74()'>74</a> <a onclick='guess75()'>75</a> <a onclick='guess76()'>76</a> <a onclick='guess77()'>77</a> <a onclick='guess78()'>78</a> <a onclick='guess79()'>79</a> <a onclick='guess80()'>80</a> <a onclick='guess81()'>81</a> <a onclick='guess82()'>82</a> <a onclick='guess83()'>83</a> <a onclick='guess84()'>84</a> <a onclick='guess85()'>85</a> <a onclick='guess86()'>86</a> <a onclick='guess87()'>87</a> <a onclick='guess88()'>88</a> <a onclick='guess89()'>89</a> <a onclick='guess90()'>90</a> <a onclick='guess91()'>91</a> <a onclick='guess92()'>92</a> <a onclick='guess93()'>93</a> <a onclick='guess94()'>94</a> <a onclick='guess95()'>95</a> <a onclick='guess96()'>96</a> <a onclick='guess97()'>97</a> <a onclick='guess98()'>98</a> <a onclick='guess99()'>99</a> <a onclick='guess100()'>100</a> <a onclick='guess101()'>101</a> <a onclick='guess102()'>102</a> <a onclick='guess103()'>103</a> <a onclick='guess104()'>104</a> <a onclick='guess105()'>105</a> <a onclick='guess106()'>106</a> <a onclick='guess107()'>107</a> <a onclick='guess108()'>108</a> <a onclick='guess109()'>109</a> <a onclick='guess110()'>110</a> <a onclick='guess111()'>111</a> <a onclick='guess112()'>112</a> <a onclick='guess113()'>113</a> <a onclick='guess114()'>114</a> <a onclick='guess115()'>115</a> <a onclick='guess116()'>116</a> <a onclick='guess117()'>117</a> <a onclick='guess118()'>118</a> <a onclick='guess119()'>119</a> <a onclick='guess120()'>120</a> <a onclick='guess121()'>121</a> <a onclick='guess122()'>122</a> <a onclick='guess123()'>123</a> <a onclick='guess124()'>124</a> <a onclick='guess125()'>125</a> <a onclick='guess126()'>126</a> <a onclick='guess127()'>127</a> <a onclick='guess128()'>128</a> <a onclick='guess129()'>129</a> <a onclick='guess130()'>130</a> <a onclick='guess131()'>131</a> <a onclick='guess132()'>132</a> <a onclick='guess133()'>133</a> <a onclick='guess134()'>134</a> <a onclick='guess135()'>135</a> <a onclick='guess136()'>136</a> <a onclick='guess137()'>137</a> <a onclick='guess138()'>138</a> <a onclick='guess139()'>139</a> <a onclick='guess140()'>140</a> <a onclick='guess141()'>141</a> <a onclick='guess142()'>142</a> <a onclick='guess143()'>143</a> <a onclick='guess144()'>144</a> <a onclick='guess145()'>145</a> <a onclick='guess146()'>146</a> <a onclick='guess147()'>147</a> <a onclick='guess148()'>148</a> <a onclick='guess149()'>149</a> <a onclick='guess150()'>150</a> <a onclick='guess151()'>151</a> <a onclick='guess152()'>152</a> <a onclick='guess153()'>153</a> <a onclick='guess154()'>154</a> <a onclick='guess155()'>155</a> <a onclick='guess156()'>156</a> <a onclick='guess157()'>157</a> <a onclick='guess158()'>158</a> <a onclick='guess159()'>159</a> <a onclick='guess160()'>160</a> <a onclick='guess161()'>161</a> <a onclick='guess162()'>162</a> <a onclick='guess163()'>163</a> <a onclick='guess164()'>164</a> <a onclick='guess165()'>165</a> <a onclick='guess166()'>166</a> <a onclick='guess167()'>167</a> <a onclick='guess168()'>168</a> <a onclick='guess169()'>169</a> <a onclick='guess170()'>170</a> <a onclick='guess171()'>171</a> <a onclick='guess172()'>172</a> <a onclick='guess173()'>173</a> <a onclick='guess174()'>174</a> <a onclick='guess175()'>175</a> <a onclick='guess176()'>176</a> <a onclick='guess177()'>177</a> <a onclick='guess178()'>178</a> <a onclick='guess179()'>179</a> <a onclick='guess180()'>180</a> <a onclick='guess181()'>181</a> <a onclick='guess182()'>182</a> <a onclick='guess183()'>183</a> <a onclick='guess184()'>184</a> <a onclick='guess185()'>185</a> <a onclick='guess186()'>186</a> <a onclick='guess187()'>187</a> <a onclick='guess188()'>188</a> <a onclick='guess189()'>189</a> <a onclick='guess190()'>190</a> <a onclick='guess191()'>191</a> <a onclick='guess192()'>192</a> <a onclick='guess193()'>193</a> <a onclick='guess194()'>194</a> <a onclick='guess195()'>195</a> <a onclick='guess196()'>196</a> <a onclick='guess197()'>197</a> <a onclick='guess198()'>198</a> <a onclick='guess199()'>199</a> <a onclick='guess200()'>200</a> <a onclick='guess201()'>201</a> <a onclick='guess202()'>202</a> <a onclick='guess203()'>203</a> <a onclick='guess204()'>204</a> <a onclick='guess205()'>205</a> <a onclick='guess206()'>206</a> <a onclick='guess207()'>207</a> <a onclick='guess208()'>208</a> <a onclick='guess209()'>209</a> <a onclick='guess210()'>210</a> <a onclick='guess211()'>211</a> <a onclick='guess212()'>212</a> <a onclick='guess213()'>213</a> <a onclick='guess214()'>214</a> <a onclick='guess215()'>215</a> <a onclick='guess216()'>216</a> <a onclick='guess217()'>217</a> <a onclick='guess218()'>218</a> <a onclick='guess219()'>219</a> <a onclick='guess220()'>220</a> <a onclick='guess221()'>221</a> <a onclick='guess222()'>222</a> <a onclick='guess223()'>223</a> <a onclick='guess224()'>224</a> <a onclick='guess225()'>225</a> <a onclick='guess226()'>226</a> <a onclick='guess227()'>227</a> <a onclick='guess228()'>228</a> <a onclick='guess229()'>229</a> <a onclick='guess230()'>230</a> <a onclick='guess231()'>231</a> <a onclick='guess232()'>232</a> <a onclick='guess233()'>233</a> <a onclick='guess234()'>234</a> <a onclick='guess235()'>235</a> <a onclick='guess236()'>236</a> <a onclick='guess237()'>237</a> <a onclick='guess238()'>238</a> <a onclick='guess239()'>239</a> <a onclick='guess240()'>240</a> <a onclick='guess241()'>241</a> <a onclick='guess242()'>242</a> <a onclick='guess243()'>243</a> <a onclick='guess244()'>244</a> <a onclick='guess245()'>245</a> <a onclick='guess246()'>246</a> <a onclick='guess247()'>247</a> <a onclick='guess248()'>248</a> <a onclick='guess249()'>249</a> <a onclick='guess250()'>250</a> <a onclick='guess251()'>251</a> <a onclick='guess252()'>252</a> <a onclick='guess253()'>253</a> <a onclick='guess254()'>254</a> <a onclick='guess255()'>255</a> <a onclick='guess256()'>256</a> <a onclick='guess257()'>257</a> <a onclick='guess258()'>258</a> <a onclick='guess259()'>259</a> <a onclick='guess260()'>260</a> <a onclick='guess261()'>261</a> <a onclick='guess262()'>262</a> <a onclick='guess263()'>263</a> <a onclick='guess264()'>264</a> <a onclick='guess265()'>265</a> <a onclick='guess266()'>266</a> <a onclick='guess267()'>267</a> <a onclick='guess268()'>268</a> <a onclick='guess269()'>269</a> <a onclick='guess270()'>270</a> <a onclick='guess271()'>271</a> <a onclick='guess272()'>272</a> <a onclick='guess273()'>273</a> <a onclick='guess274()'>274</a> <a onclick='guess275()'>275</a> <a onclick='guess276()'>276</a> <a onclick='guess277()'>277</a> <a onclick='guess278()'>278</a> <a onclick='guess279()'>279</a> <a onclick='guess280()'>280</a> <a onclick='guess281()'>281</a> <a onclick='guess282()'>282</a> <a onclick='guess283()'>283</a> <a onclick='guess284()'>284</a> <a onclick='guess285()'>285</a> <a onclick='guess286()'>286</a> <a onclick='guess287()'>287</a> <a onclick='guess288()'>288</a> <a onclick='guess289()'>289</a> <a onclick='guess290()'>290</a> <a onclick='guess291()'>291</a> <a onclick='guess292()'>292</a> <a onclick='guess293()'>293</a> <a onclick='guess294()'>294</a> <a onclick='guess295()'>295</a> <a onclick='guess296()'>296</a> <a onclick='guess297()'>297</a> <a onclick='guess298()'>298</a> <a onclick='guess299()'>299</a> <a onclick='guess300()'>300</a> <a onclick='guess301()'>301</a> <a onclick='guess302()'>302</a> <a onclick='guess303()'>303</a> <a onclick='guess304()'>304</a> <a onclick='guess305()'>305</a> <a onclick='guess306()'>306</a> <a onclick='guess307()'>307</a> <a onclick='guess308()'>308</a> <a onclick='guess309()'>309</a> <a onclick='guess310()'>310</a> <a onclick='guess311()'>311</a> <a onclick='guess312()'>312</a> <a onclick='guess313()'>313</a> <a onclick='guess314()'>314</a> <a onclick='guess315()'>315</a> <a onclick='guess316()'>316</a> <a onclick='guess317()'>317</a> <a onclick='guess318()'>318</a> <a onclick='guess319()'>319</a> <a onclick='guess320()'>320</a> <a onclick='guess321()'>321</a> <a onclick='guess322()'>322</a> <a onclick='guess323()'>323</a> <a onclick='guess324()'>324</a> <a onclick='guess325()'>325</a> <a onclick='guess326()'>326</a> <a onclick='guess327()'>327</a> <a onclick='guess328()'>328</a> <a onclick='guess329()'>329</a> <a onclick='guess330()'>330</a> <a onclick='guess331()'>331</a> <a onclick='guess332()'>332</a> <a onclick='guess333()'>333</a> <a onclick='guess334()'>334</a> <a onclick='guess335()'>335</a> <a onclick='guess336()'>336</a> <a onclick='guess337()'>337</a> <a onclick='guess338()'>338</a> <a onclick='guess339()'>339</a> <a onclick='guess340()'>340</a> <a onclick='guess341()'>341</a> <a onclick='guess342()'>342</a> <a onclick='guess343()'>343</a> <a onclick='guess344()'>344</a> <a onclick='guess345()'>345</a> <a onclick='guess346()'>346</a> <a onclick='guess347()'>347</a> <a onclick='guess348()'>348</a> <a onclick='guess349()'>349</a> <a onclick='guess350()'>350</a> <a onclick='guess351()'>351</a> <a onclick='guess352()'>352</a> <a onclick='guess353()'>353</a> <a onclick='guess354()'>354</a> <a onclick='guess355()'>355</a> <a onclick='guess356()'>356</a> <a onclick='guess357()'>357</a> <a onclick='guess358()'>358</a> <a onclick='guess359()'>359</a> <a onclick='guess360()'>360</a> <a onclick='guess361()'>361</a> <a onclick='guess362()'>362</a> <a onclick='guess363()'>363</a> <a onclick='guess364()'>364</a> <a onclick='guess365()'>365</a> <a onclick='guess366()'>366</a> <a onclick='guess367()'>367</a> <a onclick='guess368()'>368</a> <a onclick='guess369()'>369</a> <a onclick='guess370()'>370</a> <a onclick='guess371()'>371</a> <a onclick='guess372()'>372</a> <a onclick='guess373()'>373</a> <a onclick='guess374()'>374</a> <a onclick='guess375()'>375</a> <a onclick='guess376()'>376</a> <a onclick='guess377()'>377</a> <a onclick='guess378()'>378</a> <a onclick='guess379()'>379</a> <a onclick='guess380()'>380</a> <a onclick='guess381()'>381</a> <a onclick='guess382()'>382</a> <a onclick='guess383()'>383</a> <a onclick='guess384()'>384</a> <a onclick='guess385()'>385</a> <a onclick='guess386()'>386</a> <a onclick='guess387()'>387</a> <a onclick='guess388()'>388</a> <a onclick='guess389()'>389</a> <a onclick='guess390()'>390</a> <a onclick='guess391()'>391</a> <a onclick='guess392()'>392</a> <a onclick='guess393()'>393</a> <a onclick='guess394()'>394</a> <a onclick='guess395()'>395</a> <a onclick='guess396()'>396</a> <a onclick='guess397()'>397</a> <a onclick='guess398()'>398</a> <a onclick='guess399()'>399</a> <a onclick='guess400()'>400</a> <a onclick='guess401()'>401</a> <a onclick='guess402()'>402</a> <a onclick='guess403()'>403</a> <a onclick='guess404()'>404</a> <a onclick='guess405()'>405</a> <a onclick='guess406()'>406</a> <a onclick='guess407()'>407</a> <a onclick='guess408()'>408</a> <a onclick='guess409()'>409</a> <a onclick='guess410()'>410</a> <a onclick='guess411()'>411</a> <a onclick='guess412()'>412</a> <a onclick='guess413()'>413</a> <a onclick='guess414()'>414</a> <a onclick='guess415()'>415</a> <a onclick='guess416()'>416</a> <a onclick='guess417()'>417</a> <a onclick='guess418()'>418</a> <a onclick='guess419()'>419</a> <a onclick='guess420()'>420</a> <a onclick='guess421()'>421</a> <a onclick='guess422()'>422</a> <a onclick='guess423()'>423</a> <a onclick='guess424()'>424</a> <a onclick='guess425()'>425</a> <a onclick='guess426()'>426</a> <a onclick='guess427()'>427</a> <a onclick='guess428()'>428</a> <a onclick='guess429()'>429</a> <a onclick='guess430()'>430</a> <a onclick='guess431()'>431</a> <a onclick='guess432()'>432</a> <a onclick='guess433()'>433</a> <a onclick='guess434()'>434</a> <a onclick='guess435()'>435</a> <a onclick='guess436()'>436</a> <a onclick='guess437()'>437</a> <a onclick='guess438()'>438</a> <a onclick='guess439()'>439</a> <a onclick='guess440()'>440</a> <a onclick='guess441()'>441</a> <a onclick='guess442()'>442</a> <a onclick='guess443()'>443</a> <a onclick='guess444()'>444</a> <a onclick='guess445()'>445</a> <a onclick='guess446()'>446</a> <a onclick='guess447()'>447</a> <a onclick='guess448()'>448</a> <a onclick='guess449()'>449</a> <a onclick='guess450()'>450</a> <a onclick='guess451()'>451</a> <a onclick='guess452()'>452</a> <a onclick='guess453()'>453</a> <a onclick='guess454()'>454</a> <a onclick='guess455()'>455</a> <a onclick='guess456()'>456</a> <a onclick='guess457()'>457</a> <a onclick='guess458()'>458</a> <a onclick='guess459()'>459</a> <a onclick='guess460()'>460</a> <a onclick='guess461()'>461</a> <a onclick='guess462()'>462</a> <a onclick='guess463()'>463</a> <a onclick='guess464()'>464</a> <a onclick='guess465()'>465</a> <a onclick='guess466()'>466</a> <a onclick='guess467()'>467</a> <a onclick='guess468()'>468</a> <a onclick='guess469()'>469</a> <a onclick='guess470()'>470</a> <a onclick='guess471()'>471</a> <a onclick='guess472()'>472</a> <a onclick='guess473()'>473</a> <a onclick='guess474()'>474</a> <a onclick='guess475()'>475</a> <a onclick='guess476()'>476</a> <a onclick='guess477()'>477</a> <a onclick='guess478()'>478</a> <a onclick='guess479()'>479</a> <a onclick='guess480()'>480</a> <a onclick='guess481()'>481</a> <a onclick='guess482()'>482</a> <a onclick='guess483()'>483</a> <a onclick='guess484()'>484</a> <a onclick='guess485()'>485</a> <a onclick='guess486()'>486</a> <a onclick='guess487()'>487</a> <a onclick='guess488()'>488</a> <a onclick='guess489()'>489</a> <a onclick='guess490()'>490</a> <a onclick='guess491()'>491</a> <a onclick='guess492()'>492</a> <a onclick='guess493()'>493</a> <a onclick='guess494()'>494</a> <a onclick='guess495()'>495</a> <a onclick='guess496()'>496</a> <a onclick='guess497()'>497</a> <a onclick='guess498()'>498</a> <a onclick='guess499()'>499</a> <a onclick='guess500()'>500</a> <a onclick='guess501()'>501</a> <a onclick='guess502()'>502</a> <a onclick='guess503()'>503</a> <a onclick='guess504()'>504</a> <a onclick='guess505()'>505</a> <a onclick='guess506()'>506</a> <a onclick='guess507()'>507</a> <a onclick='guess508()'>508</a> <a onclick='guess509()'>509</a> <a onclick='guess510()'>510</a> <a onclick='guess511()'>511</a> <a onclick='guess512()'>512</a> <a onclick='guess513()'>513</a> <a onclick='guess514()'>514</a> <a onclick='guess515()'>515</a> <a onclick='guess516()'>516</a> <a onclick='guess517()'>517</a> <a onclick='guess518()'>518</a> <a onclick='guess519()'>519</a> <a onclick='guess520()'>520</a> <a onclick='guess521()'>521</a> <a onclick='guess522()'>522</a> <a onclick='guess523()'>523</a> <a onclick='guess524()'>524</a> <a onclick='guess525()'>525</a> <a onclick='guess526()'>526</a> <a onclick='guess527()'>527</a> <a onclick='guess528()'>528</a> <a onclick='guess529()'>529</a> <a onclick='guess530()'>530</a> <a onclick='guess531()'>531</a> <a onclick='guess532()'>532</a> <a onclick='guess533()'>533</a> <a onclick='guess534()'>534</a> <a onclick='guess535()'>535</a> <a onclick='guess536()'>536</a> <a onclick='guess537()'>537</a> <a onclick='guess538()'>538</a> <a onclick='guess539()'>539</a> <a onclick='guess540()'>540</a> <a onclick='guess541()'>541</a> <a onclick='guess542()'>542</a> <a onclick='guess543()'>543</a> <a onclick='guess544()'>544</a> <a onclick='guess545()'>545</a> <a onclick='guess546()'>546</a> <a onclick='guess547()'>547</a> <a onclick='guess548()'>548</a> <a onclick='guess549()'>549</a> <a onclick='guess550()'>550</a> <a onclick='guess551()'>551</a> <a onclick='guess552()'>552</a> <a onclick='guess553()'>553</a> <a onclick='guess554()'>554</a> <a onclick='guess555()'>555</a> <a onclick='guess556()'>556</a> <a onclick='guess557()'>557</a> <a onclick='guess558()'>558</a> <a onclick='guess559()'>559</a> <a onclick='guess560()'>560</a> <a onclick='guess561()'>561</a> <a onclick='guess562()'>562</a> <a onclick='guess563()'>563</a> <a onclick='guess564()'>564</a> <a onclick='guess565()'>565</a> <a onclick='guess566()'>566</a> <a onclick='guess567()'>567</a> <a onclick='guess568()'>568</a> <a onclick='guess569()'>569</a> <a onclick='guess570()'>570</a> <a onclick='guess571()'>571</a> <a onclick='guess572()'>572</a> <a onclick='guess573()'>573</a> <a onclick='guess574()'>574</a> <a onclick='guess575()'>575</a> <a onclick='guess576()'>576</a> <a onclick='guess577()'>577</a> <a onclick='guess578()'>578</a> <a onclick='guess579()'>579</a> <a onclick='guess580()'>580</a> <a onclick='guess581()'>581</a> <a onclick='guess582()'>582</a> <a onclick='guess583()'>583</a> <a onclick='guess584()'>584</a> <a onclick='guess585()'>585</a> <a onclick='guess586()'>586</a> <a onclick='guess587()'>587</a> <a onclick='guess588()'>588</a> <a onclick='guess589()'>589</a> <a onclick='guess590()'>590</a> <a onclick='guess591()'>591</a> <a onclick='guess592()'>592</a> <a onclick='guess593()'>593</a> <a onclick='guess594()'>594</a> <a onclick='guess595()'>595</a> <a onclick='guess596()'>596</a> <a onclick='guess597()'>597</a> <a onclick='guess598()'>598</a> <a onclick='guess599()'>599</a> <a onclick='guess600()'>600</a> <a onclick='guess601()'>601</a> <a onclick='guess602()'>602</a> <a onclick='guess603()'>603</a> <a onclick='guess604()'>604</a> <a onclick='guess605()'>605</a> <a onclick='guess606()'>606</a> <a onclick='guess607()'>607</a> <a onclick='guess608()'>608</a> <a onclick='guess609()'>609</a> <a onclick='guess610()'>610</a> <a onclick='guess611()'>611</a> <a onclick='guess612()'>612</a> <a onclick='guess613()'>613</a> <a onclick='guess614()'>614</a> <a onclick='guess615()'>615</a> <a onclick='guess616()'>616</a> <a onclick='guess617()'>617</a> <a onclick='guess618()'>618</a> <a onclick='guess619()'>619</a> <a onclick='guess620()'>620</a> <a onclick='guess621()'>621</a> <a onclick='guess622()'>622</a> <a onclick='guess623()'>623</a> <a onclick='guess624()'>624</a> <a onclick='guess625()'>625</a> <a onclick='guess626()'>626</a> <a onclick='guess627()'>627</a> <a onclick='guess628()'>628</a> <a onclick='guess629()'>629</a> <a onclick='guess630()'>630</a> <a onclick='guess631()'>631</a> <a onclick='guess632()'>632</a> <a onclick='guess633()'>633</a> <a onclick='guess634()'>634</a> <a onclick='guess635()'>635</a> <a onclick='guess636()'>636</a> <a onclick='guess637()'>637</a> <a onclick='guess638()'>638</a> <a onclick='guess639()'>639</a> <a onclick='guess640()'>640</a> <a onclick='guess641()'>641</a> <a onclick='guess642()'>642</a> <a onclick='guess643()'>643</a> <a onclick='guess644()'>644</a> <a onclick='guess645()'>645</a> <a onclick='guess646()'>646</a> <a onclick='guess647()'>647</a> <a onclick='guess648()'>648</a> <a onclick='guess649()'>649</a> <a onclick='guess650()'>650</a> <a onclick='guess651()'>651</a> <a onclick='guess652()'>652</a> <a onclick='guess653()'>653</a> <a onclick='guess654()'>654</a> <a onclick='guess655()'>655</a> <a onclick='guess656()'>656</a> <a onclick='guess657()'>657</a> <a onclick='guess658()'>658</a> <a onclick='guess659()'>659</a> <a onclick='guess660()'>660</a> <a onclick='guess661()'>661</a> <a onclick='guess662()'>662</a> <a onclick='guess663()'>663</a> <a onclick='guess664()'>664</a> <a onclick='guess665()'>665</a> <a onclick='guess666()'>666</a> <a onclick='guess667()'>667</a> <a onclick='guess668()'>668</a> <a onclick='guess669()'>669</a> <a onclick='guess670()'>670</a> <a onclick='guess671()'>671</a> <a onclick='guess672()'>672</a> <a onclick='guess673()'>673</a> <a onclick='guess674()'>674</a> <a onclick='guess675()'>675</a> <a onclick='guess676()'>676</a> <a onclick='guess677()'>677</a> <a onclick='guess678()'>678</a> <a onclick='guess679()'>679</a> <a onclick='guess680()'>680</a> <a onclick='guess681()'>681</a> <a onclick='guess682()'>682</a> <a onclick='guess683()'>683</a> <a onclick='guess684()'>684</a> <a onclick='guess685()'>685</a> <a onclick='guess686()'>686</a> <a onclick='guess687()'>687</a> <a onclick='guess688()'>688</a> <a onclick='guess689()'>689</a> <a onclick='guess690()'>690</a> <a onclick='guess691()'>691</a> <a onclick='guess692()'>692</a> <a onclick='guess693()'>693</a> <a onclick='guess694()'>694</a> <a onclick='guess695()'>695</a> <a onclick='guess696()'>696</a> <a onclick='guess697()'>697</a> <a onclick='guess698()'>698</a> <a onclick='guess699()'>699</a> <a onclick='guess700()'>700</a> <a onclick='guess701()'>701</a> <a onclick='guess702()'>702</a> <a onclick='guess703()'>703</a> <a onclick='guess704()'>704</a> <a onclick='guess705()'>705</a> <a onclick='guess706()'>706</a> <a onclick='guess707()'>707</a> <a onclick='guess708()'>708</a> <a onclick='guess709()'>709</a> <a onclick='guess710()'>710</a> <a onclick='guess711()'>711</a> <a onclick='guess712()'>712</a> <a onclick='guess713()'>713</a> <a onclick='guess714()'>714</a> <a onclick='guess715()'>715</a> <a onclick='guess716()'>716</a> <a onclick='guess717()'>717</a> <a onclick='guess718()'>718</a> <a onclick='guess719()'>719</a> <a onclick='guess720()'>720</a> <a onclick='guess721()'>721</a> <a onclick='guess722()'>722</a> <a onclick='guess723()'>723</a> <a onclick='guess724()'>724</a> <a onclick='guess725()'>725</a> <a onclick='guess726()'>726</a> <a onclick='guess727()'>727</a> <a onclick='guess728()'>728</a> <a onclick='guess729()'>729</a> <a onclick='guess730()'>730</a> <a onclick='guess731()'>731</a> <a onclick='guess732()'>732</a> <a onclick='guess733()'>733</a> <a onclick='guess734()'>734</a> <a onclick='guess735()'>735</a> <a onclick='guess736()'>736</a> <a onclick='guess737()'>737</a> <a onclick='guess738()'>738</a> <a onclick='guess739()'>739</a> <a onclick='guess740()'>740</a> <a onclick='guess741()'>741</a> <a onclick='guess742()'>742</a> <a onclick='guess743()'>743</a> <a onclick='guess744()'>744</a> <a onclick='guess745()'>745</a> <a onclick='guess746()'>746</a> <a onclick='guess747()'>747</a> <a onclick='guess748()'>748</a> <a onclick='guess749()'>749</a> <a onclick='guess750()'>750</a> <a onclick='guess751()'>751</a> <a onclick='guess752()'>752</a> <a onclick='guess753()'>753</a> <a onclick='guess754()'>754</a> <a onclick='guess755()'>755</a> <a onclick='guess756()'>756</a> <a onclick='guess757()'>757</a> <a onclick='guess758()'>758</a> <a onclick='guess759()'>759</a> <a onclick='guess760()'>760</a> <a onclick='guess761()'>761</a> <a onclick='guess762()'>762</a> <a onclick='guess763()'>763</a> <a onclick='guess764()'>764</a> <a onclick='guess765()'>765</a> <a onclick='guess766()'>766</a> <a onclick='guess767()'>767</a> <a onclick='guess768()'>768</a> <a onclick='guess769()'>769</a> <a onclick='guess770()'>770</a> <a onclick='guess771()'>771</a> <a onclick='guess772()'>772</a> <a onclick='guess773()'>773</a> <a onclick='guess774()'>774</a> <a onclick='guess775()'>775</a> <a onclick='guess776()'>776</a> <a onclick='guess777()'>777</a> <a onclick='guess778()'>778</a> <a onclick='guess779()'>779</a> <a onclick='guess780()'>780</a> <a onclick='guess781()'>781</a> <a onclick='guess782()'>782</a> <a onclick='guess783()'>783</a> <a onclick='guess784()'>784</a> <a onclick='guess785()'>785</a> <a onclick='guess786()'>786</a> <a onclick='guess787()'>787</a> <a onclick='guess788()'>788</a> <a onclick='guess789()'>789</a> <a onclick='guess790()'>790</a> <a onclick='guess791()'>791</a> <a onclick='guess792()'>792</a> <a onclick='guess793()'>793</a> <a onclick='guess794()'>794</a> <a onclick='guess795()'>795</a> <a onclick='guess796()'>796</a> <a onclick='guess797()'>797</a> <a onclick='guess798()'>798</a> <a onclick='guess799()'>799</a> <a onclick='guess800()'>800</a> <a onclick='guess801()'>801</a> <a onclick='guess802()'>802</a> <a onclick='guess803()'>803</a> <a onclick='guess804()'>804</a> <a onclick='guess805()'>805</a> <a onclick='guess806()'>806</a> <a onclick='guess807()'>807</a> <a onclick='guess808()'>808</a> <a onclick='guess809()'>809</a> <a onclick='guess810()'>810</a> <a onclick='guess811()'>811</a> <a onclick='guess812()'>812</a> <a onclick='guess813()'>813</a> <a onclick='guess814()'>814</a> <a onclick='guess815()'>815</a> <a onclick='guess816()'>816</a> <a onclick='guess817()'>817</a> <a onclick='guess818()'>818</a> <a onclick='guess819()'>819</a> <a onclick='guess820()'>820</a> <a onclick='guess821()'>821</a> <a onclick='guess822()'>822</a> <a onclick='guess823()'>823</a> <a onclick='guess824()'>824</a> <a onclick='guess825()'>825</a> <a onclick='guess826()'>826</a> <a onclick='guess827()'>827</a> <a onclick='guess828()'>828</a> <a onclick='guess829()'>829</a> <a onclick='guess830()'>830</a> <a onclick='guess831()'>831</a> <a onclick='guess832()'>832</a> <a onclick='guess833()'>833</a> <a onclick='guess834()'>834</a> <a onclick='guess835()'>835</a> <a onclick='guess836()'>836</a> <a onclick='guess837()'>837</a> <a onclick='guess838()'>838</a> <a onclick='guess839()'>839</a> <a onclick='guess840()'>840</a> <a onclick='guess841()'>841</a> <a onclick='guess842()'>842</a> <a onclick='guess843()'>843</a> <a onclick='guess844()'>844</a> <a onclick='guess845()'>845</a> <a onclick='guess846()'>846</a> <a onclick='guess847()'>847</a> <a onclick='guess848()'>848</a> <a onclick='guess849()'>849</a> <a onclick='guess850()'>850</a> <a onclick='guess851()'>851</a> <a onclick='guess852()'>852</a> <a onclick='guess853()'>853</a> <a onclick='guess854()'>854</a> <a onclick='guess855()'>855</a> <a onclick='guess856()'>856</a> <a onclick='guess857()'>857</a> <a onclick='guess858()'>858</a> <a onclick='guess859()'>859</a> <a onclick='guess860()'>860</a> <a onclick='guess861()'>861</a> <a onclick='guess862()'>862</a> <a onclick='guess863()'>863</a> <a onclick='guess864()'>864</a> <a onclick='guess865()'>865</a> <a onclick='guess866()'>866</a> <a onclick='guess867()'>867</a> <a onclick='guess868()'>868</a> <a onclick='guess869()'>869</a> <a onclick='guess870()'>870</a> <a onclick='guess871()'>871</a> <a onclick='guess872()'>872</a> <a onclick='guess873()'>873</a> <a onclick='guess874()'>874</a> <a onclick='guess875()'>875</a> <a onclick='guess876()'>876</a> <a onclick='guess877()'>877</a> <a onclick='guess878()'>878</a> <a onclick='guess879()'>879</a> <a onclick='guess880()'>880</a> <a onclick='guess881()'>881</a> <a onclick='guess882()'>882</a> <a onclick='guess883()'>883</a> <a onclick='guess884()'>884</a> <a onclick='guess885()'>885</a> <a onclick='guess886()'>886</a> <a onclick='guess887()'>887</a> <a onclick='guess888()'>888</a> <a onclick='guess889()'>889</a> <a onclick='guess890()'>890</a> <a onclick='guess891()'>891</a> <a onclick='guess892()'>892</a> <a onclick='guess893()'>893</a> <a onclick='guess894()'>894</a> <a onclick='guess895()'>895</a> <a onclick='guess896()'>896</a> <a onclick='guess897()'>897</a> <a onclick='guess898()'>898</a> <a onclick='guess899()'>899</a> <a onclick='guess900()'>900</a> <a onclick='guess901()'>901</a> <a onclick='guess902()'>902</a> <a onclick='guess903()'>903</a> <a onclick='guess904()'>904</a> <a onclick='guess905()'>905</a> <a onclick='guess906()'>906</a> <a onclick='guess907()'>907</a> <a onclick='guess908()'>908</a> <a onclick='guess909()'>909</a> <a onclick='guess910()'>910</a> <a onclick='guess911()'>911</a> <a onclick='guess912()'>912</a> <a onclick='guess913()'>913</a> <a onclick='guess914()'>914</a> <a onclick='guess915()'>915</a> <a onclick='guess916()'>916</a> <a onclick='guess917()'>917</a> <a onclick='guess918()'>918</a> <a onclick='guess919()'>919</a> <a onclick='guess920()'>920</a> <a onclick='guess921()'>921</a> <a onclick='guess922()'>922</a> <a onclick='guess923()'>923</a> <a onclick='guess924()'>924</a> <a onclick='guess925()'>925</a> <a onclick='guess926()'>926</a> <a onclick='guess927()'>927</a> <a onclick='guess928()'>928</a> <a onclick='guess929()'>929</a> <a onclick='guess930()'>930</a> <a onclick='guess931()'>931</a> <a onclick='guess932()'>932</a> <a onclick='guess933()'>933</a> <a onclick='guess934()'>934</a> <a onclick='guess935()'>935</a> <a onclick='guess936()'>936</a> <a onclick='guess937()'>937</a> <a onclick='guess938()'>938</a> <a onclick='guess939()'>939</a> <a onclick='guess940()'>940</a> <a onclick='guess941()'>941</a> <a onclick='guess942()'>942</a> <a onclick='guess943()'>943</a> <a onclick='guess944()'>944</a> <a onclick='guess945()'>945</a> <a onclick='guess946()'>946</a> <a onclick='guess947()'>947</a> <a onclick='guess948()'>948</a> <a onclick='guess949()'>949</a> <a onclick='guess950()'>950</a> <a onclick='guess951()'>951</a> <a onclick='guess952()'>952</a> <a onclick='guess953()'>953</a> <a onclick='guess954()'>954</a> <a onclick='guess955()'>955</a> <a onclick='guess956()'>956</a> <a onclick='guess957()'>957</a> <a onclick='guess958()'>958</a> <a onclick='guess959()'>959</a> <a onclick='guess960()'>960</a> <a onclick='guess961()'>961</a> <a onclick='guess962()'>962</a> <a onclick='guess963()'>963</a> <a onclick='guess964()'>964</a> <a onclick='guess965()'>965</a> <a onclick='guess966()'>966</a> <a onclick='guess967()'>967</a> <a onclick='guess968()'>968</a> <a onclick='guess969()'>969</a> <a onclick='guess970()'>970</a> <a onclick='guess971()'>971</a> <a onclick='guess972()'>972</a> <a onclick='guess973()'>973</a> <a onclick='guess974()'>974</a> <a onclick='guess975()'>975</a> <a onclick='guess976()'>976</a> <a onclick='guess977()'>977</a> <a onclick='guess978()'>978</a> <a onclick='guess979()'>979</a> <a onclick='guess980()'>980</a> <a onclick='guess981()'>981</a> <a onclick='guess982()'>982</a> <a onclick='guess983()'>983</a> <a onclick='guess984()'>984</a> <a onclick='guess985()'>985</a> <a onclick='guess986()'>986</a> <a onclick='guess987()'>987</a> <a onclick='guess988()'>988</a> <a onclick='guess989()'>989</a> <a onclick='guess990()'>990</a> <a onclick='guess991()'>991</a> <a onclick='guess992()'>992</a> <a onclick='guess993()'>993</a> <a onclick='guess994()'>994</a> <a onclick='guess995()'>995</a> <a onclick='guess996()'>996</a> <a onclick='guess997()'>997</a> <a onclick='guess998()'>998</a> <a onclick='guess999()'>999</a> <a onclick='guess1000()'>1000</a> &nbsp;&nbsp;<a onclick='hints()'>Hints</a> &nbsp;<a onclick='giveup()'>Give up</a> ";
+}
+
+function guess1(){att = 1;guess();}
+function guess2(){att = 2;guess();}
+function guess3(){att = 3;guess();}
+function guess4(){att = 4;guess();}
+function guess5(){att = 5;guess();}
+function guess6(){att = 6;guess();}
+function guess7(){att = 7;guess();}
+function guess8(){att = 8;guess();}
+function guess9(){att = 9;guess();}
+function guess10(){att = 10;guess();}
+function guess11(){att = 11;guess();}
+function guess12(){att = 12;guess();}
+function guess13(){att = 13;guess();}
+function guess14(){att = 14;guess();}
+function guess15(){att = 15;guess();}
+function guess16(){att = 16;guess();}
+function guess17(){att = 17;guess();}
+function guess18(){att = 18;guess();}
+function guess19(){att = 19;guess();}
+function guess20(){att = 20;guess();}
+function guess21(){att = 21;guess();}
+function guess22(){att = 22;guess();}
+function guess23(){att = 23;guess();}
+function guess24(){att = 24;guess();}
+function guess25(){att = 25;guess();}
+function guess26(){att = 26;guess();}
+function guess27(){att = 27;guess();}
+function guess28(){att = 28;guess();}
+function guess29(){att = 29;guess();}
+function guess30(){att = 30;guess();}
+function guess31(){att = 31;guess();}
+function guess32(){att = 32;guess();}
+function guess33(){att = 33;guess();}
+function guess34(){att = 34;guess();}
+function guess35(){att = 35;guess();}
+function guess36(){att = 36;guess();}
+function guess37(){att = 37;guess();}
+function guess38(){att = 38;guess();}
+function guess39(){att = 39;guess();}
+function guess40(){att = 40;guess();}
+function guess41(){att = 41;guess();}
+function guess42(){att = 42;guess();}
+function guess43(){att = 43;guess();}
+function guess44(){att = 44;guess();}
+function guess45(){att = 45;guess();}
+function guess46(){att = 46;guess();}
+function guess47(){att = 47;guess();}
+function guess48(){att = 48;guess();}
+function guess49(){att = 49;guess();}
+function guess50(){att = 50;guess();}
+function guess51(){att = 51;guess();}
+function guess52(){att = 52;guess();}
+function guess53(){att = 53;guess();}
+function guess54(){att = 54;guess();}
+function guess55(){att = 55;guess();}
+function guess56(){att = 56;guess();}
+function guess57(){att = 57;guess();}
+function guess58(){att = 58;guess();}
+function guess59(){att = 59;guess();}
+function guess60(){att = 60;guess();}
+function guess61(){att = 61;guess();}
+function guess62(){att = 62;guess();}
+function guess63(){att = 63;guess();}
+function guess64(){att = 64;guess();}
+function guess65(){att = 65;guess();}
+function guess66(){att = 66;guess();}
+function guess67(){att = 67;guess();}
+function guess68(){att = 68;guess();}
+function guess69(){att = 69;guess();}
+function guess70(){att = 70;guess();}
+function guess71(){att = 71;guess();}
+function guess72(){att = 72;guess();}
+function guess73(){att = 73;guess();}
+function guess74(){att = 74;guess();}
+function guess75(){att = 75;guess();}
+function guess76(){att = 76;guess();}
+function guess77(){att = 77;guess();}
+function guess78(){att = 78;guess();}
+function guess79(){att = 79;guess();}
+function guess80(){att = 80;guess();}
+function guess81(){att = 81;guess();}
+function guess82(){att = 82;guess();}
+function guess83(){att = 83;guess();}
+function guess84(){att = 84;guess();}
+function guess85(){att = 85;guess();}
+function guess86(){att = 86;guess();}
+function guess87(){att = 87;guess();}
+function guess88(){att = 88;guess();}
+function guess89(){att = 89;guess();}
+function guess90(){att = 90;guess();}
+function guess91(){att = 91;guess();}
+function guess92(){att = 92;guess();}
+function guess93(){att = 93;guess();}
+function guess94(){att = 94;guess();}
+function guess95(){att = 95;guess();}
+function guess96(){att = 96;guess();}
+function guess97(){att = 97;guess();}
+function guess98(){att = 98;guess();}
+function guess99(){att = 99;guess();}
+function guess100(){att = 100;guess();}
+function guess101(){att = 101;guess();}
+function guess102(){att = 102;guess();}
+function guess103(){att = 103;guess();}
+function guess104(){att = 104;guess();}
+function guess105(){att = 105;guess();}
+function guess106(){att = 106;guess();}
+function guess107(){att = 107;guess();}
+function guess108(){att = 108;guess();}
+function guess109(){att = 109;guess();}
+function guess110(){att = 110;guess();}
+function guess111(){att = 111;guess();}
+function guess112(){att = 112;guess();}
+function guess113(){att = 113;guess();}
+function guess114(){att = 114;guess();}
+function guess115(){att = 115;guess();}
+function guess116(){att = 116;guess();}
+function guess117(){att = 117;guess();}
+function guess118(){att = 118;guess();}
+function guess119(){att = 119;guess();}
+function guess120(){att = 120;guess();}
+function guess121(){att = 121;guess();}
+function guess122(){att = 122;guess();}
+function guess123(){att = 123;guess();}
+function guess124(){att = 124;guess();}
+function guess125(){att = 125;guess();}
+function guess126(){att = 126;guess();}
+function guess127(){att = 127;guess();}
+function guess128(){att = 128;guess();}
+function guess129(){att = 129;guess();}
+function guess130(){att = 130;guess();}
+function guess131(){att = 131;guess();}
+function guess132(){att = 132;guess();}
+function guess133(){att = 133;guess();}
+function guess134(){att = 134;guess();}
+function guess135(){att = 135;guess();}
+function guess136(){att = 136;guess();}
+function guess137(){att = 137;guess();}
+function guess138(){att = 138;guess();}
+function guess139(){att = 139;guess();}
+function guess140(){att = 140;guess();}
+function guess141(){att = 141;guess();}
+function guess142(){att = 142;guess();}
+function guess143(){att = 143;guess();}
+function guess144(){att = 144;guess();}
+function guess145(){att = 145;guess();}
+function guess146(){att = 146;guess();}
+function guess147(){att = 147;guess();}
+function guess148(){att = 148;guess();}
+function guess149(){att = 149;guess();}
+function guess150(){att = 150;guess();}
+function guess151(){att = 151;guess();}
+function guess152(){att = 152;guess();}
+function guess153(){att = 153;guess();}
+function guess154(){att = 154;guess();}
+function guess155(){att = 155;guess();}
+function guess156(){att = 156;guess();}
+function guess157(){att = 157;guess();}
+function guess158(){att = 158;guess();}
+function guess159(){att = 159;guess();}
+function guess160(){att = 160;guess();}
+function guess161(){att = 161;guess();}
+function guess162(){att = 162;guess();}
+function guess163(){att = 163;guess();}
+function guess164(){att = 164;guess();}
+function guess165(){att = 165;guess();}
+function guess166(){att = 166;guess();}
+function guess167(){att = 167;guess();}
+function guess168(){att = 168;guess();}
+function guess169(){att = 169;guess();}
+function guess170(){att = 170;guess();}
+function guess171(){att = 171;guess();}
+function guess172(){att = 172;guess();}
+function guess173(){att = 173;guess();}
+function guess174(){att = 174;guess();}
+function guess175(){att = 175;guess();}
+function guess176(){att = 176;guess();}
+function guess177(){att = 177;guess();}
+function guess178(){att = 178;guess();}
+function guess179(){att = 179;guess();}
+function guess180(){att = 180;guess();}
+function guess181(){att = 181;guess();}
+function guess182(){att = 182;guess();}
+function guess183(){att = 183;guess();}
+function guess184(){att = 184;guess();}
+function guess185(){att = 185;guess();}
+function guess186(){att = 186;guess();}
+function guess187(){att = 187;guess();}
+function guess188(){att = 188;guess();}
+function guess189(){att = 189;guess();}
+function guess190(){att = 190;guess();}
+function guess191(){att = 191;guess();}
+function guess192(){att = 192;guess();}
+function guess193(){att = 193;guess();}
+function guess194(){att = 194;guess();}
+function guess195(){att = 195;guess();}
+function guess196(){att = 196;guess();}
+function guess197(){att = 197;guess();}
+function guess198(){att = 198;guess();}
+function guess199(){att = 199;guess();}
+function guess200(){att = 200;guess();}
+function guess201(){att = 201;guess();}
+function guess202(){att = 202;guess();}
+function guess203(){att = 203;guess();}
+function guess204(){att = 204;guess();}
+function guess205(){att = 205;guess();}
+function guess206(){att = 206;guess();}
+function guess207(){att = 207;guess();}
+function guess208(){att = 208;guess();}
+function guess209(){att = 209;guess();}
+function guess210(){att = 210;guess();}
+function guess211(){att = 211;guess();}
+function guess212(){att = 212;guess();}
+function guess213(){att = 213;guess();}
+function guess214(){att = 214;guess();}
+function guess215(){att = 215;guess();}
+function guess216(){att = 216;guess();}
+function guess217(){att = 217;guess();}
+function guess218(){att = 218;guess();}
+function guess219(){att = 219;guess();}
+function guess220(){att = 220;guess();}
+function guess221(){att = 221;guess();}
+function guess222(){att = 222;guess();}
+function guess223(){att = 223;guess();}
+function guess224(){att = 224;guess();}
+function guess225(){att = 225;guess();}
+function guess226(){att = 226;guess();}
+function guess227(){att = 227;guess();}
+function guess228(){att = 228;guess();}
+function guess229(){att = 229;guess();}
+function guess230(){att = 230;guess();}
+function guess231(){att = 231;guess();}
+function guess232(){att = 232;guess();}
+function guess233(){att = 233;guess();}
+function guess234(){att = 234;guess();}
+function guess235(){att = 235;guess();}
+function guess236(){att = 236;guess();}
+function guess237(){att = 237;guess();}
+function guess238(){att = 238;guess();}
+function guess239(){att = 239;guess();}
+function guess240(){att = 240;guess();}
+function guess241(){att = 241;guess();}
+function guess242(){att = 242;guess();}
+function guess243(){att = 243;guess();}
+function guess244(){att = 244;guess();}
+function guess245(){att = 245;guess();}
+function guess246(){att = 246;guess();}
+function guess247(){att = 247;guess();}
+function guess248(){att = 248;guess();}
+function guess249(){att = 249;guess();}
+function guess250(){att = 250;guess();}
+function guess251(){att = 251;guess();}
+function guess252(){att = 252;guess();}
+function guess253(){att = 253;guess();}
+function guess254(){att = 254;guess();}
+function guess255(){att = 255;guess();}
+function guess256(){att = 256;guess();}
+function guess257(){att = 257;guess();}
+function guess258(){att = 258;guess();}
+function guess259(){att = 259;guess();}
+function guess260(){att = 260;guess();}
+function guess261(){att = 261;guess();}
+function guess262(){att = 262;guess();}
+function guess263(){att = 263;guess();}
+function guess264(){att = 264;guess();}
+function guess265(){att = 265;guess();}
+function guess266(){att = 266;guess();}
+function guess267(){att = 267;guess();}
+function guess268(){att = 268;guess();}
+function guess269(){att = 269;guess();}
+function guess270(){att = 270;guess();}
+function guess271(){att = 271;guess();}
+function guess272(){att = 272;guess();}
+function guess273(){att = 273;guess();}
+function guess274(){att = 274;guess();}
+function guess275(){att = 275;guess();}
+function guess276(){att = 276;guess();}
+function guess277(){att = 277;guess();}
+function guess278(){att = 278;guess();}
+function guess279(){att = 279;guess();}
+function guess280(){att = 280;guess();}
+function guess281(){att = 281;guess();}
+function guess282(){att = 282;guess();}
+function guess283(){att = 283;guess();}
+function guess284(){att = 284;guess();}
+function guess285(){att = 285;guess();}
+function guess286(){att = 286;guess();}
+function guess287(){att = 287;guess();}
+function guess288(){att = 288;guess();}
+function guess289(){att = 289;guess();}
+function guess290(){att = 290;guess();}
+function guess291(){att = 291;guess();}
+function guess292(){att = 292;guess();}
+function guess293(){att = 293;guess();}
+function guess294(){att = 294;guess();}
+function guess295(){att = 295;guess();}
+function guess296(){att = 296;guess();}
+function guess297(){att = 297;guess();}
+function guess298(){att = 298;guess();}
+function guess299(){att = 299;guess();}
+function guess300(){att = 300;guess();}
+function guess301(){att = 301;guess();}
+function guess302(){att = 302;guess();}
+function guess303(){att = 303;guess();}
+function guess304(){att = 304;guess();}
+function guess305(){att = 305;guess();}
+function guess306(){att = 306;guess();}
+function guess307(){att = 307;guess();}
+function guess308(){att = 308;guess();}
+function guess309(){att = 309;guess();}
+function guess310(){att = 310;guess();}
+function guess311(){att = 311;guess();}
+function guess312(){att = 312;guess();}
+function guess313(){att = 313;guess();}
+function guess314(){att = 314;guess();}
+function guess315(){att = 315;guess();}
+function guess316(){att = 316;guess();}
+function guess317(){att = 317;guess();}
+function guess318(){att = 318;guess();}
+function guess319(){att = 319;guess();}
+function guess320(){att = 320;guess();}
+function guess321(){att = 321;guess();}
+function guess322(){att = 322;guess();}
+function guess323(){att = 323;guess();}
+function guess324(){att = 324;guess();}
+function guess325(){att = 325;guess();}
+function guess326(){att = 326;guess();}
+function guess327(){att = 327;guess();}
+function guess328(){att = 328;guess();}
+function guess329(){att = 329;guess();}
+function guess330(){att = 330;guess();}
+function guess331(){att = 331;guess();}
+function guess332(){att = 332;guess();}
+function guess333(){att = 333;guess();}
+function guess334(){att = 334;guess();}
+function guess335(){att = 335;guess();}
+function guess336(){att = 336;guess();}
+function guess337(){att = 337;guess();}
+function guess338(){att = 338;guess();}
+function guess339(){att = 339;guess();}
+function guess340(){att = 340;guess();}
+function guess341(){att = 341;guess();}
+function guess342(){att = 342;guess();}
+function guess343(){att = 343;guess();}
+function guess344(){att = 344;guess();}
+function guess345(){att = 345;guess();}
+function guess346(){att = 346;guess();}
+function guess347(){att = 347;guess();}
+function guess348(){att = 348;guess();}
+function guess349(){att = 349;guess();}
+function guess350(){att = 350;guess();}
+function guess351(){att = 351;guess();}
+function guess352(){att = 352;guess();}
+function guess353(){att = 353;guess();}
+function guess354(){att = 354;guess();}
+function guess355(){att = 355;guess();}
+function guess356(){att = 356;guess();}
+function guess357(){att = 357;guess();}
+function guess358(){att = 358;guess();}
+function guess359(){att = 359;guess();}
+function guess360(){att = 360;guess();}
+function guess361(){att = 361;guess();}
+function guess362(){att = 362;guess();}
+function guess363(){att = 363;guess();}
+function guess364(){att = 364;guess();}
+function guess365(){att = 365;guess();}
+function guess366(){att = 366;guess();}
+function guess367(){att = 367;guess();}
+function guess368(){att = 368;guess();}
+function guess369(){att = 369;guess();}
+function guess370(){att = 370;guess();}
+function guess371(){att = 371;guess();}
+function guess372(){att = 372;guess();}
+function guess373(){att = 373;guess();}
+function guess374(){att = 374;guess();}
+function guess375(){att = 375;guess();}
+function guess376(){att = 376;guess();}
+function guess377(){att = 377;guess();}
+function guess378(){att = 378;guess();}
+function guess379(){att = 379;guess();}
+function guess380(){att = 380;guess();}
+function guess381(){att = 381;guess();}
+function guess382(){att = 382;guess();}
+function guess383(){att = 383;guess();}
+function guess384(){att = 384;guess();}
+function guess385(){att = 385;guess();}
+function guess386(){att = 386;guess();}
+function guess387(){att = 387;guess();}
+function guess388(){att = 388;guess();}
+function guess389(){att = 389;guess();}
+function guess390(){att = 390;guess();}
+function guess391(){att = 391;guess();}
+function guess392(){att = 392;guess();}
+function guess393(){att = 393;guess();}
+function guess394(){att = 394;guess();}
+function guess395(){att = 395;guess();}
+function guess396(){att = 396;guess();}
+function guess397(){att = 397;guess();}
+function guess398(){att = 398;guess();}
+function guess399(){att = 399;guess();}
+function guess400(){att = 400;guess();}
+function guess401(){att = 401;guess();}
+function guess402(){att = 402;guess();}
+function guess403(){att = 403;guess();}
+function guess404(){att = 404;guess();}
+function guess405(){att = 405;guess();}
+function guess406(){att = 406;guess();}
+function guess407(){att = 407;guess();}
+function guess408(){att = 408;guess();}
+function guess409(){att = 409;guess();}
+function guess410(){att = 410;guess();}
+function guess411(){att = 411;guess();}
+function guess412(){att = 412;guess();}
+function guess413(){att = 413;guess();}
+function guess414(){att = 414;guess();}
+function guess415(){att = 415;guess();}
+function guess416(){att = 416;guess();}
+function guess417(){att = 417;guess();}
+function guess418(){att = 418;guess();}
+function guess419(){att = 419;guess();}
+function guess420(){att = 420;guess();}
+function guess421(){att = 421;guess();}
+function guess422(){att = 422;guess();}
+function guess423(){att = 423;guess();}
+function guess424(){att = 424;guess();}
+function guess425(){att = 425;guess();}
+function guess426(){att = 426;guess();}
+function guess427(){att = 427;guess();}
+function guess428(){att = 428;guess();}
+function guess429(){att = 429;guess();}
+function guess430(){att = 430;guess();}
+function guess431(){att = 431;guess();}
+function guess432(){att = 432;guess();}
+function guess433(){att = 433;guess();}
+function guess434(){att = 434;guess();}
+function guess435(){att = 435;guess();}
+function guess436(){att = 436;guess();}
+function guess437(){att = 437;guess();}
+function guess438(){att = 438;guess();}
+function guess439(){att = 439;guess();}
+function guess440(){att = 440;guess();}
+function guess441(){att = 441;guess();}
+function guess442(){att = 442;guess();}
+function guess443(){att = 443;guess();}
+function guess444(){att = 444;guess();}
+function guess445(){att = 445;guess();}
+function guess446(){att = 446;guess();}
+function guess447(){att = 447;guess();}
+function guess448(){att = 448;guess();}
+function guess449(){att = 449;guess();}
+function guess450(){att = 450;guess();}
+function guess451(){att = 451;guess();}
+function guess452(){att = 452;guess();}
+function guess453(){att = 453;guess();}
+function guess454(){att = 454;guess();}
+function guess455(){att = 455;guess();}
+function guess456(){att = 456;guess();}
+function guess457(){att = 457;guess();}
+function guess458(){att = 458;guess();}
+function guess459(){att = 459;guess();}
+function guess460(){att = 460;guess();}
+function guess461(){att = 461;guess();}
+function guess462(){att = 462;guess();}
+function guess463(){att = 463;guess();}
+function guess464(){att = 464;guess();}
+function guess465(){att = 465;guess();}
+function guess466(){att = 466;guess();}
+function guess467(){att = 467;guess();}
+function guess468(){att = 468;guess();}
+function guess469(){att = 469;guess();}
+function guess470(){att = 470;guess();}
+function guess471(){att = 471;guess();}
+function guess472(){att = 472;guess();}
+function guess473(){att = 473;guess();}
+function guess474(){att = 474;guess();}
+function guess475(){att = 475;guess();}
+function guess476(){att = 476;guess();}
+function guess477(){att = 477;guess();}
+function guess478(){att = 478;guess();}
+function guess479(){att = 479;guess();}
+function guess480(){att = 480;guess();}
+function guess481(){att = 481;guess();}
+function guess482(){att = 482;guess();}
+function guess483(){att = 483;guess();}
+function guess484(){att = 484;guess();}
+function guess485(){att = 485;guess();}
+function guess486(){att = 486;guess();}
+function guess487(){att = 487;guess();}
+function guess488(){att = 488;guess();}
+function guess489(){att = 489;guess();}
+function guess490(){att = 490;guess();}
+function guess491(){att = 491;guess();}
+function guess492(){att = 492;guess();}
+function guess493(){att = 493;guess();}
+function guess494(){att = 494;guess();}
+function guess495(){att = 495;guess();}
+function guess496(){att = 496;guess();}
+function guess497(){att = 497;guess();}
+function guess498(){att = 498;guess();}
+function guess499(){att = 499;guess();}
+function guess500(){att = 500;guess();}
+function guess501(){att = 501;guess();}
+function guess502(){att = 502;guess();}
+function guess503(){att = 503;guess();}
+function guess504(){att = 504;guess();}
+function guess505(){att = 505;guess();}
+function guess506(){att = 506;guess();}
+function guess507(){att = 507;guess();}
+function guess508(){att = 508;guess();}
+function guess509(){att = 509;guess();}
+function guess510(){att = 510;guess();}
+function guess511(){att = 511;guess();}
+function guess512(){att = 512;guess();}
+function guess513(){att = 513;guess();}
+function guess514(){att = 514;guess();}
+function guess515(){att = 515;guess();}
+function guess516(){att = 516;guess();}
+function guess517(){att = 517;guess();}
+function guess518(){att = 518;guess();}
+function guess519(){att = 519;guess();}
+function guess520(){att = 520;guess();}
+function guess521(){att = 521;guess();}
+function guess522(){att = 522;guess();}
+function guess523(){att = 523;guess();}
+function guess524(){att = 524;guess();}
+function guess525(){att = 525;guess();}
+function guess526(){att = 526;guess();}
+function guess527(){att = 527;guess();}
+function guess528(){att = 528;guess();}
+function guess529(){att = 529;guess();}
+function guess530(){att = 530;guess();}
+function guess531(){att = 531;guess();}
+function guess532(){att = 532;guess();}
+function guess533(){att = 533;guess();}
+function guess534(){att = 534;guess();}
+function guess535(){att = 535;guess();}
+function guess536(){att = 536;guess();}
+function guess537(){att = 537;guess();}
+function guess538(){att = 538;guess();}
+function guess539(){att = 539;guess();}
+function guess540(){att = 540;guess();}
+function guess541(){att = 541;guess();}
+function guess542(){att = 542;guess();}
+function guess543(){att = 543;guess();}
+function guess544(){att = 544;guess();}
+function guess545(){att = 545;guess();}
+function guess546(){att = 546;guess();}
+function guess547(){att = 547;guess();}
+function guess548(){att = 548;guess();}
+function guess549(){att = 549;guess();}
+function guess550(){att = 550;guess();}
+function guess551(){att = 551;guess();}
+function guess552(){att = 552;guess();}
+function guess553(){att = 553;guess();}
+function guess554(){att = 554;guess();}
+function guess555(){att = 555;guess();}
+function guess556(){att = 556;guess();}
+function guess557(){att = 557;guess();}
+function guess558(){att = 558;guess();}
+function guess559(){att = 559;guess();}
+function guess560(){att = 560;guess();}
+function guess561(){att = 561;guess();}
+function guess562(){att = 562;guess();}
+function guess563(){att = 563;guess();}
+function guess564(){att = 564;guess();}
+function guess565(){att = 565;guess();}
+function guess566(){att = 566;guess();}
+function guess567(){att = 567;guess();}
+function guess568(){att = 568;guess();}
+function guess569(){att = 569;guess();}
+function guess570(){att = 570;guess();}
+function guess571(){att = 571;guess();}
+function guess572(){att = 572;guess();}
+function guess573(){att = 573;guess();}
+function guess574(){att = 574;guess();}
+function guess575(){att = 575;guess();}
+function guess576(){att = 576;guess();}
+function guess577(){att = 577;guess();}
+function guess578(){att = 578;guess();}
+function guess579(){att = 579;guess();}
+function guess580(){att = 580;guess();}
+function guess581(){att = 581;guess();}
+function guess582(){att = 582;guess();}
+function guess583(){att = 583;guess();}
+function guess584(){att = 584;guess();}
+function guess585(){att = 585;guess();}
+function guess586(){att = 586;guess();}
+function guess587(){att = 587;guess();}
+function guess588(){att = 588;guess();}
+function guess589(){att = 589;guess();}
+function guess590(){att = 590;guess();}
+function guess591(){att = 591;guess();}
+function guess592(){att = 592;guess();}
+function guess593(){att = 593;guess();}
+function guess594(){att = 594;guess();}
+function guess595(){att = 595;guess();}
+function guess596(){att = 596;guess();}
+function guess597(){att = 597;guess();}
+function guess598(){att = 598;guess();}
+function guess599(){att = 599;guess();}
+function guess600(){att = 600;guess();}
+function guess601(){att = 601;guess();}
+function guess602(){att = 602;guess();}
+function guess603(){att = 603;guess();}
+function guess604(){att = 604;guess();}
+function guess605(){att = 605;guess();}
+function guess606(){att = 606;guess();}
+function guess607(){att = 607;guess();}
+function guess608(){att = 608;guess();}
+function guess609(){att = 609;guess();}
+function guess610(){att = 610;guess();}
+function guess611(){att = 611;guess();}
+function guess612(){att = 612;guess();}
+function guess613(){att = 613;guess();}
+function guess614(){att = 614;guess();}
+function guess615(){att = 615;guess();}
+function guess616(){att = 616;guess();}
+function guess617(){att = 617;guess();}
+function guess618(){att = 618;guess();}
+function guess619(){att = 619;guess();}
+function guess620(){att = 620;guess();}
+function guess621(){att = 621;guess();}
+function guess622(){att = 622;guess();}
+function guess623(){att = 623;guess();}
+function guess624(){att = 624;guess();}
+function guess625(){att = 625;guess();}
+function guess626(){att = 626;guess();}
+function guess627(){att = 627;guess();}
+function guess628(){att = 628;guess();}
+function guess629(){att = 629;guess();}
+function guess630(){att = 630;guess();}
+function guess631(){att = 631;guess();}
+function guess632(){att = 632;guess();}
+function guess633(){att = 633;guess();}
+function guess634(){att = 634;guess();}
+function guess635(){att = 635;guess();}
+function guess636(){att = 636;guess();}
+function guess637(){att = 637;guess();}
+function guess638(){att = 638;guess();}
+function guess639(){att = 639;guess();}
+function guess640(){att = 640;guess();}
+function guess641(){att = 641;guess();}
+function guess642(){att = 642;guess();}
+function guess643(){att = 643;guess();}
+function guess644(){att = 644;guess();}
+function guess645(){att = 645;guess();}
+function guess646(){att = 646;guess();}
+function guess647(){att = 647;guess();}
+function guess648(){att = 648;guess();}
+function guess649(){att = 649;guess();}
+function guess650(){att = 650;guess();}
+function guess651(){att = 651;guess();}
+function guess652(){att = 652;guess();}
+function guess653(){att = 653;guess();}
+function guess654(){att = 654;guess();}
+function guess655(){att = 655;guess();}
+function guess656(){att = 656;guess();}
+function guess657(){att = 657;guess();}
+function guess658(){att = 658;guess();}
+function guess659(){att = 659;guess();}
+function guess660(){att = 660;guess();}
+function guess661(){att = 661;guess();}
+function guess662(){att = 662;guess();}
+function guess663(){att = 663;guess();}
+function guess664(){att = 664;guess();}
+function guess665(){att = 665;guess();}
+function guess666(){att = 666;guess();}
+function guess667(){att = 667;guess();}
+function guess668(){att = 668;guess();}
+function guess669(){att = 669;guess();}
+function guess670(){att = 670;guess();}
+function guess671(){att = 671;guess();}
+function guess672(){att = 672;guess();}
+function guess673(){att = 673;guess();}
+function guess674(){att = 674;guess();}
+function guess675(){att = 675;guess();}
+function guess676(){att = 676;guess();}
+function guess677(){att = 677;guess();}
+function guess678(){att = 678;guess();}
+function guess679(){att = 679;guess();}
+function guess680(){att = 680;guess();}
+function guess681(){att = 681;guess();}
+function guess682(){att = 682;guess();}
+function guess683(){att = 683;guess();}
+function guess684(){att = 684;guess();}
+function guess685(){att = 685;guess();}
+function guess686(){att = 686;guess();}
+function guess687(){att = 687;guess();}
+function guess688(){att = 688;guess();}
+function guess689(){att = 689;guess();}
+function guess690(){att = 690;guess();}
+function guess691(){att = 691;guess();}
+function guess692(){att = 692;guess();}
+function guess693(){att = 693;guess();}
+function guess694(){att = 694;guess();}
+function guess695(){att = 695;guess();}
+function guess696(){att = 696;guess();}
+function guess697(){att = 697;guess();}
+function guess698(){att = 698;guess();}
+function guess699(){att = 699;guess();}
+function guess700(){att = 700;guess();}
+function guess701(){att = 701;guess();}
+function guess702(){att = 702;guess();}
+function guess703(){att = 703;guess();}
+function guess704(){att = 704;guess();}
+function guess705(){att = 705;guess();}
+function guess706(){att = 706;guess();}
+function guess707(){att = 707;guess();}
+function guess708(){att = 708;guess();}
+function guess709(){att = 709;guess();}
+function guess710(){att = 710;guess();}
+function guess711(){att = 711;guess();}
+function guess712(){att = 712;guess();}
+function guess713(){att = 713;guess();}
+function guess714(){att = 714;guess();}
+function guess715(){att = 715;guess();}
+function guess716(){att = 716;guess();}
+function guess717(){att = 717;guess();}
+function guess718(){att = 718;guess();}
+function guess719(){att = 719;guess();}
+function guess720(){att = 720;guess();}
+function guess721(){att = 721;guess();}
+function guess722(){att = 722;guess();}
+function guess723(){att = 723;guess();}
+function guess724(){att = 724;guess();}
+function guess725(){att = 725;guess();}
+function guess726(){att = 726;guess();}
+function guess727(){att = 727;guess();}
+function guess728(){att = 728;guess();}
+function guess729(){att = 729;guess();}
+function guess730(){att = 730;guess();}
+function guess731(){att = 731;guess();}
+function guess732(){att = 732;guess();}
+function guess733(){att = 733;guess();}
+function guess734(){att = 734;guess();}
+function guess735(){att = 735;guess();}
+function guess736(){att = 736;guess();}
+function guess737(){att = 737;guess();}
+function guess738(){att = 738;guess();}
+function guess739(){att = 739;guess();}
+function guess740(){att = 740;guess();}
+function guess741(){att = 741;guess();}
+function guess742(){att = 742;guess();}
+function guess743(){att = 743;guess();}
+function guess744(){att = 744;guess();}
+function guess745(){att = 745;guess();}
+function guess746(){att = 746;guess();}
+function guess747(){att = 747;guess();}
+function guess748(){att = 748;guess();}
+function guess749(){att = 749;guess();}
+function guess750(){att = 750;guess();}
+function guess751(){att = 751;guess();}
+function guess752(){att = 752;guess();}
+function guess753(){att = 753;guess();}
+function guess754(){att = 754;guess();}
+function guess755(){att = 755;guess();}
+function guess756(){att = 756;guess();}
+function guess757(){att = 757;guess();}
+function guess758(){att = 758;guess();}
+function guess759(){att = 759;guess();}
+function guess760(){att = 760;guess();}
+function guess761(){att = 761;guess();}
+function guess762(){att = 762;guess();}
+function guess763(){att = 763;guess();}
+function guess764(){att = 764;guess();}
+function guess765(){att = 765;guess();}
+function guess766(){att = 766;guess();}
+function guess767(){att = 767;guess();}
+function guess768(){att = 768;guess();}
+function guess769(){att = 769;guess();}
+function guess770(){att = 770;guess();}
+function guess771(){att = 771;guess();}
+function guess772(){att = 772;guess();}
+function guess773(){att = 773;guess();}
+function guess774(){att = 774;guess();}
+function guess775(){att = 775;guess();}
+function guess776(){att = 776;guess();}
+function guess777(){att = 777;guess();}
+function guess778(){att = 778;guess();}
+function guess779(){att = 779;guess();}
+function guess780(){att = 780;guess();}
+function guess781(){att = 781;guess();}
+function guess782(){att = 782;guess();}
+function guess783(){att = 783;guess();}
+function guess784(){att = 784;guess();}
+function guess785(){att = 785;guess();}
+function guess786(){att = 786;guess();}
+function guess787(){att = 787;guess();}
+function guess788(){att = 788;guess();}
+function guess789(){att = 789;guess();}
+function guess790(){att = 790;guess();}
+function guess791(){att = 791;guess();}
+function guess792(){att = 792;guess();}
+function guess793(){att = 793;guess();}
+function guess794(){att = 794;guess();}
+function guess795(){att = 795;guess();}
+function guess796(){att = 796;guess();}
+function guess797(){att = 797;guess();}
+function guess798(){att = 798;guess();}
+function guess799(){att = 799;guess();}
+function guess800(){att = 800;guess();}
+function guess801(){att = 801;guess();}
+function guess802(){att = 802;guess();}
+function guess803(){att = 803;guess();}
+function guess804(){att = 804;guess();}
+function guess805(){att = 805;guess();}
+function guess806(){att = 806;guess();}
+function guess807(){att = 807;guess();}
+function guess808(){att = 808;guess();}
+function guess809(){att = 809;guess();}
+function guess810(){att = 810;guess();}
+function guess811(){att = 811;guess();}
+function guess812(){att = 812;guess();}
+function guess813(){att = 813;guess();}
+function guess814(){att = 814;guess();}
+function guess815(){att = 815;guess();}
+function guess816(){att = 816;guess();}
+function guess817(){att = 817;guess();}
+function guess818(){att = 818;guess();}
+function guess819(){att = 819;guess();}
+function guess820(){att = 820;guess();}
+function guess821(){att = 821;guess();}
+function guess822(){att = 822;guess();}
+function guess823(){att = 823;guess();}
+function guess824(){att = 824;guess();}
+function guess825(){att = 825;guess();}
+function guess826(){att = 826;guess();}
+function guess827(){att = 827;guess();}
+function guess828(){att = 828;guess();}
+function guess829(){att = 829;guess();}
+function guess830(){att = 830;guess();}
+function guess831(){att = 831;guess();}
+function guess832(){att = 832;guess();}
+function guess833(){att = 833;guess();}
+function guess834(){att = 834;guess();}
+function guess835(){att = 835;guess();}
+function guess836(){att = 836;guess();}
+function guess837(){att = 837;guess();}
+function guess838(){att = 838;guess();}
+function guess839(){att = 839;guess();}
+function guess840(){att = 840;guess();}
+function guess841(){att = 841;guess();}
+function guess842(){att = 842;guess();}
+function guess843(){att = 843;guess();}
+function guess844(){att = 844;guess();}
+function guess845(){att = 845;guess();}
+function guess846(){att = 846;guess();}
+function guess847(){att = 847;guess();}
+function guess848(){att = 848;guess();}
+function guess849(){att = 849;guess();}
+function guess850(){att = 850;guess();}
+function guess851(){att = 851;guess();}
+function guess852(){att = 852;guess();}
+function guess853(){att = 853;guess();}
+function guess854(){att = 854;guess();}
+function guess855(){att = 855;guess();}
+function guess856(){att = 856;guess();}
+function guess857(){att = 857;guess();}
+function guess858(){att = 858;guess();}
+function guess859(){att = 859;guess();}
+function guess860(){att = 860;guess();}
+function guess861(){att = 861;guess();}
+function guess862(){att = 862;guess();}
+function guess863(){att = 863;guess();}
+function guess864(){att = 864;guess();}
+function guess865(){att = 865;guess();}
+function guess866(){att = 866;guess();}
+function guess867(){att = 867;guess();}
+function guess868(){att = 868;guess();}
+function guess869(){att = 869;guess();}
+function guess870(){att = 870;guess();}
+function guess871(){att = 871;guess();}
+function guess872(){att = 872;guess();}
+function guess873(){att = 873;guess();}
+function guess874(){att = 874;guess();}
+function guess875(){att = 875;guess();}
+function guess876(){att = 876;guess();}
+function guess877(){att = 877;guess();}
+function guess878(){att = 878;guess();}
+function guess879(){att = 879;guess();}
+function guess880(){att = 880;guess();}
+function guess881(){att = 881;guess();}
+function guess882(){att = 882;guess();}
+function guess883(){att = 883;guess();}
+function guess884(){att = 884;guess();}
+function guess885(){att = 885;guess();}
+function guess886(){att = 886;guess();}
+function guess887(){att = 887;guess();}
+function guess888(){att = 888;guess();}
+function guess889(){att = 889;guess();}
+function guess890(){att = 890;guess();}
+function guess891(){att = 891;guess();}
+function guess892(){att = 892;guess();}
+function guess893(){att = 893;guess();}
+function guess894(){att = 894;guess();}
+function guess895(){att = 895;guess();}
+function guess896(){att = 896;guess();}
+function guess897(){att = 897;guess();}
+function guess898(){att = 898;guess();}
+function guess899(){att = 899;guess();}
+function guess900(){att = 900;guess();}
+function guess901(){att = 901;guess();}
+function guess902(){att = 902;guess();}
+function guess903(){att = 903;guess();}
+function guess904(){att = 904;guess();}
+function guess905(){att = 905;guess();}
+function guess906(){att = 906;guess();}
+function guess907(){att = 907;guess();}
+function guess908(){att = 908;guess();}
+function guess909(){att = 909;guess();}
+function guess910(){att = 910;guess();}
+function guess911(){att = 911;guess();}
+function guess912(){att = 912;guess();}
+function guess913(){att = 913;guess();}
+function guess914(){att = 914;guess();}
+function guess915(){att = 915;guess();}
+function guess916(){att = 916;guess();}
+function guess917(){att = 917;guess();}
+function guess918(){att = 918;guess();}
+function guess919(){att = 919;guess();}
+function guess920(){att = 920;guess();}
+function guess921(){att = 921;guess();}
+function guess922(){att = 922;guess();}
+function guess923(){att = 923;guess();}
+function guess924(){att = 924;guess();}
+function guess925(){att = 925;guess();}
+function guess926(){att = 926;guess();}
+function guess927(){att = 927;guess();}
+function guess928(){att = 928;guess();}
+function guess929(){att = 929;guess();}
+function guess930(){att = 930;guess();}
+function guess931(){att = 931;guess();}
+function guess932(){att = 932;guess();}
+function guess933(){att = 933;guess();}
+function guess934(){att = 934;guess();}
+function guess935(){att = 935;guess();}
+function guess936(){att = 936;guess();}
+function guess937(){att = 937;guess();}
+function guess938(){att = 938;guess();}
+function guess939(){att = 939;guess();}
+function guess940(){att = 940;guess();}
+function guess941(){att = 941;guess();}
+function guess942(){att = 942;guess();}
+function guess943(){att = 943;guess();}
+function guess944(){att = 944;guess();}
+function guess945(){att = 945;guess();}
+function guess946(){att = 946;guess();}
+function guess947(){att = 947;guess();}
+function guess948(){att = 948;guess();}
+function guess949(){att = 949;guess();}
+function guess950(){att = 950;guess();}
+function guess951(){att = 951;guess();}
+function guess952(){att = 952;guess();}
+function guess953(){att = 953;guess();}
+function guess954(){att = 954;guess();}
+function guess955(){att = 955;guess();}
+function guess956(){att = 956;guess();}
+function guess957(){att = 957;guess();}
+function guess958(){att = 958;guess();}
+function guess959(){att = 959;guess();}
+function guess960(){att = 960;guess();}
+function guess961(){att = 961;guess();}
+function guess962(){att = 962;guess();}
+function guess963(){att = 963;guess();}
+function guess964(){att = 964;guess();}
+function guess965(){att = 965;guess();}
+function guess966(){att = 966;guess();}
+function guess967(){att = 967;guess();}
+function guess968(){att = 968;guess();}
+function guess969(){att = 969;guess();}
+function guess970(){att = 970;guess();}
+function guess971(){att = 971;guess();}
+function guess972(){att = 972;guess();}
+function guess973(){att = 973;guess();}
+function guess974(){att = 974;guess();}
+function guess975(){att = 975;guess();}
+function guess976(){att = 976;guess();}
+function guess977(){att = 977;guess();}
+function guess978(){att = 978;guess();}
+function guess979(){att = 979;guess();}
+function guess980(){att = 980;guess();}
+function guess981(){att = 981;guess();}
+function guess982(){att = 982;guess();}
+function guess983(){att = 983;guess();}
+function guess984(){att = 984;guess();}
+function guess985(){att = 985;guess();}
+function guess986(){att = 986;guess();}
+function guess987(){att = 987;guess();}
+function guess988(){att = 988;guess();}
+function guess989(){att = 989;guess();}
+function guess990(){att = 990;guess();}
+function guess991(){att = 991;guess();}
+function guess992(){att = 992;guess();}
+function guess993(){att = 993;guess();}
+function guess994(){att = 994;guess();}
+function guess995(){att = 995;guess();}
+function guess996(){att = 996;guess();}
+function guess997(){att = 997;guess();}
+function guess998(){att = 998;guess();}
+function guess999(){att = 999;guess();}
+function guess1000(){att = 1000;guess();}
+
+function guess()
+{
+if(number == att)
+	{
+da = da*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="<span class='correct'>Correct!</span><br><p id='hintsused'></p><p id='tries'>It took you " + da + " " + plural + " to choose the correct number.</p><br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";did();}
+
+if(number !== att)
+	{
+plural = "guesses";
+da = da*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="Nope!<br><br><button type='button' onclick='begin()'>Try again</button>";}
+}
+
+function hints()
+{
+x=document.getElementById("main");
+x.innerHTML="<strong>Hints</strong><br><br><span id='hintoe'>Even or odd? <button type='button' onclick='hint1()'>Reveal</button></span><br><span id='hint500'>More than 500? <button type='button' onclick='hint2()'>Reveal</button></span><br><br><button type='button' onclick='begin()'>Go back</button>";
+}
+
+function hint1()
+{
+hint = 1;
+if(number%2 == 0)
+{
+x=document.getElementById("hintoe");
+x.innerHTML="Even or odd? <em>Even</em>";
+}
+else
+{
+x=document.getElementById("hintoe");
+x.innerHTML="Even or odd? <em>Odd</em>";
+}
+
+}
+
+function hint2()
+{
+hint = 1;
+if(number>500)
+{
+x=document.getElementById("hint500");
+x.innerHTML="More than 500? <em>Yes</em>";
+}
+else
+{
+x=document.getElementById("hint500");
+x.innerHTML="More than 500? <em>No</em>";
+}
+
+}
+
+function did()
+{
+if(hint==0)
+	{
+x=document.getElementById("hintsused");
+x.innerHTML="No hints? Dang, you must be good.";
+	}
+if(hint==1)
+	{
+x=document.getElementById("hintsused");
+x.innerHTML="But you used hints. Next time, try not to use hints.";
+	}
+}
+
+function giveup()
+{
+var r=confirm("Are you sure you want to give up?");
+if (r==true) {x=document.getElementById("main");
+x.innerHTML="The number was " +number+ ".<br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";
+}}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="first">
+
+<div id="wrap">
+
+<div id="content">
+
+
+<!--[if lte IE 8]>
+<span style="font-weight:700;font-size:14pt;">Your browser is unsupported. Time for an upgrade. Try a newer <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer</a>, <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, or <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.<br></span>
+<![endif]-->
+
+<noscript><span style="display:block;;font-weight:700;font-size:14pt;">Javascript is disabled. Please enable it in order to play the game.</span><br></noscript>
+
+<p id="main">
+<span id="title"><strong>I am Thinking of a Number Between 1 and 1,000.</strong></span><br>Now generates random numbers!<br><br><br>
+<span class="block"><button class="big" type="button" onclick="generate(),begin()">Play Game</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span><br>
+<br><br><span id="copyright">Version 2.0 &nbsp;&#126;&nbsp; &copy;2010-2013 Timothy Hsu</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

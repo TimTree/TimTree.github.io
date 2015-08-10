@@ -1,0 +1,494 @@
+﻿<!DOCTYPE html>
+
+<!--Notice: This game is released under the GNU General Public License v3. Link to license: http://www.gnu.org/licenses/gpl-3.0.html-->
+
+<html>
+
+<head>
+
+<title>Thinking of a Number</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<meta charset="UTF-8">
+
+<style>
+
+span.block {
+display:block;
+}
+
+#first {
+width:1000px;
+margin:0 auto;
+}
+
+#wrap {
+position:absolute;
+width:1000px;
+height:99%;
+display:table;
+font-family:"Helvetica";
+margin:0 auto;
+}
+
+#content {
+vertical-align:middle;
+text-align:center;
+display:table-cell;
+}
+
+#title {
+text-align:center;
+font-size:50pt;
+display:block;
+font-weight:700;
+}
+
+#copyright {
+font-size:10pt;
+text-align:center;
+}
+
+button.big {
+font-size:18pt;
+}
+
+a {
+text-decoration:none;
+cursor:pointer;
+}
+
+a.license {
+}
+
+span.correct {
+color:green;
+font-size:30pt;
+font-weight:700;
+}
+
+#ten {
+font-size:18pt;
+}
+
+#hundred {
+font-size:16pt;
+}
+
+#oneandone {
+font-size:64pt;
+}
+
+</style>
+
+<script>
+
+function help()
+{
+x=document.getElementById("main");
+x.innerHTML="<span class='center'><br class='break'>Try to guess what my number is. Each time you play, I choose a different number.<br><br>This game works on the following browsers:<br class='break'>Internet Explorer 9+<br>Firefox 3+<br>Chrome 4+<br>Safari 4+<br>Opera 10.50+<br><br>A screen resolution of at least 1152x800 is recommended.<br><br><button type='button' onclick='imdone()'>Go back</button></span>";
+}
+
+function about()
+{
+x=document.getElementById("main");
+x.innerHTML="A remake of the infamous PowerPoint game, <em>I am Thinking of a Number</em> strives to frustrate your own sanity through a boggling jumble of microscopic numbers. Of course, you can enable hints and lower the difficulty if you like, but that would ruin the fun, right? Now get guessing!<br><br><strong>Release Date:</strong> August 14, 2013<br><strong>Latest Update:</strong> March 20, 2014<br><strong>Software used:</strong> Notepad++<br><br><strong>License:</strong> This game is released under the GNU General Public License v3. To read its terms, <a href='http://www.gnu.org/licenses/gpl-3.0.html' class='license' target='_blank'>click here</a>.<br><br><button type='button' onclick='imdone()'>Go back</button>";
+}
+
+function between()
+{
+x=document.getElementById("main");
+x.innerHTML="I am thinking of a number between...<br><br><button type='button' onclick='begin4()'>1 and 1</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='generate2(),begin2()'>1 and 10</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='generate3(),begin3()'>1 and 100</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='generate(),begin()'>1 and 1,000</button>";
+}
+
+function imdone()
+{
+x=document.getElementById("main");
+x.innerHTML="<span id='title'><strong>I am Thinking of a Number.</strong></span><br><br><br><span class='center'><button class='big' type='button' onclick='between()'>Begin</button><br><br><button type='button' onclick='help()'>Help</button>&nbsp;&nbsp;<button type='button' onclick='about()'>About</button></span><br><br><br><span id='copyright'>Version 2.2 &nbsp;&#126;&nbsp; &copy;2010-2014 Timothy Hsu</span>";
+}
+
+var number;
+var hint;
+var att;
+var da;
+var plural;
+var lte;
+var number2;
+var hint2;
+var att2;
+var da2;
+var plural2;
+var number3;
+var hint3;
+var att3;
+var da3;
+var plural3;
+var lte3;
+
+function generate()
+{
+number = Math.floor((Math.random()*1000)+1);
+hint = 0;
+da = 0;
+lte = 0;
+plural = "guess";
+}
+
+function generate2()
+{
+number2 = Math.floor((Math.random()*10)+1);
+hint2 = 0;
+da2 = 0;
+plural2 = "guess";
+}
+
+function generate3()
+{
+number3 = Math.floor((Math.random()*100)+1);
+hint3 = 0;
+da3 = 0;
+lte3 = 0;
+plural3 = "guess";
+}
+
+function begin()
+{
+x=document.getElementById("main");
+x.innerHTML="<span style='font-size:28pt;font-weight:700;'>Now guess my number.</span><br><br><a onclick='guess(1)'>1</a> <a onclick='guess(2)'>2</a> <a onclick='guess(3)'>3</a> <a onclick='guess(4)'>4</a> <a onclick='guess(5)'>5</a> <a onclick='guess(6)'>6</a> <a onclick='guess(7)'>7</a> <a onclick='guess(8)'>8</a> <a onclick='guess(9)'>9</a> <a onclick='guess(10)'>10</a> <a onclick='guess(11)'>11</a> <a onclick='guess(12)'>12</a> <a onclick='guess(13)'>13</a> <a onclick='guess(14)'>14</a> <a onclick='guess(15)'>15</a> <a onclick='guess(16)'>16</a> <a onclick='guess(17)'>17</a> <a onclick='guess(18)'>18</a> <a onclick='guess(19)'>19</a> <a onclick='guess(20)'>20</a> <a onclick='guess(21)'>21</a> <a onclick='guess(22)'>22</a> <a onclick='guess(23)'>23</a> <a onclick='guess(24)'>24</a> <a onclick='guess(25)'>25</a> <a onclick='guess(26)'>26</a> <a onclick='guess(27)'>27</a> <a onclick='guess(28)'>28</a> <a onclick='guess(29)'>29</a> <a onclick='guess(30)'>30</a> <a onclick='guess(31)'>31</a> <a onclick='guess(32)'>32</a> <a onclick='guess(33)'>33</a> <a onclick='guess(34)'>34</a> <a onclick='guess(35)'>35</a> <a onclick='guess(36)'>36</a> <a onclick='guess(37)'>37</a> <a onclick='guess(38)'>38</a> <a onclick='guess(39)'>39</a> <a onclick='guess(40)'>40</a> <a onclick='guess(41)'>41</a> <a onclick='guess(42)'>42</a> <a onclick='guess(43)'>43</a> <a onclick='guess(44)'>44</a> <a onclick='guess(45)'>45</a> <a onclick='guess(46)'>46</a> <a onclick='guess(47)'>47</a> <a onclick='guess(48)'>48</a> <a onclick='guess(49)'>49</a> <a onclick='guess(50)'>50</a> <a onclick='guess(51)'>51</a> <a onclick='guess(52)'>52</a> <a onclick='guess(53)'>53</a> <a onclick='guess(54)'>54</a> <a onclick='guess(55)'>55</a> <a onclick='guess(56)'>56</a> <a onclick='guess(57)'>57</a> <a onclick='guess(58)'>58</a> <a onclick='guess(59)'>59</a> <a onclick='guess(60)'>60</a> <a onclick='guess(61)'>61</a> <a onclick='guess(62)'>62</a> <a onclick='guess(63)'>63</a> <a onclick='guess(64)'>64</a> <a onclick='guess(65)'>65</a> <a onclick='guess(66)'>66</a> <a onclick='guess(67)'>67</a> <a onclick='guess(68)'>68</a> <a onclick='guess(69)'>69</a> <a onclick='guess(70)'>70</a> <a onclick='guess(71)'>71</a> <a onclick='guess(72)'>72</a> <a onclick='guess(73)'>73</a> <a onclick='guess(74)'>74</a> <a onclick='guess(75)'>75</a> <a onclick='guess(76)'>76</a> <a onclick='guess(77)'>77</a> <a onclick='guess(78)'>78</a> <a onclick='guess(79)'>79</a> <a onclick='guess(80)'>80</a> <a onclick='guess(81)'>81</a> <a onclick='guess(82)'>82</a> <a onclick='guess(83)'>83</a> <a onclick='guess(84)'>84</a> <a onclick='guess(85)'>85</a> <a onclick='guess(86)'>86</a> <a onclick='guess(87)'>87</a> <a onclick='guess(88)'>88</a> <a onclick='guess(89)'>89</a> <a onclick='guess(90)'>90</a> <a onclick='guess(91)'>91</a> <a onclick='guess(92)'>92</a> <a onclick='guess(93)'>93</a> <a onclick='guess(94)'>94</a> <a onclick='guess(95)'>95</a> <a onclick='guess(96)'>96</a> <a onclick='guess(97)'>97</a> <a onclick='guess(98)'>98</a> <a onclick='guess(99)'>99</a> <a onclick='guess(100)'>100</a> <a onclick='guess(101)'>101</a> <a onclick='guess(102)'>102</a> <a onclick='guess(103)'>103</a> <a onclick='guess(104)'>104</a> <a onclick='guess(105)'>105</a> <a onclick='guess(106)'>106</a> <a onclick='guess(107)'>107</a> <a onclick='guess(108)'>108</a> <a onclick='guess(109)'>109</a> <a onclick='guess(110)'>110</a> <a onclick='guess(111)'>111</a> <a onclick='guess(112)'>112</a> <a onclick='guess(113)'>113</a> <a onclick='guess(114)'>114</a> <a onclick='guess(115)'>115</a> <a onclick='guess(116)'>116</a> <a onclick='guess(117)'>117</a> <a onclick='guess(118)'>118</a> <a onclick='guess(119)'>119</a> <a onclick='guess(120)'>120</a> <a onclick='guess(121)'>121</a> <a onclick='guess(122)'>122</a> <a onclick='guess(123)'>123</a> <a onclick='guess(124)'>124</a> <a onclick='guess(125)'>125</a> <a onclick='guess(126)'>126</a> <a onclick='guess(127)'>127</a> <a onclick='guess(128)'>128</a> <a onclick='guess(129)'>129</a> <a onclick='guess(130)'>130</a> <a onclick='guess(131)'>131</a> <a onclick='guess(132)'>132</a> <a onclick='guess(133)'>133</a> <a onclick='guess(134)'>134</a> <a onclick='guess(135)'>135</a> <a onclick='guess(136)'>136</a> <a onclick='guess(137)'>137</a> <a onclick='guess(138)'>138</a> <a onclick='guess(139)'>139</a> <a onclick='guess(140)'>140</a> <a onclick='guess(141)'>141</a> <a onclick='guess(142)'>142</a> <a onclick='guess(143)'>143</a> <a onclick='guess(144)'>144</a> <a onclick='guess(145)'>145</a> <a onclick='guess(146)'>146</a> <a onclick='guess(147)'>147</a> <a onclick='guess(148)'>148</a> <a onclick='guess(149)'>149</a> <a onclick='guess(150)'>150</a> <a onclick='guess(151)'>151</a> <a onclick='guess(152)'>152</a> <a onclick='guess(153)'>153</a> <a onclick='guess(154)'>154</a> <a onclick='guess(155)'>155</a> <a onclick='guess(156)'>156</a> <a onclick='guess(157)'>157</a> <a onclick='guess(158)'>158</a> <a onclick='guess(159)'>159</a> <a onclick='guess(160)'>160</a> <a onclick='guess(161)'>161</a> <a onclick='guess(162)'>162</a> <a onclick='guess(163)'>163</a> <a onclick='guess(164)'>164</a> <a onclick='guess(165)'>165</a> <a onclick='guess(166)'>166</a> <a onclick='guess(167)'>167</a> <a onclick='guess(168)'>168</a> <a onclick='guess(169)'>169</a> <a onclick='guess(170)'>170</a> <a onclick='guess(171)'>171</a> <a onclick='guess(172)'>172</a> <a onclick='guess(173)'>173</a> <a onclick='guess(174)'>174</a> <a onclick='guess(175)'>175</a> <a onclick='guess(176)'>176</a> <a onclick='guess(177)'>177</a> <a onclick='guess(178)'>178</a> <a onclick='guess(179)'>179</a> <a onclick='guess(180)'>180</a> <a onclick='guess(181)'>181</a> <a onclick='guess(182)'>182</a> <a onclick='guess(183)'>183</a> <a onclick='guess(184)'>184</a> <a onclick='guess(185)'>185</a> <a onclick='guess(186)'>186</a> <a onclick='guess(187)'>187</a> <a onclick='guess(188)'>188</a> <a onclick='guess(189)'>189</a> <a onclick='guess(190)'>190</a> <a onclick='guess(191)'>191</a> <a onclick='guess(192)'>192</a> <a onclick='guess(193)'>193</a> <a onclick='guess(194)'>194</a> <a onclick='guess(195)'>195</a> <a onclick='guess(196)'>196</a> <a onclick='guess(197)'>197</a> <a onclick='guess(198)'>198</a> <a onclick='guess(199)'>199</a> <a onclick='guess(200)'>200</a> <a onclick='guess(201)'>201</a> <a onclick='guess(202)'>202</a> <a onclick='guess(203)'>203</a> <a onclick='guess(204)'>204</a> <a onclick='guess(205)'>205</a> <a onclick='guess(206)'>206</a> <a onclick='guess(207)'>207</a> <a onclick='guess(208)'>208</a> <a onclick='guess(209)'>209</a> <a onclick='guess(210)'>210</a> <a onclick='guess(211)'>211</a> <a onclick='guess(212)'>212</a> <a onclick='guess(213)'>213</a> <a onclick='guess(214)'>214</a> <a onclick='guess(215)'>215</a> <a onclick='guess(216)'>216</a> <a onclick='guess(217)'>217</a> <a onclick='guess(218)'>218</a> <a onclick='guess(219)'>219</a> <a onclick='guess(220)'>220</a> <a onclick='guess(221)'>221</a> <a onclick='guess(222)'>222</a> <a onclick='guess(223)'>223</a> <a onclick='guess(224)'>224</a> <a onclick='guess(225)'>225</a> <a onclick='guess(226)'>226</a> <a onclick='guess(227)'>227</a> <a onclick='guess(228)'>228</a> <a onclick='guess(229)'>229</a> <a onclick='guess(230)'>230</a> <a onclick='guess(231)'>231</a> <a onclick='guess(232)'>232</a> <a onclick='guess(233)'>233</a> <a onclick='guess(234)'>234</a> <a onclick='guess(235)'>235</a> <a onclick='guess(236)'>236</a> <a onclick='guess(237)'>237</a> <a onclick='guess(238)'>238</a> <a onclick='guess(239)'>239</a> <a onclick='guess(240)'>240</a> <a onclick='guess(241)'>241</a> <a onclick='guess(242)'>242</a> <a onclick='guess(243)'>243</a> <a onclick='guess(244)'>244</a> <a onclick='guess(245)'>245</a> <a onclick='guess(246)'>246</a> <a onclick='guess(247)'>247</a> <a onclick='guess(248)'>248</a> <a onclick='guess(249)'>249</a> <a onclick='guess(250)'>250</a> <a onclick='guess(251)'>251</a> <a onclick='guess(252)'>252</a> <a onclick='guess(253)'>253</a> <a onclick='guess(254)'>254</a> <a onclick='guess(255)'>255</a> <a onclick='guess(256)'>256</a> <a onclick='guess(257)'>257</a> <a onclick='guess(258)'>258</a> <a onclick='guess(259)'>259</a> <a onclick='guess(260)'>260</a> <a onclick='guess(261)'>261</a> <a onclick='guess(262)'>262</a> <a onclick='guess(263)'>263</a> <a onclick='guess(264)'>264</a> <a onclick='guess(265)'>265</a> <a onclick='guess(266)'>266</a> <a onclick='guess(267)'>267</a> <a onclick='guess(268)'>268</a> <a onclick='guess(269)'>269</a> <a onclick='guess(270)'>270</a> <a onclick='guess(271)'>271</a> <a onclick='guess(272)'>272</a> <a onclick='guess(273)'>273</a> <a onclick='guess(274)'>274</a> <a onclick='guess(275)'>275</a> <a onclick='guess(276)'>276</a> <a onclick='guess(277)'>277</a> <a onclick='guess(278)'>278</a> <a onclick='guess(279)'>279</a> <a onclick='guess(280)'>280</a> <a onclick='guess(281)'>281</a> <a onclick='guess(282)'>282</a> <a onclick='guess(283)'>283</a> <a onclick='guess(284)'>284</a> <a onclick='guess(285)'>285</a> <a onclick='guess(286)'>286</a> <a onclick='guess(287)'>287</a> <a onclick='guess(288)'>288</a> <a onclick='guess(289)'>289</a> <a onclick='guess(290)'>290</a> <a onclick='guess(291)'>291</a> <a onclick='guess(292)'>292</a> <a onclick='guess(293)'>293</a> <a onclick='guess(294)'>294</a> <a onclick='guess(295)'>295</a> <a onclick='guess(296)'>296</a> <a onclick='guess(297)'>297</a> <a onclick='guess(298)'>298</a> <a onclick='guess(299)'>299</a> <a onclick='guess(300)'>300</a> <a onclick='guess(301)'>301</a> <a onclick='guess(302)'>302</a> <a onclick='guess(303)'>303</a> <a onclick='guess(304)'>304</a> <a onclick='guess(305)'>305</a> <a onclick='guess(306)'>306</a> <a onclick='guess(307)'>307</a> <a onclick='guess(308)'>308</a> <a onclick='guess(309)'>309</a> <a onclick='guess(310)'>310</a> <a onclick='guess(311)'>311</a> <a onclick='guess(312)'>312</a> <a onclick='guess(313)'>313</a> <a onclick='guess(314)'>314</a> <a onclick='guess(315)'>315</a> <a onclick='guess(316)'>316</a> <a onclick='guess(317)'>317</a> <a onclick='guess(318)'>318</a> <a onclick='guess(319)'>319</a> <a onclick='guess(320)'>320</a> <a onclick='guess(321)'>321</a> <a onclick='guess(322)'>322</a> <a onclick='guess(323)'>323</a> <a onclick='guess(324)'>324</a> <a onclick='guess(325)'>325</a> <a onclick='guess(326)'>326</a> <a onclick='guess(327)'>327</a> <a onclick='guess(328)'>328</a> <a onclick='guess(329)'>329</a> <a onclick='guess(330)'>330</a> <a onclick='guess(331)'>331</a> <a onclick='guess(332)'>332</a> <a onclick='guess(333)'>333</a> <a onclick='guess(334)'>334</a> <a onclick='guess(335)'>335</a> <a onclick='guess(336)'>336</a> <a onclick='guess(337)'>337</a> <a onclick='guess(338)'>338</a> <a onclick='guess(339)'>339</a> <a onclick='guess(340)'>340</a> <a onclick='guess(341)'>341</a> <a onclick='guess(342)'>342</a> <a onclick='guess(343)'>343</a> <a onclick='guess(344)'>344</a> <a onclick='guess(345)'>345</a> <a onclick='guess(346)'>346</a> <a onclick='guess(347)'>347</a> <a onclick='guess(348)'>348</a> <a onclick='guess(349)'>349</a> <a onclick='guess(350)'>350</a> <a onclick='guess(351)'>351</a> <a onclick='guess(352)'>352</a> <a onclick='guess(353)'>353</a> <a onclick='guess(354)'>354</a> <a onclick='guess(355)'>355</a> <a onclick='guess(356)'>356</a> <a onclick='guess(357)'>357</a> <a onclick='guess(358)'>358</a> <a onclick='guess(359)'>359</a> <a onclick='guess(360)'>360</a> <a onclick='guess(361)'>361</a> <a onclick='guess(362)'>362</a> <a onclick='guess(363)'>363</a> <a onclick='guess(364)'>364</a> <a onclick='guess(365)'>365</a> <a onclick='guess(366)'>366</a> <a onclick='guess(367)'>367</a> <a onclick='guess(368)'>368</a> <a onclick='guess(369)'>369</a> <a onclick='guess(370)'>370</a> <a onclick='guess(371)'>371</a> <a onclick='guess(372)'>372</a> <a onclick='guess(373)'>373</a> <a onclick='guess(374)'>374</a> <a onclick='guess(375)'>375</a> <a onclick='guess(376)'>376</a> <a onclick='guess(377)'>377</a> <a onclick='guess(378)'>378</a> <a onclick='guess(379)'>379</a> <a onclick='guess(380)'>380</a> <a onclick='guess(381)'>381</a> <a onclick='guess(382)'>382</a> <a onclick='guess(383)'>383</a> <a onclick='guess(384)'>384</a> <a onclick='guess(385)'>385</a> <a onclick='guess(386)'>386</a> <a onclick='guess(387)'>387</a> <a onclick='guess(388)'>388</a> <a onclick='guess(389)'>389</a> <a onclick='guess(390)'>390</a> <a onclick='guess(391)'>391</a> <a onclick='guess(392)'>392</a> <a onclick='guess(393)'>393</a> <a onclick='guess(394)'>394</a> <a onclick='guess(395)'>395</a> <a onclick='guess(396)'>396</a> <a onclick='guess(397)'>397</a> <a onclick='guess(398)'>398</a> <a onclick='guess(399)'>399</a> <a onclick='guess(400)'>400</a> <a onclick='guess(401)'>401</a> <a onclick='guess(402)'>402</a> <a onclick='guess(403)'>403</a> <a onclick='guess(404)'>404</a> <a onclick='guess(405)'>405</a> <a onclick='guess(406)'>406</a> <a onclick='guess(407)'>407</a> <a onclick='guess(408)'>408</a> <a onclick='guess(409)'>409</a> <a onclick='guess(410)'>410</a> <a onclick='guess(411)'>411</a> <a onclick='guess(412)'>412</a> <a onclick='guess(413)'>413</a> <a onclick='guess(414)'>414</a> <a onclick='guess(415)'>415</a> <a onclick='guess(416)'>416</a> <a onclick='guess(417)'>417</a> <a onclick='guess(418)'>418</a> <a onclick='guess(419)'>419</a> <a onclick='guess(420)'>420</a> <a onclick='guess(421)'>421</a> <a onclick='guess(422)'>422</a> <a onclick='guess(423)'>423</a> <a onclick='guess(424)'>424</a> <a onclick='guess(425)'>425</a> <a onclick='guess(426)'>426</a> <a onclick='guess(427)'>427</a> <a onclick='guess(428)'>428</a> <a onclick='guess(429)'>429</a> <a onclick='guess(430)'>430</a> <a onclick='guess(431)'>431</a> <a onclick='guess(432)'>432</a> <a onclick='guess(433)'>433</a> <a onclick='guess(434)'>434</a> <a onclick='guess(435)'>435</a> <a onclick='guess(436)'>436</a> <a onclick='guess(437)'>437</a> <a onclick='guess(438)'>438</a> <a onclick='guess(439)'>439</a> <a onclick='guess(440)'>440</a> <a onclick='guess(441)'>441</a> <a onclick='guess(442)'>442</a> <a onclick='guess(443)'>443</a> <a onclick='guess(444)'>444</a> <a onclick='guess(445)'>445</a> <a onclick='guess(446)'>446</a> <a onclick='guess(447)'>447</a> <a onclick='guess(448)'>448</a> <a onclick='guess(449)'>449</a> <a onclick='guess(450)'>450</a> <a onclick='guess(451)'>451</a> <a onclick='guess(452)'>452</a> <a onclick='guess(453)'>453</a> <a onclick='guess(454)'>454</a> <a onclick='guess(455)'>455</a> <a onclick='guess(456)'>456</a> <a onclick='guess(457)'>457</a> <a onclick='guess(458)'>458</a> <a onclick='guess(459)'>459</a> <a onclick='guess(460)'>460</a> <a onclick='guess(461)'>461</a> <a onclick='guess(462)'>462</a> <a onclick='guess(463)'>463</a> <a onclick='guess(464)'>464</a> <a onclick='guess(465)'>465</a> <a onclick='guess(466)'>466</a> <a onclick='guess(467)'>467</a> <a onclick='guess(468)'>468</a> <a onclick='guess(469)'>469</a> <a onclick='guess(470)'>470</a> <a onclick='guess(471)'>471</a> <a onclick='guess(472)'>472</a> <a onclick='guess(473)'>473</a> <a onclick='guess(474)'>474</a> <a onclick='guess(475)'>475</a> <a onclick='guess(476)'>476</a> <a onclick='guess(477)'>477</a> <a onclick='guess(478)'>478</a> <a onclick='guess(479)'>479</a> <a onclick='guess(480)'>480</a> <a onclick='guess(481)'>481</a> <a onclick='guess(482)'>482</a> <a onclick='guess(483)'>483</a> <a onclick='guess(484)'>484</a> <a onclick='guess(485)'>485</a> <a onclick='guess(486)'>486</a> <a onclick='guess(487)'>487</a> <a onclick='guess(488)'>488</a> <a onclick='guess(489)'>489</a> <a onclick='guess(490)'>490</a> <a onclick='guess(491)'>491</a> <a onclick='guess(492)'>492</a> <a onclick='guess(493)'>493</a> <a onclick='guess(494)'>494</a> <a onclick='guess(495)'>495</a> <a onclick='guess(496)'>496</a> <a onclick='guess(497)'>497</a> <a onclick='guess(498)'>498</a> <a onclick='guess(499)'>499</a> <a onclick='guess(500)'>500</a> <a onclick='guess(501)'>501</a> <a onclick='guess(502)'>502</a> <a onclick='guess(503)'>503</a> <a onclick='guess(504)'>504</a> <a onclick='guess(505)'>505</a> <a onclick='guess(506)'>506</a> <a onclick='guess(507)'>507</a> <a onclick='guess(508)'>508</a> <a onclick='guess(509)'>509</a> <a onclick='guess(510)'>510</a> <a onclick='guess(511)'>511</a> <a onclick='guess(512)'>512</a> <a onclick='guess(513)'>513</a> <a onclick='guess(514)'>514</a> <a onclick='guess(515)'>515</a> <a onclick='guess(516)'>516</a> <a onclick='guess(517)'>517</a> <a onclick='guess(518)'>518</a> <a onclick='guess(519)'>519</a> <a onclick='guess(520)'>520</a> <a onclick='guess(521)'>521</a> <a onclick='guess(522)'>522</a> <a onclick='guess(523)'>523</a> <a onclick='guess(524)'>524</a> <a onclick='guess(525)'>525</a> <a onclick='guess(526)'>526</a> <a onclick='guess(527)'>527</a> <a onclick='guess(528)'>528</a> <a onclick='guess(529)'>529</a> <a onclick='guess(530)'>530</a> <a onclick='guess(531)'>531</a> <a onclick='guess(532)'>532</a> <a onclick='guess(533)'>533</a> <a onclick='guess(534)'>534</a> <a onclick='guess(535)'>535</a> <a onclick='guess(536)'>536</a> <a onclick='guess(537)'>537</a> <a onclick='guess(538)'>538</a> <a onclick='guess(539)'>539</a> <a onclick='guess(540)'>540</a> <a onclick='guess(541)'>541</a> <a onclick='guess(542)'>542</a> <a onclick='guess(543)'>543</a> <a onclick='guess(544)'>544</a> <a onclick='guess(545)'>545</a> <a onclick='guess(546)'>546</a> <a onclick='guess(547)'>547</a> <a onclick='guess(548)'>548</a> <a onclick='guess(549)'>549</a> <a onclick='guess(550)'>550</a> <a onclick='guess(551)'>551</a> <a onclick='guess(552)'>552</a> <a onclick='guess(553)'>553</a> <a onclick='guess(554)'>554</a> <a onclick='guess(555)'>555</a> <a onclick='guess(556)'>556</a> <a onclick='guess(557)'>557</a> <a onclick='guess(558)'>558</a> <a onclick='guess(559)'>559</a> <a onclick='guess(560)'>560</a> <a onclick='guess(561)'>561</a> <a onclick='guess(562)'>562</a> <a onclick='guess(563)'>563</a> <a onclick='guess(564)'>564</a> <a onclick='guess(565)'>565</a> <a onclick='guess(566)'>566</a> <a onclick='guess(567)'>567</a> <a onclick='guess(568)'>568</a> <a onclick='guess(569)'>569</a> <a onclick='guess(570)'>570</a> <a onclick='guess(571)'>571</a> <a onclick='guess(572)'>572</a> <a onclick='guess(573)'>573</a> <a onclick='guess(574)'>574</a> <a onclick='guess(575)'>575</a> <a onclick='guess(576)'>576</a> <a onclick='guess(577)'>577</a> <a onclick='guess(578)'>578</a> <a onclick='guess(579)'>579</a> <a onclick='guess(580)'>580</a> <a onclick='guess(581)'>581</a> <a onclick='guess(582)'>582</a> <a onclick='guess(583)'>583</a> <a onclick='guess(584)'>584</a> <a onclick='guess(585)'>585</a> <a onclick='guess(586)'>586</a> <a onclick='guess(587)'>587</a> <a onclick='guess(588)'>588</a> <a onclick='guess(589)'>589</a> <a onclick='guess(590)'>590</a> <a onclick='guess(591)'>591</a> <a onclick='guess(592)'>592</a> <a onclick='guess(593)'>593</a> <a onclick='guess(594)'>594</a> <a onclick='guess(595)'>595</a> <a onclick='guess(596)'>596</a> <a onclick='guess(597)'>597</a> <a onclick='guess(598)'>598</a> <a onclick='guess(599)'>599</a> <a onclick='guess(600)'>600</a> <a onclick='guess(601)'>601</a> <a onclick='guess(602)'>602</a> <a onclick='guess(603)'>603</a> <a onclick='guess(604)'>604</a> <a onclick='guess(605)'>605</a> <a onclick='guess(606)'>606</a> <a onclick='guess(607)'>607</a> <a onclick='guess(608)'>608</a> <a onclick='guess(609)'>609</a> <a onclick='guess(610)'>610</a> <a onclick='guess(611)'>611</a> <a onclick='guess(612)'>612</a> <a onclick='guess(613)'>613</a> <a onclick='guess(614)'>614</a> <a onclick='guess(615)'>615</a> <a onclick='guess(616)'>616</a> <a onclick='guess(617)'>617</a> <a onclick='guess(618)'>618</a> <a onclick='guess(619)'>619</a> <a onclick='guess(620)'>620</a> <a onclick='guess(621)'>621</a> <a onclick='guess(622)'>622</a> <a onclick='guess(623)'>623</a> <a onclick='guess(624)'>624</a> <a onclick='guess(625)'>625</a> <a onclick='guess(626)'>626</a> <a onclick='guess(627)'>627</a> <a onclick='guess(628)'>628</a> <a onclick='guess(629)'>629</a> <a onclick='guess(630)'>630</a> <a onclick='guess(631)'>631</a> <a onclick='guess(632)'>632</a> <a onclick='guess(633)'>633</a> <a onclick='guess(634)'>634</a> <a onclick='guess(635)'>635</a> <a onclick='guess(636)'>636</a> <a onclick='guess(637)'>637</a> <a onclick='guess(638)'>638</a> <a onclick='guess(639)'>639</a> <a onclick='guess(640)'>640</a> <a onclick='guess(641)'>641</a> <a onclick='guess(642)'>642</a> <a onclick='guess(643)'>643</a> <a onclick='guess(644)'>644</a> <a onclick='guess(645)'>645</a> <a onclick='guess(646)'>646</a> <a onclick='guess(647)'>647</a> <a onclick='guess(648)'>648</a> <a onclick='guess(649)'>649</a> <a onclick='guess(650)'>650</a> <a onclick='guess(651)'>651</a> <a onclick='guess(652)'>652</a> <a onclick='guess(653)'>653</a> <a onclick='guess(654)'>654</a> <a onclick='guess(655)'>655</a> <a onclick='guess(656)'>656</a> <a onclick='guess(657)'>657</a> <a onclick='guess(658)'>658</a> <a onclick='guess(659)'>659</a> <a onclick='guess(660)'>660</a> <a onclick='guess(661)'>661</a> <a onclick='guess(662)'>662</a> <a onclick='guess(663)'>663</a> <a onclick='guess(664)'>664</a> <a onclick='guess(665)'>665</a> <a onclick='guess(666)'>666</a> <a onclick='guess(667)'>667</a> <a onclick='guess(668)'>668</a> <a onclick='guess(669)'>669</a> <a onclick='guess(670)'>670</a> <a onclick='guess(671)'>671</a> <a onclick='guess(672)'>672</a> <a onclick='guess(673)'>673</a> <a onclick='guess(674)'>674</a> <a onclick='guess(675)'>675</a> <a onclick='guess(676)'>676</a> <a onclick='guess(677)'>677</a> <a onclick='guess(678)'>678</a> <a onclick='guess(679)'>679</a> <a onclick='guess(680)'>680</a> <a onclick='guess(681)'>681</a> <a onclick='guess(682)'>682</a> <a onclick='guess(683)'>683</a> <a onclick='guess(684)'>684</a> <a onclick='guess(685)'>685</a> <a onclick='guess(686)'>686</a> <a onclick='guess(687)'>687</a> <a onclick='guess(688)'>688</a> <a onclick='guess(689)'>689</a> <a onclick='guess(690)'>690</a> <a onclick='guess(691)'>691</a> <a onclick='guess(692)'>692</a> <a onclick='guess(693)'>693</a> <a onclick='guess(694)'>694</a> <a onclick='guess(695)'>695</a> <a onclick='guess(696)'>696</a> <a onclick='guess(697)'>697</a> <a onclick='guess(698)'>698</a> <a onclick='guess(699)'>699</a> <a onclick='guess(700)'>700</a> <a onclick='guess(701)'>701</a> <a onclick='guess(702)'>702</a> <a onclick='guess(703)'>703</a> <a onclick='guess(704)'>704</a> <a onclick='guess(705)'>705</a> <a onclick='guess(706)'>706</a> <a onclick='guess(707)'>707</a> <a onclick='guess(708)'>708</a> <a onclick='guess(709)'>709</a> <a onclick='guess(710)'>710</a> <a onclick='guess(711)'>711</a> <a onclick='guess(712)'>712</a> <a onclick='guess(713)'>713</a> <a onclick='guess(714)'>714</a> <a onclick='guess(715)'>715</a> <a onclick='guess(716)'>716</a> <a onclick='guess(717)'>717</a> <a onclick='guess(718)'>718</a> <a onclick='guess(719)'>719</a> <a onclick='guess(720)'>720</a> <a onclick='guess(721)'>721</a> <a onclick='guess(722)'>722</a> <a onclick='guess(723)'>723</a> <a onclick='guess(724)'>724</a> <a onclick='guess(725)'>725</a> <a onclick='guess(726)'>726</a> <a onclick='guess(727)'>727</a> <a onclick='guess(728)'>728</a> <a onclick='guess(729)'>729</a> <a onclick='guess(730)'>730</a> <a onclick='guess(731)'>731</a> <a onclick='guess(732)'>732</a> <a onclick='guess(733)'>733</a> <a onclick='guess(734)'>734</a> <a onclick='guess(735)'>735</a> <a onclick='guess(736)'>736</a> <a onclick='guess(737)'>737</a> <a onclick='guess(738)'>738</a> <a onclick='guess(739)'>739</a> <a onclick='guess(740)'>740</a> <a onclick='guess(741)'>741</a> <a onclick='guess(742)'>742</a> <a onclick='guess(743)'>743</a> <a onclick='guess(744)'>744</a> <a onclick='guess(745)'>745</a> <a onclick='guess(746)'>746</a> <a onclick='guess(747)'>747</a> <a onclick='guess(748)'>748</a> <a onclick='guess(749)'>749</a> <a onclick='guess(750)'>750</a> <a onclick='guess(751)'>751</a> <a onclick='guess(752)'>752</a> <a onclick='guess(753)'>753</a> <a onclick='guess(754)'>754</a> <a onclick='guess(755)'>755</a> <a onclick='guess(756)'>756</a> <a onclick='guess(757)'>757</a> <a onclick='guess(758)'>758</a> <a onclick='guess(759)'>759</a> <a onclick='guess(760)'>760</a> <a onclick='guess(761)'>761</a> <a onclick='guess(762)'>762</a> <a onclick='guess(763)'>763</a> <a onclick='guess(764)'>764</a> <a onclick='guess(765)'>765</a> <a onclick='guess(766)'>766</a> <a onclick='guess(767)'>767</a> <a onclick='guess(768)'>768</a> <a onclick='guess(769)'>769</a> <a onclick='guess(770)'>770</a> <a onclick='guess(771)'>771</a> <a onclick='guess(772)'>772</a> <a onclick='guess(773)'>773</a> <a onclick='guess(774)'>774</a> <a onclick='guess(775)'>775</a> <a onclick='guess(776)'>776</a> <a onclick='guess(777)'>777</a> <a onclick='guess(778)'>778</a> <a onclick='guess(779)'>779</a> <a onclick='guess(780)'>780</a> <a onclick='guess(781)'>781</a> <a onclick='guess(782)'>782</a> <a onclick='guess(783)'>783</a> <a onclick='guess(784)'>784</a> <a onclick='guess(785)'>785</a> <a onclick='guess(786)'>786</a> <a onclick='guess(787)'>787</a> <a onclick='guess(788)'>788</a> <a onclick='guess(789)'>789</a> <a onclick='guess(790)'>790</a> <a onclick='guess(791)'>791</a> <a onclick='guess(792)'>792</a> <a onclick='guess(793)'>793</a> <a onclick='guess(794)'>794</a> <a onclick='guess(795)'>795</a> <a onclick='guess(796)'>796</a> <a onclick='guess(797)'>797</a> <a onclick='guess(798)'>798</a> <a onclick='guess(799)'>799</a> <a onclick='guess(800)'>800</a> <a onclick='guess(801)'>801</a> <a onclick='guess(802)'>802</a> <a onclick='guess(803)'>803</a> <a onclick='guess(804)'>804</a> <a onclick='guess(805)'>805</a> <a onclick='guess(806)'>806</a> <a onclick='guess(807)'>807</a> <a onclick='guess(808)'>808</a> <a onclick='guess(809)'>809</a> <a onclick='guess(810)'>810</a> <a onclick='guess(811)'>811</a> <a onclick='guess(812)'>812</a> <a onclick='guess(813)'>813</a> <a onclick='guess(814)'>814</a> <a onclick='guess(815)'>815</a> <a onclick='guess(816)'>816</a> <a onclick='guess(817)'>817</a> <a onclick='guess(818)'>818</a> <a onclick='guess(819)'>819</a> <a onclick='guess(820)'>820</a> <a onclick='guess(821)'>821</a> <a onclick='guess(822)'>822</a> <a onclick='guess(823)'>823</a> <a onclick='guess(824)'>824</a> <a onclick='guess(825)'>825</a> <a onclick='guess(826)'>826</a> <a onclick='guess(827)'>827</a> <a onclick='guess(828)'>828</a> <a onclick='guess(829)'>829</a> <a onclick='guess(830)'>830</a> <a onclick='guess(831)'>831</a> <a onclick='guess(832)'>832</a> <a onclick='guess(833)'>833</a> <a onclick='guess(834)'>834</a> <a onclick='guess(835)'>835</a> <a onclick='guess(836)'>836</a> <a onclick='guess(837)'>837</a> <a onclick='guess(838)'>838</a> <a onclick='guess(839)'>839</a> <a onclick='guess(840)'>840</a> <a onclick='guess(841)'>841</a> <a onclick='guess(842)'>842</a> <a onclick='guess(843)'>843</a> <a onclick='guess(844)'>844</a> <a onclick='guess(845)'>845</a> <a onclick='guess(846)'>846</a> <a onclick='guess(847)'>847</a> <a onclick='guess(848)'>848</a> <a onclick='guess(849)'>849</a> <a onclick='guess(850)'>850</a> <a onclick='guess(851)'>851</a> <a onclick='guess(852)'>852</a> <a onclick='guess(853)'>853</a> <a onclick='guess(854)'>854</a> <a onclick='guess(855)'>855</a> <a onclick='guess(856)'>856</a> <a onclick='guess(857)'>857</a> <a onclick='guess(858)'>858</a> <a onclick='guess(859)'>859</a> <a onclick='guess(860)'>860</a> <a onclick='guess(861)'>861</a> <a onclick='guess(862)'>862</a> <a onclick='guess(863)'>863</a> <a onclick='guess(864)'>864</a> <a onclick='guess(865)'>865</a> <a onclick='guess(866)'>866</a> <a onclick='guess(867)'>867</a> <a onclick='guess(868)'>868</a> <a onclick='guess(869)'>869</a> <a onclick='guess(870)'>870</a> <a onclick='guess(871)'>871</a> <a onclick='guess(872)'>872</a> <a onclick='guess(873)'>873</a> <a onclick='guess(874)'>874</a> <a onclick='guess(875)'>875</a> <a onclick='guess(876)'>876</a> <a onclick='guess(877)'>877</a> <a onclick='guess(878)'>878</a> <a onclick='guess(879)'>879</a> <a onclick='guess(880)'>880</a> <a onclick='guess(881)'>881</a> <a onclick='guess(882)'>882</a> <a onclick='guess(883)'>883</a> <a onclick='guess(884)'>884</a> <a onclick='guess(885)'>885</a> <a onclick='guess(886)'>886</a> <a onclick='guess(887)'>887</a> <a onclick='guess(888)'>888</a> <a onclick='guess(889)'>889</a> <a onclick='guess(890)'>890</a> <a onclick='guess(891)'>891</a> <a onclick='guess(892)'>892</a> <a onclick='guess(893)'>893</a> <a onclick='guess(894)'>894</a> <a onclick='guess(895)'>895</a> <a onclick='guess(896)'>896</a> <a onclick='guess(897)'>897</a> <a onclick='guess(898)'>898</a> <a onclick='guess(899)'>899</a> <a onclick='guess(900)'>900</a> <a onclick='guess(901)'>901</a> <a onclick='guess(902)'>902</a> <a onclick='guess(903)'>903</a> <a onclick='guess(904)'>904</a> <a onclick='guess(905)'>905</a> <a onclick='guess(906)'>906</a> <a onclick='guess(907)'>907</a> <a onclick='guess(908)'>908</a> <a onclick='guess(909)'>909</a> <a onclick='guess(910)'>910</a> <a onclick='guess(911)'>911</a> <a onclick='guess(912)'>912</a> <a onclick='guess(913)'>913</a> <a onclick='guess(914)'>914</a> <a onclick='guess(915)'>915</a> <a onclick='guess(916)'>916</a> <a onclick='guess(917)'>917</a> <a onclick='guess(918)'>918</a> <a onclick='guess(919)'>919</a> <a onclick='guess(920)'>920</a> <a onclick='guess(921)'>921</a> <a onclick='guess(922)'>922</a> <a onclick='guess(923)'>923</a> <a onclick='guess(924)'>924</a> <a onclick='guess(925)'>925</a> <a onclick='guess(926)'>926</a> <a onclick='guess(927)'>927</a> <a onclick='guess(928)'>928</a> <a onclick='guess(929)'>929</a> <a onclick='guess(930)'>930</a> <a onclick='guess(931)'>931</a> <a onclick='guess(932)'>932</a> <a onclick='guess(933)'>933</a> <a onclick='guess(934)'>934</a> <a onclick='guess(935)'>935</a> <a onclick='guess(936)'>936</a> <a onclick='guess(937)'>937</a> <a onclick='guess(938)'>938</a> <a onclick='guess(939)'>939</a> <a onclick='guess(940)'>940</a> <a onclick='guess(941)'>941</a> <a onclick='guess(942)'>942</a> <a onclick='guess(943)'>943</a> <a onclick='guess(944)'>944</a> <a onclick='guess(945)'>945</a> <a onclick='guess(946)'>946</a> <a onclick='guess(947)'>947</a> <a onclick='guess(948)'>948</a> <a onclick='guess(949)'>949</a> <a onclick='guess(950)'>950</a> <a onclick='guess(951)'>951</a> <a onclick='guess(952)'>952</a> <a onclick='guess(953)'>953</a> <a onclick='guess(954)'>954</a> <a onclick='guess(955)'>955</a> <a onclick='guess(956)'>956</a> <a onclick='guess(957)'>957</a> <a onclick='guess(958)'>958</a> <a onclick='guess(959)'>959</a> <a onclick='guess(960)'>960</a> <a onclick='guess(961)'>961</a> <a onclick='guess(962)'>962</a> <a onclick='guess(963)'>963</a> <a onclick='guess(964)'>964</a> <a onclick='guess(965)'>965</a> <a onclick='guess(966)'>966</a> <a onclick='guess(967)'>967</a> <a onclick='guess(968)'>968</a> <a onclick='guess(969)'>969</a> <a onclick='guess(970)'>970</a> <a onclick='guess(971)'>971</a> <a onclick='guess(972)'>972</a> <a onclick='guess(973)'>973</a> <a onclick='guess(974)'>974</a> <a onclick='guess(975)'>975</a> <a onclick='guess(976)'>976</a> <a onclick='guess(977)'>977</a> <a onclick='guess(978)'>978</a> <a onclick='guess(979)'>979</a> <a onclick='guess(980)'>980</a> <a onclick='guess(981)'>981</a> <a onclick='guess(982)'>982</a> <a onclick='guess(983)'>983</a> <a onclick='guess(984)'>984</a> <a onclick='guess(985)'>985</a> <a onclick='guess(986)'>986</a> <a onclick='guess(987)'>987</a> <a onclick='guess(988)'>988</a> <a onclick='guess(989)'>989</a> <a onclick='guess(990)'>990</a> <a onclick='guess(991)'>991</a> <a onclick='guess(992)'>992</a> <a onclick='guess(993)'>993</a> <a onclick='guess(994)'>994</a> <a onclick='guess(995)'>995</a> <a onclick='guess(996)'>996</a> <a onclick='guess(997)'>997</a> <a onclick='guess(998)'>998</a> <a onclick='guess(999)'>999</a> <a onclick='guess(1000)'>1000</a> &nbsp;&nbsp;<a onclick='hints()'>Hints</a> &nbsp;<a onclick='giveup()'>Give up</a> ";
+}
+
+function guess(att)
+{
+if(number == att)
+	{
+da = da*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="<span class='correct'>Correct!</span><br><p id='hintsused'></p><p id='uhoh'></p><p id='tries'>It took you " + da + " " + plural + " to choose the correct number.</p><br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";did();}
+
+if(number !== att)
+	{
+plural = "guesses";
+da = da*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="Nope!<br><p id='greaterorless'></p><button type='button' onclick='begin()'>Try again</button>";
+if(lte==1){isit(att);}}
+}
+
+function isit(att)
+{
+if(number>att)
+{
+x=document.getElementById("greaterorless");
+x.innerHTML="It&#39;s greater than that.<br><br>";
+}
+
+if(number<att)
+{
+x=document.getElementById("greaterorless");
+x.innerHTML="It&#39;s less than that.<br><br>";
+}
+}
+
+function hints()
+{
+x=document.getElementById("main");
+x.innerHTML="<strong>Hints</strong><br><br><span id='hintoe'>Even or odd? <button type='button' onclick='hint1()'>Reveal</button></span><br><span id='hint500'>More than 500? <button type='button' onclick='hint2()'>Reveal</button></span><br><br><button type='button' onclick='hint3()'>Enable less than or greater than</button></span><br><br><button type='button' onclick='begin()'>Go back</button>";
+}
+
+function hint1()
+{
+hint = 1;
+if(number%2 == 0)
+{
+x=document.getElementById("hintoe");
+x.innerHTML="Even or odd? <em>Even</em>";
+}
+else
+{
+x=document.getElementById("hintoe");
+x.innerHTML="Even or odd? <em>Odd</em>";
+}
+}
+
+function hint2()
+{
+hint = 1;
+if(number>500)
+{
+x=document.getElementById("hint500");
+x.innerHTML="More than 500? <em>Yes</em>";
+}
+else
+{
+x=document.getElementById("hint500");
+x.innerHTML="More than 500? <em>No</em>";
+}
+}
+
+function hint3()
+{
+hint = 1;
+lte = 1;
+alert("Enabled.");
+}
+
+
+function did()
+{
+	{
+x=document.getElementById("hintsused");
+x.innerHTML="No hints? Wait, how did you...nevermind.";
+	}
+if(hint==1)
+	{
+x=document.getElementById("hintsused");
+x.innerHTML="But you used hints. Next time, try not to use hints.";
+	}
+if(lte==1)
+	{
+x=document.getElementById("uhoh");
+x.innerHTML="Really? You enabled less than or greater than? Man up!";
+	}
+}
+
+function giveup()
+{
+var r=confirm("Are you sure you want to give up?");
+if (r==true) {x=document.getElementById("main");
+x.innerHTML="The number was " +number+ ".<br><br><button type='button' onclick='generate(),begin()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";
+}}
+
+function begin2()
+{
+x=document.getElementById("main");
+x.innerHTML="<span style='font-size:28pt;font-weight:700;'>Now guess my number.</span><br><br><div id='ten'><a onclick='guess2(1)'>1</a> <a onclick='guess2(2)'>2</a> <a onclick='guess2(3)'>3</a> <a onclick='guess2(4)'>4</a> <a onclick='guess2(5)'>5</a> <a onclick='guess2(6)'>6</a> <a onclick='guess2(7)'>7</a> <a onclick='guess2(8)'>8</a> <a onclick='guess2(9)'>9</a> <a onclick='guess2(10)'>10</a> &nbsp;&nbsp;<a onclick='hints2()'>Hints</a> &nbsp;<a onclick='giveup2()'>Give up</a></div> ";
+}
+
+function guess2(att2)
+{
+if(number2 == att2)
+	{
+da2 = da2*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="<span class='correct'>Correct!</span><br><p id='hintsused2'></p><p id='tries'>It took you " + da2 + " " + plural2 + " to choose the correct number.</p><br><br><button type='button' onclick='generate2(),begin2()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";did2();}
+
+if(number2 !== att2)
+	{
+plural2 = "guesses";
+da2 = da2*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="Nope!<br><br><button type='button' onclick='begin2()'>Try again</button>";}
+}
+
+function hints2()
+{
+x=document.getElementById("main");
+x.innerHTML="<strong>Hints</strong><br><br><span id='hintoe2'>Even or odd? <button type='button' onclick='hint1a()'>Reveal</button></span><br><span id='2hint500'>More than 5? <button type='button' onclick='hint2a()'>Reveal</button></span><br><br><button type='button' onclick='begin2()'>Go back</button>";
+}
+
+function hint1a()
+{
+hint2 = 1;
+if(number2%2 == 0)
+{
+x=document.getElementById("hintoe2");
+x.innerHTML="Even or odd? <em>Even</em>";
+}
+else
+{
+x=document.getElementById("hintoe2");
+x.innerHTML="Even or odd? <em>Odd</em>";
+}
+
+}
+
+function hint2a()
+{
+hint2 = 1;
+if(number2>5)
+{
+x=document.getElementById("2hint500");
+x.innerHTML="More than 5? <em>Yes</em>";
+}
+else
+{
+x=document.getElementById("2hint500");
+x.innerHTML="More than 5? <em>No</em>";
+}
+
+}
+
+function did2()
+{
+if(hint2==0)
+	{
+x=document.getElementById("hintsused2");
+x.innerHTML="No hints? Well done.";
+	}
+if(hint2==1)
+	{
+x=document.getElementById("hintsused2");
+x.innerHTML="But you used hints. Next time, try not to use hints.";
+	}
+}
+
+function giveup2()
+{
+var r=confirm("Are you sure you want to give up?");
+if (r==true) {x=document.getElementById("main");
+x.innerHTML="The number was " +number2+ ".<br><br><button type='button' onclick='generate2(),begin2()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";
+}}
+
+function begin3()
+{
+x=document.getElementById("main");
+x.innerHTML="<span style='font-size:28pt;font-weight:700;'>Now guess my number.</span><br><br><div id='hundred'><a onclick='guess3(1)'>1</a> <a onclick='guess3(2)'>2</a> <a onclick='guess3(3)'>3</a> <a onclick='guess3(4)'>4</a> <a onclick='guess3(5)'>5</a> <a onclick='guess3(6)'>6</a> <a onclick='guess3(7)'>7</a> <a onclick='guess3(8)'>8</a> <a onclick='guess3(9)'>9</a> <a onclick='guess3(10)'>10</a> <a onclick='guess3(11)'>11</a> <a onclick='guess3(12)'>12</a> <a onclick='guess3(13)'>13</a> <a onclick='guess3(14)'>14</a> <a onclick='guess3(15)'>15</a> <a onclick='guess3(16)'>16</a> <a onclick='guess3(17)'>17</a> <a onclick='guess3(18)'>18</a> <a onclick='guess3(19)'>19</a> <a onclick='guess3(20)'>20</a> <a onclick='guess3(21)'>21</a> <a onclick='guess3(22)'>22</a> <a onclick='guess3(23)'>23</a> <a onclick='guess3(24)'>24</a> <a onclick='guess3(25)'>25</a> <a onclick='guess3(26)'>26</a> <a onclick='guess3(27)'>27</a> <a onclick='guess3(28)'>28</a> <a onclick='guess3(29)'>29</a> <a onclick='guess3(30)'>30</a> <a onclick='guess3(31)'>31</a> <a onclick='guess3(32)'>32</a> <a onclick='guess3(33)'>33</a> <a onclick='guess3(34)'>34</a> <a onclick='guess3(35)'>35</a> <a onclick='guess3(36)'>36</a> <a onclick='guess3(37)'>37</a> <a onclick='guess3(38)'>38</a> <a onclick='guess3(39)'>39</a> <a onclick='guess3(40)'>40</a> <a onclick='guess3(41)'>41</a> <a onclick='guess3(42)'>42</a> <a onclick='guess3(43)'>43</a> <a onclick='guess3(44)'>44</a> <a onclick='guess3(45)'>45</a> <a onclick='guess3(46)'>46</a> <a onclick='guess3(47)'>47</a> <a onclick='guess3(48)'>48</a> <a onclick='guess3(49)'>49</a> <a onclick='guess3(50)'>50</a> <a onclick='guess3(51)'>51</a> <a onclick='guess3(52)'>52</a> <a onclick='guess3(53)'>53</a> <a onclick='guess3(54)'>54</a> <a onclick='guess3(55)'>55</a> <a onclick='guess3(56)'>56</a> <a onclick='guess3(57)'>57</a> <a onclick='guess3(58)'>58</a> <a onclick='guess3(59)'>59</a> <a onclick='guess3(60)'>60</a> <a onclick='guess3(61)'>61</a> <a onclick='guess3(62)'>62</a> <a onclick='guess3(63)'>63</a> <a onclick='guess3(64)'>64</a> <a onclick='guess3(65)'>65</a> <a onclick='guess3(66)'>66</a> <a onclick='guess3(67)'>67</a> <a onclick='guess3(68)'>68</a> <a onclick='guess3(69)'>69</a> <a onclick='guess3(70)'>70</a> <a onclick='guess3(71)'>71</a> <a onclick='guess3(72)'>72</a> <a onclick='guess3(73)'>73</a> <a onclick='guess3(74)'>74</a> <a onclick='guess3(75)'>75</a> <a onclick='guess3(76)'>76</a> <a onclick='guess3(77)'>77</a> <a onclick='guess3(78)'>78</a> <a onclick='guess3(79)'>79</a> <a onclick='guess3(80)'>80</a> <a onclick='guess3(81)'>81</a> <a onclick='guess3(82)'>82</a> <a onclick='guess3(83)'>83</a> <a onclick='guess3(84)'>84</a> <a onclick='guess3(85)'>85</a> <a onclick='guess3(86)'>86</a> <a onclick='guess3(87)'>87</a> <a onclick='guess3(88)'>88</a> <a onclick='guess3(89)'>89</a> <a onclick='guess3(90)'>90</a> <a onclick='guess3(91)'>91</a> <a onclick='guess3(92)'>92</a> <a onclick='guess3(93)'>93</a> <a onclick='guess3(94)'>94</a> <a onclick='guess3(95)'>95</a> <a onclick='guess3(96)'>96</a> <a onclick='guess3(97)'>97</a> <a onclick='guess3(98)'>98</a> <a onclick='guess3(99)'>99</a> <a onclick='guess3(100)'>100</a> <br><a onclick='hints3()'>Hints</a> &nbsp;<a onclick='giveup3()'>Give up</a></div> ";
+}
+
+function guess3(att3)
+{
+if(number3 == att3)
+	{
+da3 = da3*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="<span class='correct'>Correct!</span><br><p id='hintsused3'></p><p id='uhoh3'></p><p id='tries'>It took you " + da3 + " " + plural3 + " to choose the correct number.</p><br><br><button type='button' onclick='generate3(),begin3()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";did3();}
+
+if(number3 !== att3)
+	{
+plural3 = "guesses";
+da3 = da3*1 + 1;
+x=document.getElementById("main");
+x.innerHTML="Nope!<br><p id='greaterorless3'></p><button type='button' onclick='begin3()'>Try again</button>";if(lte3==1){isit3(att3);}}
+}
+
+function isit3(att3)
+{
+if(number3>att3)
+{
+x=document.getElementById("greaterorless3");
+x.innerHTML="It&#39;s greater than that.<br><br>";
+}
+
+if(number3<att3)
+{
+x=document.getElementById("greaterorless3");
+x.innerHTML="It&#39;s less than that.<br><br>";
+}
+}
+
+function hints3()
+{
+x=document.getElementById("main");
+x.innerHTML="<strong>Hints</strong><br><br><span id='hintoe3'>Even or odd? <button type='button' onclick='hint1b()'>Reveal</button></span><br><span id='3hint500'>More than 50? <button type='button' onclick='hint2b()'>Reveal</button></span><br><br><button type='button' onclick='hint3b()'>Enable less than or greater than</button></span><br><br><button type='button' onclick='begin3()'>Go back</button>";
+}
+
+function hint1b()
+{
+hint3 = 1;
+if(number3%2 == 0)
+{
+x=document.getElementById("hintoe3");
+x.innerHTML="Even or odd? <em>Even</em>";
+}
+else
+{
+x=document.getElementById("hintoe3");
+x.innerHTML="Even or odd? <em>Odd</em>";
+}
+
+}
+
+function hint2b()
+{
+hint3 = 1;
+if(number3>50)
+{
+x=document.getElementById("3hint500");
+x.innerHTML="More than 50? <em>Yes</em>";
+}
+else
+{
+x=document.getElementById("3hint500");
+x.innerHTML="More than 50? <em>No</em>";
+}
+}
+
+function hint3b()
+{
+hint3 = 1;
+lte3 = 1;
+alert("Enabled.");
+}
+
+function did3()
+{
+if(hint3==0)
+	{
+x=document.getElementById("hintsused3");
+x.innerHTML="No hints? Dang, you must be good.";
+	}
+if(hint3==1)
+	{
+x=document.getElementById("hintsused3");
+x.innerHTML="But you used hints. Next time, try not to use hints.";
+	}
+if(lte3==1)
+	{
+x=document.getElementById("uhoh3");
+x.innerHTML="Really? You enabled less than or greater than? Man up!";
+	}
+}
+
+function giveup3()
+{
+var r=confirm("Are you sure you want to give up?");
+if (r==true) {x=document.getElementById("main");
+x.innerHTML="The number was " +number3+ ".<br><br><button type='button' onclick='generate3(),begin3()'>Play again</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";
+}}
+
+function begin4()
+{
+x=document.getElementById("main");
+x.innerHTML="<span style='font-size:28pt;font-weight:700;'>Now guess my number.</span><br><br><div id='oneandone'><a onclick='guess1c()'>1</a></div> ";
+}
+
+function guess1c()
+{
+var r=confirm("Are you 100% sure this is the number you want to guess?\n\nThink really, REALLY carefully before making this decision.");
+if (r==true) {x=document.getElementById("main");
+x.innerHTML="<span class='correct'>Correct!</span><br><p>But you know, in life, you should never take the easy way out of things.</p><br><br><button type='button' onclick='imdone()'>Main Menu</button>";
+}}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="first">
+
+<div id="wrap">
+
+<div id="content">
+
+
+<!--[if lte IE 8]>
+<span style="font-weight:700;font-size:14pt;">Your browser is unsupported. Time for an upgrade. Try a newer <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer</a>, <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, or <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.<br></span>
+<![endif]-->
+
+<noscript><span style="display:block;;font-weight:700;font-size:14pt;">Javascript is disabled. Please enable it in order to play the game.</span><br></noscript>
+
+<p id="main">
+<span id="title"><strong>I am Thinking of a Number.</strong></span><br><br><br>
+<span class="block"><button class="big" type="button" onclick="between()">Begin</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span><br>
+<br><br><span id="copyright">Version 2.2 &nbsp;&#126;&nbsp; &copy;2010-2014 Timothy Hsu</span></p>
+
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>

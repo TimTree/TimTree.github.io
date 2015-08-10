@@ -1,0 +1,857 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<title>Button Masher</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<meta charset="UTF-8">
+
+<meta name="description" content="Click the button with your mouse as fast as you can! There are different game modes to choose from.">
+
+<link rel="shortcut icon" type="image/x-icon" href="masher.ico" />
+
+<style>
+
+body {
+margin:0;
+background-color:#91825B;
+}
+
+#wrap {
+background:#fff;
+width:700px;
+margin:0 auto;
+display:block;
+padding-top:10px;
+padding-bottom:15px;
+padding-right:50px;
+padding-left:50px;
+height:100%;
+}
+
+p {
+line-height:1.3;
+}
+
+button {
+background-color:#eee;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+border:1px solid #aaa;
+color:#444;
+font-family:verdana,"Bitstream Vera Sans";
+font-size:12pt;
+padding:3px 8px;
+}
+
+button:hover {
+background-color:#dedede;
+}
+
+button:active {
+background-color:#bcbcbc;
+}
+
+button.mod {
+font-size:13pt;
+padding-left:7px;
+padding-right:7px;
+padding-top:3px;
+padding-bottom:3px;
+}
+
+button.mod2 {
+font-size:14pt;
+padding:3px 8px;
+}
+
+button.big {
+font-size:20pt;
+padding-left:10px;
+padding-right:10px;
+padding-top:4px;
+padding-bottom:4px;
+}
+
+button.mash {
+font-size:22pt;
+padding:12px;
+}
+
+button.small {
+font-size:9pt;
+}
+
+#copyright {
+font-size:10pt;
+text-align:center;
+}
+
+li {
+line-height:1.5;
+}
+
+#font {
+font-family:"Verdana","Bitstream Vera Sans";
+}
+
+#title {
+text-align:center;
+font-size:50pt;
+color:#AD3939;
+font-family:trebuchet ms,sans-serif;
+display:block;
+font-weight:700;
+line-height:1.8;
+}
+
+.break {
+line-height:2;
+}
+
+.breaksmall {
+line-height:1.5;
+}
+
+span.center {
+display:block;
+text-align:center;
+}
+
+span.record {
+font-weight:700;
+color:#395ED3;
+font-size:16pt;
+}
+
+#movementmasher {
+height:300px;
+}
+
+#movement {
+font-size:22pt;
+padding:12px;
+position:relative;
+left:287px;
+top:120px;
+}
+
+*{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+td {
+width:160px;
+padding-bottom:5px;
+}
+
+td.check {
+width:20px;
+padding-bottom:5px;
+color:#009000;
+}
+
+#secret {
+position:absolute;
+left:1px;
+top:1px;
+width:20px;
+height:20px;
+cursor:pointer;
+}
+
+span.cgcount {
+font-size:46pt;
+font-weight:700;
+color:#399470;
+}
+
+</style>
+
+<script>
+
+var tenSecScore = 0;
+var thirtySecScore = 0;
+var oneMinScore = 0;
+var enduranceScore = 0;
+var movementScore = 0;
+var timesPlayed = 0;
+var timesClicked = 0;
+var tenSecBeat = 0;
+var thirtySecBeat = 0;
+var oneMinBeat = 0;
+var enduranceBeat = 0;
+var movementBeat = 0;
+
+if (localStorage.getItem("bmasherScore")) {
+	tenSecScore = localStorage.getItem("bmasherScore");
+	}
+if (localStorage.getItem("bmasherScore2")) {
+	thirtySecScore = localStorage.getItem("bmasherScore2");
+	}
+if (localStorage.getItem("bmasherScore3")) {
+	oneMinScore = localStorage.getItem("bmasherScore3");
+	}
+if (localStorage.getItem("bmasherScore4")) {
+	enduranceScore = localStorage.getItem("bmasherScore4");
+	}
+if (localStorage.getItem("bmasherScore5")) {
+	movementScore = localStorage.getItem("bmasherScore5");
+	}
+if (localStorage.getItem("timesPlayedScore")) {
+	timesPlayed = localStorage.getItem("timesPlayedScore");
+	}
+if (localStorage.getItem("timesClickedScore")) {
+	timesClicked = localStorage.getItem("timesClickedScore");
+	}
+if (localStorage.getItem("tenSecBeatScore")) {
+	tenSecBeat = localStorage.getItem("tenSecBeatScore");
+	}
+if (localStorage.getItem("thirtySecBeatScore")) {
+	thirtySecBeat = localStorage.getItem("thirtySecBeatScore");
+	}
+if (localStorage.getItem("oneMinBeatScore")) {
+	oneMinBeat = localStorage.getItem("oneMinBeatScore");
+	}
+if (localStorage.getItem("enduranceBeatScore")) {
+	enduranceBeat = localStorage.getItem("enduranceBeatScore");
+	}
+if (localStorage.getItem("movementBeatScore")) {
+	movementBeat = localStorage.getItem("movementBeatScore");
+	}
+
+function begin()
+{
+document.body.style.backgroundColor = "#91825B";
+document.getElementById("title").style.fontSize="50pt";
+document.getElementById("author").innerHTML="A Javascript game by Timothy Hsu";
+document.getElementById("copyright").innerHTML="<br><br>Version 3.1 &nbsp;&#126;&nbsp; &copy;2013 Timothy Hsu&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='dload()'><strong>Download</strong></a>&nbsp;&nbsp;<a style='cursor:pointer;' onclick='moregames()'><strong>More Games</strong></a>";
+document.getElementById("main").innerHTML="<span class='center'>Select Mode<br><br><button type='button' class='mod' onclick='tensec()'>10 Seconds</button>&nbsp&nbsp&nbsp<button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button>&nbsp&nbsp&nbsp<button type='button' class='mod' onclick='onemin()'>1 Minute</button><br><br><button type='button' class='mod' onclick='endure()'>Endurance</button>&nbsp;&nbsp;&nbsp;<button type='button' class='mod' onclick='move()'>Movement</button><br><br><a onclick='beatcreator()' style='font-size:10pt;cursor:pointer;'><strong>Beat the Creator</strong></a>&nbsp;&nbsp;&nbsp;<a onclick='clickergod()' style='font-size:10pt;cursor:pointer;'><strong>The Clicker God</strong></a></span>";
+}
+
+function endure()
+{
+var b=confirm("Endurance Mode Rules\n\nNo time limit. Once you stop clicking for a quarter second, your game is over.");
+if (b==true) {endurance();}
+}
+
+function records()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>High Scores</strong><br><br><strong>10 Seconds:</strong> " + tenSecScore + "<br class='break'><strong>30 Seconds:</strong> " + thirtySecScore + "<br class='break'><strong>1 Minute:</strong> " + oneMinScore + "<br class='break'><strong>Endurance:</strong> " + enduranceScore + "<br class='break'><strong>Movement:</strong> " + movementScore + "<br><br>Times played: " + timesPlayed + "<br class='break'>Times clicked: " + timesClicked + "<br><br><button type='button' onclick='reset()' style='font-size:10pt;'>Reset</button><br><br><br><button type='button' class='mod' onclick='imdone()'>Go back</button></span>";
+}
+
+function reset()
+{
+var r=confirm("Are you sure you want to reset all your scores?");
+if (r==true) {tenSecScore = 0;localStorage.setItem("bmasherScore", tenSecScore);thirtySecScore = 0;localStorage.setItem("bmasherScore2", thirtySecScore);oneMinScore = 0;localStorage.setItem("bmasherScore3", oneMinScore);enduranceScore = 0;localStorage.setItem("bmasherScore4", enduranceScore);movementScore = 0;localStorage.setItem("bmasherScore5", movementScore);timesPlayed = 0;localStorage.setItem("timesPlayedScore", timesPlayed);timesClicked = 0;localStorage.setItem("timesClickedScore", timesClicked);tenSecBeat = 0;localStorage.setItem("tenSecBeatScore", tenSecBeat);thirtySecBeat = 0;localStorage.setItem("thirtySecBeatScore", thirtySecBeat);oneMinBeat = 0;localStorage.setItem("oneMinBeatScore", oneMinBeat);enduranceBeat = 0;localStorage.setItem("enduranceBeatScore", enduranceBeat);movementBeat = 0;localStorage.setItem("movementBeatScore", movementBeat);localStorage.clear();records();}
+}
+
+function help()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>Help</strong><br class='break'>See how many times you can click on a button in a set period of time. Choose between 10 seconds, 30 seconds, 1 minute, or endurance mode. Good luck!<br class='break'>Button Masher works on the following browsers:<br class='break'>Internet Explorer 9+<br>Firefox 3.5+<br>Chrome 4+<br>Safari 4+<br>Opera 10.50+<br><br><button type='button' onclick='imdone()'>Go back</button></span>";
+}
+
+function dload()
+{
+if(document.URL.indexOf("https://dl.dropboxusercontent.com/u/163670008/bmasher.htm")>= 0)
+{document.getElementById("main").innerHTML="<span class='center'><strong>Download</strong><br class='break'>You can download Button Masher to your computer so you can play without an Internet connection. Here&#39;s how.<br class='break'><strong>Internet Explorer:</strong> Click on the top right gear. Then select File -&gt; Save as.<br><strong>Firefox and Safari:</strong> Right click, then select Save Page As.<br><strong>Chrome and Opera:</strong> Right click, then select Save as.<br><br><button type='button' onclick='imdone()'>Go back</button></span>";}
+else
+{document.getElementById("main").innerHTML="<span class='center'><strong>Download</strong><br class='break'>Thanks for downloading Button Masher. To play online, <a href='https://dl.dropboxusercontent.com/u/163670008/bmasher.htm'>click here</a>.<br><br><button type='button' onclick='imdone()'>Go back</button></span>";}
+}
+
+function moregames()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>More Games</strong><br class='break'><strong>Kill the Keyboard:</strong> It&#39;s like Button Masher, except this time, you&#39;re mashing the keyboard! <a href='https://dl.dropboxusercontent.com/u/163670008/kmasher.htm' target='_blank'>Click here to play.</a><br class='break'><strong>The Number Guessing Game:</strong> A Javascript experiment that generates random numbers each time you play. <a href='https://dl.dropboxusercontent.com/u/163670008/NumberGuessing.htm' target='_blank'>Click here to play.</a><br><br><button type='button' onclick='imdone()'>Go back</button></span>";
+}
+
+function about()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>About</strong><br class='break'></span>Button Masher - my first Javascript game.<br class='break'>It&#39;s a really simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. And finally, this is my first game to keep save data, in the form of stats. Button Masher is HTML5 ready and should work with the latest versions of all major browsers.<br class='break'><strong>Release Date:</strong> April 19, 2013<br><strong>Software Used:</strong> Notepad and TextEdit<br><strong>Latest Update:</strong> September 27, 2013 (Version 3.1)<br class='break'><strong>Copyright Notice:</strong> Permission is granted to read, download, and modify the game&#39;s source code for personal use, but selling and distributing modified versions of the game without the author&#39;s permission is prohibited.<br><br><span class='center'><button type='button' onclick='vhistory()'>Version History</button><br><br><button type='button' onclick='imdone()'>Go back</button></span>";
+}
+
+function vhistory()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>Version History</strong><br class='break'></span><ul><li><strong>Version 3.1</strong> (released 9/27/13)<br>New mini achievements for the Clicker God<br>Trims some redundant code</li><br><li><strong>Version 3.0.1</strong> (released 9/2/13)<br>You can now go back to the select mode page directly after playing a game.</li><br><li><strong>Version 3.0</strong> (released 9/1/13)<br>Lots of changes in this update. Here it goes.<br class='break'>Introducing two achievements: Beat the Creator and The Clicker God<br>Makes it easier to reach black in 10 Seconds mode<br>New game mode called Movement<br>Keyboard Masher is no longer hidden. It is now a separate game.<br>Adds a download link to play Button Masher offline<br>Adds More Games link for easier access to my other Javascript games<br>Optimizes font for Linux users<br>Adds meta description to the source code<br>Code optimization for adding 1 to variables<br>Adds background color intervals to Endurance mode</li><br><li><strong>Version 2.1</strong> (released 8/11/13)<br>Adds times clicked to the Stats menu<br>Replaces some presentational tags with semantic tags for improved markup<br>Adds a copyright notice to the About page</li><br><li><strong>Version 2.0</strong> (released 6/25/13)<br>Button Masher v2.0 features a load of new features and enhancements, including the following:<br class='break'>New look<br>Disabled text highlighting to improve appearance<br>Replaced Unlimited mode with a new Endurance mode<br>New times played statistic (find in High Scores menu)<br>Added a new hidden game mode. Can you find it?<br>Fixed timer glitch on Firefox<br>Fixed button padding glitch on Firefox for Mac</li><br><li><strong>Version 1.3</strong> (released 6/8/13)<br>Thanks to feedback, Button Masher now saves local high scores!</li><br><li><strong>Version 1.2</strong> (released 5/19/13)<br>The timer code has been optimized, resulting in a smaller file size.<br>The timer now counts down by 1/10th of a second.</li><br><li><strong>Version 1.1</strong> (released 4/21/13)<br>Bigger mash button<br>Commentary for specific scores<br>Added a favicon<br>Disables enter key cheating</li><br><li><strong>Version 1.0</strong> (released 4/19/13): Initial Release</li></ul><br><span class='center'><button type='button' onclick='imdone()'>Go back</button></span>";
+}
+
+function beatcreator()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>Beat the Creator</strong><br class='break'>Below is a comparison of the game creator&#39;s high scores as of this writing to your high scores. See if you best each and every score!<br><br><table style='margin:auto; width:500px;'><tr style='padding-bottom:5px;'><td style='width:160px;'><strong>Game Mode</td><td style='width:160px;'><strong>Creator&#39;s Score</td><td style='width:160px;'><strong>Your Score</strong></td><td class='check'></td></tr><tr><td>10 Seconds</td><td>82</td><td>" + tenSecScore + "</td><td class='check' id='beatmeten'></td></tr><tr><td>30 Seconds</td><td>240</td><td>" + thirtySecScore + "</td><td class='check' id='beatmethirty'></td></tr><tr><td>1 Minute</td><td>445</td><td>" + oneMinScore + "</td><td class='check' id='beatmeonemin'></td></tr><tr><td>Endurance</td><td>933</td><td>" + enduranceScore + "</td><td class='check' id='beatmeendurance'></td></tr><tr><td>Movement</td><td>64</td><td>" + movementScore + "</td><td class='check' id='beatmemovement'></td></tr></table><br><br><button type='button' onclick='begin()'>Go back</button></span>";
+if (tenSecBeat=="1")
+{document.getElementById("beatmeten").innerHTML="&#10004;";}
+if (thirtySecBeat=="1")
+{document.getElementById("beatmethirty").innerHTML="&#10004;";}
+if (oneMinBeat=="1")
+{document.getElementById("beatmeonemin").innerHTML="&#10004;";}
+if (enduranceBeat=="1")
+{document.getElementById("beatmeendurance").innerHTML="&#10004;";}
+if (movementBeat=="1")
+{document.getElementById("beatmemovement").innerHTML="&#10004;";}
+}
+
+function clickergod()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>The Clicker God</strong><br class='break'>Can you accumulate a total of 100,000 clicks? If so, you are considered as a clicker god. Below is your current progress.<br><br><p id='clickergod'>Total Clicks:<br class='break'><span class='cgcount'>" + timesClicked + "</span> /100,000<br><br><span style='font-size:14pt;'>Your rank: <strong>Clicker Newcomer</strong></span><br><br>Next rank at 500 clicks</p><br><br><button type='button' onclick='begin()'>Go back</button></span>";
+if (timesClicked>=500&&timesClicked<=999)
+{document.getElementById("clickergod").innerHTML="Total Clicks:<br class='break'><span class='cgcount'>" + timesClicked + "</span> /100,000<br><br><span style='font-size:14pt;'>Your rank: <strong>Clicker Determined</strong></span><br><br>Next rank at 1,000 clicks";}
+if (timesClicked>=1000&&timesClicked<=4999)
+{document.getElementById("clickergod").innerHTML="Total Clicks:<br class='break'><span class='cgcount'>" + timesClicked + "</span> /100,000<br><br><span style='font-size:14pt;'>Your rank: <strong>Clicker Star</strong></span><br><br>Next rank at 5,000 clicks";}
+if (timesClicked>=5000&&timesClicked<=9999)
+{document.getElementById("clickergod").innerHTML="Total Clicks:<br class='break'><span class='cgcount'>" + timesClicked + "</span> /100,000<br><br><span style='font-size:14pt;'>Your rank: <strong>Clicker Pro</strong></span><br><br>Next rank at 10,000 clicks";}
+if (timesClicked>=10000&&timesClicked<=49999)
+{document.getElementById("clickergod").innerHTML="Total Clicks:<br class='break'><span class='cgcount'>" + timesClicked + "</span> /100,000<br><br><span style='font-size:14pt;'>Your rank: <strong>Clicker Master</strong></span><br><br>Next rank at 50,000 clicks";}
+if (timesClicked>=50000&&timesClicked<=99999)
+{document.getElementById("clickergod").innerHTML="Total Clicks:<br class='break'><span class='cgcount'>" + timesClicked + "</span> /100,000<br><br><span style='font-size:14pt;'>Your rank: <strong>Clicker Sage</strong></span><br><br>Next rank: The Clicker God (100,000 clicks)";}
+if (timesClicked>=100000)
+{document.getElementById("clickergod").innerHTML="Total Clicks:<br class='break'><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + timesClicked + "</span><br><br><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are a clicker god!</span>";}
+}
+
+function tensec()
+{
+document.body.style.backgroundColor = "#91825B";
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML="10 Seconds";
+document.getElementById("copyright").innerHTML="";
+document.getElementById("main").innerHTML="<span class='center'><p id='beatme'></p><b>Score</b><br class='breaksmall'><form name='score'><!-- Cheater, you have been caught. ;) --><input name='scoring' type='text' value='0' style='border:none; font-size:22pt; text-align:center;' readonly></form><p id='masher'><button type='button' class='mash' onclick='plusone()'>START</button></p><p id='timer'><br><form name='timer'><b>Time:</b> <input name='thetime' type='text' value='10' style='border:none; width:34px; font-size:16pt; text-align:center;' readonly></form><br><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + tenSecScore + "</span></p></span>";
+}
+var int;
+function plusone () { 
+document.score.scoring.value++;
+setTimeout(function(){document.timer.thetime.value = 0},10001);
+
+setTimeout(function(){document.getElementById("masher").innerHTML="<span style='font-size:28pt;color:#BD8B20;'><b>Time's up!</b></span><br><p id='record'></p><p id='analysis'></p><br><br><button type='button' class='big' onclick='tensec()'>Play Again</button><br><br><button type='button' onclick='begin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";},10000);
+
+setTimeout(function(){if (+document.score.scoring.value > +tenSecScore){document.getElementById("record").innerHTML="<span class='record'>New Record!</span><br><br>";tenSecScore = document.score.scoring.value;localStorage.setItem("bmasherScore", tenSecScore)}},10000);
+
+setTimeout(function(){timesPlayed++;localStorage.setItem("timesPlayedScore", timesPlayed)},10000);
+
+document.getElementById("masher").innerHTML="<button type='button' class='mash' onclick='plusone2(),bgchange()' onkeypress='return noenter(event)'>MASH!</button>";
+document.body.style.backgroundColor = "#4294CF";
+
+int=setInterval(function(){document.timer.thetime.value = (document.timer.thetime.value*1 - 0.1).toFixed(1);},100);
+
+setTimeout(function() {clearInterval(int)},10000);
+
+setTimeout(function() {analysis(),beatme()},10000);
+
+} 
+
+function plusone2 () { 
+document.score.scoring.value++;
+}
+
+function bgchange()
+{
+
+var x=document.score.scoring.value;
+if(x=="12")
+{document.body.style.backgroundColor = "#3EB399";}
+if(x=="24")
+{document.body.style.backgroundColor = "#168A50";}
+if(x=="36")
+{document.body.style.backgroundColor = "#9BAB43";}
+if(x=="48")
+{document.body.style.backgroundColor = "#BF7E34";}
+if(x=="60")
+{document.body.style.backgroundColor = "#BD4242";}
+if(x=="72")
+{document.body.style.backgroundColor = "#7A2626";}
+if(x=="84")
+{document.body.style.backgroundColor = "#151566";}
+if(x=="86")
+{document.body.style.backgroundColor = "#5E5E5E";}
+if(x=="108")
+{document.body.style.backgroundColor = "#000";}
+}
+
+function analysis()
+{
+var x=document.score.scoring.value;
+if(x>=1&&x<=39)
+{document.getElementById("analysis").innerHTML="Come on, you can do better than that!";}
+if(x>=40&&x<=59)
+{document.getElementById("analysis").innerHTML="You&#39re getting there. Keep trying!";}
+if(x>=60&&x<=69)
+{document.getElementById("analysis").innerHTML="Not bad! Keep on trying!";}
+if(x>=70&&x<=79)
+{document.getElementById("analysis").innerHTML="Wow, you&#39re pretty good at this game.";}
+if(x>=80&&x<=89)
+{document.getElementById("analysis").innerHTML="Dang, you are way better than I thought you were.";}
+if(x>=90&&x<=99)
+{document.getElementById("analysis").innerHTML="At this score, you seriously deserve a raise.";}
+if(x>=100&&x<=9000)
+{document.getElementById("analysis").innerHTML="&#42;Faints&#42;";}
+if(x>=9001)
+{document.getElementById("analysis").innerHTML="OVER 9000?! Someone, GIVE THIS GUY A LIFE!!!";}
+timesClicked = timesClicked*1+document.score.scoring.value*1;localStorage.setItem("timesClickedScore", timesClicked);
+}
+
+function beatme() {
+var x=document.score.scoring.value;
+var y=tenSecBeat;
+if(x>=83&&y==0)
+{document.getElementById("beatme").innerHTML="<span style='color:#009000;font-weight:700;'>You beat the game creator!</span>";
+tenSecBeat = "1";localStorage.setItem("tenSecBeatScore", tenSecBeat);}
+}
+
+
+function thirtysec()
+{
+document.body.style.backgroundColor = "#91825B";
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML="30 Seconds";
+document.getElementById("copyright").innerHTML="";
+document.getElementById("main").innerHTML="<span class='center'><p id='beatme2'></p><b>Score</b><br class='breaksmall'><form name='score2'><!-- Cheater, you have been caught. ;) --><input name='scoring2' type='text' value='0' style='border:none; font-size:22pt; text-align:center;' readonly></form><p id='masher2'><button type='button' class='mash' onclick='plusone3()'>START</button></p><p id='timer2'><br><form name='timer2'><b>Time:</b> <input name='thetime2' type='text' value='30' style='border:none; width:47px; font-size:16pt; text-align:center;' readonly></form><br><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + thirtySecScore + "</span></p></span>";
+}
+
+var int2;
+function plusone3 () { 
+document.score2.scoring2.value++ ;
+
+setTimeout(function(){document.getElementById("masher2").innerHTML="<span style='font-size:28pt;color:#BD8B20;'><b>Time's up!</b></span><br><p id='record2'></p><p id='analysis2'></p><br><br><button type='button' class='big' onclick='thirtysec()'>Play Again</button><br><br><button type='button' onclick='begin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";},30000);
+
+setTimeout(function(){timesPlayed++;localStorage.setItem("timesPlayedScore", timesPlayed)},30000);
+
+setTimeout(function(){document.timer2.thetime2.value = 0},30001);
+
+setTimeout(function(){if (+document.score2.scoring2.value > +thirtySecScore){document.getElementById("record2").innerHTML="<span class='record'>New Record!</span><br><br>";thirtySecScore = document.score2.scoring2.value;localStorage.setItem("bmasherScore2", thirtySecScore)}},30000);
+
+document.getElementById("masher2").innerHTML="<button type='button' class='mash' onclick='plusone4(),bgchange2()' onkeypress='return noenter(event)'>MASH!</button>";
+document.body.style.backgroundColor = "#4294CF";
+
+int2=setInterval(function(){document.timer2.thetime2.value = (document.timer2.thetime2.value*1 - 0.1).toFixed(1);},100);
+
+setTimeout(function() {clearInterval(int2)},30000);
+
+setTimeout(function () {analysis2(),beatme2()},30000);
+} 
+
+function plusone4 () { 
+document.score2.scoring2.value++ ;
+}
+
+function bgchange2()
+{
+var x=document.score2.scoring2.value;
+if(x=="30")
+{document.body.style.backgroundColor = "#3EB399";}
+if(x=="60")
+{document.body.style.backgroundColor = "#168A50";}
+if(x=="90")
+{document.body.style.backgroundColor = "#9BAB43";}
+if(x=="120")
+{document.body.style.backgroundColor = "#BF7E34";}
+if(x=="150")
+{document.body.style.backgroundColor = "#BD4242";}
+if(x=="180")
+{document.body.style.backgroundColor = "#7A2626";}
+if(x=="210")
+{document.body.style.backgroundColor = "#151566";}
+if(x=="240")
+{document.body.style.backgroundColor = "#5E5E5E";}
+if(x=="270")
+{document.body.style.backgroundColor = "#000";}
+}
+
+function analysis2()
+{
+var x=document.score2.scoring2.value;
+if(x>=1&&x<=129)
+{document.getElementById("analysis2").innerHTML="Come on, you can do better than that!";}
+if(x>=130&&x<=179)
+{document.getElementById("analysis2").innerHTML="You&#39re getting there. Keep trying!";}
+if(x>=180&&x<=209)
+{document.getElementById("analysis2").innerHTML="Not bad! Keep on trying!";}
+if(x>=210&&x<=239)
+{document.getElementById("analysis2").innerHTML="Wow, you&#39re pretty good at this game.";}
+if(x>=240&&x<=269)
+{document.getElementById("analysis2").innerHTML="Dang, you are way better than I thought you were.";}
+if(x>=270&&x<=299)
+{document.getElementById("analysis2").innerHTML="At this score, you seriously deserve a raise.";}
+if(x>=300&&x<=9000)
+{document.getElementById("analysis2").innerHTML="&#42;Faints&#42;";}
+if(x>=9001)
+{document.getElementById("analysis2").innerHTML="OVER 9000?! Someone, GIVE THIS GUY A LIFE!!!";}
+timesClicked = timesClicked*1+document.score2.scoring2.value*1;localStorage.setItem("timesClickedScore", timesClicked);
+}
+
+function beatme2() {
+var x=document.score2.scoring2.value;
+var y=thirtySecBeat;
+if(x>=241&&y==0)
+{document.getElementById("beatme2").innerHTML="<span style='color:#009000;font-weight:700;'>You beat the game creator!</span>";
+thirtySecBeat = "1";localStorage.setItem("thirtySecBeatScore", thirtySecBeat);}
+}
+
+function onemin()
+{
+document.body.style.backgroundColor = "#91825B";
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML="1 Minute";
+document.getElementById("copyright").innerHTML="";
+document.getElementById("main").innerHTML="<span class='center'><p id='beatme3'></p><b>Score</b><br class='breaksmall'><form name='score3'><!-- Cheater, you have been caught. ;) --><input name='scoring3' type='text' value='0' style='border:none; font-size:22pt; text-align:center;' readonly></form><p id='masher3'><button type='button' class='mash' onclick='plusone5()'>START</button></p><p id='timer3'><br><form name='timer3'><b>Time:</b> <input name='thetime3' type='text' value='60' style='border:none; width:47px; font-size:16pt; text-align:center;' readonly></form><br><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + oneMinScore + "</span></p></span>";
+}
+
+var int3;
+function plusone5 () { 
+document.score3.scoring3.value++ ;
+
+setTimeout(function(){document.getElementById("masher3").innerHTML="<span style='font-size:28pt;color:#BD8B20;'><b>Time's up!</b></span><br><p id='record3'></p><p id='analysis3'></p><br><br><button type='button' class='big' onclick='onemin()'>Play Again</button><br><br><button type='button' onclick='begin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";},60000);
+
+setTimeout(function(){document.timer3.thetime3.value = 0},60001);
+
+setTimeout(function(){if (+document.score3.scoring3.value > +oneMinScore){document.getElementById("record3").innerHTML="<span class='record'>New Record!</span><br><br>";oneMinScore = document.score3.scoring3.value;localStorage.setItem("bmasherScore3", oneMinScore)}},60000);
+
+setTimeout(function(){timesPlayed++;localStorage.setItem("timesPlayedScore", timesPlayed)},60000);
+
+document.getElementById("masher3").innerHTML="<button type='button' class='mash' onclick='plusone6(),bgchange3()' onkeypress='return noenter(event)'>MASH!</button>";
+document.body.style.backgroundColor = "#4294CF";
+
+int3=setInterval(function(){document.timer3.thetime3.value = (document.timer3.thetime3.value*1 - 0.1).toFixed(1);},100);
+
+setTimeout(function() {clearInterval(int3)},60000);
+
+setTimeout(function () {analysis3(),beatme3()},60000);
+
+} 
+
+
+function plusone6 () { 
+document.score3.scoring3.value++ ;
+}
+
+function bgchange3()
+{
+var x=document.score3.scoring3.value;
+if(x=="55")
+{document.body.style.backgroundColor = "#3EB399";}
+if(x=="110")
+{document.body.style.backgroundColor = "#168A50";}
+if(x=="165")
+{document.body.style.backgroundColor = "#9BAB43";}
+if(x=="220")
+{document.body.style.backgroundColor = "#BF7E34";}
+if(x=="275")
+{document.body.style.backgroundColor = "#BD4242";}
+if(x=="330")
+{document.body.style.backgroundColor = "#7A2626";}
+if(x=="385")
+{document.body.style.backgroundColor = "#151566";}
+if(x=="440")
+{document.body.style.backgroundColor = "#5E5E5E";}
+if(x=="495")
+{document.body.style.backgroundColor = "#000";}
+}
+
+function analysis3()
+{
+var x=document.score3.scoring3.value;
+if(x>=1&&x<=259)
+{document.getElementById("analysis3").innerHTML="Come on, you can do better than that!";}
+if(x>=260&&x<=359)
+{document.getElementById("analysis3").innerHTML="You&#39re getting there. Keep trying!";}
+if(x>=360&&x<=419)
+{document.getElementById("analysis3").innerHTML="Not bad! Keep on trying!";}
+if(x>=420&&x<=479)
+{document.getElementById("analysis3").innerHTML="Wow, you&#39re pretty good at this game.";}
+if(x>=480&&x<=539)
+{document.getElementById("analysis3").innerHTML="Dang, you are way better than I thought you were.";}
+if(x>=540&&x<=599)
+{document.getElementById("analysis3").innerHTML="At this score, you seriously deserve a raise.";}
+if(x>=600&&x<=9000)
+{document.getElementById("analysis3").innerHTML="&#42;Faints&#42;";}
+if(x>=9001)
+{document.getElementById("analysis3").innerHTML="OVER 9000?! Someone, GIVE THIS GUY A LIFE!!!";}
+timesClicked = timesClicked*1+document.score3.scoring3.value*1;localStorage.setItem("timesClickedScore", timesClicked);
+}
+
+function beatme3() {
+var x=document.score3.scoring3.value;
+var y=oneMinBeat;
+if(x>=446&&y==0)
+{document.getElementById("beatme3").innerHTML="<span style='color:#009000;font-weight:700;'>You beat the game creator!</span>";
+oneMinBeat = "1";localStorage.setItem("oneMinBeatScore", oneMinBeat);}
+}
+
+function noenter(e) {
+var key;      
+if(window.event)
+key = window.event.keyCode; //IE
+else
+key = e.which; //firefox
+return (key != 13);
+}
+
+function endurance()
+{
+document.body.style.backgroundColor = "#888";
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML="Endurance";
+document.getElementById("copyright").innerHTML="";
+document.getElementById("main").innerHTML="<span class='center'><p id='beatme4'></p><b>Score</b><br class='breaksmall'><form name='score4'><!-- Cheater, you have been caught. ;) --><input name='scoring4' type='text' value='0' style='border:none; font-size:22pt; text-align:center;' readonly></form><p id='masher4'><button type='button' class='mash' onclick='plusone7()'>START</button></p><br><p id='timer'><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + enduranceScore + "</span></p></span>";
+}
+
+var edone;
+var eanalysis;
+var erecord;
+function plusone7 () { 
+document.score4.scoring4.value++ ;
+
+document.getElementById("masher4").innerHTML="<button type='button' class='mash' onclick='plusone8(),bgchange4()' onkeypress='return noenter(event)'>MASH!</button>";
+document.body.style.backgroundColor = "#666";
+timesPlayed++;localStorage.setItem("timesPlayedScore", timesPlayed);
+
+edone=setTimeout(function(){document.body.style.backgroundColor = "#000";
+document.getElementById("masher4").innerHTML="<span style='font-size:28pt;color:#5458BD;'><b>Done.</b></span><br><p id='record4'></p><p id='analysis4'></p><br><br><button type='button' class='big' onclick='endurance()'>Play Again</button><br><br><button type='button' onclick='begin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";},250);
+
+eanalysis=setTimeout(function () {analysis4(),beatme4()},250);
+
+erecord=setTimeout(function(){if (+document.score4.scoring4.value > +enduranceScore){document.getElementById("record4").innerHTML="<span class='record'>New Record!</span><br><br>";enduranceScore = document.score4.scoring4.value;localStorage.setItem("bmasherScore4", enduranceScore)}},250);
+}
+
+function plusone8 () { 
+clearTimeout (edone);
+clearTimeout (eanalysis);
+clearTimeout (erecord);
+edone=setTimeout(function(){document.body.style.backgroundColor = "#000";
+document.getElementById("masher4").innerHTML="<span style='font-size:28pt;color:#5458BD;'><b>Done.</b></span><br><p id='record4'></p><p id='analysis4'></p><br><br><button type='button' class='big' onclick='endurance()'>Play Again</button><br><br><button type='button' onclick='begin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button>";},250);
+eanalysis=setTimeout(function () {analysis4(),beatme4()},250);
+erecord=setTimeout(function(){if (+document.score4.scoring4.value > +enduranceScore){document.getElementById("record4").innerHTML="<span class='record'>New Record!</span><br><br>";enduranceScore = document.score4.scoring4.value;localStorage.setItem("bmasherScore4", enduranceScore)}},250);
+document.score4.scoring4.value++ ;
+}
+
+function bgchange4()
+{
+var x=document.score4.scoring4.value;
+if(x=="100")
+{document.body.style.backgroundColor = "#494949";}
+if(x=="200")
+{document.body.style.backgroundColor = "#3E3E3E";}
+if(x=="300")
+{document.body.style.backgroundColor = "#333";}
+if(x=="400")
+{document.body.style.backgroundColor = "#282828";}
+if(x=="500")
+{document.body.style.backgroundColor = "#1C1C1C";}
+if(x=="600")
+{document.body.style.backgroundColor = "#101010";}
+}
+
+function analysis4()
+{
+var x=document.score4.scoring4.value;
+if(x>=1&&x<=19)
+{document.getElementById("analysis4").innerHTML="Weak!";}
+if(x>=20&&x<=49)
+{document.getElementById("analysis4").innerHTML="Better than nothing, I guess.";}
+if(x>=50&&x<=99)
+{document.getElementById("analysis4").innerHTML="Keep trying, mate.";}
+if(x>=100&&x<=149)
+{document.getElementById("analysis4").innerHTML="You&#39;re getting there!";}
+if(x>=150&&x<=199)
+{document.getElementById("analysis4").innerHTML="Nicely done.";}
+if(x>=200&&x<=299)
+{document.getElementById("analysis4").innerHTML="Not too shabby!";}
+if(x>=300&&x<=499)
+{document.getElementById("analysis4").innerHTML="Wow, your button mashing endurance is impressive!";}
+if(x>=500&&x<=999)
+{document.getElementById("analysis4").innerHTML="Dang, I wish my endurance was as good as yours!";}
+if(x>=1000&&x<=9000)
+{document.getElementById("analysis4").innerHTML="We got a winner, folks.";}
+if(x>=9001)
+{document.getElementById("analysis4").innerHTML="ME JELLY &#64; U SCORE.";}
+timesClicked = timesClicked*1+document.score4.scoring4.value*1;localStorage.setItem("timesClickedScore", timesClicked);
+}
+
+function beatme4() {
+var x=document.score4.scoring4.value;
+var y=enduranceBeat;
+if(x>=934&&y==0)
+{document.getElementById("beatme4").innerHTML="<span style='color:#009000;font-weight:700;'>You beat the game creator!</span>";
+enduranceBeat = "1";localStorage.setItem("enduranceBeatScore", enduranceBeat);}
+}
+
+function move()
+{
+var b=confirm("Movement Mode Rules\n\nThe button moves each time you click on it. You get 30 seconds.");
+if (b==true) {movement();}
+}
+
+function movement()
+{
+document.body.style.backgroundColor = "#91825B";
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML="Movement";
+document.getElementById("copyright").innerHTML="";
+document.getElementById("main").innerHTML="<span class='center'><p id='beatme5'></p><b>Score</b><br class='breaksmall'><form name='score5'><!-- Cheater, you have been caught. ;) --><input name='scoring5' type='text' value='0' style='border:none; font-size:22pt; text-align:center;' readonly></form></span><div id='movementmasher'><button type='button' id='movement' onclick='plusone9()' onkeypress='return noenter(event)'>START</button></div><span class='center'><p id='timer'><form name='timer5'><b>Time:</b> <input name='thetime5' type='text' value='30' style='border:none; width:47px; font-size:16pt; text-align:center;' readonly></form><br><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + movementScore + "</span></p></span>";
+document.getElementById("movementmasher").style.height="300px";
+}
+
+var int5;
+function plusone9()
+{document.getElementById("movementmasher").innerHTML="<button type='button' id='movement' onclick='plusone10(),bgchange5()()' onkeypress='return noenter(event)'>MASH!</button>";
+int5=setInterval(function(){document.timer5.thetime5.value = (document.timer5.thetime5.value*1 - 0.1).toFixed(1);},100);
+
+setTimeout(function(){document.getElementById("movementmasher").style.height="100%";
+document.getElementById("movementmasher").innerHTML="<span class='center'><span style='font-size:28pt;color:#BD8B20;'><b>Time's up!</b></span><br><p id='record5'></p><p id='analysis5'></p><br><br><button type='button' class='big' onclick='movement()'>Play Again</button><br><br><button type='button' onclick='begin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='imdone()'>Main Menu</button></span>";},30000);
+
+setTimeout(function(){document.timer5.thetime5.value = 0},30001);
+
+setTimeout(function(){if (+document.score5.scoring5.value > +movementScore){document.getElementById("record5").innerHTML="<span class='record'>New Record!</span><br><br>";movementScore = document.score5.scoring5.value;localStorage.setItem("bmasherScore5", movementScore)}},30000);
+
+setTimeout(function(){timesPlayed++;localStorage.setItem("timesPlayedScore", timesPlayed)},30000);
+
+document.body.style.backgroundColor = "#4294CF";
+
+setTimeout(function() {clearInterval(int5)},30000);
+
+setTimeout(function () {analysis5(),beatme5()},30000);
+document.score5.scoring5.value++ ;
+}
+
+var position;
+function plusone10()
+{
+document.score5.scoring5.value++ ;
+
+position = Math.floor((Math.random()*9)+1);
+
+if(position==1)
+{document.getElementById("movement").style.top="40px";
+document.getElementById("movement").style.left="100px";}
+
+if(position==2)
+{document.getElementById("movement").style.top="40px";
+document.getElementById("movement").style.left="287px";}
+
+if(position==3)
+{document.getElementById("movement").style.top="40px";
+document.getElementById("movement").style.left="474px";}
+
+if(position==4)
+{document.getElementById("movement").style.top="120px";
+document.getElementById("movement").style.left="100px";}
+
+if(position==5)
+{document.getElementById("movement").style.top="120px";
+document.getElementById("movement").style.left="287px";}
+
+if(position==6)
+{document.getElementById("movement").style.top="120px";
+document.getElementById("movement").style.left="474px";}
+
+if(position==7)
+{document.getElementById("movement").style.top="200px";
+document.getElementById("movement").style.left="100px";}
+
+if(position==8)
+{document.getElementById("movement").style.top="200px";
+document.getElementById("movement").style.left="287px";}
+
+if(position==9)
+{document.getElementById("movement").style.top="200px";
+document.getElementById("movement").style.left="474px";}
+
+}
+
+function bgchange5()
+{var x=document.score5.scoring5.value;
+if(x=="10")
+{document.body.style.backgroundColor = "#3EB399";}
+if(x=="20")
+{document.body.style.backgroundColor = "#168A50";}
+if(x=="30")
+{document.body.style.backgroundColor = "#9BAB43";}
+if(x=="40")
+{document.body.style.backgroundColor = "#BF7E34";}
+if(x=="50")
+{document.body.style.backgroundColor = "#BD4242";}
+if(x=="60")
+{document.body.style.backgroundColor = "#7A2626";}
+if(x=="70")
+{document.body.style.backgroundColor = "#151566";}
+if(x=="80")
+{document.body.style.backgroundColor = "#5E5E5E";}
+if(x=="90")
+{document.body.style.backgroundColor = "#000";}
+}
+
+function analysis5()
+{
+var x=document.score5.scoring5.value;
+if(x>=1&&x<=14){
+document.getElementById("analysis5").innerHTML="Ouch, that must hurt.";}
+if(x>=15&&x<=34){
+document.getElementById("analysis5").innerHTML="An okay performance. Keep trying.";}
+if(x>=35&&x<=49){
+document.getElementById("analysis5").innerHTML="Your movement skills are quite decent.";}
+if(x>=50&&x<=64){
+document.getElementById("analysis5").innerHTML="Your movement skills are really good.";}
+if(x>=65&&x<=79){
+document.getElementById("analysis5").innerHTML="Wow, your movement skills are impressive!";}
+if(x>=80&&x<=99){
+document.getElementById("analysis5").innerHTML="Whoa, those are mad movement skills!";}
+if(x>=100&&x<=9000){
+document.getElementById("analysis5").innerHTML="B...but...how... &#42;faints again&#42;";}
+if(x>=9001){
+document.getElementById("analysis5").innerHTML="Um, why are you viewing the source code?";}
+timesClicked = timesClicked*1+document.score5.scoring5.value*1;localStorage.setItem("timesClickedScore", timesClicked);
+}
+
+function beatme5() {
+var x=document.score5.scoring5.value;
+var y=movementBeat;
+if(x>=65&&y==0)
+{document.getElementById("beatme5").innerHTML="<span style='color:#009000;font-weight:700;'>You beat the game creator!</span>";
+movementBeat = "1";localStorage.setItem("movementBeatScore", movementBeat);}
+}
+
+function imdone()
+{
+document.body.style.backgroundColor = "#91825B";
+document.getElementById("title").style.fontSize="50pt";
+document.getElementById("author").innerHTML="A Javascript game by Timothy Hsu";
+document.getElementById("copyright").innerHTML="<br><br>Version 3.1 &nbsp;&#126;&nbsp; &copy;2013 Timothy Hsu&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='dload()'><strong>Download</strong></a>&nbsp;&nbsp;<a style='cursor:pointer;' onclick='moregames()'><strong>More Games</strong></a>";
+document.getElementById("main").innerHTML="<span class='center'><button class='big' type='button' onclick='begin()'>Play Game</button><br><br><button type='button' onclick='help()'>Help</button>&nbsp;&nbsp;<button type='button' onclick='records()'>Stats</button>&nbsp;&nbsp;<button type='button' onclick='about()'>About</button></span>";
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="wrap">
+
+<div id="font">
+
+<!--[if lte IE 8]>
+<span class="center">Your browser is unsupported. Time for an upgrade. Try a newer <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer</a>, <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, or <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.<br></span>
+<![endif]-->
+
+<noscript><span style="display:block;text-align:center;font-weight:700;font-size:14pt;">Javascript is disabled. Please enable it in order to play the game.</span><br></noscript>
+
+<span id="title"><strong>Button Masher</strong></span><span id="author" style="display:block;text-align:center;font-size:12pt;">A Javascript game by Timothy Hsu</span><br>
+
+<p id="main">
+<span id="secret" onclick="alert('Keyboard Masher is now a separate game and has been renamed as Kill the Keybaord. To find it, click on More Games on the bottom of this page.')">
+</span>
+<span class="center"><button class="big" type="button" onclick="begin()">Play Game</button><br><br><button type="button" onclick="help()">Help</button>&nbsp;&nbsp;<button type="button" onclick="records()">Stats</button>&nbsp;&nbsp;<button type="button" onclick="about()">About</button></span></p>
+
+<p id="copyright"><br><br>Version 3.1 &nbsp;&#126;&nbsp; &copy;2013 Timothy Hsu&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" onclick="dload()"><strong>Download</strong></a>&nbsp;&nbsp;<a style="cursor:pointer;" onclick="moregames()"><strong>More Games</strong></a></p>
+
+</div>
+
+</div>
+
+
+</body>
+</html>

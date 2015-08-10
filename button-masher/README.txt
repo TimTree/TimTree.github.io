@@ -22,7 +22,7 @@ This game is copyright (c) 2013-2015 Timothy Hsu. It is released under the GPL v
 CONTACT INFO
 To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
 
-http://slideshowgames.blogspot.com/2013/08/button-masher-more-info_11.html
+http://slideshowgames.blogspot.com/2013/08/button-masher-more-info.html
 
 
 

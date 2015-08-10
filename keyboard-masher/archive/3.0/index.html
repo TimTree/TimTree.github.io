@@ -1,0 +1,560 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<title>Keyboard Masher</title>
+
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+
+<meta charset="UTF-8">
+
+<link rel="shortcut icon" type="image/x-icon" href="kmasher.ico" />
+
+<style>
+
+body {
+margin:0;
+background-color:#295C66;
+}
+
+#wrap {
+background:#fff;
+width:700px;
+margin:0 auto;
+display:block;
+padding-top:10px;
+padding-bottom:15px;
+padding-right:50px;
+padding-left:50px;
+height:100%;
+}
+
+p {
+line-height:1.3;
+}
+
+button {
+background-color:#eee;
+-moz-border-radius:5px;
+-webkit-border-radius:5px;
+border-radius:5px;
+border:1px solid #aaa;
+color:#444;
+font-family:verdana;
+font-size:12pt;
+padding:3px 8px;
+}
+
+button:hover {
+background-color:#dedede;
+}
+
+button:active {
+background-color:#bcbcbc;
+}
+
+button.mod {
+font-size:13pt;
+padding-left:7px;
+padding-right:7px;
+padding-top:3px;
+padding-bottom:3px;
+}
+
+button.mod2 {
+font-size:14pt;
+padding:3px 8px;
+}
+
+button.big {
+font-size:20pt;
+padding-left:10px;
+padding-right:10px;
+padding-top:4px;
+padding-bottom:4px;
+}
+
+button.mash {
+font-size:22pt;
+padding:12px;
+}
+
+button.small {
+font-size:9pt;
+}
+
+#copyright {
+font-size:10pt;
+text-align:center;
+}
+
+li {
+line-height:1.5;
+}
+
+#font {
+font-family:"Verdana";
+}
+
+#title {
+text-align:center;
+font-size:50pt;
+color:#AD3939;
+font-family:trebuchet ms;
+display:block;
+font-weight:700;
+line-height:1.8;
+}
+
+.break {
+line-height:2;
+}
+
+.breaksmall {
+line-height:1.5;
+}
+
+span.center {
+display:block;
+text-align:center;
+}
+
+span.record {
+font-weight:700;
+color:#395ED3;
+font-size:16pt;
+}
+
+td {
+width:160px;
+padding-bottom:5px;
+}
+
+td.check {
+width:20px;
+padding-bottom:5px;
+color:#009000;
+}
+
+*{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+</style>
+
+<script>
+
+var keyspressed = [];
+var ktenSecScore = 0;
+var kthirtySecScore = 0;
+var ktimesPlayed = 0;
+var ktimesPressed = 0;
+var ktenSecBeat = 0;
+var kthirtySecBeat = 0;
+
+if (localStorage.getItem("kmasherScore")) {
+		ktenSecScore = localStorage.getItem("kmasherScore");
+	}
+if (localStorage.getItem("kmasherScore2")) {
+		kthirtySecScore = localStorage.getItem("kmasherScore2");
+	}
+if (localStorage.getItem("ktimesPlayedScore")) {
+		ktimesPlayed = localStorage.getItem("ktimesPlayedScore");
+	}
+if (localStorage.getItem("ktimesPressedScore")) {
+		ktimesPressed = localStorage.getItem("ktimesPressedScore");
+	}
+if (localStorage.getItem("ktenSecBeatScore")) {
+	ktenSecBeat = localStorage.getItem("ktenSecBeatScore");
+	}
+if (localStorage.getItem("kthirtySecBeatScore")) {
+	kthirtySecBeat = localStorage.getItem("kthirtySecBeatScore");
+	}
+
+
+function khelp()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>Help</strong><br class='break'>It&#39;s like Button Masher, except this time, you&#39;re mashing the keyboard! Choose between 10 seconds or 30 seconds. Good luck!<br class='break'>Keyboard Masher works on the following browsers:<br class='break'>Internet Explorer 9+<br>Firefox 3.5+<br>Chrome 4+<br>Safari 4+<br>Opera 10.50+<br><br><button type='button' onclick='kmasher()'>Go back</button></span>";
+}
+
+function kdload()
+{
+if(document.URL.indexOf("https://dl.dropboxusercontent.com/u/163670008/kmasher.htm")>= 0)
+{document.getElementById("main").innerHTML="<span class='center'><strong>Download</strong><br class='break'>You can download Keyboard Masher to your computer so you can play without an Internet connection. Here&#39;s how.<br class='break'><strong>Internet Explorer:</strong> Click on the top right gear. Then select File -&gt; Save as.<br><strong>Firefox and Safari:</strong> Right click, then select Save Page As.<br><strong>Chrome and Opera:</strong> Right click, then select Save as.<br><br><button type='button' onclick='kmasher()'>Go back</button></span>";}
+else
+{document.getElementById("main").innerHTML="<span class='center'><strong>Download</strong><br class='break'>Thanks for downloading Keyboard Masher. To play online, <a href='https://dl.dropboxusercontent.com/u/163670008/kmasher.htm'>click here</a>.<br><br><button type='button' onclick='kmasher()'>Go back</button></span>";}
+}
+
+function kmoregames()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>More Games</strong><br class='break'><strong>Button Masher:</strong> Click the button with your mouse as fast as you can! There are different game modes to choose from. <a href='https://dl.dropboxusercontent.com/u/163670008/bmasher.htm' target='_blank'>Click here to play.</a><br class='break'><strong>I am Thinking of a Number:</strong> A Javascript experiment that generates random numbers each time you play. <a href='https://dl.dropboxusercontent.com/u/163670008/NumberGuessing.htm' target='_blank'>Click here to play.</a><br class='break'><strong>Escape a Tower:</strong> The text based PowerPoint game, converted to Javascript. Think you can escape? <a href='https://dl.dropboxusercontent.com/u/163670008/escape-a-tower/game.htm' target='_blank'>Click here to play.</a><br><br><button type='button' onclick='kmasher()'>Go back</button></span>";
+}
+
+function krecords()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>High Scores</strong><br><br><strong>10 Seconds:</strong> " + ktenSecScore + "<br class='break'><strong>30 Seconds:</strong> " + kthirtySecScore + "<br><br>Times played: " + ktimesPlayed + "<br class='break'>Times pressed: " + ktimesPressed + "<br><br><button type='button' onclick='kreset()' style='font-size:10pt;'>Reset</button><br><br><br><button type='button' class='mod' onclick='kmasher()'>Go back</button></span>";
+}
+
+function kreset()
+{
+var r=confirm("Are you sure you want to reset all your scores?");
+if (r==true) {ktenSecScore = 0;localStorage.setItem("kmasherScore", ktenSecScore);kthirtySecScore = 0;localStorage.setItem("kmasherScore2", kthirtySecScore);ktimesPlayed = 0;localStorage.setItem("ktimesPlayedScore", ktimesPlayed);ktimesPressed = 0;localStorage.setItem("ktimesPressedScore", ktimesPressed);localStorage.clear();krecords();}
+}
+
+function kbegin()
+{
+document.body.style.backgroundColor = "#295C66";
+document.getElementById("title").style.fontSize="50pt";
+document.getElementById("author").innerHTML="Another Javascript game by Timothy Hsu";
+document.getElementById("copyright").innerHTML="<br><br>Version 3.0 &nbsp;&#126;&nbsp; &copy;2013 Timothy Hsu&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='kdload()'><strong>Download</strong></a>&nbsp;&nbsp;<a style='cursor:pointer;' onclick='kmoregames()'><strong>More Games</strong></a>";
+document.getElementById("main").innerHTML="<span class='center'>Select Mode<br><br><button type='button' class='mod' onclick='ktensec()'>10 Seconds</button>&nbsp&nbsp&nbsp<button type='button' class='mod' onclick='kthirtysec()'>30 Seconds</button><br><br><a onclick='kbeatcreator()' style='font-size:10pt;cursor:pointer;'><strong>Beat the Creator</strong></a>&nbsp;&nbsp;&nbsp;<a onclick='typingtyphon()' style='font-size:10pt;cursor:pointer;'><strong>The Typing Typhon</strong></a></span>";
+}
+
+function kbeatcreator()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>Beat the Creator</strong><br class='break'>Below is a comparison of the game creator&#39;s high scores as of this writing to your high scores. See if you best each and every score!<br><br><table style='margin:auto; width:500px;'><tr style='padding-bottom:5px;'><td style='width:160px;'><strong>Game Mode</td><td style='width:160px;'><strong>Creator&#39;s Score</td><td style='width:160px;'><strong>Your Score</strong></td><td class='check'></td></tr><tr><td>10 Seconds</td><td>497</td><td>" + ktenSecScore + "</td><td class='check' id='beatmeten'></td></tr><tr><td>30 Seconds</td><td>1225</td><td>" + kthirtySecScore + "</td><td class='check' id='beatmethirty'></td></tr></table><br><br><button type='button' onclick='kbegin()'>Go back</button></span>";
+if (ktenSecBeat=="1")
+{document.getElementById("beatmeten").innerHTML="&#10004;";}
+if (kthirtySecBeat=="1")
+{document.getElementById("beatmethirty").innerHTML="&#10004;";}
+if (oneMinBeat=="1")
+{document.getElementById("beatmeonemin").innerHTML="&#10004;";}
+}
+
+function typingtyphon() {
+var typhonrank;
+var pressesleft;
+
+if (ktimesPressed<=1999) {typhonrank="Typing Tyke"; pressesleft="2,000";}
+if (ktimesPressed>=2000&&ktimesPressed<=3999) {typhonrank="Typing Trainee"; pressesleft="4,000";}
+if (ktimesPressed>=4000&&ktimesPressed<=19999) {typhonrank="Typing on Task"; pressesleft="20,000";}
+if (ktimesPressed>=20000&&ktimesPressed<=39999) {typhonrank="Clicker Tactical"; pressesleft="40,000";}
+if (ktimesPressed>=40000&&ktimesPressed<=199999) {typhonrank="Clicker Tempest"; pressesleft="200,000";}
+if (ktimesPressed>=200000&&ktimesPressed<=399999) {typhonrank="Typing Triumphant"; pressesleft="400,000";}
+
+document.getElementById("main").innerHTML="<span class='center'><strong>The Typing Typhon</strong><br class='break'>Can you accumulate a total of 400,000 keyboard presses? If so, you are considered as a typing typhon. Below is your current progress.<br><br><p id='typhon'>Total Presses:<br class='break'><span style='font-size:46pt;font-weight:700;color:#399470;'>" + ktimesPressed + "</span> /400,000<br><br><span style='font-size:14pt;'>Your rank: <strong>" + typhonrank + "</strong></span><br><br>Next rank at " + pressesleft + " presses</p><br><br><button type='button' onclick='kbegin()'>Go back</button></span>";
+
+if (ktimesPressed>=400000)
+{document.getElementById("typhon").innerHTML="Total Presses:<br><br><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + ktimesPressed + "</span><br><br><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are a typing typhon!</span>";}
+}
+
+function kabout()
+{
+document.getElementById("main").innerHTML="<span class='center'><strong>About</strong><br class='break'></span>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.<br class='break'><strong>Release Date:</strong> June 25, 2013<br><strong>Software Used:</strong> Notepad and TextEdit<br><strong>Latest Update:</strong> April 23, 2014 (Version 3.0)<br class='break'><strong>Copyright Notice:</strong> Permission is granted to read, download, and modify the game&#39;s source code for personal use, but selling and distributing modified versions of the game without the author&#39;s permission is prohibited.<br><br><span class='center'><button type='button' onclick='kmasher()'>Go back</button></span>";
+}
+
+function ktensec()
+{
+document.body.style.backgroundColor = "#295C66";
+document.onkeydown = function(event) {kplusone2(event); kplusone();}
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML="10 Seconds";
+document.getElementById("copyright").innerHTML="";
+document.getElementById("main").innerHTML="<span class='center'><p id='beatme'></p><b>Score</b><br class='breaksmall'><form name='kscore'><!-- Cheater, you have been caught. ;) --><input name='kscoring' type='text' value='0' style='border:none; font-size:22pt; text-align:center;' readonly></form><p id='kmasher'>Type on your keyboard to begin!</p><p id='ktimer'><br><form name='ktimer'><b>Time:</b> <input name='kthetime' type='text' value='10' style='border:none; width:34px; font-size:16pt; text-align:center;' readonly></form><br><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + ktenSecScore + "</span></p></span>";
+}
+var kint;
+
+function kplusone () { 
+document.onkeydown = function(event) {kplusone2(event); kbgchange();}
+document.onkeyup = keyup;
+setTimeout(function(event){document.onkeydown = none;},10000);
+
+setTimeout(function(){document.getElementById("kmasher").innerHTML="<span style='font-size:28pt;color:#BD8B20;'><b>Time's up!</b></span><br><p id='krecord'></p><p id='kanalysis'></p><br><br><button type='button' class='big' onclick='ktensec()'>Play Again</button><br><br><button type='button' onclick='kbegin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='kmasher()'>Main Menu</button>";},10000);
+setTimeout(function(){document.ktimer.kthetime.value = 0},10001);
+setTimeout(function(){if (+document.kscore.kscoring.value > +ktenSecScore){document.getElementById("krecord").innerHTML="<span class='record'>New Record!</span><br><br>";ktenSecScore = document.kscore.kscoring.value;localStorage.setItem("kmasherScore", ktenSecScore)}},10000);
+
+setTimeout(function(){ktimesPlayed = ktimesPlayed*1+1;localStorage.setItem("ktimesPlayedScore", ktimesPlayed);ktimesPressed = ktimesPressed*1+document.kscore.kscoring.value*1;localStorage.setItem("ktimesPressedScore", ktimesPressed);},10000);
+
+document.getElementById("kmasher").innerHTML="<b><span style='font-size:18pt;'>GO, GO, GO!</span></b>";
+document.body.style.backgroundColor = "#4294CF";
+
+kint=setInterval(function(){document.ktimer.kthetime.value = (document.ktimer.kthetime.value*1 - 0.1).toFixed(1);},100);
+
+setTimeout(function() {clearInterval(kint)},10000);
+
+setTimeout(function() {kanalysis(),kbeatme()},10000);
+
+} 
+
+function kplusone2(e) { 
+var unicode=e.keyCode? e.keyCode : e.charCode;
+
+if (keyspressed.indexOf(unicode) >= 0) {}
+
+else {keyspressed.push(unicode);
+document.kscore.kscoring.value++;};
+
+}
+
+function keyup(e) {
+var unicode=e.keyCode? e.keyCode : e.charCode;
+var i = keyspressed.indexOf(unicode);
+if(i != -1) {keyspressed.splice(i, 1);}
+}
+
+function kbgchange()
+{
+
+var x=document.kscore.kscoring.value;
+if(x=="60")
+	{
+	document.body.style.backgroundColor = "#3EB399";
+	}
+if(x=="120")
+	{
+	document.body.style.backgroundColor = "#168A50";
+	}
+if(x=="180")
+	{
+	document.body.style.backgroundColor = "#9BAB43";
+	}
+if(x=="240")
+	{
+	document.body.style.backgroundColor = "#BF7E34";
+	}
+if(x=="300")
+	{
+	document.body.style.backgroundColor = "#BD4242";
+	}
+if(x=="360")
+	{
+	document.body.style.backgroundColor = "#7A2626";
+	}
+if(x=="420")
+	{
+	document.body.style.backgroundColor = "#151566";
+	}
+if(x=="480")
+	{
+	document.body.style.backgroundColor = "#5E5E5E";
+	}
+if(x=="540")
+	{
+	document.body.style.backgroundColor = "#000";
+	}
+}
+
+function kanalysis()
+{
+var x=document.kscore.kscoring.value;
+if(x>=1&&x<=149)
+	{
+document.getElementById("kanalysis").innerHTML="Come on, you can do better than that!";
+	}
+if(x>=150&&x<=249)
+	{
+document.getElementById("kanalysis").innerHTML="You&#39re getting there. Keep trying!";
+	}
+if(x>=250&&x<=349)
+	{
+document.getElementById("kanalysis").innerHTML="Not bad! Keep on trying!";
+	}
+if(x>=350&&x<=399)
+	{
+document.getElementById("kanalysis").innerHTML="Wow, you&#39re pretty good at this game.";
+	}
+if(x>=400&&x<=449)
+	{
+document.getElementById("kanalysis").innerHTML="Dang, you are way better than I thought you were.";
+	}
+if(x>=450&&x<=999)
+	{
+document.getElementById("kanalysis").innerHTML="At this score, you seriously deserve a raise.";
+	}
+if(x>=500&&x<=9000)
+	{
+document.getElementById("kanalysis").innerHTML="&#42;Faints&#42;";
+	}
+if(x>=9001)
+	{
+document.getElementById("kanalysis").innerHTML="OVER 9000?! Someone, GIVE THIS GUY A LIFE!!!";
+	}
+}
+
+function kbeatme() {
+var x=document.kscore.kscoring.value;
+var y=ktenSecBeat;
+if(x>=498&&y==0)
+{document.getElementById("beatme").innerHTML="<span style='color:#009000;font-weight:700;'>You beat the game creator!</span>";
+ktenSecBeat = "1";localStorage.setItem("ktenSecBeatScore", ktenSecBeat);}
+}
+
+function kthirtysec()
+{
+document.body.style.backgroundColor = "#295C66";
+document.onkeydown = function(event) {kplusone4(event); kplusone3();}
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML="30 Seconds";
+document.getElementById("copyright").innerHTML="";
+document.getElementById("main").innerHTML="<span class='center'><p id='beatme2'></p><b>Score</b><br class='breaksmall'><form name='kscore2'><!-- Cheater, you have been caught. ;) --><input name='kscoring2' type='text' value='0' style='border:none; font-size:22pt; text-align:center;' readonly></form><p id='kmasher2'>Type on your keyboard to begin!</p><p id='ktimer2'><br><form name='ktimer2'><b>Time:</b> <input name='kthetime2' type='text' value='30' style='border:none; width:47px; font-size:16pt; text-align:center;' readonly></form><br><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + kthirtySecScore + "</span></p></span>";
+}
+var kint2;
+function kplusone3 () { 
+document.onkeydown = function(event) {kplusone4(event); kbgchange2();}
+document.onkeyup = keyup;
+setTimeout(function(){document.ktimer2.kthetime2.value = 0},30001);
+setTimeout(function(){document.onkeydown = none;},30000);
+
+setTimeout(function(){document.getElementById("kmasher2").innerHTML="<span style='font-size:28pt;color:#BD8B20;'><b>Time's up!</b></span><br><p id='krecord2'></p><p id='kanalysis2'></p><br><br><button type='button' class='big' onclick='kthirtysec()'>Play Again</button><br><br><button type='button' onclick='kbegin()'>Select Mode</button>&nbsp;&nbsp;&nbsp;<button type='button' onclick='kmasher()'>Main Menu</button>";},30000);
+
+setTimeout(function(){if (+document.kscore2.kscoring2.value > +kthirtySecScore){document.getElementById("krecord2").innerHTML="<span class='record'>New Record!</span><br><br>";kthirtySecScore = document.kscore2.kscoring2.value;localStorage.setItem("kmasherScore2", kthirtySecScore)}},30000);
+
+setTimeout(function(){ktimesPlayed = ktimesPlayed*1+1;localStorage.setItem("ktimesPlayedScore", ktimesPlayed);ktimesPressed = ktimesPressed*1+document.kscore2.kscoring2.value*1;localStorage.setItem("ktimesPressedScore", ktimesPressed);},30000);
+
+document.getElementById("kmasher2").innerHTML="<b><span style='font-size:18pt;'>GO, GO, GO!</span></b>";
+document.body.style.backgroundColor = "#4294CF";
+
+kint2=setInterval(function(){document.ktimer2.kthetime2.value = (document.ktimer2.kthetime2.value*1 - 0.1).toFixed(1);},100);
+
+setTimeout(function() {clearInterval(kint2)},30000);
+
+setTimeout(function() {kanalysis2(),kbeatme2()},30000);
+
+} 
+
+function kplusone4 (e) { 
+var unicode=e.keyCode? e.keyCode : e.charCode;
+
+if (keyspressed.indexOf(unicode) >= 0) {}
+
+else {keyspressed.push(unicode);
+document.kscore2.kscoring2.value++;};
+
+}
+
+function kbgchange2()
+{
+
+var x=document.kscore2.kscoring2.value;
+if(x=="180")
+	{
+	document.body.style.backgroundColor = "#3EB399";
+	}
+if(x=="360")
+	{
+	document.body.style.backgroundColor = "#168A50";
+	}
+if(x=="540")
+	{
+	document.body.style.backgroundColor = "#9BAB43";
+	}
+if(x=="720")
+	{
+	document.body.style.backgroundColor = "#BF7E34";
+	}
+if(x=="900")
+	{
+	document.body.style.backgroundColor = "#BD4242";
+	}
+if(x=="1080")
+	{
+	document.body.style.backgroundColor = "#7A2626";
+	}
+if(x=="1260")
+	{
+	document.body.style.backgroundColor = "#151566";
+	}
+if(x=="1440")
+	{
+	document.body.style.backgroundColor = "#5E5E5E";
+	}
+if(x=="1620")
+	{
+	document.body.style.backgroundColor = "#000";
+	}
+}
+
+function kanalysis2()
+{
+var x=document.kscore2.kscoring2.value;
+if(x>=1&&x<=449)
+	{
+document.getElementById("kanalysis2").innerHTML="Come on, you can do better than that!";
+	}
+if(x>=450&&x<=749)
+	{
+document.getElementById("kanalysis2").innerHTML="You&#39re getting there. Keep trying!";
+	}
+if(x>=750&&x<=1049)
+	{
+document.getElementById("kanalysis2").innerHTML="Not bad! Keep on trying!";
+	}
+if(x>=1050&&x<=1199)
+	{
+document.getElementById("kanalysis2").innerHTML="Wow, you&#39re pretty good at this game.";
+	}
+if(x>=1200&&x<=1349)
+	{
+document.getElementById("kanalysis2").innerHTML="Dang, you are way better than I thought you were.";
+	}
+if(x>=1350&&x<=1499)
+	{
+document.getElementById("kanalysis2").innerHTML="At this score, you seriously deserve a raise.";
+	}
+if(x>=1500&&x<=9000)
+	{
+document.getElementById("kanalysis2").innerHTML="&#42;Faints&#42;";
+	}
+if(x>=9001)
+	{
+document.getElementById("kanalysis2").innerHTML="OVER 9000?! Someone, GIVE THIS GUY A LIFE!!!";
+	}
+}
+
+function kbeatme2() {
+var x=document.kscore2.kscoring2.value;
+var y=kthirtySecBeat;
+if(x>=1226&&y==0)
+{document.getElementById("beatme2").innerHTML="<span style='color:#009000;font-weight:700;'>You beat the game creator!</span>";
+kthirtySecBeat = "1";localStorage.setItem("kthirtySecBeatScore", kthirtySecBeat);}
+}
+
+function none()
+{
+}
+
+function kmasher()
+{
+document.body.style.backgroundColor = "#295C66";
+document.getElementById("title").style.fontSize="50pt";
+document.getElementById("author").innerHTML="Another Javascript game by Timothy Hsu";
+document.getElementById("copyright").innerHTML="<br><br>Version 3.0 &nbsp;&#126;&nbsp; &copy;2013 Timothy Hsu&nbsp;&nbsp;&nbsp;<a style='cursor:pointer;' onclick='kdload()'><strong>Download</strong></a>&nbsp;&nbsp;<a style='cursor:pointer;' onclick='kmoregames()'><strong>More Games</strong></a>";
+document.getElementById("main").innerHTML="<span class='center'><button class='big' type='button' onclick='kbegin()'>Play Game</button><br><br><button type='button' onclick='khelp()'>Help</button>&nbsp;&nbsp;<button type='button' onclick='krecords()'>Stats</button>&nbsp;&nbsp;<button type='button' onclick='kabout()'>About</button></span></span>";
+}
+
+</script>
+
+</head>
+
+<body>
+
+<div id="wrap">
+
+<div id="font">
+
+<!--[if lte IE 8]>
+<span class="center">Your browser is unsupported. Time for an upgrade. Try a newer <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer</a>, <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, or <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.<br></span>
+<![endif]-->
+
+<noscript><span style="display:block;text-align:center;font-weight:700;font-size:14pt;">Javascript is disabled. Please enable it in order to play the game.</span><br></noscript>
+
+<span id="title"><strong>Keyboard Masher</strong></span><span id="author" style="display:block;text-align:center;font-size:12pt;">Another Javascript game by Timothy Hsu</span><br>
+
+<p id="main">
+
+<span class="center"><button class="big" type="button" onclick="kbegin()">Play Game</button><br><br><button type="button" onclick="khelp()">Help</button>&nbsp;&nbsp;<button type="button" onclick="krecords()">Stats</button>&nbsp;&nbsp;<button type="button" onclick="kabout()">About</button></span></p>
+
+<p id="copyright"><br><br>Version 3.0 &nbsp;&#126;&nbsp; &copy;2013 Timothy Hsu&nbsp;&nbsp;&nbsp;<a style="cursor:pointer;" onclick="kdload()"><strong>Download</strong></a>&nbsp;&nbsp;<a style="cursor:pointer;" onclick="kmoregames()"><strong>More Games</strong></a></p>
+
+</div>
+
+</div>
+
+
+</body>
+</html>

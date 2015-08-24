@@ -418,7 +418,7 @@ if (r==true) {score.tenSec=0;score.thirtySec=0;localStorage.removeItem("bmasherS
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first HTML5 game.</p><p>It&#39;s a simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. Finally, this is my first game to keep save data.</p><p><strong>Released:</strong> April 19, 2013<br><strong>Updated:</strong> August 23, 2015<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Button Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a>, the other game in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first HTML5 game.</p><p>It&#39;s a simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. Finally, this is my first game to keep save data.</p><p><strong>Released:</strong> April 19, 2013<br><strong>Updated:</strong> March 3, 2015<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Button Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a>, the other game in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
 }
 
 function beatcreator() {
@@ -486,22 +486,22 @@ newgame();
 
 function newgame() {
 func="newgame();";
+timer=time;
 document.body.style.backgroundColor = "#91825B";
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p><button type='button' class='mash' onclick='plusone(),plusone2()'>START</button></p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
+document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p><button type='button' class='mash' onclick='plusone(),plusone2()'>START</button></p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + timer + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 }
 
 var int, restart;
 
-function plusone() {
-start = Date.now();
+function plusone() { 
 restart=setTimeout(function(){
 endscore("masher");
 if (interval!=0) {analysis(),scoretest();}
 addup();
 },time*1000);
- 
-int=setInterval(updatetime,100);
+
+int=setInterval(function(){updatetime()},100);
 
 document.getElementById("masher").innerHTML="<p><button type='button' class='mash' onclick='plusone2()' onkeypress='return noenter(event)'>MASH!</button></p>";
 document.getElementById("restart").innerHTML="<a onclick='redo();newgame();' title='Restart'> &#8617;</a>";
@@ -716,10 +716,10 @@ movementgame();
 
 function movementgame() {
 func = "movementgame()";
-time=30;
+timer=30;
 document.body.style.backgroundColor = "#91825B";
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='movementmasher'><div id='movewrap'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
+document.getElementById("main").innerHTML=scoreset+"<div id='movementmasher'><div id='movewrap'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + timer + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 
 if (message=="Movement"){
 document.getElementById("movewrap").innerHTML="<button type='button' id='movement' onclick='plusone5()' onkeypress='return noenter(event)'>START</button>";
@@ -731,7 +731,6 @@ document.getElementById("movewrap").innerHTML="<button type='button' id='movemen
 }
 
 function plusone5() {
-start = Date.now();
 restart=setTimeout(function(){document.getElementById("movementmasher").style.height="100%";
 document.getElementById("movementmasher").style.margin="auto";
 endscore("movementmasher");
@@ -739,8 +738,7 @@ moveAnalysis();scoretest();addup();
 },30000);
 document.getElementById("restart").innerHTML="<a onclick='redo(),movementgame();' title='Restart'> &#8617;</a>";
 document.getElementById("back").innerHTML="";
-
-int=setInterval(updatetime,100);
+int=setInterval(function(){updatetime()},100);
 
 if (message=="Movement") {
 document.getElementById("movewrap").innerHTML="<button type='button' id='movement' onclick='plusone6(),bgchange()' onkeypress='return noenter(event)'>MASH!</button>";
@@ -986,9 +984,10 @@ oscillationgame();
 function oscillationgame() {
 func="oscillationgame()";
 time = 30;
+timer = time;
 document.body.style.backgroundColor = "#91825B";
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='oscill'><div id='oscillbutton'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
+document.getElementById("main").innerHTML=scoreset+"<div id='oscill'><div id='oscillbutton'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + timer + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 if (message=="Oscillation"){
 document.getElementById("oscillbutton").innerHTML="<button type='button' id='oscillate' onkeypress='return noenter(event)' onclick=run()>START</button>";
 }
@@ -999,18 +998,16 @@ document.getElementById("oscillbutton").innerHTML="<button type='button' id='osc
 
 var flash;
 function run() {
-start = Date.now();
 document.score.scoring.value++;
 bgchange();
 document.getElementById("back").innerHTML="";
 document.getElementById("restart").innerHTML="<a onclick='redo(),clearTimeout(flash),clearTimeout(flash2),clearTimeout(flash3),clearTimeout(flash4),oscillationgame();' title='Restart'> &#8617;</a>";
-restart=setTimeout(function(){
-document.getElementById("oscill").style.height="100%";
+restart=setTimeout(function(){document.getElementById("oscill").style.height="100%";
 document.getElementById("oscill").style.textAlign="center";
 endscore("oscill"),oscAnalysis(),scoretest(),addup();
 },30000);
 
-int=setInterval(updatetime,100);
+int=setInterval(function(){updatetime()},100);
 
 if (message=="Oscillation") {
 flash=setTimeout(function(){document.getElementById("oscillate").style.backgroundColor="#D4D27B";},10000);
@@ -1089,7 +1086,7 @@ else
 key = e.which;
 return (key != 13);
 }
-
+    
 function redo() {
 clearTimeout(restart);
 clearInterval(int);
@@ -1103,15 +1100,13 @@ star();
 }
 
 function updatetime() {
-var diff = Date.now() - start;
-elapsed = (time-Math.floor(diff/100)/10).toFixed(1);
-if (elapsed==time&&elapsed%1==0){elapsed=parseInt(elapsed);};
-document.getElementById("thetime").innerHTML=elapsed;
+timer = (timer*1 - 0.1).toFixed(1);
+document.getElementById("thetime").innerHTML=timer;
 }
     
 function endscore(x) {
 document.getElementById(x).innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick="+func+">Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
-elapsed=0;document.getElementById("thetime").innerHTML=elapsed;
+timer=0;document.getElementById("thetime").innerHTML=timer;
 document.getElementById("restart").innerHTML="";
 clearInterval(int);
 }
@@ -1185,7 +1180,7 @@ score.clicked = score.clicked*1+Math.abs(document.score.scoring.value)*1;localSt
 
 </div>
 
-<div id="copyright"><p>Version 4.2 &nbsp;&#126;&nbsp; &copy;2013-2015 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.1 &nbsp;&#126;&nbsp; &copy;2013-2015 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

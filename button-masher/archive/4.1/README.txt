@@ -7,15 +7,14 @@ After that, to play the game, all you have to do is open Button Masher.html. All
 Enjoy!
 
 COMPATIBLE BROWSERS
-Microsoft Edge*
 Internet Explorer 10+*
 Firefox 16+
-Chrome 10+
-Safari 5.1+
+Chrome 4+
+Safari 4+
 Opera 12.10+
 Javascript must be enabled.
 
-*For save related reasons, the downloaded version does not work with these browsers.
+*For save related reasons, the downloaded version does not work with Internet Explorer.
 
 COPYRIGHT NOTICE
 This game is copyright (c) 2013-2015 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
@@ -30,10 +29,6 @@ http://slideshowgames.blogspot.com/2013/08/button-masher-more-info.html
 --------------------------------------
 
 VERSION HISTORY
-
-Version 4.2 (released 8/23/15)
--------------------------------
-- Improves the accuracy of the timer
 
 Version 4.1 (released 3/3/15)
 -------------------------------

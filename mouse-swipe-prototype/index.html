@@ -172,8 +172,8 @@ score.swiped = localStorage.getItem("timesSwipedScore");}
 
 function tensec() {
 highscore=score.tenSec;
-timer=10;
-document.getElementById("main").innerHTML="<p id='scorebreak'><span id='back'><a id='back' onclick='imdone();'>&#8592; </a></span><b>Score</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0' id='score' readonly></form><p id='commentary'>Swipe across the line to begin.</p><div id='capsule'><div id='leftinner' onmouseover='setupleft()'></div><div id='rightinner' onmouseover='setupright()'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+timer+"</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>"+highscore+"</span></p>";
+time=10;
+document.getElementById("main").innerHTML="<p id='scorebreak'><span id='back'><a id='back' onclick='imdone();'>&#8592; </a></span><b>Score</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0' id='score' readonly></form><p id='commentary'>Swipe across the line to begin.</p><div id='capsule'><div id='leftinner' onmouseover='setupleft()'></div><div id='rightinner' onmouseover='setupright()'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>"+highscore+"</span></p>";
 document.getElementById("copyright").style.display="none";
 }
 
@@ -187,6 +187,7 @@ document.getElementById("capsule").innerHTML="<div id='leftinner' onmouseover='i
 
 var int, restart;
 function initialize() {
+start = Date.now();
 document.getElementById("commentary").innerHTML="SWIPE!";
 document.getElementById("restart").innerHTML="<a onclick='redo();tensec();' title='Restart'> &#8617;</a>";
 restart=setTimeout(function(){
@@ -206,8 +207,10 @@ int=setInterval(function(){updatetime()},100);
 }
     
 function updatetime() {
-timer = (timer*1 - 0.1).toFixed(1);
-document.getElementById("thetime").innerHTML=timer;
+var diff = Date.now() - start;
+elapsed = (time-Math.floor(diff/100)/10).toFixed(1);
+if (elapsed==time&&elapsed%1==0){elapsed=parseInt(elapsed);};
+document.getElementById("thetime").innerHTML=elapsed;
 }
     
 function plusoneleft() {

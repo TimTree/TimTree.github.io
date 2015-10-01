@@ -31,12 +31,6 @@ http://slideshowgames.blogspot.com/2014/04/keyboard-masher-more-info.html
 
 VERSION HISTORY
 
-Version 4.3 (released 10/1/15)
--------------------------------
-- Battle mode has been renamed to Versus.
-- Adds a gauge bar to Versus mode
-- Tweaks the encouragement system in Versus mode
-
 Version 4.2 (released 8/23/15)
 -------------------------------
 - New two player game mode: Battle!

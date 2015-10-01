@@ -258,28 +258,6 @@ font-size:18pt;
 font-weight:700;
 }
 
-#gauge {
-position:relative;
-margin:0 1em;
-padding-bottom:30px;
-visibility:hidden;
-}
-
-#orange {
-position:absolute;
-width:100%;
-height:10px;
-background-color:#F7AF2B;
-}
-
-#blue {
-position:absolute;
-width:50%;
-height:10px;
-background-color:#709EF3;
-z-index:1;
-}
-
 </style>
 
 <script>
@@ -356,11 +334,11 @@ else {document.getElementById("clickgod").style.display="none";}
 
 function begin() {
 headermenu();
-document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='arrow()'>Arrow</button></li><li><button type='button' class='mod' onclick='alphabet()'>Alphabet</button></li><li><button type='button' class='mod' onclick='versus()'>Versus</button></li></ul><ul id='achieve'><li><a onclick='imdone()'><strong>&#8592;</strong></a></li><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='typingtyphon()'><strong>The Typing Typhon</strong></a></li></ul></div>";
+document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='arrow()'>Arrow</button></li><li><button type='button' class='mod' onclick='alphabet()'>Alphabet</button></li><li><button type='button' class='mod' onclick='battle()'>Battle</button></li></ul><ul id='achieve'><li><a onclick='imdone()'><strong>&#8592;</strong></a></li><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='typingtyphon()'><strong>The Typing Typhon</strong></a></li></ul></div>";
 }
 
 function help() {
-document.getElementById("main").innerHTML="<h4>Help</h4><p>Mash the keyboard as fast as you can! There are a variety of game modes to try.</p><p><strong>10/30 Seconds:</strong> Mash the keyboard for 10 or 30 seconds.<br><strong>Custom:</strong> Mash the keyboard for any time you choose.<br><strong>Arrow:</strong> Type the on-screen arrow keys as quick as you can.<br><strong>Alphabet:</strong> Type the alphabet as fast as you can.<br><strong>Versus:</strong> For two players. Who can mash the quickest?</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Help</h4><p>Mash the keyboard as fast as you can! There are a variety of game modes to try.</p><p><strong>10/30 Seconds:</strong> Mash the keyboard for 10 or 30 seconds.<br><strong>Custom:</strong> Mash the keyboard for any time you choose.<br><strong>Arrow:</strong> Type the on-screen arrow keys as quick as you can.<br><strong>Alphabet:</strong> Type the alphabet as fast as you can.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 }
 
 function records() {
@@ -385,7 +363,7 @@ if (r==true) {score.tenSec=0;localStorage.removeItem("kmasherScore");score.thirt
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Released:</strong> June 25, 2013<br><strong>Updated:</strong> October 1, 2015<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Keyboard Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a> and <a href='http://timtree.github.io/mouse-swipe' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Released:</strong> June 25, 2013<br><strong>Updated:</strong> August 23, 2015<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Keyboard Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a>, the other game in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
 }
 
 function beatcreator() {
@@ -799,15 +777,15 @@ score.pressed = score.pressed*1+26;localStorage.setItem("ktimesPressedScore", sc
 }
 }
 
-function versus() {
-document.getElementById("main").innerHTML="<h4>Versus</h4><div id='select'><p>This mode requires two players. The goal is to mash two keyboard keys faster than your opponent.</p><p>Player 1 uses the <b>a & s</b> keys. Player 2 uses the <b>k & l</b> keys.</p><p>After 20 seconds, the player with the most points wins.</p><p><button type='button' class='mod' onclick='battlesetup()'>Play Versus</button></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+function battle() {
+document.getElementById("main").innerHTML="<h4>Battle</h4><div id='select'><p>This mode requires two players. The goal is to mash two keyboard keys faster than your opponent.</p><p>Player 1 uses the <b>a & s</b> keys. Player 2 uses the <b>k & l</b> keys.</p><p>After 20 seconds, the player with the most points wins.</p><p><button type='button' class='mod' onclick='battlesetup()'>Play Battle</button></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
 }
 
 var ready1, ready2, elapsed;
 function battlesetup() {
 time = 20;
 elapsed = 20;
-message = "Versus";
+message = "Battle";
 ready1 = false;
 ready2 = false;
 battlegame();
@@ -836,7 +814,7 @@ if (ready1==true&&ready2==true) {beginbattle();}
 }
 
 document.body.style.backgroundColor = "#295C66";
-document.getElementById("main").innerHTML="<p id='winbox'>Waiting for players...</p><div id='gauge'><div id='orange'></div><div id='blue'></div></div><div id='capsule'><div id='leftinner'><p id='scorebreak'><b>Player 1</b></p><form name='battlescore'><input name='battlescoring' type='text' value='0' id='score' style='width:50%;' readonly></form><p class='keyletters' id='m1'><span id='akey'>a</span>&nbsp;&nbsp;<span id='skey'>s</span></p><p class='startletters' id='k1'>Press <q>a</q> to begin.</p></div><div id='rightinner'><p id='scorebreak'><b>Player 2</b></p><form name='battlescore2'><input name='battlescoring2' type='text' value='0' id='score' style='width:50%;' readonly></form><p class='keyletters' id='m2'><span id='kkey'>k</span>&nbsp;&nbsp;<span id='lkey'>l</span></p><p class='startletters' id='k2'>Press <q>k</q> to begin.</p></div></div><p id='timer'><span id='blank'>.</span></p><p><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p>";
+document.getElementById("main").innerHTML="<p id='winbox'>Waiting for players...</p><div id='capsule'><div id='leftinner'><p id='scorebreak'><b>Player 1</b></p><form name='battlescore'><input name='battlescoring' type='text' value='0' id='score' style='width:50%;' readonly></form><p class='keyletters' id='m1'><span id='akey'>a</span>&nbsp;&nbsp;<span id='skey'>s</span></p><p class='startletters' id='k1'>Press <q>a</q> to begin.</p></div><div id='rightinner'><p id='scorebreak'><b>Player 2</b></p><form name='battlescore2'><input name='battlescoring2' type='text' value='0' id='score' style='width:50%;' readonly></form><p class='keyletters' id='m2'><span id='kkey'>k</span>&nbsp;&nbsp;<span id='lkey'>l</span></p><p class='startletters' id='k2'>Press <q>k</q> to begin.</p></div></div><p id='timer'><span id='blank'>.</span></p><p><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p>";
 }
 
 function beginbattle() {
@@ -890,7 +868,6 @@ int=setInterval(updatetime,100);
 
 setTimeout(function(){
 document.getElementById("winbox").innerHTML="<span id='blank'>.</span>";
-document.getElementById("gauge").style.visibility="visible";
 winmarker();
 }, 5000);
 
@@ -902,12 +879,11 @@ document.body.style.backgroundColor = "#337380";
 
 if (settings.analysis==1) {
 setTimeout(function(){
-var encourage = Math.floor((Math.random() * 5) + 1);
+var encourage = Math.floor((Math.random() * 4) + 1);
 if (encourage == 1) {document.getElementById("winbox").innerHTML="Keep it up!";}
 if (encourage == 2) {document.getElementById("winbox").innerHTML="You're doing great!";}
 if (encourage == 3) {document.getElementById("winbox").innerHTML="You got this!";}
 if (encourage == 4) {document.getElementById("winbox").innerHTML="I believe in you!";}
-if (encourage == 5) {document.getElementById("winbox").innerHTML="Keep going!";}
 }, 11000);
 }
 
@@ -923,22 +899,16 @@ document.getElementById("winbox").innerHTML="<span id='blank'>.</span>";
 }, 14000);
 }
 
-if (settings.bgchange==1) {
-setTimeout(function(){document.body.style.backgroundColor = "#1F4850";}, 18000);
-}
-
-
-
-if (settings.analysis==1) {
 setTimeout(function(){
-var encourage2 = Math.floor((Math.random() * 5) + 1);
+if (settings.analysis==1) {
+var encourage2 = Math.floor((Math.random() * 4) + 1);
 if (encourage2 == 1) {document.getElementById("winbox").innerHTML="<b>FINISH STRONG!</b>";}
 if (encourage2 == 2) {document.getElementById("winbox").innerHTML="<b>FINAL STRETCH!</b>";}
 if (encourage2 == 3) {document.getElementById("winbox").innerHTML="<b>THIS IS IT!</b>";}
 if (encourage2 == 4) {document.getElementById("winbox").innerHTML="<b>ALMOST THERE!</b>";}
-if (encourage2 == 5) {document.getElementById("winbox").innerHTML="<b>PUSH TO THE LIMIT!</b>";}
-}, 20000);
 }
+if (settings.bgchange==1) {document.body.style.backgroundColor = "#1F4850";}
+}, 18000);
 
 setTimeout(function(){
 document.onkeydown=null;
@@ -963,26 +933,16 @@ score.pressed = score.pressed*1+Math.abs(document.battlescore.battlescoring.valu
 }
 
 function winmarker() {
-
-var x = Number(document.battlescore.battlescoring.value);
-var y = Number(document.battlescore2.battlescoring2.value);
-
-var blueGaugePercent = (x/(x+y))*100;
-
-document.getElementById("blue").style.width=blueGaugePercent+"%";
-
 if (elapsed<=time-1.9) {
-if (x>y) {document.getElementById("leftinner").style.backgroundColor="#E3EF95";
+if (Number(document.battlescore.battlescoring.value)>Number(document.battlescore2.battlescoring2.value)) {document.getElementById("leftinner").style.backgroundColor="#E3EF95";
 document.getElementById("rightinner").style.backgroundColor="#EAF1D0";}
-if (x<y) {
+if (Number(document.battlescore.battlescoring.value)<Number(document.battlescore2.battlescoring2.value)) {
 document.getElementById("leftinner").style.backgroundColor="#EAF1D0";
 document.getElementById("rightinner").style.backgroundColor="#E3EF95";}
-if (x==y) {
+if (Number(document.battlescore.battlescoring.value)==Number(document.battlescore2.battlescoring2.value)) {
 document.getElementById("leftinner").style.backgroundColor="#EAF1D0";
 document.getElementById("rightinner").style.backgroundColor="#EAF1D0";}
 }
-
-
 }
 
 function imdone() {
@@ -1085,7 +1045,7 @@ if (settings.saveScores==1) {
 
 </div>
 
-<div id="copyright"><p>Version 4.3 &nbsp;&#126;&nbsp; &copy;2013-2015 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.2 &nbsp;&#126;&nbsp; &copy;2013-2015 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

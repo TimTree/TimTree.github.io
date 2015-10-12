@@ -7,12 +7,25 @@ After that, to play the game, all you have to do is open Escape a Tower.html. Al
 Enjoy!
 
 COMPATIBLE BROWSERS
+
+Minimum:
+
+Internet Explorer 8*
+Firefox 1
+Chrome 1
+Safari 3 (Mobile: iOS 3)
+Opera 9
+Netscape 9
+
+Recommended:
+
 Microsoft Edge*
-Internet Explorer 8+*
+Internet Explorer 10+*
 Firefox 3.5+
 Chrome 4+
-Safari 4+ (Mobile: iOS 4+, iOS 6+ recommended)
-Opera 10.50+
+Safari 4+ (Mobile: iOS 6+)
+Opera 11.50+
+
 Javascript must be enabled.
 
 *For save related reasons, the downloaded version does not work with these browsers.

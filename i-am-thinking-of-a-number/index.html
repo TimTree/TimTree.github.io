@@ -208,7 +208,7 @@
 				}
 			}
 			else if (numselection == 1) {
-			document.getElementById("main").innerHTML="<h2>Now guess my number from " + minnumber + " to " + maxnumber + ".</h2><div id='ten'><form name='inputnumber' onsubmit='return guessprocess();'><input style='width:90px; font-size:16pt;' name='guesser' type='number'>&nbsp;&nbsp;&nbsp;<input type='button' value='Enter' onclick='canPress=true;guessprocess();'></form><br><a onclick='hints()'>Hints</a>&nbsp;&nbsp;&nbsp;<a onclick='giveup()'>Give up</a><br><br><span id='guessed'></span></div>";
+			document.getElementById("main").innerHTML="<h2>Now guess my number from " + minnumber + " to " + maxnumber + ".</h2><div id='ten'><form name='inputnumber' onsubmit='return guessprocess();'><input style='width:90px; font-size:16pt;' name='guesser' type='number'>&nbsp;&nbsp;&nbsp;<button type='button' onclick='canPress=true;guessprocess();'>Enter</button></form><br><a onclick='hints()'>Hints</a>&nbsp;&nbsp;&nbsp;<a onclick='giveup()'>Give up</a><br><br><span id='guessed'></span></div>";
             document.inputnumber.guesser.focus();
 			if (da >=1) {document.getElementById("guessed").innerHTML="Guessed: " + theguessed.join(', ');}
 			}

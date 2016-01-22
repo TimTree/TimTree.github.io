@@ -174,27 +174,8 @@ font-size:10pt;
 text-align:left;
 }
 
-.margin, #customerror {
+.margin {
 margin-bottom:1.5em;
-}
-
-#resetcurse {
-min-height:24px;
-margin-bottom:2em;
-}
-
-#resetbutton {
-background-color:#F9DDDD;
-border:1px solid #FB7777;
-color:#651818;
-}
-
-#resetbutton:hover {
-background-color:#FFC3C3;
-}
-
-#resetbutton:active {
-background-color:#F39797;
 }
 
 #scorebreak {
@@ -202,7 +183,7 @@ margin-bottom:6px;
 font-weight:700;
 }
 
-#masher, #analysis {
+#masher, #analysis, #customerror {
 margin-bottom:50px;
 }
 
@@ -313,10 +294,6 @@ text-align: right;
 padding-right:16px;
 }
 
-a.clickable:hover {
-color:#9C7F29;
-}
-
 </style>
 
 <script>
@@ -358,7 +335,7 @@ saveScores: 1
 
 var scoreset="<p id='beatme'></p><p id='scorebreak'><b>Score</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0' id='score' readonly></form>";
 var scoretime="<p id='beatme'></p><p id='scorebreak'><b>Time</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0.000' id='score' readonly></form>";
-var back = "<a class='clickable' id='back' onclick='begin();'>&#8592; </a>";
+var back = "<a id='back' onclick='begin();'>&#8592; </a>";
 
 if (localStorage.getItem("bmasherScore")) {
 score.tenSec = localStorage.getItem("bmasherScore");}
@@ -412,15 +389,15 @@ else {document.getElementById("clickgod").style.display="none";}
 
 function begin() {
 headermenu();
-document.getElementById("main").innerHTML="<p class='margin'><a  class='clickable' onclick='imdone()'><strong>&#8592;</strong></a>&nbsp; Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='onemin()'>1 Minute</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='lightning()'>Lightning</button></li><li><button type='button' class='mod' onclick='endure()'>Endurance</button></li><li><button type='button' class='mod' onclick='move()'>Movement</button></li><li><button type='button' class='mod' onclick='oscillate()'>Oscillation</button></li></ul><ul id='achieve'><li><a class='clickable'  onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a  class='clickable' onclick='clickergod()'><strong>The Clicker God</strong></a></li></ul></div>";
+document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='onemin()'>1 Minute</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='lightning()'>Lightning</button></li><li><button type='button' class='mod' onclick='endure()'>Endurance</button></li><li><button type='button' class='mod' onclick='move()'>Movement</button></li><li><button type='button' class='mod' onclick='oscillate()'>Oscillation</button></li></ul><ul id='achieve'><li><a onclick='imdone()'><strong>&#8592;</strong></a></li><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='clickergod()'><strong>The Clicker God</strong></a></li></ul></div>";
 }
 
 function help() {
-document.getElementById("main").innerHTML="<h4>Help</h4><p>See how many times you can click on a button in a set period of time. Choose between a various assortment of game modes. Good luck!</p><p>For tips on raising your scores, check out the <a href='http://slideshowgames.blogspot.com/2015/03/the-button-masher-strategy-guide.html' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Help</h4><p>See how many times you can click on a button in a set period of time. Choose between a various assortment of game modes. Good luck!</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 }
 
 function records() {
-document.getElementById("main").innerHTML="<h4>Settings</h4><table id='settings'><tr><td>Background Color Change</td><td><input type='radio' name='setbg' id='setbg1' onchange='setchange()' checked>On <input type='radio' name='setbg' id='setbg0' onchange='setchange()'>Off</td></tr><tr><td>Commentary</td><td><input type='radio' name='setcom' id='setcom1' onchange='setchange()' checked>On <input type='radio' name='setcom' id='setcom0' onchange='setchange()'>Off</td></tr><tr><td>Save High Scores</td><td><input type='radio' name='seths' id='seths1' onchange='setchange()' checked>On <input type='radio' name='seths' id='seths0' onchange='setchange()'>Off</td></tr></table><p id='resetcurse'><button type='button' id='resetbutton' onclick='reset()' class='small'>Reset</button></p><p><button type='button' class='mod' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Settings</h4><table id='settings'><tr><td>Background Color Change</td><td><input type='radio' name='setbg' id='setbg1' onchange='setchange()' checked>On <input type='radio' name='setbg' id='setbg0' onchange='setchange()'>Off</td></tr><tr><td>Commentary</td><td><input type='radio' name='setcom' id='setcom1' onchange='setchange()' checked>On <input type='radio' name='setcom' id='setcom0' onchange='setchange()'>Off</td></tr><tr><td>Save High Scores</td><td><input type='radio' name='seths' id='seths1' onchange='setchange()' checked>On <input type='radio' name='seths' id='seths0' onchange='setchange()'>Off</td></tr></table><p class='margin'><button type='button' onclick='reset()' class='small'>Reset</button></p><p><button type='button' class='mod' onclick='imdone()'>Go back</button></p>";
 if (settings.bgchange==0) {document.getElementById('setbg0').checked=true;}
 if (settings.analysis==0) {document.getElementById('setcom0').checked=true;}
 if (settings.saveScores==0) {document.getElementById("seths0").checked=true;}
@@ -433,17 +410,15 @@ if(document.getElementById('setcom1').checked) {settings.analysis=1;localStorage
 if(document.getElementById('setcom0').checked) {settings.analysis=0;localStorage.setItem("bmasherSetting2", 0);}
 if(document.getElementById('seths1').checked) {settings.saveScores=1;localStorage.removeItem("bmasherSetting3");}
 if(document.getElementById('seths0').checked) {settings.saveScores=0;localStorage.setItem("bmasherSetting3", 0);}
-document.getElementById("resetcurse").innerHTML="<button type='button' id='resetbutton' onclick='reset()' class='small'>Reset</button>";
 }
 
 function reset() {
 var r=confirm("Are you sure you want to reset all your scores, stats, and settings?");
-if (r==true) {score.tenSec=0;score.thirtySec=0;localStorage.removeItem("bmasherScore");localStorage.removeItem("bmasherScore2");score.oneMin = 0;localStorage.removeItem("bmasherScore3");score.endurance = 0;localStorage.removeItem("bmasherScore4");score.movement = 0;localStorage.removeItem("bmasherScore5");score.enduranceHard = 0;localStorage.removeItem("bmasherScore6");score.movementHard = 0;localStorage.removeItem("bmasherScore7");score.lightning = "&#8734";localStorage.removeItem("bmasherScore8");score.lightningHundred = "&#8734";localStorage.removeItem("bmasherScore9");score.oscillation = 0;localStorage.removeItem("bmasherScore10");score.oscillationHard = 0;localStorage.removeItem("bmasherScore11");score.clicked = 0;localStorage.removeItem("timesClickedScore");settings.bgchange=1;localStorage.removeItem("bmasherSetting1");settings.analysis=1;localStorage.removeItem("bmasherSetting2");settings.saveScores=1;localStorage.removeItem("bmasherSetting3");star();records();
-document.getElementById("resetcurse").innerHTML="<span style='color:#4A56F7;'><i>Reset complete</i></span>";}
+if (r==true) {score.tenSec=0;score.thirtySec=0;localStorage.removeItem("bmasherScore");localStorage.removeItem("bmasherScore2");score.oneMin = 0;localStorage.removeItem("bmasherScore3");score.endurance = 0;localStorage.removeItem("bmasherScore4");score.movement = 0;localStorage.removeItem("bmasherScore5");score.enduranceHard = 0;localStorage.removeItem("bmasherScore6");score.movementHard = 0;localStorage.removeItem("bmasherScore7");score.lightning = "&#8734";localStorage.removeItem("bmasherScore8");score.lightningHundred = "&#8734";localStorage.removeItem("bmasherScore9");score.oscillation = 0;localStorage.removeItem("bmasherScore10");score.oscillationHard = 0;localStorage.removeItem("bmasherScore11");score.clicked = 0;localStorage.removeItem("timesClickedScore");settings.bgchange=1;localStorage.removeItem("bmasherSetting1");settings.analysis=1;localStorage.removeItem("bmasherSetting2");settings.saveScores=1;localStorage.removeItem("bmasherSetting3");star();records();}
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first HTML5 game.</p><p>It&#39;s a simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. Finally, this is my first game to keep save data.</p><p><strong>Released:</strong> April 19, 2013<br><strong>Updated:</strong> January 22, 2016<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Button Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a> and <a href='http://timtree.github.io/mouse-swipe' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first HTML5 game.</p><p>It&#39;s a simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. Finally, this is my first game to keep save data.</p><p><strong>Released:</strong> April 19, 2013<br><strong>Updated:</strong> August 23, 2015<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Button Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/keyboard-masher' target='_blank'>Keyboard Masher</a> and <a href='http://timtree.github.io/mouse-swipe' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
 }
 
 function beatcreator() {
@@ -513,8 +488,7 @@ function newgame() {
 func="newgame();";
 document.body.style.backgroundColor = "#91825B";
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p><button type='button' class='mash' onclick='plusone(),plusone2()'>START</button></p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p id='thehs'></p>";
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p><button type='button' class='mash' onclick='plusone(),plusone2()'>START</button></p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 }
 
 var int, restart;
@@ -530,7 +504,7 @@ addup();
 int=setInterval(updatetime,100);
 
 document.getElementById("masher").innerHTML="<p><button type='button' class='mash' onclick='plusone2()' onkeypress='return noenter(event)'>MASH!</button></p>";
-document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo();newgame();' title='Restart'> &#8617;</a>";
+document.getElementById("restart").innerHTML="<a onclick='redo();newgame();' title='Restart'> &#8617;</a>";
 document.getElementById("back").innerHTML="";
 
 bgchange();
@@ -598,7 +572,7 @@ if(x>=9001)
 
 function custom() {
 headermenu();
-document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><div id='select'><form name='custominput' onsubmit='return customgame()'><ul><li><input name='custom' style='font-size:16pt; width:100px;'></li><li><button type='submit'>Enter</button></li></ul></form><p id='customerror'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><div id='select'><form name='custominput' onsubmit='return customgame()'><ul><li><input name='custom' style='font-size:16pt; width:100px;'></li><li><button type='submit'>Enter</button></li></ul></form><p id='customerror'></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
 }
 
 function customgame() {
@@ -607,16 +581,13 @@ function customgame() {
 		z=z.replace(/\,/g, "");
 		if(z=="") throw "Box is blank.";
 		if(isNaN(z)) throw "Not a number.";
-		if(z <= 0) throw "Not possible.";
-		if(z > 2147483.647) throw "Overflow.";
+		if(z <= 0) throw "Not gonna work.";
 		else if(z == 10) {tensec();}
 		else if(z == 30) {thirtysec();}
 		else if(z == 60) {onemin();}
 		else {
-			time = Number(z);
-			if (time==1) {secondmod="second";}
-			else {secondmod="seconds";}
-			message = "Custom ("+ time + " "+secondmod+")";
+			time = z;
+			message = "Custom ("+ time + " seconds)";
 			highscore = "n/a";
 			interval = 0;
 			beatvar = null;
@@ -624,8 +595,7 @@ function customgame() {
 			}
 	}
 	catch (err) {
-	document.getElementById("customerror").innerHTML="<span id='blank'>.</span>";
-	setTimeout(function(){document.getElementById("customerror").innerHTML="<span style='color:red;'>Error: " + err + "</span>";}, 100);
+	document.getElementById("customerror").innerHTML="<span style='color:red;'>Error: " + err + "</span>";
 	}
 	return false;
 }
@@ -656,8 +626,7 @@ function endurancegame() {
 func="endurancegame()";
 if (settings.bgchange==1) {document.body.style.backgroundColor = "#888";}
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p><button type='button' class='mash' onclick='plusone3()'>START</button></p></div><p id='thehs'></p>";
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p><button type='button' class='mash' onclick='plusone3()'>START</button></p></div><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 }
 
 var edone;
@@ -750,9 +719,7 @@ func = "movementgame()";
 time=30;
 document.body.style.backgroundColor = "#91825B";
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='movementmasher'><div id='movewrap'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p id='thehs'></p>";
-
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+document.getElementById("main").innerHTML=scoreset+"<div id='movementmasher'><div id='movewrap'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 
 if (message=="Movement"){
 document.getElementById("movewrap").innerHTML="<button type='button' id='movement' onclick='plusone5()' onkeypress='return noenter(event)'>START</button>";
@@ -770,7 +737,7 @@ document.getElementById("movementmasher").style.margin="auto";
 endscore("movementmasher");
 moveAnalysis();scoretest();addup();
 },30000);
-document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo(),movementgame();' title='Restart'> &#8617;</a>";
+document.getElementById("restart").innerHTML="<a onclick='redo(),movementgame();' title='Restart'> &#8617;</a>";
 document.getElementById("back").innerHTML="";
 
 int=setInterval(updatetime,100);
@@ -880,7 +847,7 @@ if(x>=9001)
 }
 
 function lightning() {
-document.getElementById("main").innerHTML="<p class='margin'>Lightning - Select Type</p><div id='select'><ul><li><button type='button' class='mod' onclick='lightningnormal()' onmouseover='description(\"Double click as fast as you can.\")'>Normal</button></li><li><button type='button' class='mod' onclick='lightninghundred()' onmouseover='description(\"Click 100 times as fast as you can.\")'>x100</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><form name='custominput' onsubmit='return customgamelightning()'><ul>Custom (# of clicks): <li><input name='custom' style='font-size:16pt; width:100px;'></li><li><button type='submit'>Enter</button></li></ul></form><p id='customerror'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<p class='margin'>Lightning - Select Type</p><div id='select'><ul><li><button type='button' class='mod' onclick='lightningnormal()' onmouseover='description(\"Double click as fast as you can.\")'>Normal</button></li><li><button type='button' class='mod' onclick='lightninghundred()' onmouseover='description(\"Click 100 times as fast as you can.\")'>x100</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><form name='custominput' onsubmit='return customgamelightning()'><ul>Custom (# of clicks): <li><input name='custom' style='font-size:16pt; width:100px;'></li><li><button type='submit'>Enter</button></li></ul></form><p id='customerror'></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
 }
 
 function lightningnormal() {
@@ -905,8 +872,7 @@ func="lightninggame()";
 realclicks = clicks;
 document.body.style.backgroundColor = "#91825B";
 headersetup();
-document.getElementById("main").innerHTML=scoretime+"<div id='masher'><p><button type='button' class='mash' onclick='plusone7()'>START</button></p></div><p id='timer'><b>Clicks left:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + realclicks + "</span></p><p id='thehs'></p>";
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + " seconds</span>";}
+document.getElementById("main").innerHTML=scoretime+"<div id='masher'><p><button type='button' class='mash' onclick='plusone7()'>START</button></p></div><p id='timer'><b>Clicks left:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + realclicks + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + " seconds</span></p>";
 }
 
 var intime;
@@ -980,21 +946,19 @@ function customgamelightning() {
 		
 		if(z=="") throw "Box is blank.";
 		if(isNaN(z)) throw "Not a number.";
-		if(z <= 1 || z%1!=0) throw "Not possible.";
-		if(z > 9007199254740991) throw "Overflow.";
+		if(z <= 1 || z%1!=0) throw "Not gonna work.";
 		else if(z == 2) {lightningnormal();}
 		else if(z == 100) {lightninghundred();}
 		else {
-			clicks = Number(z);
-			message = "Lightning Custom (x"+clicks+")";
+			clicks = z;
+			message = "Lightning Custom (x"+z+")";
 			highscore = "n/a";
             beatvar = null;
 			lightninggame();
 			}
 	}
 	catch (err) {
-	document.getElementById("customerror").innerHTML="<span id='blank'>.</span>";
-	setTimeout(function(){document.getElementById("customerror").innerHTML="<span style='color:red;'>Error: " + err + "</span>";}, 100);
+	document.getElementById("customerror").innerHTML="<span style='color:red;'>Error: " + err + "</span>";
 	}
     return false;
 }
@@ -1024,8 +988,7 @@ func="oscillationgame()";
 time = 30;
 document.body.style.backgroundColor = "#91825B";
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='oscill'><div id='oscillbutton'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p id='thehs'></p>";
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+document.getElementById("main").innerHTML=scoreset+"<div id='oscill'><div id='oscillbutton'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 if (message=="Oscillation"){
 document.getElementById("oscillbutton").innerHTML="<button type='button' id='oscillate' onkeypress='return noenter(event)' onclick=run()>START</button>";
 }
@@ -1040,7 +1003,7 @@ start = Date.now();
 document.score.scoring.value++;
 bgchange();
 document.getElementById("back").innerHTML="";
-document.getElementById("restart").innerHTML="<a  class='clickable' onclick='redo(),clearTimeout(flash),clearTimeout(flash2),clearTimeout(flash3),clearTimeout(flash4),oscillationgame();' title='Restart'> &#8617;</a>";
+document.getElementById("restart").innerHTML="<a onclick='redo(),clearTimeout(flash),clearTimeout(flash2),clearTimeout(flash3),clearTimeout(flash4),oscillationgame();' title='Restart'> &#8617;</a>";
 restart=setTimeout(function(){
 document.getElementById("oscill").style.height="100%";
 document.getElementById("oscill").style.textAlign="center";
@@ -1164,8 +1127,7 @@ if (settings.saveScores==1) {
 	document.getElementById("beatme").innerHTML="<span id='beatcreator'>You beat the game creator!</span>";
 	}
 	if (x>highscore) {
-	if (highscore != 0) {document.getElementById("record").innerHTML="New Record!";}
-	highscore = x;
+	document.getElementById("record").innerHTML="New Record!";highscore = x;
 		if (message=="10 Seconds") {score.tenSec=x;localStorage.setItem("bmasherScore", x);}
 		if (message=="30 Seconds") {score.thirtySec=x;localStorage.setItem("bmasherScore2", x);}
 		if (message=="1 Minute") {score.oneMin=x;localStorage.setItem("bmasherScore3", x);}
@@ -1187,8 +1149,7 @@ if (settings.saveScores==1) {
 	document.getElementById("beatme").innerHTML="<span id='beatcreator'>You beat the game creator!</span>";
 	}
 	if (x<highscore && x!=0 || highscore=="&#8734" && x!=0) {
-	if (highscore!="&#8734") {document.getElementById("record").innerHTML="New Record!";}
-	highscore = x;
+	document.getElementById("record").innerHTML="New Record!";highscore = x;
 		if (message=="Lightning") {score.lightning=x;localStorage.setItem("bmasherScore8", x);}
 		if (message=="Lightning (x100)") {score.lightningHundred=x;localStorage.setItem("bmasherScore9", x);}
         star();
@@ -1208,6 +1169,10 @@ score.clicked = score.clicked*1+Math.abs(document.score.scoring.value)*1;localSt
 
 <div id="wrap">
 
+<!--[if lte IE 9]>
+<span style="display:block;text-align:center;"><strong>Your browser is unsupported.</strong> Time for an upgrade. Try a newer <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie">Internet Explorer</a>, <a href="http://www.mozilla.org/en-US/firefox/new/">Firefox</a>, or <a href="https://www.google.com/intl/en/chrome/browser/">Chrome</a>.</span>
+<![endif]-->
+
 <noscript><span style="display:block;text-align:center;"><strong>Javascript is disabled.</strong> Please enable it in order to play the game.</span></noscript>
 
 <div id="title">Button Masher</div>
@@ -1220,7 +1185,7 @@ score.clicked = score.clicked*1+Math.abs(document.score.scoring.value)*1;localSt
 
 </div>
 
-<div id="copyright"><p>Version 4.3 &nbsp;&#126;&nbsp; &copy;2013-2016 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.2 &nbsp;&#126;&nbsp; &copy;2013-2015 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

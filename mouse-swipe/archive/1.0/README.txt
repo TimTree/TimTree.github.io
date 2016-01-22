@@ -18,7 +18,7 @@ Javascript must be enabled.
 *For save related reasons, the downloaded version does not work with these browsers.
 
 COPYRIGHT NOTICE
-This game is copyright (c) 2015-2016 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+This game is copyright (c) 2015 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
 
 CONTACT INFO
 To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
@@ -30,15 +30,6 @@ http://slideshowgames.blogspot.com/2015/10/mouse-swipe-more-info.html
 --------------------------------------
 
 VERSION HISTORY
-
-Version 1.1 (released 1/22/16)
--------------------------------
-- Minor UI improvements
-- Custom mode number handling improvements
-- "New Record!" no longer appears on first playthrough
-- High scores are now hidden if the Save High Scores setting is off.
-- The game now informs you when a reset is complete.
-- Access the strategy guide from the help page.
 
 Version 1.0 (released 10/1/15)
 ------------------------------

@@ -145,27 +145,8 @@ font-size:10pt;
 text-align:left;
 }
 
-.margin, #customerror {
+.margin {
 margin-bottom:1.5em;
-}
-
-#resetcurse {
-min-height:24px;
-margin-bottom:2em;
-}
-
-#resetbutton {
-background-color:#F9DDDD;
-border:1px solid #FB7777;
-color:#651818;
-}
-
-#resetbutton:hover {
-background-color:#FFC3C3;
-}
-
-#resetbutton:active {
-background-color:#F39797;
 }
 
 #scorebreak {
@@ -173,7 +154,7 @@ margin-bottom:6px;
 font-weight:700;
 }
 
-#masher, #analysis {
+#masher, #analysis, #customerror {
 margin-bottom:50px;
 }
 
@@ -299,10 +280,6 @@ background-color:#709EF3;
 z-index:1;
 }
 
-a.clickable:hover {
-color:#228E6C;
-}
-
 </style>
 
 <script>
@@ -334,7 +311,7 @@ saveScores: 1
 
 var scoreset="<p id='beatme'></p><p id='scorebreak'><b>Score</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0' id='score' readonly></form>";
 var scoretime="<p id='beatme'></p><p id='scorebreak'><b>Time</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0.000' id='score' readonly></form>";
-var back = "<a class='clickable' id='back' onclick='begin();'>&#8592; </a>";
+var back = "<a id='back' onclick='begin();'>&#8592; </a>";
 var keyspressed = [];
 
 if (localStorage.getItem("kmasherScore")) {
@@ -379,15 +356,15 @@ else {document.getElementById("clickgod").style.display="none";}
 
 function begin() {
 headermenu();
-document.getElementById("main").innerHTML="<p class='margin'><a class='clickable' onclick='imdone()'><strong>&#8592;</strong></a>&nbsp; Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='arrow()'>Arrow</button></li><li><button type='button' class='mod' onclick='alphabet()'>Alphabet</button></li><li><button type='button' class='mod' onclick='versus()'>Versus</button></li></ul><ul id='achieve'><li><a class='clickable' onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a class='clickable' onclick='typingtyphon()'><strong>The Typing Typhon</strong></a></li></ul></div>";
+document.getElementById("main").innerHTML="<p class='margin'>Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li><li><button type='button' class='mod' onclick='custom()'>Custom</button></li></ul><ul><li><button type='button' class='mod' onclick='arrow()'>Arrow</button></li><li><button type='button' class='mod' onclick='alphabet()'>Alphabet</button></li><li><button type='button' class='mod' onclick='versus()'>Versus</button></li></ul><ul id='achieve'><li><a onclick='imdone()'><strong>&#8592;</strong></a></li><li><a onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a onclick='typingtyphon()'><strong>The Typing Typhon</strong></a></li></ul></div>";
 }
 
 function help() {
-document.getElementById("main").innerHTML="<h4>Help</h4><p>Mash the keyboard as fast as you can! There are a variety of game modes to try.</p><p><strong>10/30 Seconds:</strong> Mash the keyboard for 10 or 30 seconds.<br><strong>Custom:</strong> Mash the keyboard for any time you choose.<br><strong>Arrow:</strong> Type the on-screen arrow keys as quick as you can.<br><strong>Alphabet:</strong> Type the alphabet as fast as you can.<br><strong>Versus:</strong> For two players. Who can mash the quickest?</p><p>For tips on raising your scores, check out the <a href='http://slideshowgames.blogspot.com/2015/04/the-keyboard-masher-strategy-guide.html' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Help</h4><p>Mash the keyboard as fast as you can! There are a variety of game modes to try.</p><p><strong>10/30 Seconds:</strong> Mash the keyboard for 10 or 30 seconds.<br><strong>Custom:</strong> Mash the keyboard for any time you choose.<br><strong>Arrow:</strong> Type the on-screen arrow keys as quick as you can.<br><strong>Alphabet:</strong> Type the alphabet as fast as you can.<br><strong>Versus:</strong> For two players. Who can mash the quickest?</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 }
 
 function records() {
-document.getElementById("main").innerHTML="<h4>Settings</h4><table id='settings'><tr><td>Background Color Change</td><td><input type='radio' name='setbg' id='setbg1' onchange='setchange()' checked>On <input type='radio' name='setbg' id='setbg0' onchange='setchange()'>Off</td></tr><tr><td>Commentary</td><td><input type='radio' name='setcom' id='setcom1' onchange='setchange()' checked>On <input type='radio' name='setcom' id='setcom0' onchange='setchange()'>Off</td></tr><tr><td>Save High Scores</td><td><input type='radio' name='seths' id='seths1' onchange='setchange()' checked>On <input type='radio' name='seths' id='seths0' onchange='setchange()'>Off</td></tr></table><p id='resetcurse'><button type='button' id='resetbutton' onclick='reset()' class='small'>Reset</button></p><p><button type='button' class='mod' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Settings</h4><table id='settings'><tr><td>Background Color Change</td><td><input type='radio' name='setbg' id='setbg1' onchange='setchange()' checked>On <input type='radio' name='setbg' id='setbg0' onchange='setchange()'>Off</td></tr><tr><td>Commentary</td><td><input type='radio' name='setcom' id='setcom1' onchange='setchange()' checked>On <input type='radio' name='setcom' id='setcom0' onchange='setchange()'>Off</td></tr><tr><td>Save High Scores</td><td><input type='radio' name='seths' id='seths1' onchange='setchange()' checked>On <input type='radio' name='seths' id='seths0' onchange='setchange()'>Off</td></tr></table><p class='margin'><button type='button' onclick='reset()' class='small'>Reset</button></p><p><button type='button' class='mod' onclick='imdone()'>Go back</button></p>";
 if (settings.bgchange==0) {document.getElementById('setbg0').checked=true;}
 if (settings.analysis==0) {document.getElementById('setcom0').checked=true;}
 if (settings.saveScores==0) {document.getElementById("seths0").checked=true;}
@@ -400,17 +377,15 @@ if(document.getElementById('setcom1').checked) {settings.analysis=1;localStorage
 if(document.getElementById('setcom0').checked) {settings.analysis=0;localStorage.setItem("kmasherSetting2", 0);}
 if(document.getElementById('seths1').checked) {settings.saveScores=1;localStorage.removeItem("kmasherSetting3");}
 if(document.getElementById('seths0').checked) {settings.saveScores=0;localStorage.setItem("kmasherSetting3", 0);}
-document.getElementById("resetcurse").innerHTML="<button type='button' id='resetbutton' onclick='reset()' class='small'>Reset</button>";
 }
 
 function reset() {
 var r=confirm("Are you sure you want to reset all your scores, stats, and settings?");
-if (r==true) {score.tenSec=0;localStorage.removeItem("kmasherScore");score.thirtySec = 0;localStorage.removeItem("kmasherScore2");score.arrow = 0;localStorage.removeItem("kmasherScore3");score.arrow360 = 0;localStorage.removeItem("kmasherScore5");score.alphabet = "&#8734";localStorage.removeItem("kmasherScore4");score.alphabetBack = "&#8734";localStorage.removeItem("kmasherScore6");score.pressed = 0;localStorage.removeItem("ktimesPressedScore");settings.bgchange=1;localStorage.removeItem("kmasherSetting1");settings.analysis=1;localStorage.removeItem("kmasherSetting2");settings.saveScores=1;localStorage.removeItem("kmasherSetting3");star();records();
-document.getElementById("resetcurse").innerHTML="<span style='color:#4A56F7;'><i>Reset complete</i></span>";}
+if (r==true) {score.tenSec=0;localStorage.removeItem("kmasherScore");score.thirtySec = 0;localStorage.removeItem("kmasherScore2");score.arrow = 0;localStorage.removeItem("kmasherScore3");score.arrow360 = 0;localStorage.removeItem("kmasherScore5");score.alphabet = "&#8734";localStorage.removeItem("kmasherScore4");score.alphabetBack = "&#8734";localStorage.removeItem("kmasherScore6");score.pressed = 0;localStorage.removeItem("ktimesPressedScore");settings.bgchange=1;localStorage.removeItem("kmasherSetting1");settings.analysis=1;localStorage.removeItem("kmasherSetting2");settings.saveScores=1;localStorage.removeItem("kmasherSetting3");star();records();}
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Released:</strong> June 25, 2013<br><strong>Updated:</strong> January 22, 2016<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Keyboard Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a> and <a href='http://timtree.github.io/mouse-swipe' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Released:</strong> June 25, 2013<br><strong>Updated:</strong> October 1, 2015<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Keyboard Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='http://timtree.github.io/button-masher' target='_blank'>Button Masher</a> and <a href='http://timtree.github.io/mouse-swipe' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='http://slideshowgames.blogspot.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='http://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
 }
 
 function beatcreator() {
@@ -467,8 +442,7 @@ func="newgame();";
 headersetup();
 document.onkeydown = function(event) {plusone2(event); plusone();}
 document.body.style.backgroundColor = "#295C66";
-document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p>Type on your keyboard to begin.</p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p id='thehs'></p>";
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p>Type on your keyboard to begin.</p></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 }
 
 var int, restart;
@@ -486,7 +460,7 @@ addup();
 int=setInterval(updatetime,100);
 
 document.getElementById("masher").innerHTML="<p style='font-size:18pt;font-weight:700;'>GO, GO, GO!</p>";
-document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo();newgame();' title='Restart'> &#8617;</a>";
+document.getElementById("restart").innerHTML="<a onclick='redo();newgame();' title='Restart'> &#8617;</a>";
 document.getElementById("back").innerHTML="";
 bgchange();
 } 
@@ -572,24 +546,22 @@ score.pressed = score.pressed*1+Math.abs(document.score.scoring.value)*1;localSt
 
 function custom() {
 headermenu();
-document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><div id='select'><form name='custominput' onsubmit='return customgame()'><ul><li><input name='custom' style='font-size:16pt; width:100px;'></li><li><button type='submit'>Enter</button></li></ul></form><p id='customerror'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<p class='margin'>Custom - Enter a numeric time (in seconds).</p><div id='select'><form name='custominput' onsubmit='return customgame()'><ul><li><input name='custom' style='font-size:16pt; width:100px;'></li><li><button type='submit'>Enter</button></li></ul></form><p id='customerror'></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
 }
 
 function customgame() {
 	try {
 		var z=document.custominput.custom.value;
 		z=z.replace(/\,/g, "");
+		
 		if(z=="") throw "Box is blank.";
 		if(isNaN(z)) throw "Not a number.";
 		if(z <= 0) throw "Not gonna work.";
-		if(z > 2147483.647) throw "Overflow.";
 		else if(z == 10) {tensec();}
 		else if(z == 30) {thirtysec();}
 		else {
-			time = Number(z);
-			if (time==1) {secondmod="second";}
-			else {secondmod="seconds";}
-			message = "Custom ("+ time + " "+secondmod+")";
+			time = z;
+			message = "Custom ("+ time + " seconds)";
 			highscore = "n/a";
 			interval = 0;
 			beatvar = null;
@@ -597,8 +569,7 @@ function customgame() {
 			}
 	}
 	catch (err) {
-	document.getElementById("customerror").innerHTML="<span id='blank'>.</span>";
-	setTimeout(function(){document.getElementById("customerror").innerHTML="<span style='color:red;'>Error: " + err + "</span>";}, 100);
+	document.getElementById("customerror").innerHTML="<span style='color:red;'>Error: " + err + "</span>";
 	}
 	return false;
 }
@@ -647,13 +618,12 @@ else if (message=="Arrow (360)") {if (e.keyCode == arrowToPress && keyspressed.l
 document.onkeyup = keyup;
 document.body.style.backgroundColor = "#295C66";
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p id='typekey'><strong>Type the up key to begin.</strong></p><div id='arrow'>&#8593;</div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p id='thehs'></p>";
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+document.getElementById("main").innerHTML=scoreset+"<div id='masher'><p id='typekey'><strong>Type the up key to begin.</strong></p><div id='arrow'>&#8593;</div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span></p>";
 }
 
 function plusone3() {
 start = Date.now();
-document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo();arrowgame();' title='Restart'> &#8617;</a>";
+document.getElementById("restart").innerHTML="<a onclick='redo();arrowgame();' title='Restart'> &#8617;</a>";
 document.getElementById("back").innerHTML="";
 plusone4();
 document.getElementById("typekey").innerHTML="<strong>Type the key:</strong>";
@@ -759,8 +729,7 @@ if (e.keyCode == arrowToPress) {plusone5();}
 
 document.body.style.backgroundColor = "#295C66";
 headersetup();
-document.getElementById("main").innerHTML=scoretime+"<div id='masher'><p id='typekey'><strong>Type the letter to begin.</strong></p><div id='arrow'>" + String.fromCharCode(arrowToPress).toLowerCase() + "</div></div><p id='thehs'></p>";
-if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + " seconds</span>";}
+document.getElementById("main").innerHTML=scoretime+"<div id='masher'><p id='typekey'><strong>Type the letter to begin.</strong></p><div id='arrow'>" + String.fromCharCode(arrowToPress).toLowerCase() + "</div></div><p><span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + " seconds</span></p>";
 }
 
 var intime;
@@ -776,7 +745,7 @@ if (e.keyCode == arrowToPress) {plusone6();}
 
 intime=setInterval(stopwatch,1);
 document.getElementById("typekey").innerHTML="<strong>Type the letter:</strong>";
-document.getElementById("restart").innerHTML="<a class='clickable' onclick='redotime(),alphabetgame();' title='Restart'> &#8617;</a>";
+document.getElementById("restart").innerHTML="<a onclick='redotime(),alphabetgame();' title='Restart'> &#8617;</a>";
 if (settings.bgchange==1) {document.body.style.backgroundColor = "#70A6B4";}
 } 
 
@@ -1022,7 +991,6 @@ document.getElementById("main").innerHTML="<div id='select'><p><button type='but
 }
 
 function headermenu() {
-document.onkeydown=null;
 document.body.style.backgroundColor = "#295C66";
 document.getElementById("title").style.fontSize="50pt";
 document.getElementById("author").innerHTML="By Timothy Hsu";
@@ -1072,8 +1040,7 @@ if (settings.saveScores==1) {
 	document.getElementById("beatme").innerHTML="<span id='beatcreator'>You beat the game creator!</span>";
 	}
 	if (x>highscore) {
-	if (highscore != 0) {document.getElementById("record").innerHTML="New Record!";}
-	highscore = x;
+	document.getElementById("record").innerHTML="New Record!";highscore = x;
 		if (message=="10 Seconds") {score.tenSec=x;localStorage.setItem("kmasherScore", x);}
 		if (message=="30 Seconds") {score.thirtySec=x;localStorage.setItem("kmasherScore2", x);}
 		if (message=="Arrow") {score.arrow=x;localStorage.setItem("kmasherScore3", x);}
@@ -1090,8 +1057,7 @@ if (settings.saveScores==1) {
 	document.getElementById("beatme").innerHTML="<span id='beatcreator'>You beat the game creator!</span>";
 	}
 	if (x<highscore && x!=0 || highscore=="&#8734" && x!=0) {
-	if (highscore!="&#8734") {document.getElementById("record").innerHTML="New Record!";}
-	highscore = x;
+	document.getElementById("record").innerHTML="New Record!";highscore = x;
 		if (message=="Alphabet") {score.alphabet=x;localStorage.setItem("kmasherScore4", x);}
 		if (message=="Alphabet (Backwards)") {score.alphabetBack=x;localStorage.setItem("kmasherScore6", x);}
         star();
@@ -1119,7 +1085,7 @@ if (settings.saveScores==1) {
 
 </div>
 
-<div id="copyright"><p>Version 4.4 &nbsp;&#126;&nbsp; &copy;2013-2016 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.3 &nbsp;&#126;&nbsp; &copy;2013-2015 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

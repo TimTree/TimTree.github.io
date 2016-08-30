@@ -8,18 +8,16 @@
 		<meta charset="UTF-8">
 		<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,700" rel="stylesheet">
 		<meta name="description" content="The sophisticated number guesser">
-		<meta name="author" content="Timothy Hsu">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 		<link rel="shortcut icon" type="image/x-icon" href="1k.ico" />
 		<meta name="format-detection" content="telephone=no">
 		<meta name="apple-mobile-web-app-title" content="My Number">
 		<link rel="apple-touch-icon" href="./assets/1kappicon.png">
 		<meta name="apple-mobile-web-app-capable" content="yes">
-		<link type="text/css" rel="stylesheet" href="./assets/dark.css" id="darkTheme">
-		<link type="text/css" rel="stylesheet" href="./assets/light.css" id="lightTheme">
+		<link type="text/css" rel="stylesheet" media="all" href="./assets/light.css" id="numberTheme">
 		
 		<style>
-		
+
 		html {
 		height:100%;
 		-webkit-text-size-adjust: 100%;	
@@ -185,81 +183,50 @@
 		padding:1px 0;
 		}
 		
-		#mynumberlogo {
-		width:80px;
-		height:80px;
-		background-image:url("./assets/1klogo.png");
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center center;
-		margin:1em auto;
-		}
-		
 		</style>
 
 		<script>
+
+		window.onload=setUp();
 		
-			// Browser detection code from http://stackoverflow.com/questions/9847580/ for number set loading performance
-			var isFirefox = typeof InstallTrigger !== 'undefined';
-			var isIE = /*@cc_on!@*/false || !!document.documentMode;
-			var isEdge = !isIE && !!window.StyleMedia;
-			
-			var LSNumSelection = '0';
-			var LSLteUnlock = '0';
-			var LSLteEnabled = '0';
-			var LSLightOrDark = '0';
-			
-			var isNotSafariPrivate = function() {
-				var doesItWork = 'test', storage = window.sessionStorage;
-					try {
-						storage.setItem(doesItWork, '1');
-						storage.removeItem(doesItWork);
-						return true;
-					}
-					catch (error) {
-						return false;
-					}
-			}
-			
-			if (typeof(localStorage) !== "undefined") {
-				if (localStorage.getItem("myNumberNumSelection")) 
-				{LSNumSelection = localStorage.getItem("myNumberNumSelection");}
+		// Browser detection code from http://stackoverflow.com/questions/9847580/ for number set loading performance
+		var isFirefox = typeof InstallTrigger !== 'undefined';
+		var isIE = /*@cc_on!@*/false || !!document.documentMode;
+		var isEdge = !isIE && !!window.StyleMedia;
+		
+		function setUp() {
 
-				if (localStorage.getItem("myNumberLteUnlock")) 
-				{LSLteUnlock = localStorage.getItem("myNumberLteUnlock");}
-
-				if (localStorage.getItem("myNumberLteEnabled")) 
-				{LSLteEnabled = localStorage.getItem("myNumberLteEnabled");}
-				
-				if (localStorage.getItem("myNumberLightOrDark")) 
-				{LSLightOrDark = localStorage.getItem("myNumberLightOrDark");}
-				
-			}
-			
-			if (LSLightOrDark=='1') {
-				document.getElementById('lightTheme').disabled = true;
-				document.getElementById('darkTheme').disabled = false;
-				}
-			
-			else {
-				document.getElementById('lightTheme').disabled = false;
-				document.getElementById('darkTheme').disabled = true;
-			}
+        if (!localStorage.getItem("myNumberNumSelection")) {
+            localStorage.setItem('myNumberNumSelection','0');
+        }  
+        
+        if (!localStorage.getItem("myNumberLteUnlock")) {
+            localStorage.setItem('myNumberLteUnlock','0');
+        }
+            
+        if (!localStorage.getItem("myNumberLteEnabled")) {
+            localStorage.setItem('myNumberLteEnabled','0');
+        }
+            
+        if (!localStorage.getItem("myNumberLightOrDark")) {
+            localStorage.setItem('myNumberLightOrDark','0');
+        }
+		
+		if (localStorage.getItem("myNumberLightOrDark")=='1') {
+			document.getElementById('numberTheme').href = './assets/dark.css';
+		}
+		}
 		
 		function dark() {
-		switch (LSLightOrDark) {
+		switch (localStorage.getItem("myNumberLightOrDark")) {
 		case '0':
-		document.getElementById('lightTheme').disabled = true;
-		document.getElementById('darkTheme').disabled = false;
-		LSLightOrDark='1';
-		if (isNotSafariPrivate()) {localStorage.setItem('myNumberLightOrDark','1');}
+		document.getElementById('numberTheme').href = './assets/dark.css';
+		localStorage.setItem('myNumberLightOrDark','1');
 		break;
 
 		case '1':
-		document.getElementById('lightTheme').disabled = false;
-		document.getElementById('darkTheme').disabled = true;
-		LSLightOrDark='0';
-		if (isNotSafariPrivate()) {localStorage.setItem('myNumberLightOrDark','0');}
+		document.getElementById('numberTheme').href = './assets/light.css';
+		localStorage.setItem('myNumberLightOrDark','0');
 		break;
 		
 		default:
@@ -268,20 +235,20 @@
 		}
 		
 		function help() {
-			document.getElementById("main").innerHTML="<p>Try to guess what my number is from the range you provide me.</p><p id='tipslist'>Tips to Succeed</p><p id='tipslist'><b>There are two ways to guess: a number set or an input field.</b> Find the style that fits your flow.</b></p><p id='tipslist'><b>Don't be afraid of hints,</b> but try not to use them all.</p><p id='tipslist'><b>Press the enter key after each guess</b> to quickly return to the guessing screen.</p><p id='tipslist'><b>Click on a guessed number in input field</b> for it to appear in the input box.</b></p><p id='tipslist'><b>Toggle light and dark</b> with the menu's top-left tab.</b></p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+			document.getElementById("main").innerHTML="<p>Try to guess what my number is from the range you provide me.</p><p id='tipslist'>Tips to Succeed</p><p id='tipslist'><b>There are two ways to guess: a number set or an input field.</b> Find the style that fits your flow.</b></p><p id='tipslist'><b>Don't be afraid of hints,</b> but try not to use them all.</p><p id='tipslist'><b>Press the enter key after each guess</b> to quickly return to the guessing screen.</p><p id='tipslist'>In input field, <b>click on a guessed number to make it appear in the input box.</b></p><p id='tipslist'>In the menu, <b>use the top-left tab to toggle light and dark.</b></p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 		}
 
 		function about() {
-			document.getElementById("main").innerHTML="<p id='mynumberlogo'></p><p id='slogan'>The sophisticated number guesser</p><p><em>I am Thinking of a Number</em> originates from an infamous PowerPoint game that made users guess a number from 1 to 1000. It has since evolved to HTML5, offering hints and increased flexibility.</p><p><strong>Released:</strong> August 14, 2013<br><strong>Updated:</strong> August 30, 2016<br><strong>License:</strong> <a href='http://www.gnu.org/licenses/gpl-3.0.html' id='license' target='_blank'>GNU GPLv3</a></p><p><a href='https://slideshowgames.blogspot.com/' id='license' target='_blank'>Official Website</a></p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+			document.getElementById("main").innerHTML="<p><img src='./assets/1klogo.png' width=80' height='80'></p><p id='slogan'>The sophisticated number guesser</p><p><em>I am Thinking of a Number</em> originates from an infamous PowerPoint game that made users guess a number from 1 to 1000. It has since evolved to HTML5, offering hints and increased flexibility.</p><p><strong>Released:</strong> August 14, 2013<br><strong>Updated:</strong> August 23, 2016<br><strong>License:</strong> <a href='http://www.gnu.org/licenses/gpl-3.0.html' id='license' target='_blank'>GNU GPLv3</a></p><p><a href='https://slideshowgames.blogspot.com/' id='license' target='_blank'>Official Website</a></p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 		}
 
 		function between() {
 			document.getElementById("main").innerHTML="I am thinking of a number from...<div id='titleselect'><ul><li><button type='button' onclick='guess.generate(1, 10),guess.begin()'>1 to 10</button></li><li><button type='button' onclick='guess.generate(1, 100),guess.begin()'>1 to 100</button></li><li><button type='button' onclick='guess.generate(1, 1000),guess.begin()'>1 to 1000</button></li></ul></div><button onclick='pick()'>Let me pick.</button>";
 			document.getElementById("numselection").innerHTML="<br><div style='font-size:12.5pt;'><form><p style='margin:0;'><input type='radio' name='numformat' id='numset' onchange='guess.changeNumberSet()'> Number Set&nbsp;&nbsp;<input type='radio' name='numformat' id='inputfield' onchange='guess.changeNumberSet()'> Input Field</p></form><form id='formHintEnabler'></form></div>";
-			if (LSNumSelection=='0') {document.getElementById('numset').checked=true;guess.changeNumberSet();}
+			if (localStorage.getItem('myNumberNumSelection')=='0') {document.getElementById('numset').checked=true;guess.changeNumberSet();}
 			else {document.getElementById("inputfield").checked=true;guess.changeNumberSet();}
-            if (LSLteUnlock=='1') {document.getElementById("formHintEnabler").innerHTML="<p style='margin-bottom:0;'><input type='checkbox' name='preLte' id='ltePre' onchange='guess.changeLte()'> Enable less than or greater than</p>";
-                if (LSLteEnabled=='0') {document.getElementById('ltePre').checked=false;guess.changeLte();}
+            if (localStorage.getItem('myNumberLteUnlock')=='1') {document.getElementById("formHintEnabler").innerHTML="<p style='margin-bottom:0;'><input type='checkbox' name='preLte' id='ltePre' onchange='guess.changeLte()'> Enable less than or greater than</p>";
+                if (localStorage.getItem('myNumberLteEnabled')=='0') {document.getElementById('ltePre').checked=false;guess.changeLte();}
                 else {document.getElementById('ltePre').checked=true;guess.changeLte();}
             }
 		}
@@ -332,7 +299,7 @@
 					hint1Used=false;
 					hint2Used=false;
 					
-                    if (LSLteEnabled=='1') {hint3Used=true;}
+                    if (localStorage.getItem('myNumberLteEnabled')=='1') {hint3Used=true;}
                     else {hint3Used=false;}
                     
 					amountOfGuesses=0;
@@ -413,26 +380,22 @@
 				changeNumberSet: function() {
 					if(document.getElementById('numset').checked) {
                         numberSet = true;
-						LSNumSelection = '0';
-                        if (isNotSafariPrivate()) {localStorage.setItem('myNumberNumSelection','0');}
+                        localStorage.setItem('myNumberNumSelection','0');
                     }
 					else {
                         numberSet = false;
-						LSNumSelection = '1';
-                        if (isNotSafariPrivate()) {localStorage.setItem('myNumberNumSelection','1');}     
+                        localStorage.setItem('myNumberNumSelection','1');     
                     }
 				},
                 
                 changeLte: function() {
 					if(document.getElementById('ltePre').checked) {
                         hint3Used = true;
-						LSLteEnabled = '1';
-                        if (isNotSafariPrivate()) {localStorage.setItem('myNumberLteEnabled','1');}
+                        localStorage.setItem('myNumberLteEnabled','1');
                     }
 					else {
                         hint3Used = false;
-						LSLteEnabled = '0';
-                        if (isNotSafariPrivate()) {localStorage.setItem('myNumberLteEnabled','0');}     
+                        localStorage.setItem('myNumberLteEnabled','0');     
                     }
 				},
 				
@@ -477,10 +440,7 @@
 						case 3:
 							hint3Used=true;
 							document.getElementById("hintlte").innerHTML="<em>Less than or greater than enabled</em>";
-                            if (LSLteUnlock=='0') {
-								LSLteUnlock = '1';
-								if (isNotSafariPrivate()) {localStorage.setItem('myNumberLteUnlock','1');}
-							}
+                            if (localStorage.getItem('myNumberLteUnlock')=='0') {localStorage.setItem('myNumberLteUnlock','1');}
                             return "enabled";
 							break;
 						default:
@@ -598,7 +558,7 @@
 		)();
 
 		function imdone() {
-			document.getElementById("main").innerHTML="<div id='darkMode' onclick='dark()'></div><h1>I am Thinking of a Number.</h1><div class='block'><button class='big' type='button' onclick='between()'>Begin</button><div id='titleselect'><ul><li><button type='button' onclick='help()'>Help</button></li><li><button type='button' onclick='about()'>About</button></li></ul></div></div><div id='copyright'>Version 3.0.1 &nbsp;&#126;&nbsp; &copy;2010-2016 Timothy Hsu<em></em></div>";
+			document.getElementById("main").innerHTML="<div id='darkMode' onclick='dark()'></div><h1>I am Thinking of a Number.</h1><div class='block'><button class='big' type='button' onclick='between()'>Begin</button><div id='titleselect'><ul><li><button type='button' onclick='help()'>Help</button></li><li><button type='button' onclick='about()'>About</button></li></ul></div></div><div id='copyright'>Version 3.0 &nbsp;&#126;&nbsp; &copy;2010-2016 Timothy Hsu</div>";
 		}
 
 		</script>
@@ -612,7 +572,7 @@
 				<div id="main">
 				<div id="darkMode" onclick="dark()"></div>
 					<h1>I am Thinking of a Number.</h1>
-					<div class="block"><button class="big" type="button" onclick="between()">Begin</button><div id='titleselect'><ul><li><button type="button" onclick="help()">Help</button></li><li><button type="button" onclick="about()">About</button></li></ul></div></div><div id="copyright">Version 3.0.1 &nbsp;&#126;&nbsp; &copy;2010-2016 Timothy Hsu<em></em></div>
+					<div class="block"><button class="big" type="button" onclick="between()">Begin</button><div id='titleselect'><ul><li><button type="button" onclick="help()">Help</button></li><li><button type="button" onclick="about()">About</button></li></ul></div></div><div id="copyright">Version 3.0 &nbsp;&#126;&nbsp; &copy;2010-2016 Timothy Hsu</div>
 				</div>
 				<div id="numselection"></div>
 			</div>

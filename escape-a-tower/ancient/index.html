@@ -5,6 +5,7 @@
 
 <meta charset="UTF-8">
 <meta name="description" content="Escape a Tower for ancient browsers">
+<meta name="author" content="Timothy Hsu">
 <link rel="shortcut icon" type="image/x-icon" href="towerfavicon.ico" />
 
 <style>
@@ -180,7 +181,6 @@ margin-bottom:0;
 </style>
 
 <script>
-
 var counter = 0;
 var checkpoint = 0;
 var complete = 0;
@@ -902,8 +902,8 @@ counter++;
 }
 
 function credits() {
-if (counter==1) {singleplural="Game Over";}
-else {singleplural="Game Overs";}
+if (counter==1) {var singleplural="Game Over";}
+else {var singleplural="Game Overs";}
 document.getElementById("title").innerHTML="Credits";
 document.getElementById("main").innerHTML="<div class='center'><p><span style='font-size:20pt;'><span style='color:#184EC6;'>Escape</span> <span style='color:#9E8E5C;'>a</span> Tower</span></p><p><strong>Game Creator</strong><br><em>Timothy Hsu</em></p><p><strong>Software Used</strong><br><em>PowerPoint 2010/2011<br>Notepad<br>TextEdit<br>iOS Simulator<br>Google Chrome</em></p><p><strong>Special Thanks</strong><br><em>My family<br>Jeremy Lee<br>Kaizad Taraporevala<br>Michael Wu</em></p><p>&copy;2010-2016 Timothy Hsu.</p><p>You completed the game with " + counter + " " + singleplural + ".</p><p>Don&#39;t forget to check out the <strong>Bonus Features</strong> you just unlocked by completing the game!</p><p><a onclick='imdone()'>Main Menu</a></p></div>";
 checkpoint = 0;

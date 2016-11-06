@@ -84,6 +84,10 @@ line-height:1.25;
 display:none;
 }
 
+#theGame {
+opacity:0;
+}
+
 @media screen and (max-width: 660px) {
 
 #main {
@@ -278,7 +282,7 @@ $(document).ready(function(){
 			classname.eq(i).next().css("border-color", oddToggleColor);
 		}
 	}
-	$("#theGame").hide().fadeIn(250);
+	$("#theGame").fadeTo(250, 1);
 });
 </script>
 

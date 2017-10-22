@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<!--
+Direct Download Links
+v1.0: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imVnJURjVaTnYtLVE
+v1.7: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imY2ZnWmdielMtcm8
+compatibility: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imTUFQSUhiN1k5RXc
+-->
+	<head>
+		<title>Download Escape the Tower</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<meta name="format-detection" content="telephone=no">
+	</head>
+	
+	<script>
+		// https://gomakethings.com/how-to-get-the-value-of-a-querystring-with-native-javascript/
+		var getQueryString = function ( field, url ) {
+			var href = url ? url : window.location.href;
+			var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+			var string = reg.exec(href);
+			return string ? string[1] : null;
+		};
+		var version = getQueryString('ver');
+		var validvers = ["1.0", "1.7", "compatibility"];
+		if (version!=null) {
+			if (validvers.indexOf(version)>=0) {
+				if (version=="1.0") {
+					window.location = 'https://goo.gl/mXYwn2';
+				}
+				else if (version=="1.7") {
+					window.location = 'https://goo.gl/giyJdE';
+				}
+				else if (version=="compatibility") {
+					window.location = 'https://goo.gl/mfXwe7';
+				}
+			}
+			else {
+				document.write("Version "+version+" does not exist, is an HTML5 version, or is not available.")
+			}
+		}
+		else {
+			window.location = 'https://timtree.github.io/escape-a-tower/';
+		}
+	</script>
+		
+	<body>
+		<noscript><p>Javascript is disabled. You can manually download version 1.7 <a href='https://goo.gl/giyJdE'>here.</a></p></noscript>
+	</body>
+	
+</html>

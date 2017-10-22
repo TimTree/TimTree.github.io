@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<!--
+Direct Download Links
+v1.0: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1ima05mYlh2V2NkYlk
+-->
+	<head>
+		<title>Download I am Thinking of a Number</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<meta name="format-detection" content="telephone=no">
+	</head>
+	
+	<script>
+		// https://gomakethings.com/how-to-get-the-value-of-a-querystring-with-native-javascript/
+		var getQueryString = function ( field, url ) {
+			var href = url ? url : window.location.href;
+			var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+			var string = reg.exec(href);
+			return string ? string[1] : null;
+		};
+		var version = getQueryString('ver');
+		var validvers = ["1.0"];
+		if (version!=null) {
+			if (validvers.indexOf(version)>=0) {
+				if (version=="1.0") {
+					window.location = 'https://goo.gl/Wpk83g';
+				}
+			}
+			else {
+				document.write("Version "+version+" does not exist, is an HTML5 version, or is not available.")
+			}
+		}
+		else {
+			window.location = 'https://timtree.github.io/i-am-thinking-of-a-number/';
+		}
+	</script>
+		
+	<body>
+		<noscript><p>Javascript is disabled. You can manually download version 1.0 <a href='https://goo.gl/Wpk83g'>here.</a></p></noscript>
+	</body>
+	
+</html>

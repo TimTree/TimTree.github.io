@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<!--
+Direct Download Links
+beta 1: https://drive.google.com/uc?export=download&id=1fExZYB_ouIBaWBlFjatJqbSXxzpBkQnQ
+beta 2: https://drive.google.com/uc?export=download&id=1R1d5XJXhikasOTuuFlRQfNxhuIDAhmi8
+v1.0: https://drive.google.com/uc?export=download&id=1_LJqgjtAtGKb8UH7gqPJyuTu_c49i7-B
+v1.1: https://drive.google.com/uc?export=download&id=1qlXv7u1dz8PZuMhdLkSOGglCKdG7P3v1
+v1.1.1: https://drive.google.com/uc?export=download&id=1noVj0bLTZ0x4QAufBZ5-4fYfXvEpR9tG 
+v2.0.1: https://drive.google.com/uc?export=download&id=13-5z5fEcNm5N3_UY9te_Er6qYAL-iT24
+v3.0: https://drive.google.com/uc?export=download&id=1PCPR34tvyY2EoA2hfP8tsRwKd8SFWLS6
+v3.1: https://drive.google.com/uc?export=download&id=15eEPsHi2NMOtEHxlseGddtZcCr9nZoGR
+v3.2: https://drive.google.com/uc?export=download&id=1PYO4NTaxrHADF4x9SxJp35Itpvyqmi1A
+-->
+	<head>
+		<title>Download Wheel of Fortune for PowerPoint</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+		<meta name="format-detection" content="telephone=no">
+	</head>
+	
+	<script>
+		// https://gomakethings.com/how-to-get-the-value-of-a-querystring-with-native-javascript/
+		var getQueryString = function ( field, url ) {
+			var href = url ? url : window.location.href;
+			var reg = new RegExp( '[?&]' + field + '=([^&#]*)', 'i' );
+			var string = reg.exec(href);
+			return string ? string[1] : null;
+		};
+		var version = getQueryString('ver');
+		var validvers = ["beta1", "beta2", "1.0", "1.1", "1.1.1", "2.0.1", "3.0", "3.1", "3.2"];
+		if (version!=null) {
+			if (validvers.indexOf(version)>=0) {
+				if (version=="beta1") {
+					window.location = 'https://goo.gl/AtZ4J7';
+				}
+				if (version=="beta2") {
+					window.location = 'https://goo.gl/CitBaj';
+				}
+				if (version=="1.0") {
+					window.location = 'https://goo.gl/hTrxNU';
+				}
+				else if (version=="1.1") {
+					window.location = 'https://goo.gl/h7uvbC';
+				}
+				else if (version=="1.1.1") {
+					window.location = 'https://goo.gl/2tN7wx';
+				}
+				else if (version=="2.0.1") {
+					window.location = 'https://goo.gl/XWyHRQ';
+				}
+				else if (version=="3.0") {
+					window.location = 'https://goo.gl/g4yy71';
+				}
+				else if (version=="3.1") {
+					window.location = 'https://goo.gl/xMmJQt';
+				}
+				else if (version=="3.2") {
+					window.location = 'https://goo.gl/nXL4fw';
+				}
+			}
+			else {
+				document.write("Version "+version+" does not exist or is not available.")
+			}
+		}
+		else {
+			window.location = 'https://goo.gl/nXL4fw';
+		}
+	</script>
+		
+	<body>
+		<noscript><p>Javascript is disabled. You can manually download the latest stable version <a href='https://goo.gl/nXL4fw'>here.</a></p></noscript>
+	</body>
+	
+</html>

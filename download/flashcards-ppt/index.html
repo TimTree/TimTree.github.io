@@ -3,6 +3,7 @@
 <!--
 Direct Download Links
 v1.0: https://drive.google.com/uc?export=download&id=1nyYE0vitr2P3u4MIRMbKMBt62Q3EGvCY
+v1.1: https://drive.google.com/uc?export=download&id=1lREC0hAzl4kFP8Lk-5L8Dq5PB4dStH-S
 -->
 	<head>
 		<title>Download Flashcards for PowerPoint</title>
@@ -20,11 +21,14 @@ v1.0: https://drive.google.com/uc?export=download&id=1nyYE0vitr2P3u4MIRMbKMBt62Q
 			return string ? string[1] : null;
 		};
 		var version = getQueryString('ver');
-		var validvers = ["1.0"];
+		var validvers = ["1.0", "1.1"];
 		if (version!=null) {
 			if (validvers.indexOf(version)>=0) {
 				if (version=="1.0") {
 					window.location = 'https://goo.gl/TBtAsp';
+				}
+				else if (version=="1.1") {
+					window.location = 'https://goo.gl/daTBwz';
 				}
 			}
 			else {
@@ -32,12 +36,12 @@ v1.0: https://drive.google.com/uc?export=download&id=1nyYE0vitr2P3u4MIRMbKMBt62Q
 			}
 		}
 		else {
-			window.location = 'https://goo.gl/TBtAsp';
+			window.location = 'https://goo.gl/daTBwz';
 		}
 	</script>
 		
 	<body>
-		<noscript><p>Javascript is disabled. You can manually download the latest stable version <a href='https://goo.gl/TBtAsp'>here.</a></p></noscript>
+		<noscript><p>Javascript is disabled. You can manually download the latest stable version <a href='https://goo.gl/daTBwz'>here.</a></p></noscript>
 	</body>
 	
 </html>

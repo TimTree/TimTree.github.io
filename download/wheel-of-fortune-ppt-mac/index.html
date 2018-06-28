@@ -6,6 +6,7 @@ v4.0beta2: https://drive.google.com/uc?export=download&id=1Cv-9ubVmCks_X853b_93u
 v4.0beta3: https://drive.google.com/uc?export=download&id=11OxQVdcW8GPd4SeYSBgyV0YZ56GdpVe4
 v4.0: https://drive.google.com/uc?export=download&id=1nsjAQNbWLADQkASfk0HZHZ4jVjDYksrK
 v4.0.1: https://drive.google.com/uc?export=download&id=1LqtU4Hls9X76CXkFfd4Ep8qedbtEXsnS
+v4.1: https://drive.google.com/uc?export=download&id=1juMfFEd9G6jW44ngKnTB_E1SrupL00XS
 -->
 	<head>
 		<title>Download Wheel of Fortune: PowerPoint for Mac</title>
@@ -23,7 +24,7 @@ v4.0.1: https://drive.google.com/uc?export=download&id=1LqtU4Hls9X76CXkFfd4Ep8qe
 			return string ? string[1] : null;
 		};
 		var version = getQueryString('ver');
-		var validvers = ["4.0beta2", "4.0beta3", "4.0", "4.0.1"];
+		var validvers = ["4.0beta2", "4.0beta3", "4.0", "4.0.1", "4.1"];
 		if (version!=null) {
 			if (validvers.indexOf(version)>=0) {
 				if (version=="4.0beta2") {
@@ -38,18 +39,21 @@ v4.0.1: https://drive.google.com/uc?export=download&id=1LqtU4Hls9X76CXkFfd4Ep8qe
 				else if (version=="4.0.1") {
 					window.location = 'https://goo.gl/xF7LBY';
 				}
+				else if (version=="4.1") {
+					window.location = 'https://goo.gl/zfzt7m';
+				}
 			}
 			else {
 				document.write("Version "+version+" does not exist or is not available.")
 			}
 		}
 		else {
-			window.location = 'https://goo.gl/xF7LBY';
+			window.location = 'https://goo.gl/zfzt7m';
 		}
 	</script>
 		
 	<body>
-		<noscript><p>Javascript is disabled. You can manually download the latest stable version <a href='https://goo.gl/xF7LBY'>here.</a></p></noscript>
+		<noscript><p>Javascript is disabled. You can manually download the latest stable version <a href='https://goo.gl/zfzt7m'>here.</a></p></noscript>
 	</body>
 	
 </html>

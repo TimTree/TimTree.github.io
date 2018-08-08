@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My First Javascript Game</title>
+
+<style>
+
+body {
+margin:0;
+}
+
+#wrap {
+background:#fff;
+width:960px;
+margin:0 auto;
+display:block;
+padding-top:1px;
+padding-bottom:5px;
+padding-right:20px;
+padding-left:20px;
+height:100%;
+}
+
+*{font-family:calibri;}
+
+</style>
+
+<script>
+function correct()
+{
+x=document.getElementById("question");  // Find the element
+x.innerHTML="Correct!<br><br><button type='button' onclick='ding()'>Play Again</button>";    // Change the content
+}
+
+function wrong()
+{
+x=document.getElementById("question");  // Find the element
+x.innerHTML="That is incorrect.<br><br><button type='button' onclick='ding()'>Try Again</button>";    // Change the content
+}
+</script>
+
+<script>
+function ding()
+{
+x=document.getElementById("question");  // Find the element
+x.innerHTML="What is 1+1?<br><br><button type='button' onclick='correct()'>2</button><br><button type='button' onclick='wrong()'>11</button><br><button type='button' onclick='wrong()'>Window</button><br><button type='button' onclick='wrong()'>Cheese</button>";    // Change the content
+}
+</script>
+
+</head>
+
+<body bgcolor="#bfd3e3">
+
+<div id="wrap">
+
+<span style="text-align:center;"><h1>My First Javascript Game</h1></span>
+
+<p id="question">What is 1+1?<br><br>
+
+<button type="button" onclick="correct()">2</button><br>
+<button type="button" onclick="wrong()">11</button><br>
+<button type="button" onclick="wrong()">Window</button><br>
+<button type="button" onclick="wrong()">Cheese</button>
+
+</p>
+
+</div>
+
+</body>
+</html>

@@ -24,13 +24,17 @@ This game is copyright (c) 2015-2016 Timothy Hsu. It is released under the GPL v
 CONTACT INFO
 To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
 
-http://slideshowgames.blogspot.com/2015/10/mouse-swipe-more-info.html
+https://www.gamesbytim.com/2015/10/mouse-swipe-more-info.html
 
 
 
 --------------------------------------
 
 VERSION HISTORY
+
+Version 1.1.1 (released 8/31/18)
+-------------------------------
+- Updates links to gamesbytim.com
 
 Version 1.1 (released 1/22/16)
 -------------------------------

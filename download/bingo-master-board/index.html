@@ -8,7 +8,7 @@ v1.3.1: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imZmViLVdhZy1f
 v1.4: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imOUcxV2hHZFRRcm8
 v1.5: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imZDdUQXhKSmI1Szg
 v1.6: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imTGlOTWE5TmpEaEE
-v1.7: https://drive.google.com/uc?export=download&id=1m_mpPCoVqpAeWi4QCzAvENKajPH2Hg4A
+v1.7.1: https://drive.google.com/uc?export=download&id=1m_mpPCoVqpAeWi4QCzAvENKajPH2Hg4A
 -->
 	<head>
 		<title>Download Bingo Master Board</title>
@@ -26,7 +26,7 @@ v1.7: https://drive.google.com/uc?export=download&id=1m_mpPCoVqpAeWi4QCzAvENKajP
 			return string ? string[1] : null;
 		};
 		var version = getQueryString('ver');
-		var validvers = ["1.0", "1.1", "1.3.1", "1.4", "1.5", "1.6", "1.7"];
+		var validvers = ["1.0", "1.1", "1.3.1", "1.4", "1.5", "1.6", "1.7", "1.7.1"];
 		if (version!=null) {
 			if (validvers.indexOf(version)>=0) {
 				if (version=="1.0") {
@@ -47,7 +47,7 @@ v1.7: https://drive.google.com/uc?export=download&id=1m_mpPCoVqpAeWi4QCzAvENKajP
 				else if (version=="1.6") {
 					window.location = 'https://goo.gl/hR1qo4';
 				}
-				else if (version=="1.7") {
+				else if (version=="1.7" || version=="1.7.1") {
 					window.location = 'https://goo.gl/74Wu6r';
 				}
 			}

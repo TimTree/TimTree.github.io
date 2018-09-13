@@ -3,7 +3,7 @@
 <!--
 Direct Download Links
 v1.0: https://drive.google.com/uc?export=download&id=1nyYE0vitr2P3u4MIRMbKMBt62Q3EGvCY
-v1.1: https://drive.google.com/uc?export=download&id=1lREC0hAzl4kFP8Lk-5L8Dq5PB4dStH-S
+v1.1.1: https://drive.google.com/uc?export=download&id=1lREC0hAzl4kFP8Lk-5L8Dq5PB4dStH-S
 -->
 	<head>
 		<title>Download Flashcards for PowerPoint</title>
@@ -21,13 +21,13 @@ v1.1: https://drive.google.com/uc?export=download&id=1lREC0hAzl4kFP8Lk-5L8Dq5PB4
 			return string ? string[1] : null;
 		};
 		var version = getQueryString('ver');
-		var validvers = ["1.0", "1.1"];
+		var validvers = ["1.0", "1.1", "1.1.1"];
 		if (version!=null) {
 			if (validvers.indexOf(version)>=0) {
 				if (version=="1.0") {
 					window.location = 'https://goo.gl/TBtAsp';
 				}
-				else if (version=="1.1") {
+				else if (version=="1.1" || version=="1.1.1") {
 					window.location = 'https://goo.gl/daTBwz';
 				}
 			}

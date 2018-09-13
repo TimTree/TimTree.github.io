@@ -5,6 +5,7 @@ Direct Download Links
 v1.0: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1ima1hWM01SeWJ6TUU
 v2.0: https://drive.google.com/uc?export=download&id=0ByTdG9SyZ1imVF80bGlOS29UU3M
 v2.1: https://drive.google.com/uc?export=download&id=1pmLtyimsIAjuMQmOZ4_eH0UpXu8wyo4G
+v2.2: https://drive.google.com/uc?export=download&id=1GLI1Ks7kdT-6AhQcCoKiIgW6xH35l1r7
 -->
 	<head>
 		<title>Download Bingo Master Board PLUS</title>
@@ -22,7 +23,7 @@ v2.1: https://drive.google.com/uc?export=download&id=1pmLtyimsIAjuMQmOZ4_eH0UpXu
 			return string ? string[1] : null;
 		};
 		var version = getQueryString('ver');
-		var validvers = ["1.0", "2.0", "2.1"];
+		var validvers = ["1.0", "2.0", "2.1", "2.2"];
 		if (version!=null) {
 			if (validvers.indexOf(version)>=0) {
 				if (version=="1.0") {
@@ -35,18 +36,21 @@ v2.1: https://drive.google.com/uc?export=download&id=1pmLtyimsIAjuMQmOZ4_eH0UpXu
 				else if (version=="2.1") {
 					window.location = 'https://goo.gl/b6skCx';
 				}
+				else if (version=="2.2") {
+					window.location = 'https://goo.gl/wvdh5p';
+				}
 			}
 			else {
 				document.write("Version "+version+" does not exist or is not available.")
 			}
 		}
 		else {
-			window.location = 'https://goo.gl/b6skCx';
+			window.location = 'https://goo.gl/wvdh5p';
 		}
 	</script>
 		
 	<body>
-		<noscript><p>JavaScript is disabled. You can manually download the latest stable version <a href='https://goo.gl/b6skCx'>here.</a></p></noscript>
+		<noscript><p>JavaScript is disabled. You can manually download the latest stable version <a href='https://goo.gl/wvdh5p'>here.</a></p></noscript>
 	</body>
 	
 </html>

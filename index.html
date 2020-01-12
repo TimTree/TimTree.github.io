@@ -5,6 +5,30 @@
     <title>Tim's GitHub Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <style id="darkTheme">
+      body {
+        background-color:#131414;
+        color:#d0d0d0;
+      }
+      a {
+        color:#7e7eff;
+      }
+      a:visited {
+        color: #c3a8ef;
+      }
+    </style>
+    <style id="lightTheme">
+      body {
+        background-color:#fafafa;
+        color:black;
+      }
+      a {
+        color:blue;
+      }
+      a:visited {
+        color: #551A8B;
+      }
+    </style>
     <style>
       html {
         height:100%;
@@ -17,7 +41,6 @@
         height:100%;
         width:90%;
         max-width:1000px;
-        background-color:#fafafa;
       }
       main {
         margin:auto;
@@ -40,18 +63,11 @@
         transform:scale(0.9);
       }
     </style>
-    <style id="darkTheme">
-      body {
-        background-color:#131414;
-        color:#d0d0d0;
-      }
-      a {
-        color:#7e7eff;
-      }
-      a:visited {
-        color: #c3a8ef;
-      }
-    </style>
+    <noscript>
+      <style>
+          #darkMode {display:none;}
+      </style>
+    </noscript>
     <script>
       var themeNumber = '0';
       var supportsLocalStorage = true;
@@ -78,14 +94,14 @@
       function loadTheme() {
         if (themeNumber==='0') {
           if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.getElementById('darkTheme').disabled = false;
+            document.getElementById('lightTheme').disabled = true;
           } else {
-            document.getElementById('darkTheme').disabled = true;
+            document.getElementById('lightTheme').disabled = false;
           }
         } else if (themeNumber==='1') {
-          document.getElementById('darkTheme').disabled = true;
+          document.getElementById('lightTheme').disabled = false;
         } else {
-          document.getElementById('darkTheme').disabled = false;
+          document.getElementById('lightTheme').disabled = true;
         }
       }
       function toggleTheme() {

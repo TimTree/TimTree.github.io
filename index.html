@@ -17,13 +17,107 @@
         height:100%;
         width:90%;
         max-width:1000px;
+        background-color:#fafafa;
       }
       main {
         margin:auto;
       }
+      #darkMode {
+        left:0;
+        top: 0;
+        width: 0;
+        height: 0;
+        border-right: 45px solid transparent;
+        border-top: 45px solid;
+        position:absolute;
+        cursor:pointer;
+        transition:opacity 0.15s, transform 0.15s;
+      }
+      #darkMode:hover {
+        opacity:0.75;
+      }
+      #darkMode:active {
+        transform:scale(0.9);
+      }
     </style>
+    <style id="darkTheme">
+      body {
+        background-color:#131414;
+        color:#d0d0d0;
+      }
+      a {
+        color:#7e7eff;
+      }
+      a:visited {
+        color: #c3a8ef;
+      }
+    </style>
+    <script>
+      var themeNumber = '0';
+      var supportsLocalStorage = true;
+      function testLocalStorage() {
+        var doesItWork = 'test';
+        try {
+          localStorage.setItem(doesItWork, '1');
+          localStorage.removeItem(doesItWork);
+        } catch (error) {
+          supportsLocalStorage = false;
+        }
+      }
+      testLocalStorage();
+      if (supportsLocalStorage) {
+        if (localStorage.getItem("timTreeTheme")) {
+          themeNumber = localStorage.getItem("timTreeTheme");
+        }
+      }
+      function save() {
+        if (supportsLocalStorage) {
+          localStorage.setItem('timTreeTheme', themeNumber);
+        }
+      }
+      function loadTheme() {
+        if (themeNumber==='0') {
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.getElementById('darkTheme').disabled = false;
+          } else {
+            document.getElementById('darkTheme').disabled = true;
+          }
+        } else if (themeNumber==='1') {
+          document.getElementById('darkTheme').disabled = true;
+        } else {
+          document.getElementById('darkTheme').disabled = false;
+        }
+      }
+      function toggleTheme() {
+        switch (themeNumber) {
+          case '0':
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+              themeNumber = '1';
+            } else {
+              themeNumber= '2';
+            }
+            loadTheme();
+            save();
+            break;
+          case '1':
+          themeNumber = '2';
+            loadTheme();
+            save();
+            break;
+          case '2':
+          themeNumber = '1';
+            loadTheme();
+            save();
+            break;
+          default:
+            break;
+        }
+      }
+      loadTheme();
+    </script>
   </head>
   <body>
+    <div id="darkMode" onclick="toggleTheme()" title="Toggle light/dark theme"></div>
     <main>
       <h1>Welcome to Timothy Hsu's GitHub Page!</h1>
       <p>This is the URL where I upload all my HTML5 games.</p>
@@ -38,7 +132,8 @@
         <a href="https://timtree.github.io/i-am-thinking-of-a-number/">I am Thinking of a Number</a><br>
         <a href="https://timtree.github.io/lost-in-a-forest/">Lost in a Forest - a Text Adventure</a>
       </p>
-      <p>For more games and info, visit my <a href="https://www.gamesbytim.com/">official website</a>.</p>
+      <p>For more games and info, visit my <a href="https://www.gamesbytim.com/">official website</a>
+         or <a href="https://www.github.com/TimTree/">GitHub repo</a>.</p>
     </main>
   </body>
 </html>

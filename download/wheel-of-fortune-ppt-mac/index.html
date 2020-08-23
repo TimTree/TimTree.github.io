@@ -17,7 +17,7 @@
 			return string ? string[1] : null;
 		};
 		var version = getQueryString('ver');
-		var validvers = ["4.0beta2", "4.0beta3", "4.0", "4.0.1", "4.1.1", "4.1.2"];
+		var validvers = ["4.0beta2", "4.0beta3", "4.0", "4.0.1", "4.1.1", "4.1.2", "4.1.3", "4.1.4", "4.1.5", "5.0", "5.1", "5.1.1"];
 		if (version!=null) {
 			if (validvers.indexOf(version)>=0) {
 				if (version=="4.0beta2") {
@@ -38,18 +38,36 @@
 				else if (version=="4.1.2") {
 					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.2/WheelofFortuneMac4.1.2.pptm';
 				}
+				else if (version=="4.1.3") {
+					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.3/WheelofFortuneMac4.1.3.zip';
+				}
+				else if (version=="4.1.4") {
+					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.4/WheelofFortuneMac4.1.4.zip';
+				}
+				else if (version=="4.1.5") {
+					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.5/WheelofFortuneMac4.1.5.zip';
+				}
+				else if (version=="5.0") {
+					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.0/WheelofFortuneMac5.0.zip';
+				}
+				else if (version=="5.1") {
+					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1/WheelofFortuneMac5.1.zip';
+				}
+				else if (version=="5.1.1") {
+					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1.1/WheelofFortuneMac5.1.1.zip';
+				}
 			}
 			else {
 				document.write("Version "+version+" does not exist or is not available.")
 			}
 		}
 		else {
-			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.2/WheelofFortuneMac4.1.2.pptm';
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1.1/WheelofFortuneMac5.1.1.zip';
 		}
 	</script>
 		
 	<body>
-		<noscript><p>JavaScript is disabled. You can manually download the latest stable version <a href='https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.2/WheelofFortuneMac4.1.2.pptm'>here.</a></p></noscript>
+		<noscript><p>JavaScript is disabled. You can manually download the latest stable version <a href='https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1.1/WheelofFortuneMac5.1.1.zip'>here.</a></p></noscript>
 	</body>
 	
 </html>

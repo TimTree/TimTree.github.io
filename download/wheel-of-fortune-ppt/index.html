@@ -17,90 +17,83 @@
 			return string ? string[1] : null;
 		};
 		var version = getQueryString('ver');
-		var validvers = ["beta1", "beta2", "1.0", "1.1", "1.1.1", "2.0.1", "3.0", "3.1", "3.2", "4.0beta1", "4.0beta1.1", "4.0beta2", "4.0beta3", "4.0", "4.0.1", "4.1.1", "4.1.2", "4.1.3", "4.1.4", "4.1.5", "5.0", "5.1", "5.1.1"];
-		if (version!=null) {
-			if (validvers.indexOf(version)>=0) {
-				if (version=="beta1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1fExZYB_ouIBaWBlFjatJqbSXxzpBkQnQ';
-				}
-				else if (version=="beta2") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1R1d5XJXhikasOTuuFlRQfNxhuIDAhmi8';
-				}
-				else if (version=="1.0") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1_LJqgjtAtGKb8UH7gqPJyuTu_c49i7-B';
-				}
-				else if (version=="1.1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1qlXv7u1dz8PZuMhdLkSOGglCKdG7P3v1';
-				}
-				else if (version=="1.1.1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1noVj0bLTZ0x4QAufBZ5-4fYfXvEpR9tG ';
-				}
-				else if (version=="2.0.1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=13-5z5fEcNm5N3_UY9te_Er6qYAL-iT24';
-				}
-				else if (version=="3.0") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1PCPR34tvyY2EoA2hfP8tsRwKd8SFWLS6';
-				}
-				else if (version=="3.1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=15eEPsHi2NMOtEHxlseGddtZcCr9nZoGR';
-				}
-				else if (version=="3.2") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1PYO4NTaxrHADF4x9SxJp35Itpvyqmi1A';
-				}
-				else if (version=="4.0beta1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1ealsCosVuCClkdffYHlI5kCv8DHpIPiE';
-				}
-				else if (version=="4.0beta1.1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1xs-ttuqmjBLbWowyib_iDhzegSqArRml';
-				}
-				else if (version=="4.0beta2") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1si6rOO2FEu_MSSFwLGtc03gm9QVttphW';
-				}
-				else if (version=="4.0beta3") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1-uezNCm7s4tByc5JQe6Seo9ha923Qpsk';
-				}
-				else if (version=="4.0") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1mlJk2cUPiWv0A6nL6Yfpk_E0j1oUcwVl';
-				}
-				else if (version=="4.0.1") {
-					window.location = 'https://drive.google.com/uc?export=download&id=1SnN-NQoU8f9xZDZlzKbvzwKy1g0-ip5b';
-				}
-				else if (version=="4.1.1") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.1/WheelofFortune4.1.1.pptm';
-				}
-				else if (version=="4.1.2") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.2/WheelofFortune4.1.2.pptm';
-				}
-				else if (version=="4.1.3") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.3/WheelofFortune4.1.3.pptm';
-				}
-				else if (version=="4.1.4") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.4/WheelofFortune4.1.4.pptm';
-				}
-				else if (version=="4.1.5") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.5/WheelofFortune4.1.5.pptm';
-				}
-				else if (version=="5.0") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.0/WheelofFortune5.0.pptm';
-				}
-				else if (version=="5.1") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1/WheelofFortune5.1.pptm';
-				}
-				else if (version=="5.1.1") {
-					window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1.1/WheelofFortune5.1.1.pptm';
-				}
-			}
-			else {
-				document.write("Version "+version+" does not exist or is not available.")
-			}
+		
+		if (version=="beta1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1fExZYB_ouIBaWBlFjatJqbSXxzpBkQnQ';
+		}
+		else if (version=="beta2") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1R1d5XJXhikasOTuuFlRQfNxhuIDAhmi8';
+		}
+		else if (version=="1.0") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1_LJqgjtAtGKb8UH7gqPJyuTu_c49i7-B';
+		}
+		else if (version=="1.1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1qlXv7u1dz8PZuMhdLkSOGglCKdG7P3v1';
+		}
+		else if (version=="1.1.1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1noVj0bLTZ0x4QAufBZ5-4fYfXvEpR9tG ';
+		}
+		else if (version=="2.0.1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=13-5z5fEcNm5N3_UY9te_Er6qYAL-iT24';
+		}
+		else if (version=="3.0") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1PCPR34tvyY2EoA2hfP8tsRwKd8SFWLS6';
+		}
+		else if (version=="3.1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=15eEPsHi2NMOtEHxlseGddtZcCr9nZoGR';
+		}
+		else if (version=="3.2") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1PYO4NTaxrHADF4x9SxJp35Itpvyqmi1A';
+		}
+		else if (version=="4.0beta1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1ealsCosVuCClkdffYHlI5kCv8DHpIPiE';
+		}
+		else if (version=="4.0beta1.1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1xs-ttuqmjBLbWowyib_iDhzegSqArRml';
+		}
+		else if (version=="4.0beta2") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1si6rOO2FEu_MSSFwLGtc03gm9QVttphW';
+		}
+		else if (version=="4.0beta3") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1-uezNCm7s4tByc5JQe6Seo9ha923Qpsk';
+		}
+		else if (version=="4.0") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1mlJk2cUPiWv0A6nL6Yfpk_E0j1oUcwVl';
+		}
+		else if (version=="4.0.1") {
+			window.location = 'https://drive.google.com/uc?export=download&id=1SnN-NQoU8f9xZDZlzKbvzwKy1g0-ip5b';
+		}
+		else if (version=="4.1.1") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.1/WheelofFortune4.1.1.pptm';
+		}
+		else if (version=="4.1.2") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.2/WheelofFortune4.1.2.pptm';
+		}
+		else if (version=="4.1.3") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.3/WheelofFortune4.1.3.pptm';
+		}
+		else if (version=="4.1.4") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.4/WheelofFortune4.1.4.pptm';
+		}
+		else if (version=="4.1.5") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v4.1.5/WheelofFortune4.1.5.pptm';
+		}
+		else if (version=="5.0") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.0/WheelofFortune5.0.pptm';
+		}
+		else if (version=="5.1") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1/WheelofFortune5.1.pptm';
+		}
+		else if (version=="5.1.1") {
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1.1/WheelofFortune5.1.1.pptm';
 		}
 		else {
-			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1.1/WheelofFortune5.1.1.pptm';
+			window.location = 'https://github.com/TimTree/wheel-of-fortune-ppt/releases/latest';
 		}
 	</script>
 		
 	<body>
-		<noscript><p>JavaScript is disabled. You can manually download the latest stable version <a href='https://github.com/TimTree/wheel-of-fortune-ppt/releases/download/v5.1.1/WheelofFortune5.1.1.pptm'>here.</a></p></noscript>
+		<noscript><p>JavaScript is disabled. You can manually download the latest stable version <a href='https://github.com/TimTree/wheel-of-fortune-ppt/releases/latest'>here.</a></p></noscript>
 	</body>
 	
 </html>

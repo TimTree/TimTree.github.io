@@ -4,8 +4,9 @@
 <title>Keyboard Masher</title>
 
 <meta name="description" content="Mash the keyboard as fast as you can!">
-<meta name="author" content="Timothy Hsu">
+<meta name="author" content="Games by Tim">
 <meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
 <link rel="shortcut icon" type="image/x-icon" href="kmasher.ico" />
 
 <style>
@@ -108,6 +109,7 @@ outline: none;
 display:block;
 font-size:12pt;
 margin-bottom:2em;
+line-height:1.2;
 }
 
 #btc th, #btc td {
@@ -171,6 +173,7 @@ background-color:#F39797;
 #scorebreak {
 margin-bottom:6px;
 font-weight:700;
+line-height:1.2;
 }
 
 #masher, #analysis {
@@ -303,6 +306,12 @@ a.clickable:hover {
 color:#228E6C;
 }
 
+#seewhatyoutyped {
+display:none;
+word-wrap: break-word;
+cursor:pointer;
+}
+
 </style>
 
 <script>
@@ -364,15 +373,15 @@ function star() {
 if (score.tenSec > beat.tenSec || score.thirtySec > beat.thirtySec || score.arrow > beat.arrow || score.arrow360 > beat.arrow360 || score.alphabet < beat.alphabet || score.alphabetBack < beat.alphabetBack) {
 document.getElementById("beatall").style.display="inline";
 if (score.tenSec > beat.tenSec && score.thirtySec > beat.thirtySec && score.arrow > beat.arrow && score.arrow360 > beat.arrow360 && score.alphabet < beat.alphabet && score.alphabetBack < beat.alphabetBack){
-document.getElementById("beatall").innerHTML="<span style='color:#2FCA2F;'>&#9733</span>";}
-else {document.getElementById("beatall").innerHTML="<span style='color:#35A2E5;'>&#9733</span>";}
+document.getElementById("beatall").innerHTML="<span style='color:#2FCA2F;' title='You beat all of the creator&apos;s scores!!!'>&#9733</span>";}
+else {document.getElementById("beatall").innerHTML="<span style='color:#35A2E5;' title='You beat at least one of the creator&apos;s scores!'>&#9733</span>";}
 }
 else {document.getElementById("beatall").style.display="none";}
 if (score.pressed>=2500) {
 document.getElementById("clickgod").style.display="inline";
-if (score.pressed>=2500 && score.pressed<10000) {document.getElementById("clickgod").innerHTML="<span style='color:#8C7853;'>&#9733</span>";}
-if (score.pressed>=10000 && score.pressed<25000) {document.getElementById("clickgod").innerHTML="<span style='color:#B3B3B3 ;'>&#9733</span>";}
-if (score.pressed>=25000) {document.getElementById("clickgod").innerHTML="<span style='color:#CFB53B;'>&#9733</span>";}
+if (score.pressed>=2500 && score.pressed<10000) {document.getElementById("clickgod").innerHTML="<span style='color:#8C7853;' title='You typed at least 2500 times!'>&#9733</span>";}
+if (score.pressed>=10000 && score.pressed<25000) {document.getElementById("clickgod").innerHTML="<span style='color:#B3B3B3;' title='You typed at least 10000 times!'>&#9733</span>";}
+if (score.pressed>=25000) {document.getElementById("clickgod").innerHTML="<span style='color:#CFB53B;' title='You are THE Typing Typhon!!!'>&#9733</span>";}
 }
 else {document.getElementById("clickgod").style.display="none";}
 }
@@ -383,7 +392,7 @@ document.getElementById("main").innerHTML="<p class='margin'><a class='clickable
 }
 
 function help() {
-document.getElementById("main").innerHTML="<h4>Help</h4><p>Mash the keyboard as fast as you can! There are a variety of game modes to try.</p><p><strong>10/30 Seconds:</strong> Mash the keyboard for 10 or 30 seconds.<br><strong>Custom:</strong> Mash the keyboard for any time you choose.<br><strong>Arrow:</strong> Type the on-screen arrow keys as quick as you can.<br><strong>Alphabet:</strong> Type the alphabet as fast as you can.<br><strong>Versus:</strong> For two players. Who can mash the quickest?</p><p>For tips on raising your scores, check out the <a href='https://www.gamesbytim.com/2015/04/the-keyboard-masher-strategy-guide.html' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Help</h4><p>Mash the keyboard as fast as you can! There are a variety of game modes to try.</p><p><strong>10/30 Seconds:</strong> Mash the keyboard for 10 or 30 seconds.<br><strong>Custom:</strong> Mash the keyboard for any time you choose.<br><strong>Arrow:</strong> Type the on-screen arrow keys (or WASD equivalents) as quick as you can.<br><strong>Alphabet:</strong> Type the alphabet as fast as you can.<br><strong>Versus:</strong> For two players. Who can mash the quickest?</p><p>For tips on raising your scores, check out the <a href='https://www.gamesbytim.com/blog/the-keyboard-masher-strategy-guide/' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 }
 
 function records() {
@@ -410,7 +419,7 @@ document.getElementById("resetcurse").innerHTML="<span style='color:#4A56F7;'><i
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Released:</strong> June 25, 2013<br><strong>Updated:</strong> August 31, 2018<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Keyboard Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='https://timtree.github.io/button-masher/' target='_blank'>Button Masher</a> and <a href='https://timtree.github.io/mouse-swipe/' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='https://www.gamesbytim.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='https://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Keyboard Masher is a spin-off of Button Masher, in the case that you mash the keyboard rather than a button. It was formerly a hidden unlockable in Button Masher. Keyboard Masher is HTML5 ready.</p><p><strong>Released:</strong> June 25, 2013<br><strong>Updated:</strong> May 9, 2022<br><strong>License:</strong> <a href='license.txt' target='_blank'>MIT</a></p><p>Keyboard Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='https://timtree.github.io/button-masher/' target='_blank'>Button Masher</a> and <a href='https://timtree.github.io/mouse-swipe/' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='https://www.gamesbytim.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='https://timtree.github.io/keyboard-masher/Keyboard%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul><button type='button' onclick='imdone()'>Go back</button></div>";
 }
 
 function beatcreator() {
@@ -436,10 +445,10 @@ if (score.pressed>=5000&&score.pressed<=9999) {typhonrank="Typing Tactical"; pre
 if (score.pressed>=10000&&score.pressed<=14999) {typhonrank="Typing Tempest"; pressesleft="15,000";}
 if (score.pressed>=15000&&score.pressed<=24999) {typhonrank="Typing Triumphant"; pressesleft="25,000";}
 
-document.getElementById("main").innerHTML="<h4>The Typing Typhon</h4><p class='margin'>Can you accumulate a total of 25,000 keyboard presses? If so, you are considered a typing typhon. Below is your current progress.</p><div id='typhon'><p>Total Presses:</p><p><span style='font-size:46pt;font-weight:700;color:#399470;'>" + score.pressed + "</span> /25,000</p><p><span style='font-size:14pt;'>Your rank: <strong>" + typhonrank + "</strong></span></p><p id='analysis'>Next rank at " + pressesleft + " presses</p></div><p><button type='button' onclick='begin()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>The Typing Typhon</h4><p class='margin'>Can you accumulate a total of 25,000 keyboard presses? If so, you are considered the Typing Typhon. Below is your current progress.</p><div id='typhon'><p>Total Presses:</p><p><span style='font-size:46pt;font-weight:700;color:#399470;'>" + score.pressed + "</span> /25,000</p><p><span style='font-size:14pt;'>Your rank: <strong>" + typhonrank + "</strong></span></p><p id='analysis'>Next rank at " + pressesleft + " presses</p></div><p><button type='button' onclick='begin()'>Go back</button></p>";
 
 if (score.pressed>=25000)
-{document.getElementById("typhon").innerHTML="<p>Total Presses:</p><p><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + score.pressed + "</span></p><p id='analysis'><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are a typing typhon!</span></p>";}
+{document.getElementById("typhon").innerHTML="<p>Total Presses:</p><p><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + score.pressed + "</span></p><p id='analysis'><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are THE Typing Typhon!!!</span></p>";}
 }
 
 var time, message, highscore, interval, timer, beatvar, func;
@@ -472,6 +481,7 @@ if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span s
 }
 
 var int, restart;
+var whatyoutyped = "";
 
 function plusone() {
 start = Date.now(); 
@@ -479,13 +489,15 @@ document.onkeydown = function(event) {plusone2(event); bgchange();}
 document.onkeyup = keyup;
 restart=setTimeout(function(event){
 endscore("masher");
+document.getElementById("masher").innerHTML+="<p id='buttonrevealtyped'><button onclick='revealtyped()'>See What You Typed</button></p><p id='seewhatyoutyped' onmouseover='document.getElementById(\"buttonrevealtyped\").style.visibility = \"visible\";' onmouseout='document.getElementById(\"buttonrevealtyped\").style.visibility=\"hidden\";' onclick='copywhatyoutyped()'>"+whatyoutyped+"</p>"
+whatyoutyped = "";
 if (interval!=0) {analysis(),scoretest();}
 addup();
 },time*1000);
 
 int=setInterval(updatetime,100);
 
-document.getElementById("masher").innerHTML="<p style='font-size:18pt;font-weight:700;'>GO, GO, GO!</p>";
+document.getElementById("masher").innerHTML="<p style='font-size:18pt;font-weight:700;'>GO, GO, GO!</p><p id='latesttypes' style='font-size:18pt;'>"+whatyoutyped.slice(-32)+"</p>";
 document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo();newgame();' title='Restart'> &#8617;</a>";
 document.getElementById("back").innerHTML="";
 bgchange();
@@ -499,10 +511,16 @@ document.getElementById("thetime").innerHTML=elapsed;
 }
 
 function plusone2 (e) { 
+e.preventDefault();
 var unicode=e.keyCode? e.keyCode : e.charCode;
 if (keyspressed.indexOf(unicode) >= 0) {}
 else {keyspressed.push(unicode);
-document.score.scoring.value++;};
+document.score.scoring.value++;
+whatyoutyped += e.key;
+if (document.getElementById("masher").innerText !== "Type on your keyboard to begin.") {
+document.getElementById("latesttypes").innerText=whatyoutyped.slice(-32);
+}
+};
 }
 
 function keyup(e) {
@@ -566,6 +584,24 @@ if(x>=9001)
 }
 }
 
+function revealtyped() {
+document.getElementById("buttonrevealtyped").style.visibility = 'hidden';
+document.getElementById("buttonrevealtyped").innerHTML = "<strong>Click to copy text.</strong>";
+document.getElementById("seewhatyoutyped").style.display = "block";
+}
+
+function copywhatyoutyped() {
+try {
+	var copyText = document.getElementById("seewhatyoutyped").innerText;
+	navigator.clipboard.writeText(copyText);
+	document.getElementById("buttonrevealtyped").innerHTML = "<strong><span style='color:green;'>Text copied to clipboard</span></strong>";
+	document.getElementById("seewhatyoutyped").onmouseout = "";
+} catch(err) {
+	document.getElementById("buttonrevealtyped").innerHTML = "<strong><span style='color:red;'>" + err + "</span></strong>";
+	document.getElementById("seewhatyoutyped").onmouseout = "";
+}
+}
+
 function addup() {
 score.pressed = score.pressed*1+Math.abs(document.score.scoring.value)*1;localStorage.setItem("ktimesPressedScore", score.pressed);star();
 }
@@ -613,7 +649,7 @@ return (key != 13);
 }
 
 function arrow() {
-document.getElementById("main").innerHTML="<p class='margin'>Arrow - Select Type</p><div id='select'><ul><li><button type='button' class='mod' onclick='arrownormal()' onmouseover='description(\"Type the on-screen arrow keys as quick as you can.\")'>Normal</button></li><li><button type='button' class='mod' onclick='arrow360()' onmouseover='description(\"The keys to press are preset to a clockwise pattern.\")'>360</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+document.getElementById("main").innerHTML="<p class='margin'>Arrow - Select Type</p><div id='select'><ul><li><button type='button' class='mod' onclick='arrownormal()' onmouseover='description(\"Type the on-screen arrow keys (or WASD equivalents) as quick as you can.\")'>Normal</button></li><li><button type='button' class='mod' onclick='arrow360()' onmouseover='description(\"The keys to press are preset to a clockwise pattern.\")'>360</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
 }
 
 function arrownormal() {
@@ -635,13 +671,21 @@ arrowgame();
 }
 
 var arrowToPress;
+var arrowToWASD = {
+  65: 37,
+  87: 38,
+  68: 39,
+  83: 40
+};
+
 function arrowgame() {
 func="arrowgame()";
 arrowToPress=38;
 document.onkeydown = function(e) {
+e.preventDefault();
 addToArray(e);
-if (message=="Arrow") {if (e.keyCode == arrowToPress && keyspressed.length==1) {e.preventDefault(),plusone3();}}
-else if (message=="Arrow (360)") {if (e.keyCode == arrowToPress && keyspressed.length<=2) {e.preventDefault(),plusone3();}}
+if (message=="Arrow") {if ((e.keyCode === arrowToPress || arrowToWASD[e.keyCode] === arrowToPress) && keyspressed.length==1) {e.preventDefault(),plusone3();}}
+else if (message=="Arrow (360)") {if ((e.keyCode === arrowToPress || arrowToWASD[e.keyCode] === arrowToPress) && keyspressed.length<=2) {e.preventDefault(),plusone3();}}
 }
 
 document.onkeyup = keyup;
@@ -658,9 +702,10 @@ document.getElementById("back").innerHTML="";
 plusone4();
 document.getElementById("typekey").innerHTML="<strong>Type the key:</strong>";
 document.onkeydown = function(e) {
+e.preventDefault();
 addToArray(e);
-if (message=="Arrow") {if (e.keyCode == arrowToPress && keyspressed.length==1) {e.preventDefault(),plusone4(),bgchange();}}
-else if (message=="Arrow (360)") {if (e.keyCode == arrowToPress && keyspressed.length<=2) {e.preventDefault(),plusone4(),bgchange();}}
+if (message=="Arrow") {if ((e.keyCode === arrowToPress || arrowToWASD[e.keyCode] === arrowToPress) && keyspressed.length==1) {e.preventDefault(),plusone4(),bgchange();}}
+else if (message=="Arrow (360)") {if ((e.keyCode === arrowToPress || arrowToWASD[e.keyCode] === arrowToPress) && keyspressed.length<=2) {e.preventDefault(),plusone4(),bgchange();}}
 }
 
 document.onkeyup = keyup;
@@ -754,6 +799,7 @@ func="alphabetgame()";
 if (message=="Alphabet") {arrowToPress = 65;}
 else if (message=="Alphabet (Backwards)") {arrowToPress = 90;}
 document.onkeydown = function(e) {
+e.preventDefault();
 if (e.keyCode == arrowToPress) {plusone5();}
 }
 
@@ -771,6 +817,7 @@ else if (message=="Alphabet (Backwards)") {arrowToPress--;}
 document.getElementById("arrow").innerHTML=String.fromCharCode(arrowToPress).toLowerCase();
 offset = Date.now();
 document.onkeydown = function(e) {
+e.preventDefault();
 if (e.keyCode == arrowToPress) {plusone6();}
 }
 
@@ -849,6 +896,7 @@ func="battlesetup();";
 headersetup();
 
 document.onkeydown = function(e) {
+e.preventDefault();
 if (e.keyCode == 65) {
 document.getElementById("akey").style.fontWeight="700";
 document.getElementById("skey").style.fontWeight="700";
@@ -871,7 +919,7 @@ document.getElementById("main").innerHTML="<p id='winbox'>Waiting for players...
 }
 
 function beginbattle() {
-document.onkeydown=null;
+document.onkeydown=function(e){e.preventDefault()};
 document.getElementById("back").innerHTML="";
 document.getElementById("winbox").innerHTML="3";
 document.getElementById("leftinner").style.backgroundColor="#EAEAEA";
@@ -886,6 +934,7 @@ document.getElementById("leftinner").style.backgroundColor="#EAF3C6";
 document.getElementById("rightinner").style.backgroundColor="#EAF3C6";
 
 document.onkeydown = function(e) {
+e.preventDefault();
 if (e.keyCode == 65 && document.getElementById("akey").style.fontWeight=="700") {
 document.battlescore.battlescoring.value++;
 document.getElementById("akey").style.fontWeight="300";
@@ -1042,6 +1091,7 @@ document.getElementById("copyright").style.display="none";
 function redo() {
 clearTimeout(restart);
 clearInterval(int);
+whatyoutyped = "";
 addup();
 }
 
@@ -1119,7 +1169,7 @@ if (settings.saveScores==1) {
 
 </div>
 
-<div id="copyright"><p>Version 4.4.1 &nbsp;&#126;&nbsp; &copy;2013-2016 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.5 &nbsp;&#126;&nbsp; &copy;2013-2022 Games by Tim<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

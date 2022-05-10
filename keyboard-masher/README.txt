@@ -19,18 +19,29 @@ Javascript must be enabled.
 ** Safari 11+ blocks save data in the downloaded version by default. To fix this, enable the Develop menu in the menu bar and select "Disable Local File Restrictions."
 
 COPYRIGHT NOTICE
-This game is copyright (c) 2013-2016 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+This game is copyright (c) 2013-2022 Games by Tim. It is released under the MIT license. You can find this license on the license.txt file.
 
 CONTACT INFO
 To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
 
-https://www.gamesbytim.com/2014/04/keyboard-masher-more-info.html
+https://www.gamesbytim.com/keyboard-masher/
 
 
 
 --------------------------------------
 
 VERSION HISTORY
+
+Version 4.5 (released 5/9/22)
+-------------------------------
+- On standard modes, you now see the keys you type in real time.
+  - After a game, you can copy what you typed onto your clipboard.
+- On Arrow mode, you can now use WASD in addition to arrow keys.
+- On Firefox, mashing the ' or / keys no longer opens Quick Find, which would disrupt the game.
+- Fixes an issue with the game changing position when starting a mode on various browsers/operating systems
+- Hovering over an achievement star now reveals a tooltip describing what you accomplished.
+- Adjusts copyright author from Timothy Hsu to Games by Tim
+- Changes license from GPLv3 to MIT
 
 Version 4.4.1 (released 8/31/18)
 -------------------------------

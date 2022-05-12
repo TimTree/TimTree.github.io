@@ -4,8 +4,9 @@
 <title>Button Masher</title>
 
 <meta name="description" content="Click the button with your mouse as fast as you can!">
-<meta name="author" content="Timothy Hsu">
+<meta name="author" content="Games by Tim">
 <meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
 <link rel="shortcut icon" type="image/x-icon" href="masher.ico" />
 
 <style>
@@ -137,6 +138,7 @@ outline: none;
 display:block;
 font-size:12pt;
 margin-bottom:2em;
+line-height:1.2;
 }
 
 #btc th, #btc td {
@@ -200,6 +202,7 @@ background-color:#F39797;
 #scorebreak {
 margin-bottom:6px;
 font-weight:700;
+line-height:1.2;
 }
 
 #masher, #analysis {
@@ -397,15 +400,15 @@ function star() {
 if (score.tenSec > beat.tenSec || score.thirtySec > beat.thirtySec || score.oneMin > beat.oneMin || score.lightning < beat.lightning || score.lightningHundred < beat.lightningHundred || score.endurance > beat.endurance || score.enduranceHard > beat.enduranceHard || score.movement > beat.movement || score.movementHard > beat.movementHard || score.oscillation > beat.oscillation || score.oscillationHard > beat.oscillationHard) {
 document.getElementById("beatall").style.display="inline";
 if (score.tenSec > beat.tenSec && score.thirtySec > beat.thirtySec && score.oneMin > beat.oneMin && score.lightning < beat.lightning && score.lightningHundred < beat.lightningHundred && score.endurance > beat.endurance && score.enduranceHard > beat.enduranceHard && score.movement > beat.movement && score.movementHard > beat.movementHard && score.oscillation > beat.oscillation && score.oscillationHard > beat.oscillationHard){
-document.getElementById("beatall").innerHTML="<span style='color:#2FCA2F;'>&#9733</span>";}
-else {document.getElementById("beatall").innerHTML="<span style='color:#35A2E5;'>&#9733</span>";}
+document.getElementById("beatall").innerHTML="<span style='color:#2FCA2F;' title='You beat all of the creator&apos;s scores!!!'>&#9733</span>";}
+else {document.getElementById("beatall").innerHTML="<span style='color:#35A2E5;' title='You beat at least one of the creator&apos;s scores!'>&#9733</span>";}
 }
 else {document.getElementById("beatall").style.display="none";}
 if (score.clicked>=1000) {
 document.getElementById("clickgod").style.display="inline";
-if (score.clicked>=1000 && score.clicked<5000) {document.getElementById("clickgod").innerHTML="<span style='color:#8C7853;'>&#9733</span>";}
-if (score.clicked>=5000 && score.clicked<10000) {document.getElementById("clickgod").innerHTML="<span style='color:#B3B3B3 ;'>&#9733</span>";}
-if (score.clicked>=10000) {document.getElementById("clickgod").innerHTML="<span style='color:#CFB53B;'>&#9733</span>";}
+if (score.clicked>=1000 && score.clicked<5000) {document.getElementById("clickgod").innerHTML="<span style='color:#8C7853;' title='You clicked at least 1000 times!'>&#9733</span>";}
+if (score.clicked>=5000 && score.clicked<10000) {document.getElementById("clickgod").innerHTML="<span style='color:#B3B3B3;' title='You clicked at least 5000 times!'>&#9733</span>";}
+if (score.clicked>=10000) {document.getElementById("clickgod").innerHTML="<span style='color:#CFB53B;' title='You are THE Clicker God!!!'>&#9733</span>";}
 }
 else {document.getElementById("clickgod").style.display="none";}
 }
@@ -416,7 +419,7 @@ document.getElementById("main").innerHTML="<p class='margin'><a  class='clickabl
 }
 
 function help() {
-document.getElementById("main").innerHTML="<h4>Help</h4><p>See how many times you can click on a button in a set period of time. Choose between a various assortment of game modes. Good luck!</p><p>For tips on raising your scores, check out the <a href='https://www.gamesbytim.com/2015/03/the-button-masher-strategy-guide.html' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Help</h4><p>See how many times you can click on a button in a set period of time. Choose between a various assortment of game modes. Good luck!</p><p>For tips on raising your scores, check out the <a href='https://www.gamesbytim.com/blog/the-button-masher-strategy-guide/' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 }
 
 function records() {
@@ -443,7 +446,7 @@ document.getElementById("resetcurse").innerHTML="<span style='color:#4A56F7;'><i
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first HTML5 game.</p><p>It&#39;s a simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. Finally, this is my first game to keep save data.</p><p><strong>Released:</strong> April 19, 2013<br><strong>Updated:</strong> August 31, 2018<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Button Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='https://timtree.github.io/keyboard-masher/' target='_blank'>Keyboard Masher</a> and <a href='https://timtree.github.io/mouse-swipe/' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='https://www.gamesbytim.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='https://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>Button Masher - my first HTML5 game.</p><p>It&#39;s a simple game, yet it marks many milestones for my development history. For one, it is my first game coded completely from scratch. Another first is the ability to keep score, improving replay value. Finally, this is my first game to keep save data.</p><p><strong>Released:</strong> April 19, 2013<br><strong>Updated:</strong> May 11, 2022<br><strong>License:</strong> <a href='license.txt' target='_blank'>MIT</a></p><p>Button Masher is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='https://timtree.github.io/keyboard-masher/' target='_blank'>Keyboard Masher</a> and <a href='https://timtree.github.io/mouse-swipe/' target='_blank'>Mouse Swipe</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='https://www.gamesbytim.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='https://timtree.github.io/button-masher/Button%20Masher.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
 }
 
 function beatcreator() {
@@ -474,10 +477,10 @@ if (score.clicked>=2500&&score.clicked<=4999) {godrank="Clicker Pro"; clicksleft
 if (score.clicked>=5000&&score.clicked<=7499) {godrank="Clicker Master"; clicksleft="7,500";}
 if (score.clicked>=7500&&score.clicked<=9999) {godrank="Clicker Sage"; clicksleft="10,000";}
 
-document.getElementById("main").innerHTML="<h4>The Clicker God</h4><p class='margin'>Can you accumulate a total of 10,000 clicks? If so, you are considered a clicker god. Below is your current progress.</p><div id='clickergod'><p>Total Clicks:</p><p><span style='font-size:46pt;font-weight:700;color:#399470;'>" + score.clicked + "</span> /10,000</p><p><span style='font-size:14pt;'>Your rank: <strong>" + godrank + "</strong></span></p><p id='analysis'>Next rank at " + clicksleft + " clicks</p></div><p><button type='button' onclick='begin()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>The Clicker God</h4><p class='margin'>Can you accumulate a total of 10,000 clicks? If so, you are considered the Clicker God. Below is your current progress.</p><div id='clickergod'><p>Total Clicks:</p><p><span style='font-size:46pt;font-weight:700;color:#399470;'>" + score.clicked + "</span> /10,000</p><p><span style='font-size:14pt;'>Your rank: <strong>" + godrank + "</strong></span></p><p id='analysis'>Next rank at " + clicksleft + " clicks</p></div><p><button type='button' onclick='begin()'>Go back</button></p>";
 
 if (score.clicked>=10000)
-{document.getElementById("clickergod").innerHTML="<p>Total Clicks:</p><p><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + score.clicked + "</span></p><p id='analysis'><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are a clicker god!</span></p>";}
+{document.getElementById("clickergod").innerHTML="<p>Total Clicks:</p><p><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + score.clicked + "</span></p><p id='analysis'><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are THE Clicker God!!!</span></p>";}
 }
 
 var time, message, highscore, interval, timer, beatvar, func;
@@ -1220,7 +1223,7 @@ score.clicked = score.clicked*1+Math.abs(document.score.scoring.value)*1;localSt
 
 </div>
 
-<div id="copyright"><p>Version 4.3.1 &nbsp;&#126;&nbsp; &copy;2013-2016 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 4.4 &nbsp;&#126;&nbsp; &copy;2013-2022 Games by Tim<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

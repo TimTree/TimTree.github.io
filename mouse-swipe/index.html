@@ -4,8 +4,9 @@
 <title>Mouse Swipe</title>
 
 <meta name="description" content="Swipe your mouse across the screen as fast as you can!">
-<meta name="author" content="Timothy Hsu">
+<meta name="author" content="Games by Tim">
 <meta charset="UTF-8">
+<meta name="format-detection" content="telephone=no">
 <link rel="shortcut icon" type="image/x-icon" href="mswipe.ico" />
 
 <style>
@@ -108,6 +109,7 @@ outline: none;
 display:block;
 font-size:12pt;
 margin-bottom:2em;
+line-height:1.2;
 }
 
 #btc th, #btc td {
@@ -171,6 +173,7 @@ background-color:#F39797;
 #scorebreak {
 margin-bottom:6px;
 font-weight:700;
+line-height:1.2;
 }
 
 #masher, #analysis {
@@ -235,7 +238,8 @@ padding-right:16px;
 #capsule {
 height:280px;
 width:540px;
-margin:auto;   
+margin:auto;
+position:relative;   
 }
 
 #leftinner {
@@ -263,7 +267,7 @@ box-sizing: border-box;
 }
 
 #leftouter {
-position:absolute;
+position:fixed;
 left:0;
 top:0;
 width:50%;
@@ -271,7 +275,7 @@ height:100%;
 }
 
 #rightouter {
-position:absolute;
+position:fixed;
 right:0;
 top:0;
 width:50%;
@@ -290,7 +294,7 @@ left:20px;
 top:80px;
 width:120px;
 height:120px;
-background-color:#908FA2;
+background-color:#6e6ba1;
 }
 
 #rightsquare {
@@ -300,42 +304,35 @@ left:-20px;
 top:80px;
 width:120px;
 height:120px;
-background-color:#908FA2;
+background-color:#6e6ba1;
 }
 
-#lefttriangle {
-float:left;
-position:relative;
-left:109px;
-top:40px;
-width: 0; 
-height: 0; 
-border-left: 70px solid transparent;
-border-right: 70px solid transparent;
-border-bottom: 120px solid #C7C7D0;
+
+#toptriangle, #lefttriangle, #righttriangle {
+fill:#C7C7D0;
 }
 
-#righttriangle {
-float:right;
-position:relative;
-left:-109px;
-top:40px;
-width: 0; 
-height: 0; 
-border-left: 70px solid transparent;
-border-right: 70px solid transparent;
-border-bottom: 120px solid #C7C7D0;
+.mswipeTriangle {
+width:140px;
+height:120px;
 }
 
-#toptriangle {
-position:relative;
+.mswipeTriangle:nth-child(1) {
+position:absolute;
 left:200px;
 top:0;
-width: 0; 
-height: 0; 
-border-left: 70px solid transparent;
-border-right: 70px solid transparent;
-border-bottom: 120px solid #C7C7D0;
+}
+
+.mswipeTriangle:nth-child(2) {
+position:absolute;
+left:109px;
+top:160px;
+}
+
+.mswipeTriangle:nth-child(3) {
+position:absolute;
+left:291px;
+top:160px;
 }
 
 #oscill {
@@ -364,7 +361,7 @@ position:relative;
 left:20px;
 width:120px;
 height:120px;
-background-color:#908FA2;
+background-color:#6e6ba1;
 }
 
 #rightmotion {
@@ -373,7 +370,7 @@ position:relative;
 left:-20px;
 width:120px;
 height:120px;
-background-color:#908FA2;
+background-color:#6e6ba1;
 }
 
 #oscill2 {
@@ -402,7 +399,7 @@ position:relative;
 left:20px;
 width:100px;
 height:100px;
-background-color:#908FA2;
+background-color:#6e6ba1;
 }
 
 #rightmotionHard {
@@ -411,7 +408,7 @@ position:relative;
 left:-20px;
 width:100px;
 height:100px;
-background-color:#908FA2;
+background-color:#6e6ba1;
 }
 
 a.clickable:hover {
@@ -420,6 +417,7 @@ color:#205AC7;
 
 #commentary {
 margin:0.7em 0;
+}
 
 </style>
 
@@ -438,14 +436,14 @@ swiped: 0
 };
 
 var beat = {
-tenSec: 105,
-thirtySec: 294,
-square: 79,
-squareHard: 154,
-triangle: 80,
-triangleHard: 136,
-motion: 201,
-motionHard: 163,
+tenSec: 121,
+thirtySec: 317,
+square: 85,
+squareHard: 187,
+triangle: 78,
+triangleHard: 132,
+motion: 213,
+motionHard: 172,
 };
 
 var settings = {
@@ -488,15 +486,15 @@ function star() {
 if (score.tenSec > beat.tenSec || score.thirtySec > beat.thirtySec || score.square > beat.square || score.squareHard > beat.squareHard || score.triangle > beat.triangle || score.triangleHard > beat.triangleHard || score.motion > beat.motion || score.motionHard > beat.motionHard) {
 document.getElementById("beatall").style.display="inline";
 if (score.tenSec > beat.tenSec && score.thirtySec > beat.thirtySec && score.square > beat.square && score.squareHard > beat.squareHard && score.triangle > beat.triangle && score.triangleHard > beat.triangleHard && score.motion > beat.motion && score.motionHard > beat.motionHard){
-document.getElementById("beatall").innerHTML="<span style='color:#2FCA2F;'>&#9733</span>";}
-else {document.getElementById("beatall").innerHTML="<span style='color:#35A2E5;'>&#9733</span>";}
+document.getElementById("beatall").innerHTML="<span style='color:#2FCA2F;' title='You beat all of the creator&apos;s scores!!!'>&#9733</span>";}
+else {document.getElementById("beatall").innerHTML="<span style='color:#35A2E5;' title='You beat at least one of the creator&apos;s scores!'>&#9733</span>";}
 }
 else {document.getElementById("beatall").style.display="none";}
 if (score.swiped>=1000) {
 document.getElementById("clickgod").style.display="inline";
-if (score.swiped>=1000 && score.swiped<5000) {document.getElementById("clickgod").innerHTML="<span style='color:#8C7853;'>&#9733</span>";}
-if (score.swiped>=5000 && score.swiped<10000) {document.getElementById("clickgod").innerHTML="<span style='color:#B3B3B3 ;'>&#9733</span>";}
-if (score.swiped>=10000) {document.getElementById("clickgod").innerHTML="<span style='color:#CFB53B;'>&#9733</span>";}
+if (score.swiped>=1000 && score.swiped<5000) {document.getElementById("clickgod").innerHTML="<span style='color:#8C7853;' title='You swiped at least 1000 times!'>&#9733</span>";}
+if (score.swiped>=5000 && score.swiped<10000) {document.getElementById("clickgod").innerHTML="<span style='color:#B3B3B3;' title='You swiped at least 5000 times!'>&#9733</span>";}
+if (score.swiped>=10000) {document.getElementById("clickgod").innerHTML="<span style='color:#CFB53B;' title='You are THE Prestigious Swiper!!!'>&#9733</span>";}
 }
 else {document.getElementById("clickgod").style.display="none";}
 }
@@ -507,7 +505,7 @@ document.getElementById("main").innerHTML="<p class='margin'><a class='clickable
 }
 
 function help() {
-document.getElementById("main").innerHTML="<h4>Help</h4><p>In this game, your goal is to swipe your cursor left and right across the line repeatedly as fast as you can. You can choose from four different game modes.</p><p><b>Freeform:</b> Swipe anywhere within your browser window.<br><b>Square:</b> Swipe within two fixed squares.<br><b>Triangle:</b> Swipe clockwise within three fixed triangles.<br><b>Motion:</b> Swipe within two moving squares.</p><p>For tips on raising your scores, check out the <a href='https://www.gamesbytim.com/2015/11/the-mouse-swipe-strategy-guide.html' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>Help</h4><p>In this game, your goal is to swipe your cursor left and right across the line repeatedly as fast as you can. You can choose from four different game modes.</p><p><b>Freeform:</b> Swipe anywhere within your browser window.<br><b>Square:</b> Swipe within two fixed squares.<br><b>Triangle:</b> Swipe clockwise within three fixed triangles.<br><b>Motion:</b> Swipe within two moving squares.</p><p>For tips on raising your scores, check out the <a href='https://www.gamesbytim.com/blog/the-mouse-swipe-strategy-guide/' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
 }
 
 function records() {
@@ -534,7 +532,7 @@ document.getElementById("resetcurse").innerHTML="<span style='color:#4A56F7;'><i
 }
 
 function about() {
-document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>First, it was the button. Then, it was the keyboard. And now, your entire computer mouse gets to join in the fun! The idea for this game was originally thought of by Kaizad Taraporevala.</p><p><strong>Released:</strong> October 1, 2015<br><strong>Updated:</strong> August 31, 2018<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Mouse Swipe is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='https://timtree.github.io/button-masher/' target='_blank'>Button Masher</a> and <a href='https://timtree.github.io/keyboard-masher/' target='_blank'>Keyboard Masher</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='https://www.gamesbytim.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='https://timtree.github.io/mouse-swipe/Mouse%20Swipe.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>First, it was the button. Then, it was the keyboard. And now, your entire computer mouse gets to join in the fun! The idea for this game was originally thought of by Kaizad Taraporevala.</p><p><strong>Released:</strong> October 1, 2015<br><strong>Updated:</strong> May 11, 2022<br><strong>License:</strong> <a href='license.txt' target='_blank'>MIT</a></p><p>Mouse Swipe is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='https://timtree.github.io/button-masher/' target='_blank'>Button Masher</a> and <a href='https://timtree.github.io/keyboard-masher/' target='_blank'>Keyboard Masher</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='https://www.gamesbytim.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='https://timtree.github.io/mouse-swipe/Mouse%20Swipe.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
 }
 
 function beatcreator() {
@@ -562,10 +560,10 @@ if (score.swiped>=2500&&score.swiped<=4999) {godrank="Successful Swiper"; clicks
 if (score.swiped>=5000&&score.swiped<=7499) {godrank="Stunning Swiper"; clicksleft="7,500";}
 if (score.swiped>=7500&&score.swiped<=9999) {godrank="Resounding Swiper"; clicksleft="10,000";}
 
-document.getElementById("main").innerHTML="<h4>The Prestigious Swiper</h4><p class='margin'>Can you accumulate a total of 10,000 swipes? If so, you are considered a prestigious swiper. Below is your current progress.</p><div id='clickergod'><p>Total Swipes:</p><p><span style='font-size:46pt;font-weight:700;color:#399470;'>" + score.swiped + "</span> /10,000</p><p><span style='font-size:14pt;'>Your rank: <strong>" + godrank + "</strong></span></p><p id='analysis'>Next rank at " + clicksleft + " swipes</p></div><p><button type='button' onclick='begin()'>Go back</button></p>";
+document.getElementById("main").innerHTML="<h4>The Prestigious Swiper</h4><p class='margin'>Can you accumulate a total of 10,000 swipes? If so, you are considered the Prestigious Swiper. Below is your current progress.</p><div id='clickergod'><p>Total Swipes:</p><p><span style='font-size:46pt;font-weight:700;color:#399470;'>" + score.swiped + "</span> /10,000</p><p><span style='font-size:14pt;'>Your rank: <strong>" + godrank + "</strong></span></p><p id='analysis'>Next rank at " + clicksleft + " swipes</p></div><p><button type='button' onclick='begin()'>Go back</button></p>";
 
 if (score.swiped>=10000)
-{document.getElementById("clickergod").innerHTML="<p>Total Swipes:</p><p><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + score.swiped + "</span></p><p id='analysis'><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are a prestigious swiper!</span></p>";}
+{document.getElementById("clickergod").innerHTML="<p>Total Swipes:</p><p><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + score.swiped + "</span></p><p id='analysis'><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are THE Prestigious Swiper!!!</span></p>";}
 }
 
 function freeform() {
@@ -860,33 +858,33 @@ function trianglegame() {
 func="trianglegame()";
 if (settings.bgchange==1) {document.body.style.backgroundColor = "#5B709E";}
 headersetup();
-document.getElementById("main").innerHTML=scoreset+"<p id='commentary'>Swipe the bottom-right triangle to begin.</p><div id='capsule' style='height:290px;'><div id='toptriangle'></div><div id='lefttriangle'></div><div id='righttriangle' onmouseover='initialize3();setuprighttriangle()'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p><p id='thehs'></p>";
+document.getElementById("main").innerHTML=scoreset+"<p id='commentary'>Swipe the bottom-right triangle to begin.</p><div id='capsule' style='height:290px;'><svg class='mswipeTriangle'><polygon id='toptriangle' points='70,0 140,120 0,120'/></svg><svg class='mswipeTriangle'><polygon id='lefttriangle' points='70,0 140,120 0,120'/></svg><svg class='mswipeTriangle'><polygon id='righttriangle' points='70,0 140,120 0,120' onmouseover='initialize3();setuprighttriangle()'/></svg></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p><p id='thehs'></p>";
 if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
 if (message=="Triangle (Hard)") {trianglehardsmall();};
-document.getElementById("righttriangle").style.borderBottomColor="#908FA2";
+document.getElementById("righttriangle").style.fill="#6e6ba1";
 }
 
 function setuplefttriangle() {
 document.score.scoring.value++;
-document.getElementById("capsule").innerHTML="<div id='toptriangle' onmouseover='setuptoptriangle()'></div><div id='lefttriangle'></div><div id='righttriangle'></div>";
+document.getElementById("capsule").innerHTML="<svg class='mswipeTriangle'><polygon id='toptriangle' points='70,0 140,120 0,120' onmouseover='setuptoptriangle()'/></svg><svg class='mswipeTriangle'><polygon id='lefttriangle' points='70,0 140,120 0,120'/></svg><svg class='mswipeTriangle'><polygon id='righttriangle' points='70,0 140,120 0,120'/></svg>";
 if (message=="Triangle (Hard)") {trianglehardsmall();};
-document.getElementById("toptriangle").style.borderBottomColor="#908FA2";
+document.getElementById("toptriangle").style.fill="#6e6ba1";
 bgchange();
 }
 
 function setuprighttriangle() {
 document.score.scoring.value++;
-document.getElementById("capsule").innerHTML="<div id='toptriangle'></div><div id='lefttriangle' onmouseover='setuplefttriangle()'></div><div id='righttriangle'></div>";
+document.getElementById("capsule").innerHTML="<svg class='mswipeTriangle'><polygon id='toptriangle' points='70,0 140,120 0,120'/></svg><svg class='mswipeTriangle'><polygon id='lefttriangle' points='70,0 140,120 0,120'  onmouseover='setuplefttriangle()'/></svg><svg class='mswipeTriangle'><polygon id='righttriangle' points='70,0 140,120 0,120'/></svg>";
 if (message=="Triangle (Hard)") {trianglehardsmall();};
-document.getElementById("lefttriangle").style.borderBottomColor="#908FA2";
+document.getElementById("lefttriangle").style.fill="#6e6ba1";
 bgchange();
 }
 
 function setuptoptriangle() {
 document.score.scoring.value++;
-document.getElementById("capsule").innerHTML="<div id='toptriangle'></div><div id='lefttriangle'></div><div id='righttriangle' onmouseover='setuprighttriangle()'></div>";
+document.getElementById("capsule").innerHTML="<svg class='mswipeTriangle'><polygon id='toptriangle' points='70,0 140,120 0,120'/></svg><svg class='mswipeTriangle'><polygon id='lefttriangle' points='70,0 140,120 0,120'/></svg><svg class='mswipeTriangle'><polygon id='righttriangle' points='70,0 140,120 0,120' onmouseover='setuprighttriangle()'/></svg>";
 if (message=="Triangle (Hard)") {trianglehardsmall();};
-document.getElementById("righttriangle").style.borderBottomColor="#908FA2";
+document.getElementById("righttriangle").style.fill="#6e6ba1";
 bgchange();
 }
 
@@ -909,28 +907,18 @@ int=setInterval(function(){updatetime()},100);
 
 function trianglehardsmall() {
 
-var dim1, dim2, top, left;
+var dimWidth, dimHeight;
 var x=document.score.scoring.value;
 
-if (x<50) {dim1 = 58, dim2 = 100, top = 80, left = 212;}
-if (x>=50&&x<100) {dim1 = 52, dim2 = 90, top = 100, left = 218;}
-if (x>=100&&x<150) {dim1 = 46, dim2 = 80, top = 120, left = 224;}
-if (x>=150&&x<200) {dim1 = 40, dim2 = 70, top = 140, left = 230;}
-if (x>=200) {dim1 = 35, dim2 = 60, top = 160, left = 235;}
+if (x<50) {dimWidth= 116, dimHeight = 100}
+if (x>=50&&x<100) {dimWidth= 104, dimHeight = 90}
+if (x>=100&&x<150) {dimWidth= 92, dimHeight = 80}
+if (x>=150&&x<200) {dimWidth= 80, dimHeight = 70}
+if (x>=200) {dimWidth= 68, dimHeight = 60}
 
-document.getElementById("lefttriangle").style.borderLeft = dim1+"px solid transparent";
-document.getElementById("lefttriangle").style.borderRight = dim1+"px solid transparent";
-document.getElementById("lefttriangle").style.borderBottom = dim2+"px solid #C7C7D0";
-document.getElementById("lefttriangle").style.top = top+"px";
-document.getElementById("righttriangle").style.borderLeft = dim1+"px solid transparent";
-document.getElementById("righttriangle").style.borderRight = dim1+"px solid transparent";
-document.getElementById("righttriangle").style.borderBottom = dim2+"px solid #C7C7D0";
-document.getElementById("righttriangle").style.top = top+"px";
-document.getElementById("toptriangle").style.borderLeft = dim1+"px solid transparent";
-document.getElementById("toptriangle").style.borderRight = dim1+"px solid transparent";
-document.getElementById("toptriangle").style.borderBottom = dim2+"px solid #C7C7D0";
-document.getElementById("toptriangle").style.left = left+"px";
-
+document.getElementById("toptriangle").setAttribute("points", "70,0 "+(dimWidth/2+70)+","+dimHeight+" "+(70-dimWidth/2)+","+dimHeight+"");
+document.getElementById("lefttriangle").setAttribute("points", ""+(dimWidth/2)+","+(120-dimHeight)+" "+dimWidth+",120 0,120");
+document.getElementById("righttriangle").setAttribute("points", ""+(140-dimWidth/2)+","+(120-dimHeight)+" 140,120 "+((70-dimWidth/2)*2)+",120");
 }
 
 function triangleAnalysis() {
@@ -1194,7 +1182,7 @@ score.swiped = score.swiped*1+Math.abs(document.score.scoring.value)*1;localStor
 
 </div>
 
-<div id="copyright"><p>Version 1.1.1 &nbsp;&#126;&nbsp; &copy;2015-2016 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+<div id="copyright"><p>Version 1.2 &nbsp;&#126;&nbsp; &copy;2015-2022 Games by Tim<span id='beatall'></span><span id='clickgod'></span></p></div>
 
 </div>
 

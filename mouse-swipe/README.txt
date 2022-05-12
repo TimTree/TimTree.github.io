@@ -19,18 +19,28 @@ Javascript must be enabled.
 ** Safari 11+ blocks save data in the downloaded version by default. To fix this, enable the Develop menu in the menu bar and select "Disable Local File Restrictions."
 
 COPYRIGHT NOTICE
-This game is copyright (c) 2015-2016 Timothy Hsu. It is released under the GPL v3 license. You can find this license on the license.txt file or on http://www.gnu.org/licenses/gpl-3.0.html.
+This game is copyright (c) 2015-2022 Games by Tim. It is released under the MIT license. You can find this license on the license.txt file.
 
 CONTACT INFO
 To send feedback, bug reports, or suggestions relating this game, leave a comment at the following URL.
 
-https://www.gamesbytim.com/2015/10/mouse-swipe-more-info.html
+https://www.gamesbytim.com/mouse-swipe/
 
 
 
 --------------------------------------
 
 VERSION HISTORY
+
+Version 1.2 (released 5/11/22)
+-------------------------------
+- The hover zone in Triangle mode is now the triangle, rather than an invisible square surrounding the triangle.
+  - As this change affects gameplay, the Beat the Creator scores for both Triangle modes have been adjusted.
+- Improves contrast of squares and triangles to hover to
+- Fixes an issue with the game changing position when starting a mode on various browsers/operating systems
+- Hovering over an achievement star now reveals a tooltip describing what you accomplished.
+- Adjusts copyright author from Timothy Hsu to Games by Tim
+- Changes license from GPLv3 to MIT
 
 Version 1.1.1 (released 8/31/18)
 -------------------------------

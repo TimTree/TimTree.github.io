@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mouse Swipe</title>
+
+<meta name="description" content="Swipe your mouse across the screen as fast as you can!">
+<meta name="author" content="Timothy Hsu">
+<meta charset="UTF-8">
+<link rel="shortcut icon" type="image/x-icon" href="mswipe.ico" />
+
+<style>
+
+body {
+margin:0 auto;
+background-color:#5B709E;
+height:100%;
+min-width:570px;
+width:95%;
+max-width:800px;
+}
+
+#wrap {
+background:#fff;
+padding:10px 50px 15px 50px;
+font-family:verdana,"DejaVu Sans";
+text-align:center;
+}
+
+@media screen and (max-width: 673px) {
+#wrap {
+padding:10px 2.5% 15px 2.5%;
+}
+}
+
+a {
+cursor:pointer;
+}
+
+button {
+background-color:#eee;
+border-radius:5px;
+-webkit-border-radius:5px;
+border:1px solid #aaa;
+color:#444;
+font-family:verdana,"DejaVu Sans";
+font-size:12pt;
+padding:3px 8px;
+margin:0;
+}
+
+button:hover {
+background-color:#dedede;
+}
+
+button:active {
+background-color:#bcbcbc;
+}
+
+button.mod {
+font-size:13pt;
+padding:3px 7px;
+}
+
+button.big {
+font-size:20pt;
+padding:4px 10px;
+}
+
+button.small {
+font-size:10pt;
+}
+
+#copyright {
+font-size:10pt;
+text-align:center;
+margin-top:50px;
+}
+
+#title {
+font-size:50pt;
+color:#AD3939;
+font-family:"trebuchet ms","droid sans",sans-serif;
+display:block;
+font-weight:700;
+line-height:1.8;
+}
+
+#record {
+font-weight:700;
+color:#395ED3;
+font-size:16pt;
+margin-bottom:36px;
+}
+
+*:not(input){
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+
+*:focus  {  
+outline: none;  
+}  
+
+#author {
+display:block;
+font-size:12pt;
+margin-bottom:2em;
+}
+
+#btc th, #btc td {
+width:160px;
+padding-bottom:5px;
+}
+
+#btc td.check {
+width:20px;
+padding-bottom:5px;
+color:#009000;
+}
+
+#blank {
+visibility:hidden;
+}
+
+#select ul {
+padding:0;
+margin-bottom:18px;
+}
+
+#select ul li {
+list-style-type:none;
+display:inline;
+padding:8px;
+}
+
+#select #achieve li {
+padding: 0 10px;
+font-size:10pt;
+}
+
+.nocenter {
+text-align:left;
+}
+
+.margin, #customerror {
+margin-bottom:1.5em;
+}
+
+#resetcurse {
+min-height:24px;
+margin-bottom:2em;
+}
+
+#resetbutton {
+background-color:#F9DDDD;
+border:1px solid #FB7777;
+color:#651818;
+}
+
+#resetbutton:hover {
+background-color:#FFC3C3;
+}
+
+#resetbutton:active {
+background-color:#F39797;
+}
+
+#scorebreak {
+margin-bottom:6px;
+font-weight:700;
+}
+
+#masher, #analysis {
+margin-bottom:50px;
+}
+
+#score {
+border:none;
+font-size:22pt;
+text-align:center;
+}
+
+#timeisup {
+font-size:28pt;
+color:#BD8B20;
+font-weight:700;
+margin:15px;
+}
+
+#done {
+font-size:28pt;
+color:#5458BD;
+font-weight:700;
+margin:15px;
+}
+
+#beatcreator {
+color:#009000;
+font-weight:700;
+}
+
+#clickgod {
+display:none;
+margin-left:12px;
+font-size:16pt;
+}
+
+#beatall {
+display:none;
+margin-left:12px;
+font-size:16pt;
+}
+
+button::-moz-focus-inner {
+padding: 0 !important;
+border: 0 none !important;
+}
+
+#settings {
+margin:auto;
+}
+
+#settings td {
+padding-bottom:1em;
+}
+
+#settings td:first-child {
+text-align: right;
+padding-right:16px;
+}
+
+#capsule {
+height:280px;
+width:540px;
+margin:auto;   
+}
+
+#leftinner {
+position:relative;
+width:50%;
+height:100%;
+float:left;
+border-right-style:solid;
+border-width:1px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+    
+#rightinner {
+position:relative;
+width:50%;
+height:100%;
+float:right;
+border-left-style:solid;
+border-width:1px;
+-webkit-box-sizing: border-box;
+-moz-box-sizing: border-box;
+box-sizing: border-box;
+}
+
+#leftouter {
+position:absolute;
+left:0;
+top:0;
+width:50%;
+height:100%;
+}
+
+#rightouter {
+position:absolute;
+right:0;
+top:0;
+width:50%;
+height:100%;
+}
+
+#restart {
+position:relative;
+z-index:1;
+}
+
+#leftsquare {
+float:left;
+position:relative;
+left:20px;
+top:80px;
+width:120px;
+height:120px;
+background-color:#908FA2;
+}
+
+#rightsquare {
+float:right;
+position:relative;
+left:-20px;
+top:80px;
+width:120px;
+height:120px;
+background-color:#908FA2;
+}
+
+#lefttriangle {
+float:left;
+position:relative;
+left:109px;
+top:40px;
+width: 0; 
+height: 0; 
+border-left: 70px solid transparent;
+border-right: 70px solid transparent;
+border-bottom: 120px solid #C7C7D0;
+}
+
+#righttriangle {
+float:right;
+position:relative;
+left:-109px;
+top:40px;
+width: 0; 
+height: 0; 
+border-left: 70px solid transparent;
+border-right: 70px solid transparent;
+border-bottom: 120px solid #C7C7D0;
+}
+
+#toptriangle {
+position:relative;
+left:200px;
+top:0;
+width: 0; 
+height: 0; 
+border-left: 70px solid transparent;
+border-right: 70px solid transparent;
+border-bottom: 120px solid #C7C7D0;
+}
+
+#oscill {
+top:0px;
+width:100%;
+height:120px;
+position:relative;
+-webkit-animation: osc 5s ease 0s, osc2 3.333s ease 10s, osc3 2.5s ease 20s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-play-state:paused;
+animation: osc 5s ease 0s, osc2 3.333s ease 10s, osc3 2.5s ease 20s;
+animation-iteration-count:infinite;
+animation-play-state:paused;
+}
+
+@-webkit-keyframes osc {0%{top:160px;} 50%{top:-30px;} 100%{top:160px;}}
+@-webkit-keyframes osc2 {0%{top:160px;} 50%{top:-30px;} 100%{top:160px;}}
+@-webkit-keyframes osc3 {0%{top:160px;} 50%{top:-30px;} 100%{top:160px;}}
+@keyframes osc {0%{top:160px;} 50%{top:-30px;} 100%{top:160px;}}
+@keyframes osc2 {0%{top:160px;} 50%{top:-30px;} 100%{top:160px;}}
+@keyframes osc3 {0%{top:160px;} 50%{top:-30px;} 100%{top:160px;}}
+
+#leftmotion {
+float:left;
+position:relative;
+left:20px;
+width:120px;
+height:120px;
+background-color:#908FA2;
+}
+
+#rightmotion {
+float:right;
+position:relative;
+left:-20px;
+width:120px;
+height:120px;
+background-color:#908FA2;
+}
+
+#oscill2 {
+top:0px;
+width:100%;
+height:100px;
+position:relative;
+-webkit-animation: osc4 2.5s ease 0s, osc5 2s ease 10s, osc6 1.667s ease 20s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-play-state:paused;
+animation: osc4 2.5s ease 0s, osc5 2s ease 10s, osc6 1.667s ease 20s;
+animation-iteration-count:infinite;
+animation-play-state:paused;
+}
+
+@-webkit-keyframes osc4 {0%{top:180px;} 50%{top:-30px;} 100%{top:180px;}}
+@-webkit-keyframes osc5 {0%{top:180px;} 50%{top:-30px;} 100%{top:180px;}}
+@-webkit-keyframes osc6 {0%{top:180px;} 50%{top:-30px;} 100%{top:180px;}}
+@keyframes osc4 {0%{top:180px;} 50%{top:-30px;} 100%{top:180px;}}
+@keyframes osc5 {0%{top:180px;} 50%{top:-30px;} 100%{top:180px;}}
+@keyframes osc6 {0%{top:180px;} 50%{top:-30px;} 100%{top:180px;}}
+
+#leftmotionHard {
+float:left;
+position:relative;
+left:20px;
+width:100px;
+height:100px;
+background-color:#908FA2;
+}
+
+#rightmotionHard {
+float:right;
+position:relative;
+left:-20px;
+width:100px;
+height:100px;
+background-color:#908FA2;
+}
+
+a.clickable:hover {
+color:#205AC7;
+}
+
+#commentary {
+margin:0.7em 0;
+
+</style>
+
+<script>
+
+var score = {
+tenSec: 0,
+thirtySec: 0,
+square: 0,
+squareHard: 0,
+triangle: 0,
+triangleHard: 0,
+motion: 0,
+motionHard: 0,
+swiped: 0
+};
+
+var beat = {
+tenSec: 105,
+thirtySec: 294,
+square: 79,
+squareHard: 154,
+triangle: 80,
+triangleHard: 136,
+motion: 201,
+motionHard: 163,
+};
+
+var settings = {
+bgchange: 1,
+analysis: 1,
+saveScores: 1
+};
+
+var scoreset="<p id='beatme'></p><p id='scorebreak'><b>Score</b><span id='restart'></span></p><form name='score'><!-- Hey, cheater! ;) --><input name='scoring' type='text' value='0' id='score' readonly></form>";
+var back = "<a class='clickable' id='back' onclick='begin();'>&#8592; </a>";
+
+if (localStorage.getItem("mswipeScore")) {
+score.tenSec = localStorage.getItem("mswipeScore");}
+if (localStorage.getItem("mswipeScore2")) {
+score.thirtySec = localStorage.getItem("mswipeScore2");}
+if (localStorage.getItem("mswipeScore3")) {
+score.square = localStorage.getItem("mswipeScore3");}
+if (localStorage.getItem("mswipeScore4")) {
+score.squareHard = localStorage.getItem("mswipeScore4");}
+if (localStorage.getItem("mswipeScore5")) {
+score.triangle = localStorage.getItem("mswipeScore5");}
+if (localStorage.getItem("mswipeScore6")) {
+score.triangleHard = localStorage.getItem("mswipeScore6");}
+if (localStorage.getItem("mswipeScore7")) {
+score.motion = localStorage.getItem("mswipeScore7");}
+if (localStorage.getItem("mswipeScore8")) {
+score.motionHard = localStorage.getItem("mswipeScore8");}
+if (localStorage.getItem("timesSwipedScore")) {
+score.swiped = localStorage.getItem("timesSwipedScore");}
+if (localStorage.getItem("mswipeSetting1")) {
+settings.bgchange = localStorage.getItem("mswipeSetting1");}
+if (localStorage.getItem("mswipeSetting2")) {
+settings.analysis = localStorage.getItem("mswipeSetting2");}
+if (localStorage.getItem("mswipeSetting3")) {
+settings.saveScores = localStorage.getItem("mswipeSetting3");}
+
+window.onload = function(){star()};
+
+function star() {
+if (score.tenSec > beat.tenSec || score.thirtySec > beat.thirtySec || score.square > beat.square || score.squareHard > beat.squareHard || score.triangle > beat.triangle || score.triangleHard > beat.triangleHard || score.motion > beat.motion || score.motionHard > beat.motionHard) {
+document.getElementById("beatall").style.display="inline";
+if (score.tenSec > beat.tenSec && score.thirtySec > beat.thirtySec && score.square > beat.square && score.squareHard > beat.squareHard && score.triangle > beat.triangle && score.triangleHard > beat.triangleHard && score.motion > beat.motion && score.motionHard > beat.motionHard){
+document.getElementById("beatall").innerHTML="<span style='color:#2FCA2F;'>&#9733</span>";}
+else {document.getElementById("beatall").innerHTML="<span style='color:#35A2E5;'>&#9733</span>";}
+}
+else {document.getElementById("beatall").style.display="none";}
+if (score.swiped>=1000) {
+document.getElementById("clickgod").style.display="inline";
+if (score.swiped>=1000 && score.swiped<5000) {document.getElementById("clickgod").innerHTML="<span style='color:#8C7853;'>&#9733</span>";}
+if (score.swiped>=5000 && score.swiped<10000) {document.getElementById("clickgod").innerHTML="<span style='color:#B3B3B3 ;'>&#9733</span>";}
+if (score.swiped>=10000) {document.getElementById("clickgod").innerHTML="<span style='color:#CFB53B;'>&#9733</span>";}
+}
+else {document.getElementById("clickgod").style.display="none";}
+}
+
+function begin() {
+headermenu();
+document.getElementById("main").innerHTML="<p class='margin'><a class='clickable' onclick='imdone()'><strong>&#8592;</strong></a>&nbsp; Select Mode</p><div id='select'><ul><li><button type='button' class='mod' onclick='freeform()' onmouseover='description(\"Swipe your mouse across the vertical line.\")'>Freeform</button></li><li><button type='button' class='mod' onclick='square()' onmouseover='description(\"Swipe within two fixed squares.\")'>Square</button></li><li><button type='button' class='mod' onclick='triangle()' onmouseover='description(\"Swipe clockwise within three fixed triangles.\")'>Triangle</button></li><li><button type='button' class='mod' onclick='motion()' onmouseover='description(\"Swipe within two moving squares.\")'>Motion</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><ul id='achieve'><li><a  class='clickable' onclick='beatcreator()'><strong>Beat the Creator</strong></a></li><li><a class='clickable' onclick='clickergod()'><strong>The Prestigious Swiper</strong></a></li></ul></div>";
+}
+
+function help() {
+document.getElementById("main").innerHTML="<h4>Help</h4><p>In this game, your goal is to swipe your cursor left and right across the line repeatedly as fast as you can. You can choose from four different game modes.</p><p><b>Freeform:</b> Swipe anywhere within your browser window.<br><b>Square:</b> Swipe within two fixed squares.<br><b>Triangle:</b> Swipe clockwise within three fixed triangles.<br><b>Motion:</b> Swipe within two moving squares.</p><p>For tips on raising your scores, check out the <a href='https://www.gamesbytim.com/2015/11/the-mouse-swipe-strategy-guide.html' target='_blank'>strategy guide</a>.</p><p><button type='button' onclick='imdone()'>Go back</button></p>";
+}
+
+function records() {
+document.getElementById("main").innerHTML="<h4>Settings</h4><table id='settings'><tr><td>Background Color Change</td><td><input type='radio' name='setbg' id='setbg1' onchange='setchange()' checked>On <input type='radio' name='setbg' id='setbg0' onchange='setchange()'>Off</td></tr><tr><td>Commentary</td><td><input type='radio' name='setcom' id='setcom1' onchange='setchange()' checked>On <input type='radio' name='setcom' id='setcom0' onchange='setchange()'>Off</td></tr><tr><td>Save High Scores</td><td><input type='radio' name='seths' id='seths1' onchange='setchange()' checked>On <input type='radio' name='seths' id='seths0' onchange='setchange()'>Off</td></tr></table><p id='resetcurse'><button type='button' id='resetbutton' onclick='reset()' class='small'>Reset</button></p><p><button type='button' class='mod' onclick='imdone()'>Go back</button></p>";
+if (settings.bgchange==0) {document.getElementById('setbg0').checked=true;}
+if (settings.analysis==0) {document.getElementById('setcom0').checked=true;}
+if (settings.saveScores==0) {document.getElementById("seths0").checked=true;}
+}
+
+function setchange() {
+if(document.getElementById('setbg1').checked) {settings.bgchange=1;localStorage.removeItem("mswipeSetting1");}
+if(document.getElementById('setbg0').checked) {settings.bgchange=0;localStorage.setItem("mswipeSetting1", 0);}
+if(document.getElementById('setcom1').checked) {settings.analysis=1;localStorage.removeItem("mswipeSetting2");}
+if(document.getElementById('setcom0').checked) {settings.analysis=0;localStorage.setItem("mswipeSetting2", 0);}
+if(document.getElementById('seths1').checked) {settings.saveScores=1;localStorage.removeItem("mswipeSetting3");}
+if(document.getElementById('seths0').checked) {settings.saveScores=0;localStorage.setItem("mswipeSetting3", 0);}
+document.getElementById("resetcurse").innerHTML="<button type='button' id='resetbutton' onclick='reset()' class='small'>Reset</button>";
+}
+
+function reset() {
+var r=confirm("Are you sure you want to reset all your scores, stats, and settings?");
+if (r==true) {score.tenSec=0;score.thirtySec=0;localStorage.removeItem("mswipeScore");localStorage.removeItem("mswipeScore2");score.square = 0;localStorage.removeItem("mswipeScore3");score.squareHard = 0;localStorage.removeItem("mswipeScore4");score.triangle = 0;localStorage.removeItem("mswipeScore5");score.triangleHard = 0;localStorage.removeItem("mswipeScore6");score.motion = 0;localStorage.removeItem("mswipeScore7");score.motionHard = 0;localStorage.removeItem("mswipeScore8");score.swiped = 0;localStorage.removeItem("timesSwipedScore");settings.bgchange=1;localStorage.removeItem("mswipeSetting1");settings.analysis=1;localStorage.removeItem("mswipeSetting2");settings.saveScores=1;localStorage.removeItem("mswipeSetting3");star();records();
+document.getElementById("resetcurse").innerHTML="<span style='color:#4A56F7;'><i>Reset complete</i></span>";}
+}
+
+function about() {
+document.getElementById("main").innerHTML="<h4>About</h4><div class='nocenter'><p>First, it was the button. Then, it was the keyboard. And now, your entire computer mouse gets to join in the fun! The idea for this game was originally thought of by Kaizad Taraporevala.</p><p><strong>Released:</strong> October 1, 2015<br><strong>Updated:</strong> August 31, 2018<br><strong>License:</strong> <a href='license.txt' target='_blank'>GPL v3</a></p><p>Mouse Swipe is part of the <strong>Masher Series</strong>, a collection of mashing related games. Check out <a href='https://timtree.github.io/button-masher/' target='_blank'>Button Masher</a> and <a href='https://timtree.github.io/keyboard-masher/' target='_blank'>Keyboard Masher</a>, the other games in the series.</p></div><p class='margin'>For more games created by me, visit the <a href='https://www.gamesbytim.com' target='_blank'>Official Website</a>.</p><div id='select'><ul><li><a href='https://timtree.github.io/mouse-swipe/Mouse%20Swipe.zip'><button type='button'>Download</button></a></li><li><a href='README.txt' target='_blank'><button type='button'>Read Me</button></a></li></ul></div><button type='button' onclick='imdone()'>Go back</button>";
+}
+
+function beatcreator() {
+document.getElementById("main").innerHTML="<h4>Beat the Creator</h4><p>Below is a comparison of my high scores to your high scores. If you beat one of my scores, you'll get a <span style='color:blue;'>blue star</span>. If you beat them all, you'll get a <span style='color:green;'>green star</span>. Good luck!</p><table id='btc' style='margin:auto;'><tr><th>Game Mode</th><th>Creator&#39;s Score</th><th>Your Score</th><td class='check'></td></tr><tr><td>Freeform (10 sec)</td><td>" + beat.tenSec + "</td><td>" + score.tenSec + "</td><td class='check' id='beatmeten'></td></tr><tr><td>Freeform (30 sec)</td><td>" + beat.thirtySec + "</td><td>" + score.thirtySec + "</td><td class='check' id='beatmethirty'></td></tr><tr><td>Square</td><td>" + beat.square + "</td><td>" + score.square + "</td><td class='check' id='beatmesquare'></td></tr><tr><td>Square (Hard)</td><td>" + beat.squareHard + "</td><td>" + score.squareHard + "</td><td class='check' id='beatmesquarehard'></td></tr><tr><td>Triangle</td><td>" + beat.triangle + "</td><td>" + score.triangle + "</td><td class='check' id='beatmetriangle'></td></tr><tr><td>Triangle (Hard)</td><td>" + beat.triangleHard + "</td><td>" + score.triangleHard + "</td><td class='check' id='beatmetrianglehard'></td></tr><tr><td>Motion</td><td>" + beat.motion + "</td><td>" + score.motion + "</td><td class='check' id='beatmemotion'></td></tr><tr><td>Motion (Hard)</td><td>" + beat.motionHard + "</td><td>" + score.motionHard + "</td><td class='check' id='beatmemotionhard'></td></tr></table><p id='noSave'></p><p><button type='button' onclick='begin()'>Go back</button></p>";
+if (score.tenSec > beat.tenSec) {document.getElementById("beatmeten").innerHTML="&#10004;";}
+if (score.thirtySec > beat.thirtySec) {document.getElementById("beatmethirty").innerHTML="&#10004;";}
+if (score.square > beat.square) {document.getElementById("beatmesquare").innerHTML="&#10004;";}
+if (score.squareHard > beat.squareHard) {document.getElementById("beatmesquarehard").innerHTML="&#10004;";}
+if (score.triangle > beat.triangle) {document.getElementById("beatmetriangle").innerHTML="&#10004;";}
+if (score.triangleHard > beat.triangleHard) {document.getElementById("beatmetrianglehard").innerHTML="&#10004;";}
+if (score.motion > beat.motion) {document.getElementById("beatmemotion").innerHTML="&#10004;";}
+if (score.motionHard > beat.motionHard) {document.getElementById("beatmemotionhard").innerHTML="&#10004;";}
+if (settings.saveScores==0)
+{document.getElementById("noSave").innerHTML="Save High Scores must be enabled for this to work.";}
+}
+
+function clickergod() {
+var godrank;
+var clicksleft;
+
+if (score.swiped<=499) {godrank="Newborn Swiper"; clicksleft="500";}
+if (score.swiped>=500&&score.swiped<=999) {godrank="Advancing Swiper"; clicksleft="1,000";}
+if (score.swiped>=1000&&score.swiped<=2499) {godrank="Experienced Swiper"; clicksleft="2,500";}
+if (score.swiped>=2500&&score.swiped<=4999) {godrank="Successful Swiper"; clicksleft="5,000";}
+if (score.swiped>=5000&&score.swiped<=7499) {godrank="Stunning Swiper"; clicksleft="7,500";}
+if (score.swiped>=7500&&score.swiped<=9999) {godrank="Resounding Swiper"; clicksleft="10,000";}
+
+document.getElementById("main").innerHTML="<h4>The Prestigious Swiper</h4><p class='margin'>Can you accumulate a total of 10,000 swipes? If so, you are considered a prestigious swiper. Below is your current progress.</p><div id='clickergod'><p>Total Swipes:</p><p><span style='font-size:46pt;font-weight:700;color:#399470;'>" + score.swiped + "</span> /10,000</p><p><span style='font-size:14pt;'>Your rank: <strong>" + godrank + "</strong></span></p><p id='analysis'>Next rank at " + clicksleft + " swipes</p></div><p><button type='button' onclick='begin()'>Go back</button></p>";
+
+if (score.swiped>=10000)
+{document.getElementById("clickergod").innerHTML="<p>Total Swipes:</p><p><span style='font-size:46pt;font-weight:700;color:#7164CE;'>" + score.swiped + "</span></p><p id='analysis'><span style='font-size:20pt;font-weight:700;color:#A7A726;'>Congratulations, you are a prestigious swiper!</span></p>";}
+}
+
+function freeform() {
+document.getElementById("main").innerHTML="<p class='margin'>Freeform - Select Type</p><div id='select'><ul><li><button type='button' class='mod' onclick='tensec()'>10 Seconds</button></li><li><button type='button' class='mod' onclick='thirtysec()'>30 Seconds</button></li></ul><br><form name='custominput' onsubmit='return customgame()'><ul>Custom (# of seconds): <li><input name='custom' style='font-size:16pt; width:100px;'></li><li><button type='submit'>Enter</button></li></ul></form><p id='customerror'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+}
+
+var time, message, highscore, interval, beatvar, func;
+
+function tensec() {
+time = 10;
+message = "10 Seconds";
+highscore = score.tenSec;
+interval = 15;
+beatvar = beat.tenSec;
+newgame();
+}
+
+function thirtysec() {
+time = 30;
+message = "30 Seconds";
+highscore = score.thirtySec;
+beatvar = beat.thirtySec;
+interval = 40;
+newgame();
+}
+
+function newgame() {
+func="newgame();";
+document.body.style.backgroundColor = "#5B709E";
+headersetup();
+document.getElementById("main").innerHTML=scoreset+"<p id='commentary'>Swipe across the line to begin.</p><div id='capsule'><div id='leftinner' onmouseover='setupleft()'></div><div id='rightinner' onmouseover='setupright()'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p><p id='thehs'></p>";
+if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+}
+
+function setupleft() {
+document.getElementById("capsule").innerHTML="<div id='leftinner'></div><div id='rightinner' onmouseover='initialize();plusoneright()'></div>";
+}
+
+function setupright() {
+document.getElementById("capsule").innerHTML="<div id='leftinner' onmouseover='initialize();plusoneleft()'></div><div id='rightinner'></div>";
+}
+
+var int, restart, swipeflash;
+
+function initialize() { 
+start = Date.now();
+document.getElementById("commentary").innerHTML="SWIPE!";
+if (time>2) {swipeflash=setTimeout(function(){document.getElementById("commentary").innerHTML="<span id='blank'>.</span>";},2000);}
+document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo();newgame();' title='Restart'> &#8617;</a>";
+
+restart=setTimeout(function(){
+document.getElementById("commentary").innerHTML="";
+document.getElementById("capsule").style.height="100%";
+document.getElementById("capsule").style.margin="auto";
+endscore("capsule");
+if (interval!=0) {analysis(),scoretest();}
+addup();
+},time*1000);
+document.getElementById("back").innerHTML="";
+int=setInterval(function(){updatetime()},100);
+
+}
+
+function plusoneleft() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='leftinner'></div><div id='rightinner'></div><div id='leftouter'></div><div id='rightouter' onmouseover='plusoneright()'></div>";
+bgchange();
+}
+
+function plusoneright() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='leftinner'></div><div id='rightinner'></div><div id='leftouter' onmouseover='plusoneleft()'></div><div id='rightouter'></div>";
+bgchange();
+}
+
+function bgchange() {
+if (settings.bgchange==1) {
+	if (interval == 0) {document.body.style.backgroundColor = "#415071";}
+	if (interval != 0) {
+	var x=document.score.scoring.value;
+	if (x==1)
+		{document.body.style.backgroundColor = "#4294CF";}
+	if(x==interval)
+		{document.body.style.backgroundColor = "#3EB399";}
+	if(x==interval*2)
+		{document.body.style.backgroundColor = "#168A50";}
+	if(x==interval*3)
+		{document.body.style.backgroundColor = "#9BAB43";}
+	if(x==interval*4)
+		{document.body.style.backgroundColor = "#BF7E34";}
+	if(x==interval*5)
+		{document.body.style.backgroundColor = "#BD4242";}
+	if(x==interval*6)
+		{document.body.style.backgroundColor = "#7A2626";}
+	if(x==interval*7)
+		{document.body.style.backgroundColor = "#151566";}
+	if(x==interval*8)
+		{document.body.style.backgroundColor = "#5E5E5E";}
+	if(x==interval*9)
+		{document.body.style.backgroundColor = "#000";}
+	}
+}
+}
+
+function analysis() {
+if (settings.analysis==1) {
+var a, b, c, d, e, f;
+if (message=="10 Seconds") {a=40, b=60, c=80; d=100, e=120, f=140;}
+else if (message=="30 Seconds") {a=100, b=160, c=220; d=280, e=340, f=400;}
+var x=document.score.scoring.value;
+if(x>=1&&x<a)
+{document.getElementById("analysis").innerHTML="Come on, you can do better than that!";}
+if(x>=a&&x<b)
+{document.getElementById("analysis").innerHTML="You&#39re getting there. Keep trying!";}
+if(x>=b&&x<c)
+{document.getElementById("analysis").innerHTML="Not bad! Keep on trying!";}
+if(x>=c&&x<d)
+{document.getElementById("analysis").innerHTML="Wow, you&#39re pretty good at this game.";}
+if(x>=d&&x<e)
+{document.getElementById("analysis").innerHTML="Dang, you are way better than I thought you were.";}
+if(x>=e&&x<f)
+{document.getElementById("analysis").innerHTML="At this score, you seriously deserve a raise.";}
+if(x>=f&&x<=9000)
+{document.getElementById("analysis").innerHTML="&#42;Faints&#42;";}
+if(x>=9001)
+{document.getElementById("analysis").innerHTML="OVER 9000?! Someone, GIVE THIS GUY A LIFE!!!";}
+}
+}
+
+function customgame() {
+	try {
+		var z=document.custominput.custom.value;
+		z=z.replace(/\,/g, "");
+		if(z=="") throw "Box is blank.";
+		if(isNaN(z)) throw "Not a number.";
+		if(z <= 0) throw "Not possible.";
+		if(z > 2147483.647) throw "Overflow.";
+		else if(z == 10) {tensec();}
+		else if(z == 30) {thirtysec();}
+		else {
+			time = Number(z);
+			if (time==1) {secondmod="second";}
+			else {secondmod="seconds";}
+			message = "Custom ("+ time + " "+secondmod+")";
+			highscore = "n/a";
+			interval = 0;
+			beatvar = null;
+			newgame();
+			}
+	}
+	catch (err) {
+	document.getElementById("customerror").innerHTML="<span id='blank'>.</span>";
+	setTimeout(function(){document.getElementById("customerror").innerHTML="<span style='color:red;'>Error: " + err + "</span>";}, 100);
+	}
+	return false;
+}
+
+function square() {
+document.getElementById("main").innerHTML="<p class='margin'>Square - Select Difficulty</p><div id='select'><ul><li><button type='button' class='mod' onclick='squarenormal()' onmouseover='description(\"Swipe within two fixed squares for 10 seconds.\")'>Normal</button></li><li><button type='button' class='mod' onclick='squarehard()' onmouseover='description(\"This mode lasts 30 seconds. The squares shrink over time.\")'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+}
+
+function squarenormal() {
+time = 10;
+message = "Square";
+highscore = score.square;
+beatvar = beat.square;
+interval = 12;
+squaregame();
+}
+
+function squarehard() {
+time = 30;
+message = "Square (Hard)";
+highscore = score.squareHard;
+beatvar = beat.squareHard;
+interval = 25;
+squaregame();
+}
+
+function squaregame() {
+func="squaregame()";
+if (settings.bgchange==1) {document.body.style.backgroundColor = "#5B709E";}
+headersetup();
+document.getElementById("main").innerHTML=scoreset+"<p id='commentary'>Swipe either square to begin.</p><div id='capsule'><div id='leftsquare' onmouseover='initialize2();setupleftsquare()'></div><div id='rightsquare' onmouseover='initialize2();setuprightsquare()'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p><p id='thehs'></p>";
+if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+if (message=="Square (Hard)") {squarehardsmall();};
+}
+
+function setupleftsquare() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='leftsquare'></div><div id='rightsquare' onmouseover='setuprightsquare()'></div>";
+document.getElementById("leftsquare").style.backgroundColor="#C7C7D0";
+bgchange();
+if (message=="Square (Hard)") {squarehardsmall();};
+}
+
+function setuprightsquare() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='leftsquare' onmouseover='setupleftsquare()'></div><div id='rightsquare'></div>";
+document.getElementById("rightsquare").style.backgroundColor="#C7C7D0";
+bgchange();
+if (message=="Square (Hard)") {squarehardsmall();};
+}
+
+function initialize2() { 
+start = Date.now();
+document.getElementById("commentary").innerHTML="SWIPE!";
+swipeflash=setTimeout(function(){document.getElementById("commentary").innerHTML="<span id='blank'>.</span>";},2000);
+document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo();squaregame();' title='Restart'> &#8617;</a>";
+restart=setTimeout(function(){
+document.getElementById("commentary").innerHTML="";
+document.getElementById("capsule").style.height="100%";
+document.getElementById("capsule").style.margin="auto";
+endscore("capsule");
+if (interval!=0) {squareAnalysis(),scoretest();}
+addup();
+},time*1000);
+document.getElementById("back").innerHTML="";
+int=setInterval(function(){updatetime()},100);
+}
+
+function squarehardsmall() {
+
+var dim, top, left1, left2;
+var x=document.score.scoring.value;
+
+if (x<50) {dim = 100, top = 90, left1 = 0, left2 = 0;}
+if (x>=50&&x<100) {dim = 90, top = 95, left1 = 5, left2 = -5;}
+if (x>=100&&x<150) {dim = 80, top = 100, left1 = 10, left2 = -10;}
+if (x>=150&&x<200) {dim = 70, top = 105, left1 = 15, left2 = -15;}
+if (x>=200) {dim = 60, top = 110, left1 = 20, left2 = -20;}
+
+document.getElementById("leftsquare").style.width = dim+"px";
+document.getElementById("leftsquare").style.height = dim+"px";
+document.getElementById("leftsquare").style.top = top+"px";
+document.getElementById("leftsquare").style.left = left1+"px";
+document.getElementById("rightsquare").style.width = dim+"px";
+document.getElementById("rightsquare").style.height = dim+"px";
+document.getElementById("rightsquare").style.top = top+"px";
+document.getElementById("rightsquare").style.left = left2+"px";
+
+}
+
+function squareAnalysis() {
+    if (settings.analysis==1) {
+var a, b, c, d, e, f;
+if (message == "Square") {a=20, b=40, c=60; d=80, e=100, f=120;}
+else if (message == "Square (Hard)") {a=40, b=80, c=120; d=160, e=200, f=240;}
+var x=document.score.scoring.value;
+if(x>=0&&x<a)
+{document.getElementById("analysis").innerHTML="Remember, this isn't Dora the Explorer.";}
+if(x>=a&&x<b)
+{document.getElementById("analysis").innerHTML="An okay performance. Keep on swiping.";}
+if(x>=b&&x<c)
+{document.getElementById("analysis").innerHTML="Your swiping skills are quite decent.";}
+if(x>=c&&x<d)
+{document.getElementById("analysis").innerHTML="Your swiping skills are pretty good.";}
+if(x>=d&&x<e)
+{document.getElementById("analysis").innerHTML="Wow, your swiping skills are impressive!";}
+if(x>=e&&x<f)
+{document.getElementById("analysis").innerHTML="Whoa, those are rad swiping skills!";}
+if(x>=f&&x<=9000)
+{document.getElementById("analysis").innerHTML="B...but...how... &#42;faints again&#42;";}
+if(x>=9001)
+{document.getElementById("analysis").innerHTML="And Dora the Explorer failed. Miserably.";}
+    }
+}
+
+function triangle() {
+document.getElementById("main").innerHTML="<p class='margin'>Triangle - Select Difficulty</p><div id='select'><ul><li><button type='button' class='mod' onclick='trianglenormal()' onmouseover='description(\"Swipe within three triangles for 10 seconds.\")'>Normal</button></li><li><button type='button' class='mod' onclick='trianglehard()' onmouseover='description(\"This mode lasts 30 seconds. The triangles shrink over time.\")'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+}
+
+function trianglenormal() {
+time = 10;
+message = "Triangle";
+highscore = score.triangle;
+beatvar = beat.triangle;
+interval = 12;
+trianglegame();
+}
+
+function trianglehard() {
+time = 30;
+message = "Triangle (Hard)";
+highscore = score.triangleHard;
+beatvar = beat.triangleHard;
+interval = 25;
+trianglegame();
+}
+
+function trianglegame() {
+func="trianglegame()";
+if (settings.bgchange==1) {document.body.style.backgroundColor = "#5B709E";}
+headersetup();
+document.getElementById("main").innerHTML=scoreset+"<p id='commentary'>Swipe the bottom-right triangle to begin.</p><div id='capsule' style='height:290px;'><div id='toptriangle'></div><div id='lefttriangle'></div><div id='righttriangle' onmouseover='initialize3();setuprighttriangle()'></div></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>"+time+"</span></p><p id='thehs'></p>";
+if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+if (message=="Triangle (Hard)") {trianglehardsmall();};
+document.getElementById("righttriangle").style.borderBottomColor="#908FA2";
+}
+
+function setuplefttriangle() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='toptriangle' onmouseover='setuptoptriangle()'></div><div id='lefttriangle'></div><div id='righttriangle'></div>";
+if (message=="Triangle (Hard)") {trianglehardsmall();};
+document.getElementById("toptriangle").style.borderBottomColor="#908FA2";
+bgchange();
+}
+
+function setuprighttriangle() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='toptriangle'></div><div id='lefttriangle' onmouseover='setuplefttriangle()'></div><div id='righttriangle'></div>";
+if (message=="Triangle (Hard)") {trianglehardsmall();};
+document.getElementById("lefttriangle").style.borderBottomColor="#908FA2";
+bgchange();
+}
+
+function setuptoptriangle() {
+document.score.scoring.value++;
+document.getElementById("capsule").innerHTML="<div id='toptriangle'></div><div id='lefttriangle'></div><div id='righttriangle' onmouseover='setuprighttriangle()'></div>";
+if (message=="Triangle (Hard)") {trianglehardsmall();};
+document.getElementById("righttriangle").style.borderBottomColor="#908FA2";
+bgchange();
+}
+
+function initialize3() { 
+start = Date.now();
+document.getElementById("commentary").innerHTML="SWIPE!";
+swipeflash=setTimeout(function(){document.getElementById("commentary").innerHTML="<span id='blank'>.</span>";},2000);
+document.getElementById("restart").innerHTML="<a class='clickable' onclick='redo();trianglegame();' title='Restart'> &#8617;</a>";
+restart=setTimeout(function(){
+document.getElementById("commentary").innerHTML="";
+document.getElementById("capsule").style.height="100%";
+document.getElementById("capsule").style.margin="auto";
+endscore("capsule");
+if (interval!=0) {triangleAnalysis(),scoretest();}
+addup();
+},time*1000);
+document.getElementById("back").innerHTML="";
+int=setInterval(function(){updatetime()},100);
+}
+
+function trianglehardsmall() {
+
+var dim1, dim2, top, left;
+var x=document.score.scoring.value;
+
+if (x<50) {dim1 = 58, dim2 = 100, top = 80, left = 212;}
+if (x>=50&&x<100) {dim1 = 52, dim2 = 90, top = 100, left = 218;}
+if (x>=100&&x<150) {dim1 = 46, dim2 = 80, top = 120, left = 224;}
+if (x>=150&&x<200) {dim1 = 40, dim2 = 70, top = 140, left = 230;}
+if (x>=200) {dim1 = 35, dim2 = 60, top = 160, left = 235;}
+
+document.getElementById("lefttriangle").style.borderLeft = dim1+"px solid transparent";
+document.getElementById("lefttriangle").style.borderRight = dim1+"px solid transparent";
+document.getElementById("lefttriangle").style.borderBottom = dim2+"px solid #C7C7D0";
+document.getElementById("lefttriangle").style.top = top+"px";
+document.getElementById("righttriangle").style.borderLeft = dim1+"px solid transparent";
+document.getElementById("righttriangle").style.borderRight = dim1+"px solid transparent";
+document.getElementById("righttriangle").style.borderBottom = dim2+"px solid #C7C7D0";
+document.getElementById("righttriangle").style.top = top+"px";
+document.getElementById("toptriangle").style.borderLeft = dim1+"px solid transparent";
+document.getElementById("toptriangle").style.borderRight = dim1+"px solid transparent";
+document.getElementById("toptriangle").style.borderBottom = dim2+"px solid #C7C7D0";
+document.getElementById("toptriangle").style.left = left+"px";
+
+}
+
+function triangleAnalysis() {
+    if (settings.analysis==1) {
+var a, b, c, d, e, f;
+if (message == "Triangle") {a=20, b=40, c=60; d=80, e=100, f=120;}
+else if (message == "Triangle (Hard)") {a=40, b=80, c=120; d=160, e=200, f=240;}
+var x=document.score.scoring.value;
+if(x>=0&&x<a)
+{document.getElementById("analysis").innerHTML="Tri-again! (That didn't sound right.)";}
+if(x>=a&&x<b)
+{document.getElementById("analysis").innerHTML="Not bad, but the triangles could use more attention.";}
+if(x>=b&&x<c)
+{document.getElementById("analysis").innerHTML="The triangles appreciate your effort.";}
+if(x>=c&&x<d)
+{document.getElementById("analysis").innerHTML="The triangles greatly appreciate your effort.";}
+if(x>=d&&x<e)
+{document.getElementById("analysis").innerHTML="The triangles immensely appreciate your skills.";}
+if(x>=e&&x<f)
+{document.getElementById("analysis").innerHTML="The triangles wish you were their tribe leader.";}
+if(x>=f&&x<=27000)
+{document.getElementById("analysis").innerHTML="The triangles faint. (How could they do that?)";}
+if(x>=27001)
+{document.getElementById("analysis").innerHTML="IT'S OVER TRI-9000!!!";}
+    }
+}
+
+function motion() {
+document.getElementById("main").innerHTML="<p class='margin'>Motion - Select Difficulty</p><div id='select'><ul><li><button type='button' class='mod' onclick='motionnormal()' onmouseover='description(\"Swipe within two moving squares for 30 seconds.\")'>Normal</button></li><li><button type='button' class='mod' onclick='motionhard()' onmouseover='description(\"The squares are smaller and move faster.\")'>Hard</button></li></ul><p class='margin' id='description'><span id='blank'>.</span></p><button type='button' class='small' onclick='begin()'>Go back</button></div>";
+}
+
+function motionnormal() {
+time = 30;
+message = "Motion";
+highscore = score.motion;
+beatvar = beat.motion;
+interval = 30;
+motiongame();
+}
+
+function motionhard() {
+time = 30;
+message = "Motion (Hard)";
+highscore = score.motionHard;
+beatvar = beat.motionHard;
+interval = 25;
+motiongame();
+}
+
+function motiongame() {
+func="motiongame()";
+if (settings.bgchange==1) {document.body.style.backgroundColor = "#5B709E";}
+headersetup();
+document.getElementById("main").innerHTML=scoreset+"<p id='commentary'>Swipe either square to begin.</p><div id='capsule'></div><p id='timer'><b>Time:</b> &nbsp;<span style='font-size:15pt;' id='thetime'>" + time + "</span></p><p id='thehs'></p>";
+if (settings.saveScores==1) {document.getElementById("thehs").innerHTML="<span style='font-size:10pt;'><b>High Score:</b></span> <span style='font-size:12pt;'>" + highscore + "</span>";}
+if (message=="Motion"){
+document.getElementById("capsule").innerHTML="<div id='oscill'><div id='leftmotion' onmouseover='initialize4();setupleftmotion()'></div><div id='rightmotion' onmouseover='initialize4();setuprightmotion()'></div>";
+}
+if (message=="Motion (Hard)"){
+document.getElementById("capsule").innerHTML="<div id='oscill2'><div id='leftmotionHard' onmouseover='initialize4();setupleftmotionhard()'></div><div id='rightmotionHard' onmouseover='initialize4();setuprightmotionhard()'></div>";
+}
+}
+
+function setupleftmotion() {
+document.score.scoring.value++;
+document.getElementById("oscill").innerHTML="<div id='leftmotion'></div><div id='rightmotion' onmouseover='setuprightmotion()'></div>";
+document.getElementById("leftmotion").style.backgroundColor="#C7C7D0";
+bgchange();
+}
+
+function setuprightmotion() {
+document.score.scoring.value++;
+document.getElementById("oscill").innerHTML="<div id='leftmotion' onmouseover='setupleftmotion()'></div><div id='rightmotion'></div>";
+document.getElementById("rightmotion").style.backgroundColor="#C7C7D0";
+bgchange();
+}
+
+function setupleftmotionhard() {
+document.score.scoring.value++;
+document.getElementById("oscill2").innerHTML="<div id='leftmotionHard'></div><div id='rightmotionHard' onmouseover='setuprightmotionhard()'></div>";
+document.getElementById("leftmotionHard").style.backgroundColor="#C7C7D0";
+bgchange();
+}
+
+function setuprightmotionhard() {
+document.score.scoring.value++;
+document.getElementById("oscill2").innerHTML="<div id='leftmotionHard' onmouseover='setupleftmotionhard()'></div><div id='rightmotionHard'></div>";
+document.getElementById("rightmotionHard").style.backgroundColor="#C7C7D0";
+bgchange();
+}
+
+function initialize4() { 
+start = Date.now();
+document.getElementById("commentary").innerHTML="SWIPE!";
+swipeflash=setTimeout(function(){document.getElementById("commentary").innerHTML="<span id='blank'>.</span>";},2000);
+document.getElementById("restart").innerHTML="<a  class='clickable' onclick='redo(),clearTimeout(flash),clearTimeout(flash2),clearTimeout(flash3),clearTimeout(flash4),motiongame();' title='Restart'> &#8617;</a>";
+restart=setTimeout(function(){
+document.getElementById("commentary").innerHTML="";
+document.getElementById("capsule").style.height="100%";
+document.getElementById("capsule").style.margin="auto";
+endscore("capsule");
+if (interval!=0) {motionAnalysis(),scoretest();}
+addup();
+},time*1000);
+document.getElementById("back").innerHTML="";
+int=setInterval(function(){updatetime()},100);
+
+flash=setTimeout(function(){
+document.getElementById("thetime").style.fontWeight="bold";
+document.getElementById("timer").style.color="#D6B55A";
+},10000);
+flash2=setTimeout(function(){
+document.getElementById("thetime").style.fontWeight="normal";
+document.getElementById("timer").style.color="";
+},10500);
+flash3=setTimeout(function(){
+document.getElementById("thetime").style.fontWeight="bold";
+document.getElementById("timer").style.color="#D6B55A";
+},20000);
+flash4=setTimeout(function(){
+document.getElementById("thetime").style.fontWeight="normal";
+document.getElementById("timer").style.color="";
+},20500);
+
+if (message=="Motion") {
+document.getElementById("oscill").style.webkitAnimationPlayState="running";
+document.getElementById("oscill").style.animationPlayState="running";
+}
+if (message=="Motion (Hard)") {
+document.getElementById("oscill2").style.webkitAnimationPlayState="running";
+document.getElementById("oscill2").style.animationPlayState="running";
+}
+
+}
+
+function motionAnalysis() {
+if (settings.analysis==1) {
+var a, b, c, d, e, f;
+
+if (message=="Motion") {a=50, b=100, c=150; d=200, e=250, f=300;}
+else if (message=="Motion (Hard)") {a=40, b=80, c=120; d=160, e=200, f=240;}
+
+var x=document.score.scoring.value;
+if(x>=1&&x<a)
+{document.getElementById("analysis").innerHTML="The moving squares outran you. Better luck next time!";}
+if(x>=a&&x<b)
+{document.getElementById("analysis").innerHTML="At least you survived. Keep practicing!";}
+if(x>=b&&x<c)
+{document.getElementById("analysis").innerHTML="Your motion skills are proficient. Good job.";}
+if(x>=c&&x<d)
+{document.getElementById("analysis").innerHTML="Your motion skills are definitely up there.";}
+if(x>=d&&x<e)
+{document.getElementById("analysis").innerHTML="Wow, your swipes are so swift!";}
+if(x>=e&&x<f)
+{document.getElementById("analysis").innerHTML="Dang, you need to teach me you you did that.";}
+if(x>=f&&x<=9000)
+{document.getElementById("analysis").innerHTML="Wait, whoa, wha... &#42;faints&#42;";}
+if(x>=9001)
+{document.getElementById("analysis").innerHTML="Even dishwashers envy you.";}
+}}
+
+function imdone() {
+headermenu();
+document.getElementById("main").innerHTML="<div id='select'><p><button type='button' class='big' onclick='begin()'>Play Game</button></p><ul><li><button type='button' onclick='help()'>Help</button></li><li><button type='button' onclick='records()'>Settings</button></li><li><button type='button' onclick='about()'>About</button></li></ul></div>";
+}
+    
+function headermenu() {
+document.body.style.backgroundColor = "#5B709E";
+document.getElementById("title").style.fontSize="50pt";
+document.getElementById("author").innerHTML="By Timothy Hsu";
+document.getElementById("copyright").style.display="block";
+}
+
+function description(x) {
+document.getElementById("description").innerHTML=x;
+}
+    
+function headersetup() {
+document.getElementById("title").style.fontSize="21pt";
+document.getElementById("author").innerHTML=back+message;
+document.getElementById("copyright").style.display="none";
+}
+
+function noenter(e) {
+var key;      
+if(window.event)
+key = window.event.keyCode;
+else
+key = e.which;
+return (key != 13);
+}
+    
+function redo() {
+clearTimeout(restart);
+clearInterval(int);
+clearInterval(swipeflash);
+addup();
+}
+
+function updatetime() {
+var diff = Date.now() - start;
+elapsed = (time-Math.floor(diff/100)/10).toFixed(1);
+if (elapsed==time&&elapsed%1==0){elapsed=parseInt(elapsed);};
+document.getElementById("thetime").innerHTML=elapsed;
+}
+    
+function endscore(x) {
+document.getElementById(x).innerHTML="<p id='timeisup'>Time's up!</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick="+func+">Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
+elapsed=0;document.getElementById("thetime").innerHTML=elapsed;
+document.getElementById("restart").innerHTML="";
+clearInterval(int);
+}
+    
+function enddone(x) {
+document.getElementById(x).innerHTML="<p id='done'>Done.</p><p id='record'></p><p id='analysis'></p><div id='select'><p><button type='button' class='big' onclick="+func+">Play Again</button></p><ul><li><button type='button' onclick='begin()'>Select Mode</button></li><li><button type='button' onclick='imdone()'>Main Menu</button></li></ul></div>";
+}
+
+function scoretest() {
+if (settings.saveScores==1) {
+    var x=Number(document.score.scoring.value);
+	if (x>beatvar && highscore<=beatvar) {
+	document.getElementById("beatme").innerHTML="<span id='beatcreator'>You beat the game creator!</span>";
+	}
+	if (x>highscore) {
+	if (highscore != 0) {document.getElementById("record").innerHTML="New Record!";}
+	highscore = x;
+		if (message=="10 Seconds") {score.tenSec=x;localStorage.setItem("mswipeScore", x);}
+		if (message=="30 Seconds") {score.thirtySec=x;localStorage.setItem("mswipeScore2", x);}
+		if (message=="Square") {score.square=x;localStorage.setItem("mswipeScore3", x);}
+        if (message=="Square (Hard)") {score.squareHard=x;localStorage.setItem("mswipeScore4", x);}
+		if (message=="Triangle") {score.triangle=x;localStorage.setItem("mswipeScore5", x);}
+        if (message=="Triangle (Hard)") {score.triangleHard=x;localStorage.setItem("mswipeScore6", x);}
+        if (message=="Motion") {score.motion=x;localStorage.setItem("mswipeScore7", x);}
+        if (message=="Motion (Hard)") {score.motionHard=x;localStorage.setItem("mswipeScore8", x);}
+        star();
+	}
+}
+}
+
+function addup() {
+score.swiped = score.swiped*1+Math.abs(document.score.scoring.value)*1;localStorage.setItem("timesSwipedScore", score.swiped);star();
+}
+    
+</script>
+
+</head>
+
+<body>
+
+<div id="wrap">
+
+<noscript><span style="display:block;text-align:center;"><strong>JavaScript is disabled.</strong> Please enable it in order to play the game.</span></noscript>
+
+<div id="title">Mouse Swipe</div>
+<div id="author">By Timothy Hsu</div>
+
+<div id="main">
+
+<div id="select"><p><button type="button" class="big" onclick="begin()">Play Game</button></p>
+<ul><li><button type="button" onclick="help()">Help</button></li><li><button type="button" onclick="records()">Settings</button></li><li><button type="button" onclick="about()">About</button></li></ul></div>
+
+</div>
+
+<div id="copyright"><p>Version 1.1.1 &nbsp;&#126;&nbsp; &copy;2015-2016 Timothy Hsu<span id='beatall'></span><span id='clickgod'></span></p></div>
+
+</div>
+
+</body>
+</html>
